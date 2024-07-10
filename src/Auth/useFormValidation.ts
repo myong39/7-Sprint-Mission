@@ -53,12 +53,31 @@ const useValidationForm= () => {
       passwordConfirm: passwordConfirmError,
     }));
   };
+  const handleBlur = (name: string, value: string, password:string) => {
+    switch (name) {
+      case "email":
+        validateEmail(value);
+        break;
+      case "nickname":
+        validateNickname(value);
+        break;
+      case "password":
+        validatePassword(value);
+        break;
+      case "passwordConfirm":
+        validatePasswordConfirm(password, value);
+        break;
+      default:
+        break;
+    }
+  };
   return {
     errors,
     validateEmail,
     validateNickname,
     validatePassword,
     validatePasswordConfirm,
+    handleBlur,
   };
 };
 

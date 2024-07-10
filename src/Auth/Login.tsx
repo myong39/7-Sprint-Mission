@@ -12,7 +12,7 @@ const Login = () => {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
@@ -79,7 +79,7 @@ const Login = () => {
               name="email"
               placeholder="이메일을 입력해주세요"
               value={formValues.email}
-              onChange={handleInputChange}
+              onChange={handleInput}
               onBlur={(e) => handleBlur(e.target.name, e.target.value)}
             />
             <span className="error-message-on">{errors.email}</span>
@@ -95,7 +95,7 @@ const Login = () => {
                 id="passwordInput"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
-                onChange={handleInputChange}
+                onChange={handleInput}
                 onBlur={(e) => handleBlur(e.target.name, e.target.value)}
               />
               <button

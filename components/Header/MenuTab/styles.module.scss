@@ -1,0 +1,19 @@
+@import "@/styles/import.scss";
+
+.menu-tab {
+  text-decoration: none;
+  color: $cool-gray;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.menu-tab-active {
+  text-decoration: none;
+  color: $brand-blue;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}

@@ -13,7 +13,7 @@ export default function SearchForm() {
 
     if (!value) return;
 
-    router.push(`Board?keyword=${value}`);
+    router.push(`board?keyword=${value}`);
   };
 
   return (

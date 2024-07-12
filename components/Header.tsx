@@ -37,7 +37,7 @@ const Header = () => {
           <ul>
             <li>
               <Link
-                href="/Board"
+                href="/board"
                 className={styles.link}
                 style={router.pathname === "/board" ? activeStyle : undefined}
               >

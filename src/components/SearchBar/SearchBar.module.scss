@@ -1,0 +1,31 @@
+@import '@/src/styles/_mixin';
+
+.container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.searchBar {
+  @include font-style(16px, 400, var(--gray-400));
+  flex-grow: 1;
+  height: 42px;
+  background-color: var(--gray-100);
+  padding: 9px 16px 9px 44px;
+  border-radius: 12px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--gray-200);
+    font-size: 16px;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  top: 6px;
+  left: 16px;
+}

@@ -1,0 +1,16 @@
+@import '@/src/styles/_mixin';
+
+.button {
+  @include font-style(16px, 600, var(--white));
+  padding: 12px 24px;
+  background-color: var(--blue);
+  border-radius: 5px;
+  width: max-content;
+  cursor: pointer;
+
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}

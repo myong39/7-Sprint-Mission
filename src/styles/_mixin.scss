@@ -1,0 +1,21 @@
+@mixin font-style($size: 16px, $weight: 400, $color: var(--gray-800)) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+@mixin drop-down-box {
+  width: 130px;
+  height: 42px;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 8px 20px;
+  background-color: var(--white);
+  cursor: pointer;
+}

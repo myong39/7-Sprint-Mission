@@ -1,0 +1,128 @@
+@import url('/src/styles/globals.css');
+
+.PostList {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  box-sizing: border-box;
+}
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  padding: 40px 0 24px;
+
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2em;
+  color: var(--gray900);
+}
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBarInner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  flex-grow: 1;
+
+  padding: 9px 16px;
+  border-radius: 12px;
+
+  background-color: var(--gray100);
+}
+
+.searchInput {
+  background-color: var(--gray100);
+  border: none;
+  outline: none;
+}
+
+.dropDown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 120px;
+  height: 42px;
+  padding: 12px 20px;
+  border: 1px solid var(--gray200);
+  border-radius: 12px;
+}
+
+.dropDownCurrentItem {
+  font-size: 1.6rem;
+  line-height: 1.5em;
+  color: var(--gray800);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.PostPreview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+
+  width: 100%;
+  height: 160px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--gray200);
+}
+.contentsBox {
+  display: flex;
+  justify-content: space-between;
+
+  height: 72px;
+}
+
+.contentsTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2em;
+  color: var(--gray800);
+}
+
+.imageWrapper {
+  padding: 12px;
+  border: 1px solid var(--gray200);
+  border-radius: 6px;
+
+  box-sizing: border-box;
+}
+
+.infoBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.likeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}

@@ -6,8 +6,8 @@
   border-radius: 8px;
   background-color: $cool-gray-50;
 }
-.contents-wrapper{
-    margin: 0 24px 16px 24px;
+.contents-wrapper {
+  margin: 0 24px 16px 24px;
 }
 .best-badge {
   margin-bottom: 16px;
@@ -21,6 +21,10 @@
   color: $cool-gray-800;
 }
 
+.contents-footer {
+  display: flex;
+  justify-content: space-between;
+}
 .nickname-and-like {
   display: flex;
   gap: 8px;
@@ -35,4 +39,12 @@
 .like {
   display: flex;
   gap: 2.5px;
+}
+
+.date {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  color: $cool-gray-400;
 }

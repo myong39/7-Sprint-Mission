@@ -37,6 +37,22 @@
 
 .post {
   border-bottom: 1px solid $gray-200;
+
+  padding-bottom: 24px;
+
+  .content {
+    gap: 16px;
+  }
+
+  .detail {
+    &.withImage {
+      height: 72px;
+    }
+
+    &.withoutImage {
+      height: 48px;
+    }
+  }
 }
 
 .content {
@@ -64,7 +80,7 @@
   @include Flex(row, space-between, center);
 
   .info {
-    @include Flex(row, null, null);
+    @include Flex(row, null, center);
     gap: 8px;
 
     .nickname {
@@ -73,23 +89,22 @@
       text-align: left;
       color: $gray-600;
     }
-
-    .like {
-      @include Flex(row, null, center);
-      gap: 4px;
-
-      p {
-        @include font-style(14, 400);
-        line-height: 16.71px;
-        text-align: left;
-        color: $gray-500;
-      }
-    }
   }
   .date {
     @include font-style(14, 400);
-    line-height: 16.71px;
+    line-height: 16px;
     text-align: left;
     color: $gray-400;
+  }
+}
+.like {
+  @include Flex(row, null, center);
+  gap: 4px;
+
+  p {
+    @include font-style(14, 400);
+    line-height: 16px;
+    text-align: left;
+    color: $gray-500;
   }
 }

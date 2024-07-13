@@ -5,6 +5,7 @@ interface GetPostsParams {
   pageSize: number;
   orderBy: string;
   search?: string;
+  image?: string;
 }
 
 export default async function getPosts({

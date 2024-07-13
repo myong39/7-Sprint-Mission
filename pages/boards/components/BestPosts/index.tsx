@@ -9,6 +9,7 @@ interface Post {
   writer: { nickname: string };
   likeCount: number;
   updatedAt: string;
+  image?: string;
 }
 
 export default function BestPosts() {

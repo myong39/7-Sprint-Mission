@@ -1,6 +1,7 @@
 @import "@/styles/import.scss";
 
 .best-post-container {
+  position: relative;
   width: 384px;
   height: 169px;
   border-radius: 8px;
@@ -12,7 +13,13 @@
 .best-badge {
   margin-bottom: 16px;
 }
+.contents {
+  display: flex;
+  margin-bottom: 18px;
+  justify-content: space-between;
+}
 .post-title {
+  max-width: 256px;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
@@ -20,10 +27,26 @@
   margin-bottom: 18px;
   color: $cool-gray-800;
 }
+.post-image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 1px solid $cool-gray-200;
+}
+.post-image {
+  object-fit: cover;
+}
 
 .contents-footer {
-  display: flex;
+  width: 336px;
+  height:17px;
   justify-content: space-between;
+  position: absolute;
+  bottom: 16px;
+  display: flex;
 }
 .nickname-and-like {
   display: flex;

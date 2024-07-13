@@ -11,6 +11,7 @@
   .title,
   .search {
     @include Flex(row, space-between, center);
+    gap: 24px;
 
     @include tablet {
       gap: 16px;
@@ -22,10 +23,8 @@
     form {
       width: 100%;
       input {
-        @include tablet {
-          flex: 1;
-          width: 100%;
-        }
+        width: 100%;
+        flex: 1;
       }
     }
   }

@@ -2,10 +2,10 @@ import styles from './Header.module.scss';
 import Logo from '../Logo';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Button from '/components/button/Button';
+import Button from '@/components/button/Button';
 
 const headerMenuData = [
-  { id: 'menu01', name: '자유게시판', path: '/board' },
+  { id: 'menu01', name: '자유게시판', path: '/boards' },
   { id: 'menu02', name: '중고마켓', path: '/items' },
 ];
 
@@ -23,9 +23,7 @@ function Header() {
               <li key={menu.id} className={styles.menu}>
                 <Link
                   href={menu.path}
-                  className={
-                    router.pathname === menu.path ? styles.active : null
-                  }
+                  className={router.pathname === menu.path ? styles.active : ''}
                 >
                   {menu.name}
                 </Link>

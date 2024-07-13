@@ -35,10 +35,14 @@ export default function BestPosts() {
 
   return (
     <>
-      <p className={styles["title"]}>베스트 게시글</p>
-      {posts.map((post: Post) => (
-        <BestPostElement key={post.id} post={post} />
-      ))}
+      <div className={styles["container"]}>
+        <p className={styles["title"]}>베스트 게시글</p>
+        <div className={styles["best-posts-container"]}>
+          {posts.map((post: Post) => (
+            <BestPostElement key={post.id} post={post} />
+          ))}
+        </div>
+      </div>
     </>
   );
 }

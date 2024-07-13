@@ -4,15 +4,35 @@
   width: 384px;
   height: 169px;
   border-radius: 8px;
-  padding: 0px 24px 16px 24px;
   background-color: $cool-gray-50;
 }
-
+.contents-wrapper{
+    margin: 0 24px 16px 24px;
+}
+.best-badge {
+  margin-bottom: 16px;
+}
 .post-contents {
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
   text-align: left;
+  margin-bottom: 18px;
   color: $cool-gray-800;
 }
 
+.nickname-and-like {
+  display: flex;
+  gap: 8px;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+
+  color: $cool-gray-600;
+}
+
+.like {
+  display: flex;
+  gap: 2.5px;
+}

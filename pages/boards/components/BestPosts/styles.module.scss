@@ -1,6 +1,10 @@
 @import "@/styles/import.scss";
-
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
 .title {
+  margin: 24px auto;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
@@ -8,3 +12,8 @@
   color: $cool-gray-900;
 }
 
+.best-posts-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

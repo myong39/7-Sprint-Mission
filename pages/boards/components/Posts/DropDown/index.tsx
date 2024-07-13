@@ -1,4 +1,3 @@
-// DropDown.tsx
 import { useState } from "react";
 import styles from "./styles.module.scss";
 
@@ -6,23 +5,41 @@ interface DropDownProps {
   onChange: (value: string) => void;
 }
 
-export default function DropDown({ onChange }: DropDownProps) {
+export default function CustomDropDown({ onChange }: DropDownProps) {
   const [selected, setSelected] = useState("recent");
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
+  const handleSelectChange = (value: string) => {
     setSelected(value);
     onChange(value);
+    setIsOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <select
-      value={selected}
-      onChange={handleSelectChange}
-      className={styles["dropdown"]}
-    >
-      <option value="recent">최신순</option>
-      <option value="like">인기순</option>
-    </select>
+    <div className={styles["dropdown"]}>
+      <div className={styles["dropdownHeader"]} onClick={toggleDropdown}>
+        {selected === "recent" ? "최신순" : "인기순"}
+      </div>
+      {isOpen && (
+        <ul className={styles["dropdownList"]}>
+          <li
+            className={styles["dropdownItem"]}
+            onClick={() => handleSelectChange("recent")}
+          >
+            최신순
+          </li>
+          <li
+            className={styles["dropdownItem"]}
+            onClick={() => handleSelectChange("like")}
+          >
+            인기순
+          </li>
+        </ul>
+      )}
+    </div>
   );
 }

@@ -51,8 +51,10 @@ export default function Posts() {
           <p className={styles["title"]}>게시글</p>
           <WriteButton />
         </div>
-        <Input />
-        <DropDown onChange={handleOrderChange} />
+        <div className={styles["input-and-dropdown"]}>
+          <Input />
+          <DropDown onChange={handleOrderChange} />
+        </div>
         <div className={styles["posts-container"]}>
           {loading ? (
             <p>Loading...</p>

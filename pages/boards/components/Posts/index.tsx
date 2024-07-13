@@ -1,9 +1,11 @@
+// Posts.tsx
 import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 import getPosts from "@/pages/api/Api";
 import PostElement from "./PostElement";
 import Input from "./Input";
 import WriteButton from "./Button";
+import DropDown from "./DropDown";
 
 interface Post {
   id: number;
@@ -11,29 +13,36 @@ interface Post {
   writer: { nickname: string };
   likeCount: number;
   updatedAt: string;
+  image?: string; // 추가된 필드
 }
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [orderBy, setOrderBy] = useState("recent");
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       try {
         const { list } = await getPosts({
           page: 1,
-          pageSize: 10,
-          orderBy: "recent",
+          pageSize: 40,
+          orderBy: orderBy,
         });
         setPosts(list);
       } catch (error) {
-        console.error("Error fetching best posts:", error);
+        console.error("Error fetching posts:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchPost();
-  }, []);
+
+    fetchPosts();
+  }, [orderBy]);
+
+  const handleOrderChange = (value: string) => {
+    setOrderBy(value);
+  };
 
   return (
     <>
@@ -43,10 +52,13 @@ export default function Posts() {
           <WriteButton />
         </div>
         <Input />
+        <DropDown onChange={handleOrderChange} />
         <div className={styles["posts-container"]}>
-          {posts.map((post: Post) => (
-            <PostElement key={post.id} post={post} />
-          ))}
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            posts.map((post: Post) => <PostElement key={post.id} post={post} />)
+          )}
         </div>
       </div>
     </>

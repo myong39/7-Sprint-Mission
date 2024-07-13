@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 import getPosts from "@/pages/api/Api";
+import BestPostElement from "./BestPostElement";
 
 interface Post {
   id: number;
@@ -15,32 +16,29 @@ export default function BestPosts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBestPosts = async () => {
+    const fetchBestPost = async () => {
       try {
-        const data = await getPosts({ pageSize: 3, orderBy: "like", page: 1 });
-        setPosts(data);
+        const { list } = await getPosts({
+          page: 1,
+          pageSize: 3,
+          orderBy: "like",
+        });
+        setPosts(list);
       } catch (error) {
         console.error("Error fetching best posts:", error);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchBestPosts();
+    fetchBestPost();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-
   return (
-    <div>
-      {posts.map((post) => (
-        <div key={post.id} className={styles.post}>
-          <p>{post.title}</p>
-          <p>{post.writer.nickname}</p>
-          <p>{post.likeCount}</p>
-          <p>{new Date(post.updatedAt).toLocaleString()}</p>
-        </div>
+    <>
+      <p className={styles["title"]}>베스트 게시글</p>
+      {posts.map((post: Post) => (
+        <BestPostElement key={post.id} post={post} />
       ))}
-    </div>
+    </>
   );
 }

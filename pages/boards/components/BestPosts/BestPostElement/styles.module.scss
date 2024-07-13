@@ -1,0 +1,18 @@
+@import "@/styles/import.scss";
+
+.best-post-container {
+  width: 384px;
+  height: 169px;
+  border-radius: 8px;
+  padding: 0px 24px 16px 24px;
+  background-color: $cool-gray-50;
+}
+
+.post-contents {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  color: $cool-gray-800;
+}
+

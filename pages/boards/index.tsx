@@ -1,9 +1,9 @@
-import BestPosts from "@/pages/boards/components/BestPost";
+import BestPosts from "@/pages/boards/components/BestPosts";
 
-const Boards = () => {
+export default function Boards() {
   return (
     <>
       <BestPosts />
     </>
   );
-};
+}

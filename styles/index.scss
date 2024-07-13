@@ -13,12 +13,15 @@ main {
   @include mobile {
     padding: 16px;
   }
+
+  &.board-main {
+    @include Flex(column, null, null);
+    gap: 40px;
+  }
 }
 
 .section-title {
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 700;
+  @include font-style(20, 700);
   line-height: 23.87px;
   text-align: left;
   color: $gray-900;

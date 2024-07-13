@@ -1,0 +1,50 @@
+@import '@/styles/common/index.scss';
+
+.dropdown {
+  position: relative;
+  width: fit-content;
+
+  button {
+    background-color: $white-color;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid $gray-200;
+
+    @include Flex(row, null, center);
+    gap: 24px;
+
+    @include font-style(16, 400);
+    color: $gray-800;
+    white-space: nowrap;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.ul {
+  border: 1px solid $gray-200;
+  border-radius: 12px;
+  background-color: $white-color;
+
+  position: absolute;
+  top: 54px;
+  right: 0;
+}
+
+.list {
+  @include font-style(16, 400);
+  width: 130px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+  &:first-child {
+    border-bottom: 1px solid $gray-200;
+  }
+}

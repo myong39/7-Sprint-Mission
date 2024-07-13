@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import BestPost from './BestPost';
 import axios from '@/lib/axios';
-import SectionTitle from '@/components/SectionTitle';
 
-function BestPostList() {
+function useBestArticles() {
   const [articles, setArticles] = useState<IPost[]>([]);
   const [pageSize, setPageSize] = useState<string>('3');
 
@@ -37,21 +35,13 @@ function BestPostList() {
     return () => {
       window.removeEventListener('resize', updatePageSize);
     };
-  });
+  }, []);
 
   useEffect(() => {
     handleLoadBestPostList(pageSize);
   }, [pageSize]);
 
-  return (
-    <div className='best-post'>
-      <SectionTitle>베스트 게시글</SectionTitle>
-      <div className='best-post-list'>
-        {articles.map((article) => {
-          return <BestPost key={article.id} article={article} />;
-        })}
-      </div>
-    </div>
-  );
+  return { articles };
 }
-export default BestPostList;
+
+export default useBestArticles;

@@ -1,0 +1,40 @@
+@import '@/styles/common/index.scss';
+@mixin InputTextStyle {
+  @include font-style(16, 400);
+  color: $gray-800;
+}
+
+@mixin InputStyle {
+  width: 100%;
+  background-color: $gray-100;
+  position: relative;
+
+  @include InputTextStyle;
+
+  padding: 16px 24px;
+
+  border: none;
+  border-radius: 12px;
+
+  &::placeholder {
+    color: $gray-400;
+  }
+
+  &:focus {
+    outline: 2px solid $main--color;
+  }
+}
+
+.search {
+  @include InputStyle;
+  background-image: url('/images/ic_search.svg');
+  background-repeat: no-repeat;
+  background-position: 16px 9px;
+  background-size: 24px 24px;
+
+  width: 1054px;
+  height: 42px;
+  padding: 9px 20px 9px 16px;
+  border-radius: 12px;
+  padding-left: 44px;
+}

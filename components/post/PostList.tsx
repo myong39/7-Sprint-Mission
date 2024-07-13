@@ -1,24 +1,19 @@
+import useArticles from '@/lib/useArticles';
 import formatDate from '@/utils/formatDate';
 import Image from 'next/image';
-import BestBadge from './BestBadge';
-import styles from './BestPost.module.scss';
+import styles from './Post.module.scss';
+import PostImage from './PostImage';
 
-function BestPost({ article }: { article: IPost }) {
+function Post({ article }: TArticle) {
   const { title, content, image, writer, likeCount, createdAt } = article;
   const { nickname } = writer;
 
   return (
     <div className={styles.post}>
-      <BestBadge />
-
       <div className={styles.content}>
         <div className={styles.detail}>
           <p className={styles.description}>{content}</p>
-          {image && (
-            <div className={styles.image}>
-              <Image src={image} alt={title} fill />
-            </div>
-          )}
+          {image && <PostImage image={image} title={title} />}
         </div>
         <div className={styles.metadata}>
           <div className={styles.info}>
@@ -40,4 +35,15 @@ function BestPost({ article }: { article: IPost }) {
   );
 }
 
-export default BestPost;
+function PostList() {
+  const { articles } = useArticles();
+  return (
+    <>
+      {articles.map((article) => {
+        return <Post key={article.id} article={article} />;
+      })}
+    </>
+  );
+}
+
+export default PostList;

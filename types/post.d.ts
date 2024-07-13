@@ -13,3 +13,13 @@ interface IPost {
   createdAt: string;
   updatedAt: string;
 }
+
+type TArticle = {
+  article: IPost;
+};
+
+type TArticleList = {
+  articles: IPost[];
+};
+
+type TOrder = 'recent' | 'like';

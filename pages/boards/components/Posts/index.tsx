@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import getPosts from "@/pages/api/Api";
 import PostElement from "./PostElement";
 import Input from "./Input";
+import WriteButton from "./Button";
 
 interface Post {
   id: number;
@@ -37,7 +38,10 @@ export default function Posts() {
   return (
     <>
       <div className={styles["container"]}>
-        <p className={styles["title"]}>게시글</p>
+        <div className={styles["post-header"]}>
+          <p className={styles["title"]}>게시글</p>
+          <WriteButton />
+        </div>
         <Input />
         <div className={styles["posts-container"]}>
           {posts.map((post: Post) => (

@@ -4,9 +4,14 @@
   max-width: 1200px;
   margin: auto;
 }
-
+.post-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
 .title {
-  margin: 24px auto;
+  margin: 24px 0;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;

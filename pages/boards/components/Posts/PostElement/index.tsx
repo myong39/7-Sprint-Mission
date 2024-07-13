@@ -49,12 +49,14 @@ export default function PostElement({ post }: PostElementProps) {
                 src={profileImg}
                 alt="프로필이미지"
               />
-              <p>{post.writer.nickname}</p>
-              <p>{new Date(post.updatedAt).toLocaleDateString()}</p>
+              <p className={styles["nickname"]}>{post.writer.nickname}</p>
+              <p className={styles["date"]}>
+                {new Date(post.updatedAt).toLocaleDateString()}
+              </p>
             </div>
             <div className={styles["like"]}>
               <Image src={likeIcon} alt="좋아요하트" />
-              <p>{post.likeCount}</p>
+              <p className={styles['like-count']}>{post.likeCount}</p>
             </div>
           </div>
         </div>

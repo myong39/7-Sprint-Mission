@@ -42,14 +42,16 @@
 
 .contents-footer {
   width: 336px;
-  height:17px;
+  height: 17px;
   justify-content: space-between;
+  align-items: center;
   position: absolute;
   bottom: 16px;
   display: flex;
 }
 .nickname-and-like {
   display: flex;
+  align-items: center;
   gap: 8px;
   font-family: Pretendard;
   font-size: 14px;
@@ -61,6 +63,7 @@
 
 .like {
   display: flex;
+  align-items: center;
   gap: 2.5px;
 }
 

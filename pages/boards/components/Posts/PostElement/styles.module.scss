@@ -12,6 +12,7 @@
 .contents {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 16px;
 }
 .contents-title {
   font-family: Pretendard;
@@ -21,15 +22,26 @@
   color: $cool-gray-800;
 }
 .image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 72px;
   height: 72px;
+  border-radius: 6px;
+  border: 1px solid $cool-gray-200;
 }
-
+.empty-image-container {
+  width: 72px;
+  height: 72px;
+  border: none;
+}
 .contents-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .contents-footer-left {
+  align-items: center;
   display: flex;
   gap: 8px;
 }

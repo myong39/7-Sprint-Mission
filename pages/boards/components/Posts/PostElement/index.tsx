@@ -9,6 +9,7 @@ interface Post {
   writer: { nickname: string };
   likeCount: number;
   updatedAt: string;
+  image?: string;
 }
 
 interface PostElementProps {
@@ -22,7 +23,24 @@ export default function PostElement({ post }: PostElementProps) {
         <div className="contents-wrapper">
           <div className={styles["contents"]}>
             <p className={styles["contents-title"]}>{post.title}</p>
-            <div className={styles["image-container"]}>이미지</div>
+            <div
+              className={
+                post.image
+                  ? styles["image-container"]
+                  : styles["empty-image-container"]
+              }
+            >
+              {post.image ? (
+                <Image
+                  width={42}
+                  height={42}
+                  src={post.image}
+                  alt="게시글이미지"
+                />
+              ) : (
+                <div className={styles["empty-image"]}></div>
+              )}
+            </div>
           </div>
           <div className={styles["contents-footer"]}>
             <div className={styles["contents-footer-left"]}>

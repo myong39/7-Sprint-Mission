@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
-import getPosts from "../../../api/Api";
+import getPosts from "@/pages/api/Api";
 import PostElement from "./PostElement";
+import Input from "./Input";
 
 interface Post {
   id: number;
@@ -37,6 +38,7 @@ export default function Posts() {
     <>
       <div className={styles["container"]}>
         <p className={styles["title"]}>게시글</p>
+        <Input />
         <div className={styles["posts-container"]}>
           {posts.map((post: Post) => (
             <PostElement key={post.id} post={post} />

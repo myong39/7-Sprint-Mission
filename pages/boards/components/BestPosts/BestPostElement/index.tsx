@@ -25,7 +25,7 @@ export default function BestPostElement({ post }: BestPostElementProps) {
           className={styles["best-badge"]}
           alt="베스트 뱃지"
         />
-        <p className={styles["post-contents"]}>{post.title}</p>
+        <p className={styles["post-title"]}>{post.title}</p>
         <div className={styles["contents-footer"]}>
           <div className={styles["nickname-and-like"]}>
             <p>{post.writer.nickname}</p>

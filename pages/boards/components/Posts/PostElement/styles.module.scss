@@ -1,0 +1,42 @@
+@import "@/styles/import.scss";
+
+.post-container {
+  padding: 24px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.contents-wrapper {
+  margin-bottom: 24px;
+}
+
+.contents {
+  display: flex;
+  justify-content: space-between;
+}
+.contents-title {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  color: $cool-gray-800;
+}
+.image-container {
+  width: 72px;
+  height: 72px;
+}
+
+.contents-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.contents-footer-left {
+  display: flex;
+  gap: 8px;
+}
+.profile-img {
+  width: 24px;
+}
+.like {
+  display: flex;
+  gap: 8px;
+}

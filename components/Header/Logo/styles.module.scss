@@ -1,1 +1,18 @@
 @import "@/styles/import.scss";
+
+.logo {
+  width: 153px;
+}
+.mobile-logo {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .logo {
+    display: none;
+  }
+  .mobile-logo {
+    display: block;
+    width: 81px;
+  }
+}

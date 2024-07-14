@@ -5,6 +5,7 @@ import PostElement from "./PostElement";
 import Input from "./Input";
 import WriteButton from "./Button";
 import DropDown from "./DropDown";
+import DropDownMobile from "./DropDownMobile";
 
 interface Post {
   id: number;
@@ -21,6 +22,7 @@ export default function Posts() {
   const [loading, setLoading] = useState(true);
   const [orderBy, setOrderBy] = useState("recent");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -53,6 +55,24 @@ export default function Posts() {
     }
   }, [searchTerm, posts]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    // 컴포넌트가 클라이언트에서 렌더링될 때만 window 객체에 접근
+    if (typeof window !== "undefined") {
+      handleResize(); // 초기 설정
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []);
+
   const handleOrderChange = (value: string) => {
     setOrderBy(value);
   };
@@ -73,7 +93,11 @@ export default function Posts() {
             onSearch={handleSearch}
             placeholder="검색할 키워드를 입력해주세요"
           />
-          <DropDown onChange={handleOrderChange} />
+          {isMobile ? (
+            <DropDownMobile onChange={handleOrderChange} />
+          ) : (
+            <DropDown onChange={handleOrderChange} />
+          )}
         </div>
         <div className={styles["posts-container"]}>
           {loading ? (

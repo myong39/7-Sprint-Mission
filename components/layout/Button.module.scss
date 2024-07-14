@@ -1,0 +1,28 @@
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  line-height: $lineHeight;
+}
+
+.button {
+  padding: 12px 23px;
+  background-color: var(--activate-button-blue);
+  border-radius: 8px;
+  @include font-style(16px, 600, 19.09px, var(--white));
+  font-family: inherit;
+
+  &:hover {
+    background-color: var(--hover-blue);
+  }
+
+  &:focus {
+    background-color: var(--focus-blue);
+  }
+
+  &:disabled {
+    background-color: var(--disable-button-gray);
+    pointer-events: visible;
+    cursor: not-allowed;
+  }
+}

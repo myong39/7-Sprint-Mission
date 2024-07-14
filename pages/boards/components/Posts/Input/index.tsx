@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import searchIcon from "@/assets/icons/ic_search.svg";
 import Image from "next/image";
-import { useState } from "react";
+
 interface InputProps {
   placeholder?: string;
+  onSearch: (searchTerm: string) => void;
 }
 
-export default function Input() {
+export default function Input({ placeholder, onSearch }: InputProps) {
   const [inputValue, setInputValue] = useState("");
+
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInputValue(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
     <div className={styles["input-box"]}>
       <Image
@@ -20,8 +28,9 @@ export default function Input() {
         className={styles["input"]}
         type="search"
         name="searchItems"
-        placeholder="검색할 상품을 입력해주세요"
-        onChange={(e) => setInputValue(e.target.value)}
+        placeholder={placeholder || "검색할 항목을 입력해주세요"}
+        value={inputValue}
+        onChange={onChangeSearch}
       />
     </div>
   );

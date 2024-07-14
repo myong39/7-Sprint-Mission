@@ -1,4 +1,3 @@
-// Posts.tsx
 import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 import getPosts from "@/pages/api/Api";
@@ -18,8 +17,10 @@ interface Post {
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [orderBy, setOrderBy] = useState("recent");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -30,6 +31,7 @@ export default function Posts() {
           orderBy: orderBy,
         });
         setPosts(list);
+        setFilteredPosts(list);
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
@@ -40,8 +42,23 @@ export default function Posts() {
     fetchPosts();
   }, [orderBy]);
 
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredPosts(posts);
+    } else {
+      const filtered = posts.filter(post =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPosts(filtered);
+    }
+  }, [searchTerm, posts]);
+
   const handleOrderChange = (value: string) => {
     setOrderBy(value);
+  };
+
+  const handleSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
   };
 
   return (
@@ -52,14 +69,14 @@ export default function Posts() {
           <WriteButton />
         </div>
         <div className={styles["input-and-dropdown"]}>
-          <Input />
+          <Input onSearch={handleSearch} placeholder="검색할 상품을 입력해주세요" />
           <DropDown onChange={handleOrderChange} />
         </div>
         <div className={styles["posts-container"]}>
           {loading ? (
             <p>Loading...</p>
           ) : (
-            posts.map((post: Post) => <PostElement key={post.id} post={post} />)
+            filteredPosts.map((post: Post) => <PostElement key={post.id} post={post} />)
           )}
         </div>
       </div>

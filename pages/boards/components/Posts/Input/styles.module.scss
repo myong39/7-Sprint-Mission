@@ -16,9 +16,13 @@
   font-weight: 400;
   line-height: 26px;
   text-align: left;
-  color: $cool-gray-400;
+  color: $cool-gray-800;
   background-color: $cool-gray-100;
   width: 1054px;
   border-radius: 12px;
   padding: 9px 20px 9px 44px;
+}
+
+.input::placeholder {
+  color: $cool-gray-400;
 }

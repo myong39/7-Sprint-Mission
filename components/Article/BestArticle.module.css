@@ -1,9 +1,29 @@
+.OutContainer {
+  height: 167px;
+  background-color: yellow;
+}
 .BestArticle {
-  background-color: #f9fafb;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   border-radius: 8px;
+  width: 90%;
+  height: 153px;
+  margin: 0px auto;
+}
+
+.TitleAndImage {
+  display: flex;
+  margin-top: 40px;
 }
 
 .CardBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.NameAndLikeCount {
   display: flex;
 }
 
@@ -11,4 +31,24 @@
   position: relative;
   width: 48px;
   height: 44.57px;
+}
+
+.BestMark {
+  position: absolute;
+  top: 0px; /* 원하는 위치로 조정 */
+  left: 10px; /* 원하는 위치로 조정 */
+  width: 102px; /* 이미지 크기 조정 */
+  height: 30px; /* 이미지 크기 조정 */
+}
+
+.Title {
+  margin: 0;
+}
+
+.Name,
+.LikeCount,
+.Date {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
 }

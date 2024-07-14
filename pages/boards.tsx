@@ -5,6 +5,7 @@ import { getBestArticle } from '@/lib/axios';
 import { BestArticleResponse } from '@/lib/axios';
 import '@/components/Article/BestArticle';
 import BestArticle from '@/components/Article/BestArticle';
+import Button from '@/components/Button/Button';
 
 const Boards = () => {
   const [bestArticle, setBestArticle] = useState<BestArticleResponse['list']>(
@@ -19,6 +20,10 @@ const Boards = () => {
     fetchArticles();
   }, []);
 
+  const handleButtonClick = () => {
+    console.log('hi');
+  };
+
   return (
     <div>
       <div className={style.BoardsConatiner}>
@@ -30,11 +35,11 @@ const Boards = () => {
         </div>
         <div>
           <h1>게시글</h1>
-          <button>글쓰기</button>
+          <Button onClick={handleButtonClick} text={'글쓰기'} />
         </div>
         <div>
           <input type="text" placeholder="검색할 상품을 입력해주세요" />
-          <Dropdown />
+          <Dropdown options={['최신순', '좋아요 순']} />
         </div>
         <div>게시글 들어갈 자리</div>
       </div>

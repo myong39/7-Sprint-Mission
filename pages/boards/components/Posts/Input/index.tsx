@@ -28,7 +28,7 @@ export default function Input({ placeholder, onSearch }: InputProps) {
         className={styles["input"]}
         type="search"
         name="searchItems"
-        placeholder={placeholder || "검색할 항목을 입력해주세요"}
+        placeholder={placeholder || "검색할 키워드를 입력해주세요"}
         value={inputValue}
         onChange={onChangeSearch}
       />

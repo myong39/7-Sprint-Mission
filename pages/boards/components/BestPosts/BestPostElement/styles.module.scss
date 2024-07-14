@@ -51,7 +51,6 @@
 }
 .nickname-and-like {
   display: flex;
-  align-items: center;
   gap: 8px;
   font-family: Pretendard;
   font-size: 14px;
@@ -73,4 +72,15 @@
   font-weight: 400;
   text-align: left;
   color: $cool-gray-400;
+}
+
+@media screen and (max-width: 1199px) {
+  .best-post-container {
+    width: 100%;
+  }
+
+  .contents-footer {
+    width: 90%;
+    height: 17px;
+  }
 }

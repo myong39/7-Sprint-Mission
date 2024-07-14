@@ -21,6 +21,7 @@
 }
 .input-and-dropdown {
   display: flex;
+  gap: 16px;
   justify-content: space-between;
 }
 
@@ -28,4 +29,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    padding: 0 24px;
+  }
+  .input-and-dropdown {
+    width: 100%;
+  }
 }

@@ -12,7 +12,7 @@ interface Post {
   writer: { nickname: string };
   likeCount: number;
   updatedAt: string;
-  image?: string; // 추가된 필드
+  image?: string;
 }
 
 export default function Posts() {
@@ -46,7 +46,7 @@ export default function Posts() {
     if (searchTerm === "") {
       setFilteredPosts(posts);
     } else {
-      const filtered = posts.filter(post =>
+      const filtered = posts.filter((post) =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredPosts(filtered);
@@ -69,14 +69,19 @@ export default function Posts() {
           <WriteButton />
         </div>
         <div className={styles["input-and-dropdown"]}>
-          <Input onSearch={handleSearch} placeholder="검색할 상품을 입력해주세요" />
+          <Input
+            onSearch={handleSearch}
+            placeholder="검색할 키워드를 입력해주세요"
+          />
           <DropDown onChange={handleOrderChange} />
         </div>
         <div className={styles["posts-container"]}>
           {loading ? (
             <p>Loading...</p>
           ) : (
-            filteredPosts.map((post: Post) => <PostElement key={post.id} post={post} />)
+            filteredPosts.map((post: Post) => (
+              <PostElement key={post.id} post={post} />
+            ))
           )}
         </div>
       </div>

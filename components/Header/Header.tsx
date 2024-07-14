@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import pandaLogo from '@/public/images/pandaLogo.png';
-import profile from '@/public/images/profile.png';
+import pandaLogo from '@/public/images/Header/pandaLogo.png';
+import profile from '@/public/images/Header/profile.png';
 import stlye from './Header.module.css';
 
 const Header = () => {

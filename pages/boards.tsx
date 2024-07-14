@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '@/styles/boards.module.css';
 import Dropdown from '@/components/Dropdown/Dropdown';
+import { getBestArticle } from '@/lib/axios';
+import { BestArticleResponse } from '@/lib/axios';
+import '@/components/Article/BestArticle';
+import BestArticle from '@/components/Article/BestArticle';
 
-const boards = () => {
+const Boards = () => {
+  const [bestArticle, setBestArticle] = useState<BestArticleResponse['list']>(
+    []
+  );
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const articles = await getBestArticle(3);
+      setBestArticle(articles);
+    };
+    fetchArticles();
+  }, []);
+
   return (
     <div>
       <div className={style.BoardsConatiner}>
         <h1>베스트 게시글</h1>
-        <div>베스트 아이템 들어갈 곳</div>
+        <div>
+          {bestArticle.map((article) => (
+            <BestArticle key={article.id} {...article} />
+          ))}
+        </div>
         <div>
           <h1>게시글</h1>
           <button>글쓰기</button>
@@ -22,4 +42,4 @@ const boards = () => {
   );
 };
 
-export default boards;
+export default Boards;

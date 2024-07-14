@@ -1,0 +1,31 @@
+.Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+  border-bottom: 1px solid gray;
+}
+
+.HeaderMenu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.HeaderMenu li {
+  margin-left: 20px;
+}
+
+.PandaLogo {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.Profile {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Dropdown.module.scss';
 
 import { useMediaQuery } from 'react-responsive';
@@ -54,6 +54,7 @@ interface PropsProduct {
 }
 
 function ProductDropdown({ setOrder, order }: PropsProduct) {
+  const [mounted, setMounted] = useState<boolean>(false); // hydration 관련 에러 해결용
   const [isDropdownView, setDropdownView] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -66,27 +67,40 @@ function ProductDropdown({ setOrder, order }: PropsProduct) {
     }, 200);
   };
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className={styles.dropdown} onBlur={handleBlurContainer}>
-      <label onClick={handleClickContainer}>
-        <button>
-          {isMobile ? (
-            <Image src='images/ic_sort.svg' width={24} height={24} alt='sort' />
-          ) : (
-            <>
-              <span>{order === 'recent' ? '최신순' : '좋아요순'}</span>
-              <Image
-                src='images/ic_arrow_down.svg'
-                width={24}
-                height={24}
-                alt='arrow'
-              />
-            </>
-          )}
-        </button>
-      </label>
-      {isDropdownView && <DropdownList setOrder={setOrder} />}
-    </div>
+    <>
+      {mounted && (
+        <div className={styles.dropdown} onBlur={handleBlurContainer}>
+          <label onClick={handleClickContainer}>
+            <button>
+              {isMobile ? (
+                <Image
+                  src='images/ic_sort.svg'
+                  width={24}
+                  height={24}
+                  alt='sort'
+                />
+              ) : (
+                <>
+                  <span>{order === 'recent' ? '최신순' : '좋아요순'}</span>
+                  <Image
+                    src='images/ic_arrow_down.svg'
+                    width={24}
+                    height={24}
+                    alt='arrow'
+                  />
+                </>
+              )}
+            </button>
+          </label>
+          {isDropdownView && <DropdownList setOrder={setOrder} />}
+        </div>
+      )}
+    </>
   );
 }
 

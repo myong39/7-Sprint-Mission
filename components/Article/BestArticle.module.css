@@ -1,0 +1,14 @@
+.BestArticle {
+  background-color: #f9fafb;
+  border-radius: 8px;
+}
+
+.CardBottom {
+  display: flex;
+}
+
+.ImageContainer {
+  position: relative;
+  width: 48px;
+  height: 44.57px;
+}

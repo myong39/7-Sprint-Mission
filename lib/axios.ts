@@ -1,26 +1,15 @@
 import axios from 'axios';
+import { Article } from '@/types/Article';
 
 const instance = axios.create({
   baseURL: 'https://panda-market-api.vercel.app',
 });
 
 export interface BestArticleResponse {
-  list: {
-    id: number;
-    title: string;
-    writer: {
-      id: number;
-      nickname: string;
-    };
-    likeCount: number;
-    image: string | null;
-    createdAt: string;
-  }[];
+  list: Article[];
 }
 
-export async function getBestArticle(
-  pageSize: number
-): Promise<BestArticleResponse['list']> {
+export async function getBestArticle(pageSize: number): Promise<Article[]> {
   const res = await instance.get<BestArticleResponse>('/articles', {
     params: {
       page: 1,

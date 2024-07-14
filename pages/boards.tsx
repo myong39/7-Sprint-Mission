@@ -23,7 +23,7 @@ const Boards = () => {
     <div>
       <div className={style.BoardsConatiner}>
         <h1>베스트 게시글</h1>
-        <div>
+        <div className={style.BestArticleContainer}>
           {bestArticle.map((article) => (
             <BestArticle key={article.id} {...article} />
           ))}

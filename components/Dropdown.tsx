@@ -37,7 +37,7 @@ interface Props {
 
 function DropdownList({ setOrder }: Props) {
   const handleNewClick = () => setOrder('recent');
-  const handleBestClick = () => setOrder('favorite');
+  const handleBestClick = () => setOrder('like');
   return (
     <Dropdown
       first='최신순'

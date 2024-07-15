@@ -7,6 +7,7 @@ const instance = axios.create({
 
 export interface ArticleResponse {
   list: Article[];
+  totalCount: number;
 }
 
 export async function getBestArticle(pageSize: number): Promise<Article[]> {
@@ -25,7 +26,7 @@ export async function getArticle(
   page: number,
   pageSize: number,
   orderBy: string,
-  keyword: string
+  keyword: string | null
 ): Promise<Article[]> {
   const res = await instance.get<ArticleResponse>('/articles', {
     params: {

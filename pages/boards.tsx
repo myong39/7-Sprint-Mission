@@ -1,27 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import style from '@/styles/boards.module.css';
 import Dropdown from '@/components/Dropdown/Dropdown';
-import { getBestArticle } from '@/lib/axios';
-import { BestArticleResponse } from '@/lib/axios';
-import '@/components/Article/BestArticle';
+import { getArticle, getBestArticle } from '@/lib/axios';
+import { ArticleResponse } from '@/lib/axios';
 import BestArticle from '@/components/Article/BestArticle';
 import Button from '@/components/Button/Button';
+import AllArticle from '@/components/Article/AllArticle';
 
 const Boards = () => {
-  const [bestArticle, setBestArticle] = useState<BestArticleResponse['list']>(
-    []
-  );
+  const [bestArticle, setBestArticle] = useState<ArticleResponse['list']>([]); // 베스트 게시글
+  const [allArticle, setAllArticle] = useState<ArticleResponse['list']>([]); // 일반 게시글
+  const [page, setPage] = useState(1);
+  const [pageSize] = useState(4);
+  const [orderBy, setOrderBy] = useState('recent');
+  const [keyword, setKeyword] = useState('');
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchBestArticles = async () => {
       const articles = await getBestArticle(3);
       setBestArticle(articles);
     };
-    fetchArticles();
+    fetchBestArticles();
   }, []);
+
+  useEffect(() => {
+    const fetchAllArticle = async () => {
+      const articles = await getArticle(page, pageSize, orderBy, keyword);
+      setAllArticle(articles);
+    };
+    fetchAllArticle();
+  }, [page, pageSize, orderBy, keyword]);
 
   const handleButtonClick = () => {
     console.log('hi');
+  };
+
+  const handleDropdownChange = (selectedOption: string) => {
+    setOrderBy(selectedOption === '최신순' ? 'recent' : 'like');
+    setPage(1);
+    setAllArticle([]);
+  };
+
+  const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+    setPage(1);
+    setAllArticle([]);
   };
 
   return (
@@ -33,15 +56,26 @@ const Boards = () => {
             <BestArticle key={article.id} {...article} />
           ))}
         </div>
-        <div>
+        <div className={style.ArticleAndPostLine}>
           <h1>게시글</h1>
           <Button onClick={handleButtonClick} text={'글쓰기'} />
         </div>
-        <div>
-          <input type="text" placeholder="검색할 상품을 입력해주세요" />
-          <Dropdown options={['최신순', '좋아요 순']} />
+        <div className={style.ArticleNavBar}>
+          <input
+            type="text"
+            placeholder="검색할 상품을 입력해주세요"
+            onChange={handleKeywordChange}
+          />
+          <Dropdown
+            options={['최신순', '좋아요 순']}
+            onChange={handleDropdownChange}
+          />
         </div>
-        <div>게시글 들어갈 자리</div>
+        <div className={style.AllArticleContainer}>
+          {allArticle.map((article) => (
+            <AllArticle key={article.id} {...article} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -3,13 +3,15 @@ import style from './Dropdown.module.css';
 
 interface DropdownProps {
   options: string[];
+  onChange: (selectedOption: string) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
+    onChange(event.target.value);
   };
 
   return (

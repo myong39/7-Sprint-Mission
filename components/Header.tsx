@@ -14,7 +14,7 @@ export default function header() {
   return (
     <header className="sticky top-0 z-10 flex h-[70px] max-w-[1920px] items-center justify-between gap-x-4 border-b border-solid border-gray-200 bg-white px-6 xl:px-[200px]">
       <Link href="/">
-        <Image src={responsiveLogoImg} alt="판다마켓 로고" />
+        <Image src={responsiveLogoImg} alt="판다마켓 로고" priority />
       </Link>
       <ul className="font-primary flex flex-grow items-center gap-x-2 text-base font-bold text-gray-600">
         <Link href="/community">

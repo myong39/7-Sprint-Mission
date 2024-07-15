@@ -25,7 +25,7 @@ const useMediaQuery = () => {
 
     mediaQueries.forEach((mq) => mq.addEventListener('change', updateDeviceType));
 
-    updateDeviceType(); // 초기 설정
+    updateDeviceType();
     setIsInitialized(true);
 
     return () => {

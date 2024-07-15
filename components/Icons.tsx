@@ -2,7 +2,7 @@ import { SVGProps } from 'react';
 
 function Medal(svgProps: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...svgProps}>
       <title>medal</title>
       <rect x="4" y="3" width="8" height="7" rx="2.5" fill="white" />
       <path
@@ -17,7 +17,7 @@ function Medal(svgProps: SVGProps<SVGSVGElement>) {
 
 function Sort(svgProps: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...svgProps}>
       <title>sort</title>
       <path
         d="M15 6.5V17.5M15 17.5L11.5 14M15 17.5L18.5 14"
@@ -45,7 +45,8 @@ function Sort(svgProps: SVGProps<SVGSVGElement>) {
 
 function Check(svgProps: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...svgProps}>
+      <title>check</title>
       <circle cx="12" cy="12" r="12" fill="#3692FF" />
       <path
         d="M7.60718 12.3491L10.6875 15.5L16.25 8.35718"
@@ -58,10 +59,35 @@ function Check(svgProps: SVGProps<SVGSVGElement>) {
   );
 }
 
-const icons = {
-  medal: Medal,
-  sort: Sort,
-  check: Check,
+function Search(svgProps: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps}>
+      <title>search</title>
+      <path
+        d="M10.8966 16.2605C12.378 16.2605 13.6424 15.7401 14.6897 14.6992C15.7369 13.6584 16.2605 12.3908 16.2605 10.8966C16.2605 9.41507 15.7369 8.1507 14.6897 7.10345C13.6424 6.05619 12.378 5.53257 10.8966 5.53257C9.4023 5.53257 8.13474 6.05619 7.09387 7.10345C6.053 8.1507 5.53257 9.41507 5.53257 10.8966C5.53257 12.3908 6.053 13.6584 7.09387 14.6992C8.13474 15.7401 9.4023 16.2605 10.8966 16.2605ZM10.8966 17.7931C9.9387 17.7931 9.04151 17.6111 8.20498 17.2471C7.36845 16.8831 6.64049 16.3914 6.02107 15.772C5.40166 15.1526 4.90996 14.4246 4.54598 13.5881C4.18199 12.7516 4 11.8544 4 10.8966C4 9.95147 4.18199 9.06066 4.54598 8.22414C4.90996 7.38761 5.40166 6.65645 6.02107 6.03065C6.64049 5.40485 7.36845 4.90996 8.20498 4.54598C9.04151 4.18199 9.9387 4 10.8966 4C11.8416 4 12.7324 4.18199 13.569 4.54598C14.4055 4.90996 15.1367 5.40485 15.7625 6.03065C16.3883 6.65645 16.8831 7.38761 17.2471 8.22414C17.6111 9.06066 17.7931 9.95147 17.7931 10.8966C17.7931 11.7139 17.659 12.4866 17.3908 13.2146C17.1226 13.9425 16.7522 14.6066 16.2797 15.2069L18.7893 17.7165C18.9425 17.8697 19.016 18.0485 19.0096 18.2529C19.0032 18.4572 18.9234 18.636 18.7701 18.7893C18.6169 18.9298 18.4381 19 18.2337 19C18.0294 19 17.8506 18.9298 17.6973 18.7893L15.1877 16.2989C14.5875 16.7714 13.9234 17.1386 13.1954 17.4004C12.4674 17.6622 11.7011 17.7931 10.8966 17.7931Z"
+        fill="#9CA3AF"
+      />
+    </svg>
+  );
+}
+
+function CaretDown(svgProps: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...svgProps}>
+      <path
+        d="M12.7151 15.4653C12.3975 15.7654 11.9008 15.7654 11.5832 15.4653L5.8047 10.006C5.26275 9.49404 5.6251 8.58286 6.37066 8.58286L17.9276 8.58286C18.6732 8.58286 19.0355 9.49404 18.4936 10.006L12.7151 15.4653Z"
+        fill="#1F2937"
+      />
+    </svg>
+  );
+}
+
+const Icons = {
+  Medal,
+  Sort,
+  Check,
+  Search,
+  CaretDown,
 };
 
-export default icons;
+export default Icons;

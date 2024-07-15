@@ -3,7 +3,7 @@ import Image from 'next/image';
 import logoMobile from '@/public/logoMobile.svg';
 import logo from '@/public/logo.svg';
 import profile from '@/public/profile.svg';
-import useMediaQuery from '@/hooks/useMediaquery';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 export default function header() {
   const [deviceType] = useMediaQuery();

@@ -1,0 +1,57 @@
+.post-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 1200px;
+  .post-section-title-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      font-weight: 700;
+      font-size: 20px;
+    }
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 23px;
+      background-color: var(--blue);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--white);
+    }
+  }
+  .post-section-search-and-sort {
+    display: flex;
+    justify-content: space-between;
+    input {
+      width: 1054px;
+      height: 42px;
+      border: none;
+      border-radius: 12px;
+      padding: 9px 20px;
+      background-color: var(--gray100);
+      &::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--gray400);
+      }
+    }
+  }
+  .post-section-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .post-section-container {
+    width: 696px;
+  }
+}
+@media (min-width: 375px) and (max-width: 744px) {
+  .post-section-container {
+    width: 343px;
+  }
+}

@@ -5,15 +5,15 @@ import { getArticle } from "@/lib/articleApi";
 import { Article, ArticleApiData } from "@/types/articleTypes";
 import Link from "next/link";
 import useDeviceType from "@/hooks/useDeviceType";
-import { DeviceTypePageSize } from "@/types/articleTypes";
+import { DeviceTypePageSize } from "@/constants/deviceSizes";
 
-const ORDERBY = "like";
+const ORDER_BY = "like";
+const { MOBILE_PAGE_SIZE, TABLET_PAGE_SIZE, DESKTOP_PAGE_SIZE } =
+  DeviceTypePageSize;
 
 export default function BestArticleList() {
   const [articles, setArticles] = useState<Article[]>([]);
   const { isMobile, isTablet } = useDeviceType();
-  const { MOBILE_PAGE_SIZE, TABLET_PAGE_SIZE, DESKTOP_PAGE_SIZE } =
-    DeviceTypePageSize;
 
   const pageSize = isTablet
     ? TABLET_PAGE_SIZE
@@ -32,7 +32,7 @@ export default function BestArticleList() {
   };
 
   useEffect(() => {
-    fetchData({ orderBy: ORDERBY, pageSize: pageSize });
+    fetchData({ orderBy: ORDER_BY, pageSize: pageSize });
   }, [pageSize]);
 
   return (

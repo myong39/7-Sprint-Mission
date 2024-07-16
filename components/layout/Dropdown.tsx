@@ -17,16 +17,11 @@ export default function Dropdown({
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (event: MouseEvent<HTMLDivElement>) => {
-    const option = event.currentTarget.innerText;
-    setSeletedOption(option);
-    // 왜 textContent를 사용하면 계속 타입 오류가 발생할까
-    // event.target.innerText 으로 할 때도 왜 타입 오류가 발생할까
-    onOrderChange(option === "최신순" ? "recent" : "like");
+  const handleOptionClick = (option: string) => {
+    setSeletedOption(option === "recent" ? "최신순" : "좋아요순");
+    onOrderChange(option);
     setIsOpen(false);
   };
-
-
 
   return (
     <div className={styles["droppdown-main"]}>
@@ -51,11 +46,17 @@ export default function Dropdown({
       </button>
       {isOpen && (
         <div className={styles["menu-wrapper"]}>
-          <div className={styles.menu} onClick={handleOptionClick}>
+          <div
+            className={styles.menu}
+            onClick={() => handleOptionClick("recent")}
+          >
             최신순
           </div>
           <span className={styles["menu-line"]}></span>
-          <div className={styles.menu} onClick={handleOptionClick}>
+          <div
+            className={styles.menu}
+            onClick={() => handleOptionClick("like")}
+          >
             좋아요순
           </div>
         </div>

@@ -26,9 +26,3 @@ export interface ArticleProps {
 export interface ArticleProp {
   article: Article;
 }
-
-export enum DeviceTypePageSize {
-  MOBILE_PAGE_SIZE = 1,
-  TABLET_PAGE_SIZE = 2,
-  DESKTOP_PAGE_SIZE = 3,
-}

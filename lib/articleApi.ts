@@ -1,3 +1,4 @@
+import { ArticleApiData } from "@/types/articleTypes";
 import axios, { AxiosError } from "axios";
 
 const instance = axios.create({
@@ -9,7 +10,7 @@ export const getArticle = async ({
   pageSize = 10,
   orderBy = "recent",
   keyword = "",
-}) => {
+}: ArticleApiData = {}) => {
   try {
     const response = await instance.get(`/articles`, {
       params: { page, pageSize, orderBy, keyword },

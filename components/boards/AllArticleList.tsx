@@ -58,7 +58,7 @@ export default function AllArticleList({
     <section className={styles["all-article"]}>
       <div className={styles["all-title-wrapper"]}>
         <h1 className={styles.title}>게시글</h1>
-        <Button>글쓰기</Button>
+        <Button href="">글쓰기</Button>
       </div>
       <div className={styles["search-wrapper"]}>
         <SearchInput onSortBySearch={handleSortBySearch} />

@@ -1,21 +1,34 @@
+import { DeviceSizes } from "@/constants/deviceSizes";
 import { useState, useEffect } from "react";
+
+const {
+  MOBILE_MAX_WIDTH,
+  TABLET_MIN_WIDTH,
+  TABLET_MAX_WIDTH,
+  DESKTOP_MIN_WIDTH,
+} = DeviceSizes;
+// 767, 768, 1199, 1200
 
 const useDeviceType = () => {
   const [deviceType, setDeviceType] = useState({
-    isMobile: typeof window !== "undefined" && window.innerWidth <= 767,
+    isMobile:
+      typeof window !== "undefined" && window.innerWidth <= MOBILE_MAX_WIDTH,
     isTablet:
       typeof window !== "undefined" &&
-      window.innerWidth >= 768 &&
-      window.innerWidth <= 1199,
-    isDesktop: typeof window !== "undefined" && window.innerWidth >= 1200,
+      window.innerWidth >= TABLET_MIN_WIDTH &&
+      window.innerWidth <= TABLET_MAX_WIDTH,
+    isDesktop:
+      typeof window !== "undefined" && window.innerWidth >= DESKTOP_MIN_WIDTH,
   });
 
   useEffect(() => {
     const handleResize = () => {
       setDeviceType({
-        isMobile: window.innerWidth <= 767,
-        isTablet: window.innerWidth >= 768 && window.innerWidth <= 1199,
-        isDesktop: window.innerWidth >= 1200,
+        isMobile: window.innerWidth <= MOBILE_MAX_WIDTH,
+        isTablet:
+          window.innerWidth >= TABLET_MIN_WIDTH &&
+          window.innerWidth <= TABLET_MAX_WIDTH,
+        isDesktop: window.innerWidth >= DESKTOP_MIN_WIDTH,
       });
     };
 

@@ -16,10 +16,9 @@ export default function AllArticleList({
 }) {
   const [articles, setArticles] = useState(initialArticles);
   const [orderBy, setOrderBy] = useState<ArticleApiData["orderBy"]>("recent");
-  const [searchValue, setSearchValue] = useState<string>("");
 
   const router = useRouter();
-  const { q } = router.query;
+  const keyword = router.query.q;
 
   const handleOrderChange = (option: string) => {
     if (option === "recent" || option === "like") setOrderBy(option);
@@ -27,7 +26,12 @@ export default function AllArticleList({
 
   const fetchData = async ({ orderBy, pageSize, keyword }: ArticleApiData) => {
     try {
-      const result = await getArticle({ orderBy, pageSize, keyword });
+      const searchKeyword = Array.isArray(keyword) ? keyword[0] : keyword;
+      const result = await getArticle({
+        orderBy,
+        pageSize,
+        keyword: searchKeyword,
+      });
 
       setArticles(() => result.list);
     } catch (error) {
@@ -37,7 +41,6 @@ export default function AllArticleList({
 
   const handleSortBySearch = (value: string) => {
     const searchValue = value.trim();
-    setSearchValue(searchValue);
 
     if (!searchValue) {
       router.push("/boards");
@@ -48,12 +51,8 @@ export default function AllArticleList({
   };
 
   useEffect(() => {
-    fetchData({ orderBy: orderBy, keyword: searchValue });
-
-    return () => {
-      setSearchValue("");
-    };
-  }, [orderBy, q]);
+    fetchData({ orderBy: orderBy, keyword: keyword });
+  }, [orderBy, keyword]);
 
   return (
     <section className={styles["all-article"]}>
@@ -65,11 +64,13 @@ export default function AllArticleList({
         <SearchInput onSortBySearch={handleSortBySearch} />
         <Dropdown onOrderChange={handleOrderChange} />
       </div>
-      {articles.map((article) => (
-        <Link href={`/board/${article.id}`} key={article.id}>
-          <AllArticleItem article={article} />
-        </Link>
-      ))}
+      {articles.length
+        ? articles.map((article) => (
+            <Link href={`/board/${article.id}`} key={article.id}>
+              <AllArticleItem article={article} />
+            </Link>
+          ))
+        : keyword && <div>{`'${keyword}'(으)로 검색된 결과가 없습니다.`}</div>}
     </section>
   );
 }

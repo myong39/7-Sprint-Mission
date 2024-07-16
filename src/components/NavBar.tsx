@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 export default function NavBar() {
   return (
     <>
-      <div>판다마켓</div>
-      <div>자유게시판</div>
-      <div>중고마켓</div>
+      <Link href="/">판다마켓</Link>
+      <Link href="/boards" prefetch>자유게시판</Link>
+      <Link href="/itmes" prefetch>중고마켓</Link>
     </>
   );
 }

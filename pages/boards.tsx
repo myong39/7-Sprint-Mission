@@ -6,12 +6,13 @@ import { ArticleResponse } from '@/lib/axios';
 import BestArticle from '@/components/Article/BestArticle';
 import Button from '@/components/Button/Button';
 import AllArticle from '@/components/Article/AllArticle';
+import { useInView } from 'react-intersection-observer';
 
 const Boards = () => {
   const [bestArticle, setBestArticle] = useState<ArticleResponse['list']>([]); // 베스트 게시글
   const [allArticle, setAllArticle] = useState<ArticleResponse['list']>([]); // 일반 게시글
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(4);
+  const [pageSize, setPageSize] = useState(5);
   const [orderBy, setOrderBy] = useState('recent');
   const [keyword, setKeyword] = useState('');
 
@@ -37,7 +38,7 @@ const Boards = () => {
 
   const handleDropdownChange = (selectedOption: string) => {
     setOrderBy(selectedOption === '최신순' ? 'recent' : 'like');
-    setPage(1);
+    setPageSize(5);
     setAllArticle([]);
   };
 
@@ -46,6 +47,29 @@ const Boards = () => {
     setPage(1);
     setAllArticle([]);
   };
+
+  //무한스크롤을 해보자
+
+  const [ref, inView] = useInView({
+    threshold: 0.6,
+  });
+  const limit = 8;
+
+  useEffect(() => {
+    if (inView) {
+      const fetchMoreArticles = async () => {
+        const articles = await getArticle(
+          page,
+          pageSize + limit,
+          orderBy,
+          keyword
+        );
+        setAllArticle((prev) => [...prev, ...articles]);
+        setPageSize((prevSize) => prevSize + limit);
+      };
+      fetchMoreArticles();
+    }
+  }, [inView, page, pageSize, orderBy, keyword]);
 
   return (
     <div>
@@ -76,6 +100,7 @@ const Boards = () => {
             <AllArticle key={article.id} {...article} />
           ))}
         </div>
+        <div ref={ref}>감시할 요소</div>
       </div>
     </div>
   );

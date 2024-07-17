@@ -101,7 +101,9 @@ function BestPost({ post }: PostProps) {
 
   const renderImage = (image: string | null) => {
     return image ? (
-      <Image width={48} height={48} src={image} alt="게시물 썸네일" />
+      <div className="relative h-12 w-12">
+        <Image className="object-cover" fill src={image} alt="게시물 썸네일" />
+      </div>
     ) : (
       <span>no image</span>
     );

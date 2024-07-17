@@ -14,8 +14,9 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
   const isMobile = deviceType === 'Mobile';
 
   const childrenArray = Children.toArray(children);
-  const best = childrenArray[0];
-  const all = childrenArray[1];
+  const Best = childrenArray[0];
+  const All = childrenArray[1];
+  const DropdownItems = childrenArray[2];
 
   return (
     <>
@@ -24,7 +25,7 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
         <h2 className="mb-4 text-lg font-bold text-gray-900 md:mb-6 md:text-xl">
           베스트 게시글
         </h2>
-        {best}
+        {Best}
       </section>
       <section>
         <span className="sr-only">전체 게시글</span>
@@ -45,13 +46,10 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
           </label>
           <Dropdown>
             <Dropdown.Toggle>{getToggleContent(isMobile)}</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item position="first">최신순</Dropdown.Item>
-              <Dropdown.Item position="last">좋아요순</Dropdown.Item>
-            </Dropdown.Menu>
+            <Dropdown.Menu>{DropdownItems}</Dropdown.Menu>
           </Dropdown>
         </div>
-        {all}
+        {All}
       </section>
     </>
   );
@@ -62,7 +60,7 @@ const getToggleContent = (isMobile: boolean) => {
     <Icons.Sort className="w-6" />
   ) : (
     <>
-      최신순
+      정렬
       <Icons.CaretDown className="w-6" />
     </>
   );

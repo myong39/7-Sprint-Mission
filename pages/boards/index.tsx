@@ -6,6 +6,7 @@ import formatDate from '@/lib/formatDate';
 import BoardsLayout from '@/layouts/BoardsLayout';
 import Icons from '@/components/Icons';
 import profileImg from '@/public/profile.svg';
+import Dropdown from '@/components/Dropdown';
 
 interface Post {
   id: number;
@@ -56,16 +57,38 @@ export async function getStaticProps() {
   }
 }
 
+interface Options {
+  page: number;
+  pageSize: number;
+  order: 'recent' | 'like';
+  keyword: string;
+}
+
 export default function BoardsPage({
   bestPosts,
   posts: allPosts,
 }: BoardsPageProps) {
-  console.log(allPosts);
-  const [posts, setposts] = useState<Post[]>(allPosts);
+  const [posts, setPosts] = useState<Post[]>(allPosts);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [order, setOrder] = useState<'recent' | 'like'>('recent');
   const [keyword, setKeyword] = useState('');
+
+  const loadPosts = async ({ page, pageSize, order, keyword }: Options) => {
+    const res = await axiosInstance.get(
+      `articles?page=${page}&pageSize=${pageSize}&orderBy=${order}&keyword=${keyword}`
+    );
+    const nextPosts = res.data.list || [];
+    setPosts([...nextPosts]);
+  };
+
+  const handleOrder = (nextOrder: Options['order']) => {
+    setOrder(() => nextOrder);
+  };
+
+  useEffect(() => {
+    loadPosts({ page, pageSize, order, keyword });
+  }, [page, pageSize, order, keyword]);
 
   return (
     <>
@@ -78,6 +101,26 @@ export default function BoardsPage({
         <BoardsLayout>
           <BestPosts posts={bestPosts} />
           <AllPosts posts={posts} />
+          <>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('recent');
+                console.log(order);
+              }}
+              position="first"
+            >
+              최신순
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('like');
+                console.log(order);
+              }}
+              position="last"
+            >
+              좋아요순
+            </Dropdown.Item>
+          </>
         </BoardsLayout>
       </main>
     </>
@@ -186,7 +229,13 @@ function Post({ post }: PostProps) {
 const renderImage = (image: string | null) => {
   return image ? (
     <div className="relative h-12 w-12">
-      <Image className="object-cover" fill src={image} alt="게시물 썸네일" />
+      <Image
+        className="object-cover"
+        sizes="100%"
+        fill
+        src={image}
+        alt="게시물 썸네일"
+      />
     </div>
   ) : (
     <span>no image</span>

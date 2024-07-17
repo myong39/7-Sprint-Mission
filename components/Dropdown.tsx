@@ -1,49 +1,36 @@
-import {
-  useState,
-  createContext,
-  useContext,
-  ReactNode,
-  MouseEventHandler,
-} from 'react';
+import { useState, createContext, useContext, ReactNode } from 'react';
 import clsx from 'clsx';
 
 type Position = 'first' | 'last' | 'middle' | 'only';
 
-interface CommonProperty {
-  children: ReactNode;
+interface Props {
+  children?: ReactNode;
   className?: string;
 }
 
-interface DropdownProperty extends CommonProperty {}
-interface ToggleProperty extends CommonProperty {}
-interface MenuProperty extends CommonProperty {}
-interface ItemProperty extends CommonProperty {
-  onClick?: MouseEventHandler<HTMLElement>;
+interface DropdownProps extends Props {}
+interface ToggleProps extends Props {}
+interface MenuProps extends Props {}
+interface ItemProps extends Props {
+  onClick: () => void;
   position: Position;
 }
 
 const DropdownContext = createContext({ isOpen: false, toggle: () => {} });
 
-function Dropdown({ children = '', className = '' }: DropdownProperty) {
+function Dropdown({ children = '', className = '' }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const containerStyle = clsx(containerBaseStyle, className);
 
   return (
     <DropdownContext.Provider value={{ isOpen, toggle }}>
-      <div
-        className={containerStyle}
-        onBlur={() => {
-          setIsOpen(false);
-        }}
-      >
-        {children}
-      </div>
+      <div className={containerStyle}>{children}</div>
     </DropdownContext.Provider>
   );
 }
 
-const Toggle = ({ children = '', className = '' }: ToggleProperty) => {
+const Toggle = ({ children = '', className = '' }: ToggleProps) => {
   const { toggle } = useContext(DropdownContext);
   const toggleStyle = clsx(toggleBaseStyle, className);
 
@@ -54,7 +41,7 @@ const Toggle = ({ children = '', className = '' }: ToggleProperty) => {
   );
 };
 
-const Menu = ({ children = '', className = '' }: MenuProperty) => {
+const Menu = ({ children = '', className = '' }: MenuProps) => {
   const { isOpen } = useContext(DropdownContext);
   const menuStyle = clsx(menuBaseStyle, className);
 
@@ -66,11 +53,19 @@ const Item = ({
   className = '',
   onClick,
   position = 'middle',
-}: ItemProperty) => {
+}: ItemProps) => {
+  const { toggle } = useContext(DropdownContext);
+
   const itemPositionStyle = styleByPosition[position];
   const itemStyle = clsx(itemBaseStyle, itemPositionStyle, className);
   return (
-    <div className={itemStyle} onClick={onClick}>
+    <div
+      className={itemStyle}
+      onClick={() => {
+        onClick();
+        toggle();
+      }}
+    >
       {children}
     </div>
   );

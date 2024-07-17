@@ -1,8 +1,60 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import axiosInstance from '@/lib/axios';
+import formatDate from '@/lib/formatDate';
 import BoardsLayout from '@/layouts/BoardsLayout';
+import Icons from '@/components/Icons';
 
-export default function Home() {
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  image: string | null;
+  likeCount: number;
+  createdAt: string;
+  updatedAt: string;
+  writer: {
+    id: number;
+    nickname: string;
+  };
+}
+
+interface BoardsPageProps {
+  bestPosts: Post[];
+}
+
+interface PostsProps {
+  posts: Post[];
+}
+
+export async function getStaticProps() {
+  try {
+    const res = await axiosInstance.get(
+      'articles?page=1&pageSize=3&orderBy=like'
+    );
+    const bestPosts = res.data.list || [];
+    return {
+      props: {
+        bestPosts,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        bestPosts: [],
+      },
+    };
+  }
+}
+
+export default function BoardsPage({ bestPosts }: BoardsPageProps) {
+  const [posts, setposts] = useState<Post[]>([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [order, setOrder] = useState<'recent' | 'like'>('recent');
+  const [keyword, setKeyword] = useState('');
+
   return (
     <>
       <Head>
@@ -11,8 +63,80 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="mx-auto max-w-[1200px] p-4 md:p-6">
-        <BoardsLayout />
+        <BoardsLayout>
+          <BestPosts posts={bestPosts} />
+        </BoardsLayout>
       </main>
     </>
+  );
+}
+
+function BestPosts({ posts }: PostsProps) {
+  return (
+    <ul className="grid max-h-[200px] grid-cols-1 gap-4 overflow-hidden md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+      <span className="sr-only">베스트 게시글</span>
+      {posts.map(post => (
+        <li key={post.id}>
+          <BestPost post={post} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+interface PostProps {
+  post: Post;
+}
+
+function BestPost({ post }: PostProps) {
+  const {
+    title,
+    image,
+    likeCount,
+    createdAt,
+    writer: { nickname },
+  } = post;
+
+  const formattedDate = formatDate(createdAt);
+
+  const renderImage = (image: string | null) => {
+    return image ? (
+      <Image className="h-12 w-12" src={image} alt="게시물 썸네일" />
+    ) : (
+      <span>no image</span>
+    );
+  };
+
+  return (
+    <div className="rounded-lg bg-blue-secondary px-6 pb-4">
+      <div className="mb-4 flex h-[30px] w-[102px] items-center justify-center gap-1 rounded-b-2xl bg-blue-primary text-base font-semibold text-white">
+        <Icons.Medal className="w-4" />
+        Best
+      </div>
+      <div className="mb-10 flex justify-between gap-10 xl:mb-[18x] xl:gap-5">
+        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <div className="flex h-[72px] w-[72px] items-center justify-center rounded-lg border-[0.75px] border-solid border-gray-200 bg-white p-3">
+          {renderImage(image)}
+        </div>
+      </div>
+      <div className="flex justify-between text-sm font-normal">
+        <div className="flex text-gray-500">
+          <span className="mr-2 text-gray-600">{nickname}</span>
+          <Icons.Heart className="mr-1 w-4" />
+          <span>{likeCount}</span>
+        </div>
+        <span className="text-gray-400">{formattedDate}</span>
+      </div>
+    </div>
+  );
+}
+
+function AllPosts({ posts }: PostsProps) {
+  return (
+    <ul className="flex w-full flex-col gap-6">
+      {posts.map(post => (
+        <li key={post.id}></li>
+      ))}
+    </ul>
   );
 }

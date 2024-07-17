@@ -5,7 +5,7 @@ import logo from '@/public/logo.svg';
 import profile from '@/public/profile.svg';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
-export default function header() {
+export default function Header() {
   const [deviceType] = useMediaQuery();
 
   const isMobile = deviceType === 'Mobile';

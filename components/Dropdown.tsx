@@ -1,4 +1,10 @@
-import { useState, createContext, useContext, ReactNode, MouseEventHandler } from 'react';
+import {
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+  MouseEventHandler,
+} from 'react';
 import clsx from 'clsx';
 
 type Position = 'first' | 'last' | 'middle' | 'only';
@@ -55,7 +61,12 @@ const Menu = ({ children = '', className = '' }: MenuProperty) => {
   return isOpen ? <div className={menuStyle}>{children}</div> : null;
 };
 
-const Item = ({ children = '', className = '', onClick, position = 'middle' }: ItemProperty) => {
+const Item = ({
+  children = '',
+  className = '',
+  onClick,
+  position = 'middle',
+}: ItemProperty) => {
   const itemPositionStyle = styleByPosition[position];
   const itemStyle = clsx(itemBaseStyle, itemPositionStyle, className);
   return (
@@ -65,7 +76,8 @@ const Item = ({ children = '', className = '', onClick, position = 'middle' }: I
   );
 };
 
-const containerBaseStyle = 'relative w-[42px] md:w-[130px] text-base font-normal text-gray-800';
+const containerBaseStyle =
+  'relative w-[42px] md:w-[130px] text-base font-normal text-gray-800';
 
 const toggleBaseStyle =
   'flex justify-center md:justify-between items-center md:w-full w-[42px] h-[42px] md:py-3 md:px-5 rounded-xl border border-solid border-gray-200 shadow-sm bg-white hover:bg-gray-50';
@@ -73,7 +85,8 @@ const toggleBaseStyle =
 const menuBaseStyle =
   'absolute right-0 mt-2 w-[130px] rounded-xl border border-solid border-gray-200 shadow-lg bg-white';
 
-const itemBaseStyle = 'flex justify-center items-center px-4 py-2 hover:bg-gray-100 cursor-pointer';
+const itemBaseStyle =
+  'flex justify-center items-center px-4 py-2 hover:bg-gray-100 cursor-pointer';
 
 const styleByPosition = {
   first: 'rounded-t-xl border-b border-solid border-gray-200',

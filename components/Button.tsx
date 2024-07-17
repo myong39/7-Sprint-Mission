@@ -27,9 +27,20 @@ export default function Button({
 }: ButtonProps) {
   const buttonSizeStyle = styleBySize[size];
   const buttonColorStyle = styleByColor[color];
-  const buttonStyle = clsx(buttonBaseStyle, buttonSizeStyle, buttonColorStyle, className);
+  const buttonStyle = clsx(
+    buttonBaseStyle,
+    buttonSizeStyle,
+    buttonColorStyle,
+    className
+  );
   return (
-    <button className={buttonStyle} type={type} onClick={onClick} disabled={!isActive} form={form}>
+    <button
+      className={buttonStyle}
+      type={type}
+      onClick={onClick}
+      disabled={!isActive}
+      form={form}
+    >
       {children}
     </button>
   );

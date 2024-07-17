@@ -1,10 +1,15 @@
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import Button from '@/components/Button';
 import Dropdown from '@/components/Dropdown';
 import Icons from '@/components/Icons';
 
-export default function BoardsLayout() {
+interface BoardsLayoutPros {
+  children: ReactNode;
+}
+
+export default function BoardsLayout({ children }: BoardsLayoutPros) {
   const [deviceType] = useMediaQuery();
   const isMobile = deviceType === 'Mobile';
 
@@ -12,10 +17,10 @@ export default function BoardsLayout() {
     <>
       <section className="mb-6 xl:mb-10">
         <span className="sr-only">베스트 게시글</span>
-        <h2 className="mb-4 text-lg font-bold text-gray-900 md:mb-6 md:text-xl">베스트 게시글</h2>
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+        <h2 className="mb-4 text-lg font-bold text-gray-900 md:mb-6 md:text-xl">
           베스트 게시글
-        </ul>
+        </h2>
+        {children}
       </section>
       <section>
         <span className="sr-only">전체 게시글</span>

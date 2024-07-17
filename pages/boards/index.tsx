@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import axiosInstance from '@/lib/axios';
 import formatDate from '@/lib/formatDate';
 import BoardsLayout from '@/layouts/BoardsLayout';
 import Icons from '@/components/Icons';
+import profileImg from '@/public/profile.svg';
 
 interface Post {
   id: number;
@@ -22,6 +23,7 @@ interface Post {
 
 interface BoardsPageProps {
   bestPosts: Post[];
+  posts: Post[];
 }
 
 interface PostsProps {
@@ -30,26 +32,36 @@ interface PostsProps {
 
 export async function getStaticProps() {
   try {
-    const res = await axiosInstance.get(
+    const bestRes = await axiosInstance.get(
       'articles?page=1&pageSize=3&orderBy=like'
     );
-    const bestPosts = res.data.list || [];
+    const allRes = await axiosInstance.get(
+      'articles?page=1&pageSize=10&orderBy=recent'
+    );
+    const bestPosts = bestRes.data.list || [];
+    const posts = allRes.data.list || [];
     return {
       props: {
         bestPosts,
+        posts,
       },
     };
   } catch (error) {
     return {
       props: {
         bestPosts: [],
+        allPosts: [],
       },
     };
   }
 }
 
-export default function BoardsPage({ bestPosts }: BoardsPageProps) {
-  const [posts, setposts] = useState<Post[]>([]);
+export default function BoardsPage({
+  bestPosts,
+  posts: allPosts,
+}: BoardsPageProps) {
+  console.log(allPosts);
+  const [posts, setposts] = useState<Post[]>(allPosts);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [order, setOrder] = useState<'recent' | 'like'>('recent');
@@ -65,6 +77,7 @@ export default function BoardsPage({ bestPosts }: BoardsPageProps) {
       <main className="mx-auto max-w-[1200px] p-4 md:p-6">
         <BoardsLayout>
           <BestPosts posts={bestPosts} />
+          <AllPosts posts={posts} />
         </BoardsLayout>
       </main>
     </>
@@ -98,16 +111,6 @@ function BestPost({ post }: PostProps) {
 
   const formattedDate = formatDate(createdAt);
 
-  const renderImage = (image: string | null) => {
-    return image ? (
-      <div className="relative h-12 w-12">
-        <Image className="object-cover" fill src={image} alt="게시물 썸네일" />
-      </div>
-    ) : (
-      <span>no image</span>
-    );
-  };
-
   return (
     <div className="rounded-lg bg-blue-secondary px-6 pb-4">
       <div className="mb-4 flex h-[30px] w-[102px] items-center justify-center gap-1 rounded-b-2xl bg-blue-primary text-base font-semibold text-white">
@@ -136,8 +139,56 @@ function AllPosts({ posts }: PostsProps) {
   return (
     <ul className="flex w-full flex-col gap-6">
       {posts.map(post => (
-        <li key={post.id}></li>
+        <li key={post.id}>
+          <Post post={post} />
+        </li>
       ))}
     </ul>
   );
 }
+
+function Post({ post }: PostProps) {
+  const {
+    title,
+    image,
+    likeCount,
+    createdAt,
+    writer: { nickname },
+  } = post;
+
+  const formattedDate = formatDate(createdAt);
+
+  return (
+    <div className="rounded-lg border-b border-solid border-gray-200 bg-gray-50 pb-6">
+      <div className="mb-4 flex justify-between gap-2">
+        <h3 className="text-lg font-semibold text-gray-800 md:text-xl">
+          {title}
+        </h3>
+        <div className="flex h-[72px] w-[72px] items-center justify-center rounded-lg border-[0.75px] border-solid border-gray-100 bg-white p-3">
+          {renderImage(image)}
+        </div>
+      </div>
+      <div className="flex items-center justify-between font-normal">
+        <div className="flex items-center gap-2 text-sm">
+          <Image width={24} height={24} src={profileImg} alt="프로필 이미지" />
+          <span className="text-gray-600">{nickname}</span>
+          <span className="text-gray-400">{formattedDate}</span>
+        </div>
+        <div className="flex items-center gap-2 text-base text-gray-500">
+          <Icons.Heart className="w-4" />
+          <span>{likeCount}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const renderImage = (image: string | null) => {
+  return image ? (
+    <div className="relative h-12 w-12">
+      <Image className="object-cover" fill src={image} alt="게시물 썸네일" />
+    </div>
+  ) : (
+    <span>no image</span>
+  );
+};

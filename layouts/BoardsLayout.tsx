@@ -10,10 +10,12 @@ interface BoardsLayoutPros {
 }
 
 export default function BoardsLayout({ children }: BoardsLayoutPros) {
-  const childrenArray = Children.toArray(children);
-  const best = childrenArray[0];
   const [deviceType] = useMediaQuery();
   const isMobile = deviceType === 'Mobile';
+
+  const childrenArray = Children.toArray(children);
+  const best = childrenArray[0];
+  const all = childrenArray[1];
 
   return (
     <>
@@ -49,7 +51,7 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-        <ul className="flex w-full flex-col gap-6">모든 게시글</ul>
+        {all}
       </section>
     </>
   );

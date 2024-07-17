@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Children } from 'react';
 import Link from 'next/link';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import Button from '@/components/Button';
@@ -10,6 +10,8 @@ interface BoardsLayoutPros {
 }
 
 export default function BoardsLayout({ children }: BoardsLayoutPros) {
+  const childrenArray = Children.toArray(children);
+  const best = childrenArray[0];
   const [deviceType] = useMediaQuery();
   const isMobile = deviceType === 'Mobile';
 
@@ -20,7 +22,7 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
         <h2 className="mb-4 text-lg font-bold text-gray-900 md:mb-6 md:text-xl">
           베스트 게시글
         </h2>
-        {children}
+        {best}
       </section>
       <section>
         <span className="sr-only">전체 게시글</span>

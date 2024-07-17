@@ -74,7 +74,6 @@ export default function BoardsPage({ bestPosts }: BoardsPageProps) {
 function BestPosts({ posts }: PostsProps) {
   return (
     <ul className="grid max-h-[200px] grid-cols-1 gap-4 overflow-hidden md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
-      <span className="sr-only">베스트 게시글</span>
       {posts.map(post => (
         <li key={post.id}>
           <BestPost post={post} />

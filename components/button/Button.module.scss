@@ -1,0 +1,48 @@
+@import '/styles/common/index.scss';
+
+.button {
+  @include Flex(row, center, center);
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+
+  color: $white-color;
+  background-color: $main--color;
+  white-space: nowrap;
+
+  &:disabled {
+    background-color: $main--color-disabled;
+    cursor: default;
+
+    &:hover,
+    &:active {
+      background-color: $main--color-disabled;
+      cursor: default;
+    }
+  }
+
+  &:hover {
+    background-color: $main--color-hover;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $main--color-active;
+  }
+}
+.large {
+  border-radius: 40px;
+  padding: 16px 124px;
+  @include font-style(20, 600);
+}
+
+.medium {
+  border-radius: 40px;
+  padding: 12px 71px;
+  @include font-style(18, 600);
+}
+
+.small {
+  border-radius: 8px;
+  padding: 12px 20px;
+  @include font-style(16, 600);
+}

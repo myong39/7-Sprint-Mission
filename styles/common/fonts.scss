@@ -1,0 +1,49 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../public/fonts/Pretendard-Regular.woff2') format('woff2'),
+    url('../../public/fonts/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../public/fonts/Pretendard-Bold.woff2') format('woff2'),
+    url('../../public/fonts/Pretendard-Bold.woff') format('woff');
+}
+
+@mixin font-style(
+  $desktop-size,
+  $weight,
+  $tablet-size: null,
+  $mobile-size: null
+) {
+  font-family: 'Pretendard', Pretendard, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+
+  // 데스크탑에서 폰트 사이즈 및 폰트 웨이트 적용
+  font-size: #{$desktop-size}px;
+  font-weight: #{$weight};
+
+  // 태블릿에서 폰트 사이즈 적용
+  @include tablet {
+    @if $tablet-size != null {
+      font-size: #{$tablet-size}px;
+    } @else {
+      font-size: #{$desktop-size}px;
+    }
+  }
+
+  // 모바일에서 폰트 사이즈 적용
+  @include mobile {
+    @if $mobile-size != null {
+      font-size: #{$mobile-size}px;
+    } @else {
+      font-size: #{$desktop-size}px;
+    }
+  }
+}

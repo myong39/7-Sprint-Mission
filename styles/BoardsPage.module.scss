@@ -1,0 +1,31 @@
+@import './common/index.scss';
+
+.post {
+  @include Flex(column, null, null);
+  gap: 24px;
+
+  & > div {
+    width: 100%;
+  }
+
+  .title,
+  .search {
+    @include Flex(row, space-between, center);
+    gap: 24px;
+
+    @include tablet {
+      gap: 16px;
+    }
+    @include mobile {
+      gap: 8px;
+    }
+
+    form {
+      width: 100%;
+      input {
+        width: 100%;
+        flex: 1;
+      }
+    }
+  }
+}

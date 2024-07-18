@@ -1,0 +1,111 @@
+@import '/styles/common/index.scss';
+
+.image {
+  width: 72px;
+  height: 72px;
+  position: relative;
+
+  border: 0.75px solid $gray-200;
+  background-color: $white-color;
+  border-radius: 8px;
+
+  img {
+    border-radius: 8px;
+  }
+}
+
+.bestpost {
+  width: 384px;
+  height: 169px;
+  background-color: $gray-50;
+
+  padding: 0px 24px 16px 24px;
+
+  border-radius: 8px;
+
+  @include Flex(column, null, null);
+  gap: 16px;
+
+  @include tablet {
+    width: 100%;
+    min-width: 340px;
+  }
+
+  @include mobile {
+    min-width: 343px;
+  }
+}
+
+.post {
+  border-bottom: 1px solid $gray-200;
+
+  padding-bottom: 24px;
+
+  .content {
+    gap: 16px;
+  }
+
+  .detail {
+    &.withImage {
+      height: 72px;
+    }
+
+    &.withoutImage {
+      height: 48px;
+    }
+  }
+}
+
+.content {
+  height: 100%;
+  @include Flex(column, space-between, null);
+}
+
+.detail {
+  width: 100%;
+  @include Flex(row, space-between, null);
+  gap: 8px;
+
+  .description {
+    @include font-style(18, 600);
+    line-height: 21.48px;
+    text-align: left;
+    color: $gray-800;
+    overflow-y: auto;
+    max-height: 72px;
+    flex: 1;
+  }
+}
+
+.metadata {
+  @include Flex(row, space-between, center);
+
+  .info {
+    @include Flex(row, null, center);
+    gap: 8px;
+
+    .nickname {
+      @include font-style(14, 400);
+      line-height: 16px;
+      text-align: left;
+      color: $gray-600;
+    }
+  }
+  .date {
+    @include font-style(14, 400);
+    line-height: 16px;
+    text-align: left;
+    color: $gray-400;
+  }
+}
+.like {
+  @include Flex(row, null, center);
+  gap: 4px;
+
+  p {
+    @include font-style(14, 400);
+    line-height: 16px;
+    text-align: left;
+    color: $gray-500;
+  }
+}

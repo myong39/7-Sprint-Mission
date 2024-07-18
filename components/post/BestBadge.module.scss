@@ -1,0 +1,18 @@
+@import '@/styles/common/index.scss';
+
+.badge {
+  background-color: $main--color;
+  width: 102px;
+  height: 30px;
+
+  border-radius: 0 0 32px 32px;
+
+  @include Flex(row, center, center);
+  gap: 4px;
+
+  p {
+    @include font-style(16, 600);
+    line-height: 24px;
+    color: $white-color;
+  }
+}

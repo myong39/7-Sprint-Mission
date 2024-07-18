@@ -1,0 +1,55 @@
+@import url('/src/modules/css/globals.css');
+
+.Button {
+  color: #ffffff;
+  background-color: var(--blue);
+  border: 0;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.Button.small {
+  padding: 12px 23px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+}
+
+.Button.small48 {
+  padding: 15px 23px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+}
+
+.Button.medium {
+  padding: 12px 71px;
+  border-radius: 40px;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+}
+
+.Button.large {
+  padding: 16px 124px;
+  border-radius: 40px;
+  font-size: 2rem;
+  line-height: 2.4rem;
+}
+
+.Button:hover {
+  background-color: var(--blueHover);
+}
+
+.Button:active {
+  background-color: var(--blueActive);
+}
+
+.Button.disable {
+  cursor: default;
+  background-color: var(--gray400);
+}
+
+.Button > a {
+  color: #ffffff;
+}

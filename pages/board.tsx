@@ -31,10 +31,10 @@ export default function Board() {
   const { isDesktop, isTablet, isMobile } = useDevice();
   const [order, setOrder] = useState<string>("recent");
   const [bestPageSize, setBestPageSize] = useState<number>(3);
-  const [BestArticles, setBestArticles] = useState<Articles[]>([
+  const [bestArticles, setBestArticles] = useState<Articles[]>([
     initialArticleState(),
   ]);
-  const [GeneralArticles, setGeneralArticles] = useState<Articles[]>([
+  const [generalArticles, setGeneralArticles] = useState<Articles[]>([
     initialArticleState(),
   ]);
 
@@ -65,7 +65,7 @@ export default function Board() {
       <section className={styles["best-section"]}>
         <h2>베스트 게시글</h2>
         <div className={styles["bestpost-container"]}>
-          {BestArticles.map((article) => (
+          {bestArticles.map((article) => (
             <BestPost article={article} key={article.id} />
           ))}
         </div>
@@ -82,7 +82,7 @@ export default function Board() {
           <SelectBtn order={order} setOrder={setOrder} />
         </div>
         <div className={styles["bottom-wrap"]}>
-          {GeneralArticles.map((article) => (
+          {generalArticles.map((article) => (
             <GeneralPost article={article} key={article.id} />
           ))}
         </div>

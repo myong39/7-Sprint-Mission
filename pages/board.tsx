@@ -29,7 +29,7 @@ export default function Board() {
   const keyword =
     typeof router.query.keyword === "string" ? router.query.keyword : undefined;
   const { isDesktop, isTablet, isMobile } = useDevice();
-  const [order, setOrder] = useState<string>("recent");
+  const [order, setOrder] = useState<"recent" | "like">("recent");
   const [bestPageSize, setBestPageSize] = useState<number>(3);
   const [bestArticles, setBestArticles] = useState<Articles[]>([
     initialArticleState(),

@@ -10,7 +10,7 @@ import { getArticles } from "@/lib/api";
 import { Articles } from "@/lib/type";
 import useDevice from "@/lib/useDevice";
 
-const initialArticleState = () => ({
+const initialArticleState = {
   content: "",
   createdAt: "",
   id: 0,
@@ -22,7 +22,7 @@ const initialArticleState = () => ({
     id: 0,
     nickname: "",
   },
-});
+};
 
 export default function Board() {
   const router = useRouter();
@@ -32,10 +32,10 @@ export default function Board() {
   const [order, setOrder] = useState<"recent" | "like">("recent");
   const [bestPageSize, setBestPageSize] = useState<number>(3);
   const [bestArticles, setBestArticles] = useState<Articles[]>([
-    initialArticleState(),
+    initialArticleState,
   ]);
   const [generalArticles, setGeneralArticles] = useState<Articles[]>([
-    initialArticleState(),
+    initialArticleState,
   ]);
 
   useEffect(() => {

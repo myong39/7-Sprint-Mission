@@ -6,10 +6,6 @@ import logo from "@/public/logo.svg";
 import logoMobile from "@/public/logo_mobile.svg";
 
 const Header = () => {
-  const activeStyle = {
-    color: "#3692ff",
-  };
-
   const router = useRouter();
 
   return (
@@ -38,8 +34,11 @@ const Header = () => {
             <li>
               <Link
                 href="/board"
-                className={styles.link}
-                style={router.pathname === "/board" ? activeStyle : undefined}
+                className={
+                  router.pathname === "/board"
+                    ? styles["active-link"]
+                    : styles.link
+                }
               >
                 자유게시판
               </Link>
@@ -47,11 +46,10 @@ const Header = () => {
             <li>
               <Link
                 href="/items"
-                className={styles.link}
-                style={
+                className={
                   router.pathname === "/items" || router.pathname === "/additem"
-                    ? activeStyle
-                    : undefined
+                    ? styles["active-link"]
+                    : styles.link
                 }
               >
                 중고마켓

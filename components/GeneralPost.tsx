@@ -5,13 +5,15 @@ import profile_ic from "@/public/ic_profile.svg";
 import { PostProps } from "@/lib/type";
 
 export default function GeneralPost({ article, ...rest }: PostProps) {
+  const { title, image, writer, updatedAt, likeCount } = article;
+
   return (
     <div className={styles.container} {...rest}>
       <div className={styles["top-wrap"]}>
-        <div className={styles.title}>{article.title}</div>
-        {article.image && (
+        <div className={styles.title}>{title}</div>
+        {image && (
           <Image
-            src={article.image}
+            src={image}
             alt="게시글이미지"
             width="72"
             height="72"
@@ -28,9 +30,9 @@ export default function GeneralPost({ article, ...rest }: PostProps) {
             height="24"
             className={styles["profile-img"]}
           />
-          <div className={styles.nickname}>{article.writer.nickname}</div>
+          <div className={styles.nickname}>{writer.nickname}</div>
           <div className={styles.date}>
-            {article.updatedAt.replace(/-/g, ".").split("T")[0]}
+            {updatedAt.replace(/-/g, ".").split("T")[0]}
           </div>
         </div>
         <div className={styles["favorite-wrap"]}>
@@ -41,7 +43,7 @@ export default function GeneralPost({ article, ...rest }: PostProps) {
             height="24"
             className={styles["favorite-img"]}
           />
-          <div className={styles["favorite-count"]}>{article.likeCount}</div>
+          <div className={styles["favorite-count"]}>{likeCount}</div>
         </div>
       </div>
     </div>

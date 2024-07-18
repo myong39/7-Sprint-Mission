@@ -6,7 +6,6 @@ import { ArticleResponse } from '@/lib/axios';
 import BestArticle from '@/components/Article/BestArticle';
 import Button from '@/components/Button/Button';
 import AllArticle from '@/components/Article/AllArticle';
-import { useInView } from 'react-intersection-observer';
 
 const Boards = () => {
   const [bestArticle, setBestArticle] = useState<ArticleResponse['list']>([]); // 베스트 게시글
@@ -48,29 +47,6 @@ const Boards = () => {
     setAllArticle([]);
   };
 
-  //무한스크롤을 해보자
-
-  const [ref, inView] = useInView({
-    threshold: 0.6,
-  });
-  const limit = 8;
-
-  useEffect(() => {
-    if (inView) {
-      const fetchMoreArticles = async () => {
-        const articles = await getArticle(
-          page,
-          pageSize + limit,
-          orderBy,
-          keyword
-        );
-        setAllArticle((prev) => [...prev, ...articles]);
-        setPageSize((prevSize) => prevSize + limit);
-      };
-      fetchMoreArticles();
-    }
-  }, [inView, page, pageSize, orderBy, keyword]);
-
   return (
     <div>
       <div className={style.BoardsConatiner}>
@@ -100,7 +76,6 @@ const Boards = () => {
             <AllArticle key={article.id} {...article} />
           ))}
         </div>
-        <div ref={ref}>감시할 요소</div>
       </div>
     </div>
   );

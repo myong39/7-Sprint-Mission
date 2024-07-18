@@ -6,7 +6,7 @@ import search_ic from "@/public/ic_search.svg";
 
 export default function SearchForm() {
   const router = useRouter();
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState("");
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,0 +1,86 @@
+@import "@/styles/import.scss";
+
+.best-post-container {
+  position: relative;
+  width: 384px;
+  height: 169px;
+  border-radius: 8px;
+  background-color: $cool-gray-50;
+}
+.contents-wrapper {
+  margin: 0 24px 16px 24px;
+}
+.best-badge {
+  margin-bottom: 16px;
+}
+.contents {
+  display: flex;
+  margin-bottom: 18px;
+  justify-content: space-between;
+}
+.post-title {
+  max-width: 256px;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 18px;
+  color: $cool-gray-800;
+}
+.post-image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 1px solid $cool-gray-200;
+}
+.post-image {
+  object-fit: cover;
+}
+
+.contents-footer {
+  width: 336px;
+  height: 17px;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 16px;
+  display: flex;
+}
+.nickname-and-like {
+  display: flex;
+  gap: 8px;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+
+  color: $cool-gray-600;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+}
+
+.date {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  color: $cool-gray-400;
+}
+
+@media screen and (max-width: 1199px) {
+  .best-post-container {
+    width: 100%;
+  }
+
+  .contents-footer {
+    width: 90%;
+    height: 17px;
+  }
+}

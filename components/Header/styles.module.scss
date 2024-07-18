@@ -1,0 +1,21 @@
+.header {
+  position: fixed;
+}
+.header-left {
+  align-items: center;
+  display: flex;
+  gap: 32px;
+}
+
+.header-container {
+  padding: 9px 200px 10px 200px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+@media screen and (max-width: 1199px) {
+  .header-container {
+    padding: 9px 34px 10px 34px;
+  }
+}

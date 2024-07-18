@@ -1,0 +1,28 @@
+@import "@/styles/import.scss";
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+.title {
+  margin: 24px auto;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  color: $cool-gray-900;
+}
+
+.best-posts-container {
+  display: flex;
+  gap: 24px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    padding: 0 24px;
+  }
+
+}

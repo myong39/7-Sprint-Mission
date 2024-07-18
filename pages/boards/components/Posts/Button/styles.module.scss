@@ -1,0 +1,15 @@
+@import "@/styles/import.scss";
+
+.write-button {
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  background-color: $brand-blue;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+  text-align: left;
+  color: #fff;
+}

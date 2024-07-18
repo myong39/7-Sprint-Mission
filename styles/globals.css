@@ -12,4 +12,10 @@
   --cool-gray-50: #f9fafb;
   --cool-gray-100: #f3f4f6;
   --cool-gray-800: #1f2937;
+
+  --pc-min-width: 1200px;
+  --tablet-min-width: 768px;
+  --tablet-max-width: 1199px;
+  --mobile-min-width: 375px;
+  --mobile-max-width: 767px;
 }

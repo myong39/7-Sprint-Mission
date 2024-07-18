@@ -1,0 +1,44 @@
+@import '@/src/styles/_mixin';
+
+.container {
+  @include drop-down-box();
+  position: relative;
+}
+
+.dropDownButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropDownBox {
+  @keyframes dropdown {
+    0% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @include drop-down-box();
+  width: 118px;
+  height: max-content;
+  position: absolute;
+  z-index: 1;
+  margin-top: 8px;
+  right: 1px;
+  animation: dropdown 0.3s ease;
+
+  .dropDownItem {
+    padding: 6px 0;
+    &:hover {
+      color: var(--blue);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dropDownButton {
+    width: max-content;
+  }
+}

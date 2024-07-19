@@ -23,3 +23,9 @@ type TArticleList = {
 };
 
 type TOrder = 'recent' | 'like';
+
+interface PostArticleType {
+  title: string;
+  content: string;
+  image?: string;
+}

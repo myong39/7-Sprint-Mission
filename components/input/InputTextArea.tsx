@@ -1,16 +1,16 @@
-import styles from '@/components/Input.module.scss';
+import styles from '@/components/input/Input.module.scss';
 import checkJosa from '@/utils/checkJosa';
 import { TextareaHTMLAttributes } from 'react';
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  name: string;
+  title: string;
 }
 
-function InputTextArea({ name, ...props }: TextAreaProps) {
+function InputTextArea({ title, ...props }: TextAreaProps) {
   return (
     <textarea
       className={styles['textarea']}
-      placeholder={checkJosa(name) + ' 입력해주세요'}
+      placeholder={checkJosa(title) + ' 입력해주세요'}
       {...props}
     />
   );

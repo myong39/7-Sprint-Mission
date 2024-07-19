@@ -16,7 +16,8 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
   const childrenArray = Children.toArray(children);
   const Best = childrenArray[0];
   const All = childrenArray[1];
-  const DropdownItems = childrenArray[2];
+  const Input = childrenArray[2];
+  const DropdownItems = childrenArray[3];
 
   return (
     <>
@@ -36,14 +37,7 @@ export default function BoardsLayout({ children }: BoardsLayoutPros) {
           </Link>
         </div>
         <div className="mb-4 flex items-center justify-between gap-3 md:mb-10 md:gap-[6px] xl:mb-6 xl:gap-4">
-          <label className="relative h-[42px] flex-grow">
-            <span className="sr-only">게시물 검색하기</span>
-            <Icons.Search className="absolute left-4 top-[9px] w-6 text-gray-400" />
-            <input
-              className="h-full w-full rounded-xl bg-gray-100 pl-11 text-base font-normal"
-              placeholder="검색할 게시글을 입력해주세요"
-            />
-          </label>
+          {Input}
           <Dropdown>
             <Dropdown.Toggle>{getToggleContent(isMobile)}</Dropdown.Toggle>
             <Dropdown.Menu>{DropdownItems}</Dropdown.Menu>

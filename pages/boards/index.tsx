@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import axiosInstance from '@/lib/axios';
@@ -86,6 +86,12 @@ export default function BoardsPage({
     setOrder(() => nextOrder);
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const nextKeyword = target.value;
+    setKeyword(() => nextKeyword);
+  };
+
   useEffect(() => {
     loadPosts({ page, pageSize, order, keyword });
   }, [page, pageSize, order, keyword]);
@@ -101,6 +107,16 @@ export default function BoardsPage({
         <BoardsLayout>
           <BestPosts posts={bestPosts} />
           <AllPosts posts={posts} />
+          <label className="relative h-[42px] flex-grow">
+            <span className="sr-only">게시물 검색하기</span>
+            <Icons.Search className="absolute left-4 top-[9px] w-6 text-gray-400" />
+            <input
+              value={keyword}
+              onChange={handleChange}
+              className="h-full w-full rounded-xl bg-gray-100 pl-11 text-base font-normal"
+              placeholder="검색할 게시글을 입력해주세요"
+            />
+          </label>
           <>
             <Dropdown.Item
               onClick={() => {

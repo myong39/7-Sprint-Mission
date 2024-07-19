@@ -51,3 +51,33 @@
     @include font-style('2lg', bold);
   }
 }
+
+.textarea {
+  @include InputStyle;
+  height: 282px;
+  resize: none;
+}
+
+@mixin FileImageStyle {
+  width: 282px;
+  height: 282px;
+
+  @include tablet {
+    width: 162px;
+    height: 162px;
+  }
+  @include mobile {
+    width: 168px;
+    height: 168px;
+  }
+}
+
+.file-input {
+  @include InputStyle;
+  @include FileImageStyle;
+
+  p {
+    @include font-style(lg, regular);
+    color: $gray-400;
+  }
+}

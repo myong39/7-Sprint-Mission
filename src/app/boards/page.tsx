@@ -1,18 +1,24 @@
 import axios from "@/lib/axios";
 import {AllArticlesSection} from "@/components/AllArticlesSection";
+import {BestArticlesSection} from "@/components/BestArticlesSection";
+import {Article, ArticleListResponse, ArticleSortOption} from "@/types/articleTypes";
+import {useState} from "react";
 
 export default async function Board() {
-  const response = await axios.get("/articles");
-  const articles = response.data.list ?? [];
+  const allArticlesResponse = await axios.get("/articles");
+  const allArticles = allArticlesResponse.data.list ?? [];
 
-  if (!articles) {
+  const bestArticlesResponse = await axios.get("/articles", { params: { pageSize: 3, orderBy: "like" } });
+  const bestArticles = bestArticlesResponse.data.list ?? [];
+
+  if (!bestArticles || !allArticles) {
     return <div>게시글을 불러오는 중입니다.</div>
   }
 
   return (
     <>
-      <h1>베스트 게시글</h1>
-      <AllArticlesSection articles={articles} />
+      <BestArticlesSection articles={bestArticles} />
+      <AllArticlesSection articles={allArticles} />
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { ORDER_TYPE_ENUM } from "@/constants/orderConstants";
+
 export interface Article {
   content: string;
   createdAt: string;
@@ -15,7 +17,7 @@ export interface Article {
 export interface ArticleApiData {
   page?: number;
   pageSize?: number;
-  orderBy?: "recent" | "like";
+  orderBy?: ORDER_TYPE_ENUM.recent | ORDER_TYPE_ENUM.like;
   keyword?: string | string[] | undefined;
 }
 

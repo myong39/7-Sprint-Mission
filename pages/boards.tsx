@@ -22,7 +22,15 @@ function BoardPage() {
         <div className={styles.post}>
           <div className={styles.title}>
             <SectionTitle>게시글</SectionTitle>
-            <Button size='small'>글쓰기</Button>
+            <Button
+              type='button'
+              size='small'
+              onClick={() => {
+                router.push('/addboard');
+              }}
+            >
+              글쓰기
+            </Button>
           </div>
           <div className={styles.search}>
             <SearchForm initialValue={(q as string) || ''} />

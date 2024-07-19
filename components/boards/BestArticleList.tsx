@@ -5,7 +5,7 @@ import { getArticle } from "@/lib/articleApi";
 import { Article, ArticleApiData } from "@/types/articleTypes";
 import Link from "next/link";
 import useDeviceType from "@/hooks/useDeviceType";
-import { DeviceTypePageSize } from "@/constants/deviceSizes";
+import { DeviceTypePageSize } from "@/constants/deviceSizesConstants";
 
 const ORDER_BY = "like";
 const { MOBILE_PAGE_SIZE, TABLET_PAGE_SIZE, DESKTOP_PAGE_SIZE } =

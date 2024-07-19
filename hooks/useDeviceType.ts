@@ -1,4 +1,4 @@
-import { DeviceSizes } from "@/constants/deviceSizes";
+import { DeviceSizes } from "@/constants/deviceSizesConstants";
 import { useState, useEffect } from "react";
 
 const {

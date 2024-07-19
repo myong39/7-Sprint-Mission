@@ -4,10 +4,10 @@ import AllArticleItem from "./AllArticleItem";
 import { Article, ArticleApiData } from "@/types/articleTypes";
 import SearchInput from "@/components/layout/SearchInput";
 import Button from "@/components/layout/Button";
-import Dropdown from "@/components/layout/Dropdown";
 import Link from "next/link";
 import { getArticle } from "@/lib/articleApi";
 import { useRouter } from "next/router";
+import SortDropdown from "../layout/Dropdown/SortDropdown";
 
 export default function AllArticleList({
   initialArticles,
@@ -62,7 +62,7 @@ export default function AllArticleList({
       </div>
       <div className={styles["search-wrapper"]}>
         <SearchInput onSortBySearch={handleSortBySearch} />
-        <Dropdown onOrderChange={handleOrderChange} />
+        <SortDropdown onOrderChange={handleOrderChange} />
       </div>
       {articles.length
         ? articles.map((article) => (

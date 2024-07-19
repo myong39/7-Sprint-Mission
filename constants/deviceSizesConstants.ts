@@ -1,8 +1,8 @@
 export enum DeviceSizes {
-  MOBILE_MAX_WIDTH = 767,
   TABLET_MIN_WIDTH = 768,
-  TABLET_MAX_WIDTH = 1199,
+  MOBILE_MAX_WIDTH = DeviceSizes.TABLET_MIN_WIDTH - 1,
   DESKTOP_MIN_WIDTH = 1200,
+  TABLET_MAX_WIDTH = DeviceSizes.DESKTOP_MIN_WIDTH - 1,
 }
 
 export enum DeviceTypePageSize {

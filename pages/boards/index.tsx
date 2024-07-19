@@ -1,12 +1,13 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState, useCallback, useRef } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { debounce } from 'lodash';
 import axiosInstance from '@/lib/axios';
 import formatDate from '@/lib/formatDate';
 import BoardsLayout from '@/layouts/BoardsLayout';
+import Dropdown from '@/components/Dropdown';
 import Icons from '@/components/Icons';
 import profileImg from '@/public/profile.svg';
-import Dropdown from '@/components/Dropdown';
 
 interface Post {
   id: number;
@@ -74,6 +75,8 @@ export default function BoardsPage({
   const [order, setOrder] = useState<'recent' | 'like'>('recent');
   const [keyword, setKeyword] = useState('');
 
+  const inputRef = useRef(null);
+
   const loadPosts = async ({ page, pageSize, order, keyword }: Options) => {
     const res = await axiosInstance.get(
       `articles?page=${page}&pageSize=${pageSize}&orderBy=${order}&keyword=${keyword}`
@@ -86,10 +89,20 @@ export default function BoardsPage({
     setOrder(() => nextOrder);
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const nextKeyword = target.value;
-    setKeyword(() => nextKeyword);
+  const debouncedSearch = useCallback(
+    debounce((value: string): void => {
+      console.log('검색 키워드:', value);
+      setKeyword(() => value);
+    }, 300),
+    []
+  );
+
+  const handleChange = () => {
+    if (inputRef.current) {
+      const target = inputRef.current as HTMLInputElement;
+      const nextKeyword = target.value;
+      debouncedSearch(nextKeyword);
+    }
   };
 
   useEffect(() => {
@@ -111,7 +124,7 @@ export default function BoardsPage({
             <span className="sr-only">게시물 검색하기</span>
             <Icons.Search className="absolute left-4 top-[9px] w-6 text-gray-400" />
             <input
-              value={keyword}
+              ref={inputRef}
               onChange={handleChange}
               className="h-full w-full rounded-xl bg-gray-100 pl-11 text-base font-normal"
               placeholder="검색할 게시글을 입력해주세요"

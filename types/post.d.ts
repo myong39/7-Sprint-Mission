@@ -7,7 +7,7 @@ interface IPost {
   id: number;
   title: string;
   content: string;
-  image: string;
+  image: string | null;
   writer: IWriter;
   likeCount: number;
   createdAt: string;

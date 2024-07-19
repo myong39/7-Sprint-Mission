@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: string;
-  handleClick: any;
+  handleClick?: any;
 }
 
 function Button({ size, handleClick, ...props }: IButton) {

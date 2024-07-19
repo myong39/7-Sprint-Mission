@@ -1,4 +1,4 @@
-import SearchInput from './SearchInput';
+import SearchInput from '@/components/input/SearchInput';
 
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';

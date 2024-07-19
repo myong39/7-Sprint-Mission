@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import styles from './SearchBar.module.scss'
 import searchIcon from '@/public/svgs/search.svg'
@@ -9,6 +9,23 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ keyword }) => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('')
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm)
+    }, 2000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [searchTerm])
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      keyword(debouncedSearchTerm)
+    }
+  }, [debouncedSearchTerm, keyword])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)

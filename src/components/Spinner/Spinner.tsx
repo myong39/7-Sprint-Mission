@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import spinnerImg from '@/public/images/spinner.png'
-import styles from './Spiner.module.scss'
+import styles from './Spinner.module.scss'
 
-export default function Spiner({ className = '' }) {
+export default function Spinner({ className = '' }) {
   return (
     <div className={styles.container}>
       <Image

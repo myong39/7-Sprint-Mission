@@ -1,0 +1,67 @@
+@import '@/src/styles/_mixin';
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.emptyComment {
+  @include font-style(16px, 400, var(--gray-400));
+  text-align: center;
+  cursor: default;
+}
+
+.backButtonSection {
+  display: flex;
+  justify-content: center;
+}
+
+.backButton {
+  @include font-style(18px, 600, var(--white));
+  background-color: var(--blue);
+  width: 240px;
+  height: 48px;
+  border-radius: 40px;
+  margin: 40px 0;
+
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+}
+
+.contentSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .content {
+    @include font-style(14px, 400, var(--gray-800));
+  }
+}
+
+.writerSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .writer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .nickname {
+      @include font-style(12px, 400, var(--gray-600));
+    }
+
+    .createdAt {
+      @include font-style(12px, 400, var(--gray-400));
+    }
+  }
+}
+
+.hr {
+  border: 1px solid var(--gray-200);
+}

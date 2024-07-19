@@ -1,0 +1,59 @@
+@import '@/src/styles/_mixin';
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 64px 0 24px;
+  gap: 16px;
+}
+
+.sectionTitle {
+  @include font-style(16px, 600, var(--gray-900));
+  cursor: default;
+}
+
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.commentInput {
+  width: 100%;
+  resize: none;
+  background-color: var(--gray-100);
+  border-radius: 12px;
+  padding: 16px 24px;
+  height: 104px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--gray-400);
+    font-size: 16px;
+  }
+}
+
+.submitButton {
+  @include font-style(16px, 600, var(--white));
+  padding: 12px 24px;
+  background-color: var(--blue);
+  border-radius: 12px;
+  padding: 16px 24px;
+  height: 104px;
+
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+
+  &:disabled {
+    background-color: var(--gray-400);
+    cursor: not-allowed;
+  }
+}

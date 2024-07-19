@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import useFetechData from '@/src/hooks/useFetechData'
 import { ArticleListResponse } from '@/src/interfaces/Article.interface'
 import BestArticle from './BestArticle'
@@ -19,11 +19,11 @@ const getPageSize = () => {
 export default function BestArticleList() {
   const [pageSize, setPageSize] = useState<number>(getPageSize())
 
-  const fetechArticles = useFetechData<ArticleListResponse>(
-    `articles?page=1`,
-    pageSize,
-    'like'
+  const url = useMemo(
+    () => `articles?page=1&pageSize=${pageSize}&orderBy=like`,
+    [pageSize]
   )
+  const fetechArticles = useFetechData<ArticleListResponse>(url)
   const { data: ArticleList, isLoading } = fetechArticles
 
   useEffect(() => {

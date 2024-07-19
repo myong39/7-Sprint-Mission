@@ -16,18 +16,69 @@
     url('../../public/fonts/Pretendard-Bold.woff') format('woff');
 }
 
+$TEXT_STYLES: (
+  '3xl': (
+    font-size: 32px,
+    line-height: 42px,
+  ),
+  '2xl': (
+    font-size: 24px,
+    line-height: 32px,
+  ),
+  'xl': (
+    font-size: 20px,
+    line-height: 32px,
+  ),
+  '2lg': (
+    font-size: 18px,
+    line-height: 26px,
+  ),
+  'lg': (
+    font-size: 16px,
+    line-height: 26px,
+  ),
+  'md': (
+    font-size: 14px,
+    line-height: 24px,
+  ),
+  'sm': (
+    font-size: 13px,
+    line-height: 22px,
+  ),
+  'xs': (
+    font-size: 12px,
+    line-height: 18px,
+  ),
+);
+
+$WEIGHTS: (
+  'bold': 700,
+  'semibold': 600,
+  'medium': 500,
+  'regular': 400,
+);
+
 @mixin font-style(
   $desktop-size,
   $weight,
   $tablet-size: null,
   $mobile-size: null
 ) {
-  font-family: 'Pretendard', Pretendard, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
-
   // 데스크탑에서 폰트 사이즈 및 폰트 웨이트 적용
-  font-size: #{$desktop-size}px;
-  font-weight: #{$weight};
+  @if map-has-key($TEXT_STYLES, $desktop-size) {
+    $style: map-get($TEXT_STYLES, $desktop-size);
+    font-size: map-get($style, font-size);
+    line-height: map-get($style, line-height);
+  } @else {
+    font-size: #{$desktop-size};
+    line-height: 26px;
+  }
+
+  @if map-has-key($WEIGHTS, $weight) {
+    font-weight: map-get($WEIGHTS, $weight);
+  } @else {
+    font-weight: #{$weight};
+  }
 
   // 태블릿에서 폰트 사이즈 적용
   @include tablet {

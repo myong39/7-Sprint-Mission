@@ -67,8 +67,7 @@
   gap: 8px;
 
   .description {
-    @include font-style(18, 600);
-    line-height: 21.48px;
+    @include font-style('xl', semibold);
     text-align: left;
     color: $gray-800;
     overflow-y: auto;
@@ -85,15 +84,13 @@
     gap: 8px;
 
     .nickname {
-      @include font-style(14, 400);
-      line-height: 16px;
+      @include font-style(md, regular);
       text-align: left;
       color: $gray-600;
     }
   }
   .date {
-    @include font-style(14, 400);
-    line-height: 16px;
+    @include font-style(md, regular);
     text-align: left;
     color: $gray-400;
   }
@@ -103,8 +100,7 @@
   gap: 4px;
 
   p {
-    @include font-style(14, 400);
-    line-height: 16px;
+    @include font-style(lg, regular);
     text-align: left;
     color: $gray-500;
   }

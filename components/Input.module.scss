@@ -1,6 +1,6 @@
 @import '@/styles/common/index.scss';
 @mixin InputTextStyle {
-  @include font-style(16, 400);
+  @include font-style('lg', regular);
   color: $gray-800;
 }
 
@@ -37,4 +37,17 @@
   padding: 9px 20px 9px 16px;
   border-radius: 12px;
   padding-left: 44px;
+}
+
+.input {
+  @include InputStyle;
+}
+
+.input-wrapper {
+  @include Flex(column, null, null);
+  gap: 16px;
+
+  label {
+    @include font-style('2lg', bold);
+  }
 }

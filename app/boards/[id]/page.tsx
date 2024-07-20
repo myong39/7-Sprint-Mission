@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchArticleById, fetchArticleComments } from "@/api/articles";
 import { Article, Comment } from "@/types/article";
@@ -11,10 +11,10 @@ import BackIcon from "@/assets/images/icons/ic_back.svg";
 import EmptyComments from "@/assets/images/ui/empty-reply.svg";
 import formatTimeDiff from "@/utils/formatTimeDiff";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 export default function ArticleDetail() {
   const { id } = useParams();
-  const router = useRouter();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -56,10 +56,6 @@ export default function ArticleDetail() {
     setNewComment("");
   };
 
-  const handleBackClick = () => {
-    router.push("/boards");
-  };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -67,7 +63,7 @@ export default function ArticleDetail() {
   if (!article) return null;
 
   return (
-    <div className='max-w-[1200px] mx-auto py-4 px-6 bg-white'>
+    <div className='max-w-[1200px] mx-auto py-4 px-6'>
       <h1 className='text-xl font-bold my-4 text-gray-800'>{article.title}</h1>
       <div className='flex items-center mb-4 font-normal'>
         <div className='mr-2'>
@@ -124,27 +120,29 @@ export default function ArticleDetail() {
       <div>
         {comments.length > 0 ? (
           comments.map((comment) => (
-            <div key={comment.id} className='border-b border-gray-200 py-4'>
-              <div className='mb-6 text-gray-800 text-sm font-normal'>
-                {comment.content}
-              </div>
-              <div className='flex items-center mb-2'>
-                <div className='mr-2'>
-                  <Image
-                    src={Profile}
-                    alt='profile'
-                    width={32}
-                    height={32}
-                    className='inline-block'
-                  />
+            <div key={comment.id} className='border-b border-gray-200 pt-4'>
+              <div className='bg-[#FCFCFC] pb-4'>
+                <div className='mb-6 text-gray-800 text-sm font-normal'>
+                  {comment.content}
                 </div>
-                <div className='flex flex-col font-normal text-xs'>
-                  <span className='mr-2 text-gray-600'>
-                    {comment.writer.nickname}
-                  </span>
-                  <span className='mr-2 text-gray-400'>
-                    {formatTimeDiff(comment.createdAt)}
-                  </span>
+                <div className='flex items-center mb-2'>
+                  <div className='mr-2'>
+                    <Image
+                      src={Profile}
+                      alt='profile'
+                      width={32}
+                      height={32}
+                      className='inline-block'
+                    />
+                  </div>
+                  <div className='flex flex-col font-normal text-xs'>
+                    <span className='mr-2 text-gray-600'>
+                      {comment.writer.nickname}
+                    </span>
+                    <span className='mr-2 text-gray-400'>
+                      {formatTimeDiff(comment.createdAt)}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,31 +155,26 @@ export default function ArticleDetail() {
               width={150}
               height={150}
             />
-            <p className='text-base font-normal text-center mt-4'>
-              아직 댓글이 없어요,
-              <br />
-              지금 댓글을 달아보세요!
-            </p>
+            <div className='text-base font-normal text-center mt-4'>
+              <p>아직 댓글이 없어요,</p>
+              <p>지금 댓글을 달아보세요!</p>
+            </div>
           </div>
         )}
         <div className='flex justify-center my-10'>
-          <Button
-            text='목록으로 돌아가기'
-            color='default'
-            size='small'
-            onClick={handleBackClick}
-            width='240px'
-            style={{
-              borderRadius: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "18px",
-              fontWeight: "600",
-              padding: "12px 38.5px",
-            }}
-            icon={<Image src={BackIcon} alt='Back' width={24} height={24} />}
-          />
+          <Link href='/boards'>
+            <Button
+              text='목록으로 돌아가기'
+              color='default'
+              size='small'
+              width='240px'
+              borderRadius='40px'
+              fontSize='18px'
+              fontWeight='600'
+              padding='12px 38.5px'
+              icon={<Image src={BackIcon} alt='Back' width={24} height={24} />}
+            />
+          </Link>
         </div>
       </div>
     </div>

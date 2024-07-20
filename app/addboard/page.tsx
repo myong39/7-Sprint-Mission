@@ -1,11 +1,11 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import FileInput from "@/components/FileInput";
 import { AddArticleForm } from "@/types/form";
 import Button from "@/components/Button";
 
-const AddBoard: React.FC = () => {
+const AddBoard = () => {
   const [values, setValues] = useState<AddArticleForm>({
     title: "",
     body: "",
@@ -31,12 +31,10 @@ const AddBoard: React.FC = () => {
     console.log(values);
   };
 
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
+  const isFormValid = useMemo(() => {
     const { title, body } = values;
-    const isValid = !!title && !!body;
-    setIsFormValid(isValid);
+
+    return !!title && !!body;
   }, [values]);
 
   return (
@@ -65,7 +63,9 @@ const AddBoard: React.FC = () => {
             value={values.body}
             onChange={handleInputChange}
             placeholder='내용을 입력해주세요'
-            className={`w-full py-4 px-6 rounded-xl bg-gray-100 h-[282px] text-gray-400 text-base font-normal resize-none ${values.body ? 'text-black' : 'text-gray-400'}`}
+            className={`w-full py-4 px-6 rounded-xl bg-gray-100 h-[282px] text-gray-400 text-base font-normal resize-none ${
+              values.body ? "text-black" : "text-gray-400"
+            }`}
           />
         </div>
         <div className='mb-6'>

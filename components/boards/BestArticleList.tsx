@@ -6,8 +6,8 @@ import { Article, ArticleApiData } from "@/types/articleTypes";
 import Link from "next/link";
 import useDeviceType from "@/hooks/useDeviceType";
 import { DeviceTypePageSize } from "@/constants/deviceSizesConstants";
+import { ORDER_TYPE_ENUM } from "@/constants/orderConstants";
 
-const ORDER_BY = "like";
 const { MOBILE_PAGE_SIZE, TABLET_PAGE_SIZE, DESKTOP_PAGE_SIZE } =
   DeviceTypePageSize;
 
@@ -32,7 +32,7 @@ export default function BestArticleList() {
   };
 
   useEffect(() => {
-    fetchData({ orderBy: ORDER_BY, pageSize: pageSize });
+    fetchData({ orderBy: ORDER_TYPE_ENUM.like, pageSize: pageSize });
   }, [pageSize]);
 
   return (

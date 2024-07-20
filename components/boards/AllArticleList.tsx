@@ -8,6 +8,13 @@ import Link from "next/link";
 import { getArticle } from "@/lib/articleApi";
 import { useRouter } from "next/router";
 import SortDropdown from "../layout/Dropdown/SortDropdown";
+import {
+  defaultOrderType,
+  ORDER_TYPE_ENUM,
+  orderTypeKeysKR,
+  orderTypeKR,
+  orderTypeUS,
+} from "@/constants/orderConstants";
 
 export default function AllArticleList({
   initialArticles,
@@ -15,13 +22,14 @@ export default function AllArticleList({
   initialArticles: Article[];
 }) {
   const [articles, setArticles] = useState(initialArticles);
-  const [orderBy, setOrderBy] = useState<ArticleApiData["orderBy"]>("recent");
+  const [orderBy, setOrderBy] = useState(ORDER_TYPE_ENUM.recent);
+  const items = orderTypeKeysKR;
 
   const router = useRouter();
   const keyword = router.query.q;
 
   const handleOrderChange = (option: string) => {
-    if (option === "recent" || option === "like") setOrderBy(option);
+    setOrderBy(orderTypeUS[option as keyof typeof orderTypeUS]);
   };
 
   const fetchData = async ({ orderBy, pageSize, keyword }: ArticleApiData) => {
@@ -62,7 +70,11 @@ export default function AllArticleList({
       </div>
       <div className={styles["search-wrapper"]}>
         <SearchInput onSortBySearch={handleSortBySearch} />
-        <SortDropdown onOrderChange={handleOrderChange} />
+        <SortDropdown
+          onOrderChange={handleOrderChange}
+          items={items}
+          defaultOrderType={orderTypeKR[defaultOrderType]}
+        />
       </div>
       {articles.length
         ? articles.map((article) => (

@@ -32,7 +32,7 @@ export default function Freeboard({ initialArticles }: ArticleProps) {
   return (
     <div className={styles.main}>
       <BestArticleList />
-      <AllArticleList initialArticles={initialArticles} />z
+      <AllArticleList initialArticles={initialArticles} />
     </div>
   );
 }

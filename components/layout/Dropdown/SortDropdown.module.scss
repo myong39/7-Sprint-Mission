@@ -18,12 +18,10 @@
   @include font-style(16px, 400, 24px, var(--gray800));
   font-family: inherit;
 
-  display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
-.menu-wrapper {
+.menu {
   background-color: var(--white);
   position: absolute;
   transform: translateY(10px);
@@ -34,19 +32,21 @@
   border-radius: 12px;
 }
 
-.menu-line {
-  border: 1px solid var(--gray200);
-}
-
-.menu {
+.menu-item {
   width: 132px;
   height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  &:first-child {
+    border-radius: 12px 12px 0 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    border-radius: 0 0 12px 12px;
+  }
 
   &:hover {
-    cursor: pointer;
+    background-color: #f1f1f1;
   }
 }
 

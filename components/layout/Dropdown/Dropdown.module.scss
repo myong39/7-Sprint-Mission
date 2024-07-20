@@ -21,3 +21,15 @@
   z-index: 20;
   cursor: pointer;
 }
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  margin: 0;
+  border-top: 1px solid var(--gray200);
+  width: 100%;
+}

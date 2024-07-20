@@ -1,21 +1,10 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import styles from "./Dropdown.module.scss";
 import useClickOutside from "@/hooks/useClickOutside";
+import { DropdownProps } from "@/types/uiTypes";
 
-interface DropdownProps {
-  trigger?: ReactElement | string;
-  items?: string[];
-  children?: React.ReactNode;
-  onSelect?: (item: string) => void;
-  textDrop?: boolean;
-  triggerClassName?: string;
-  menuClassName?: string;
-  itemClassName?: string;
-  onToggle?: (isOpen: boolean) => void;
-}
-
-const Dropdown: React.FC<DropdownProps> = ({
-  trigger = "",
+export default function Dropdown({
+  trigger = <></>,
   items = [],
   children = null,
   onSelect = () => {},
@@ -25,8 +14,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   itemClassName = "",
   onToggle = () => {},
   ...rest
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
+}: DropdownProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [selectedItem, setSelectedItem] = useState<string>(
     typeof trigger === "string" ? trigger : ""
@@ -66,25 +55,28 @@ const Dropdown: React.FC<DropdownProps> = ({
       >
         {renderTrigger()}
       </div>
-      <div className={`${styles.menu} ${menuClassName}`}>
+      <ul className={`${styles.menu} ${menuClassName}`}>
         {isOpen && (
           <>
             {items
               ? items.map((item, index) => (
-                  <div
-                    className={`${styles["menu-item"]} ${itemClassName}`}
-                    key={index}
-                    onClick={() => handleItemClick(item)}
-                  >
-                    {item}
-                  </div>
+                  <>
+                    <li
+                      className={`${styles["menu-item"]} ${itemClassName}`}
+                      key={index}
+                      onClick={() => handleItemClick(item)}
+                    >
+                      {item}
+                    </li>
+                    {index < items.length - 1 && (
+                      <span className={styles.divider}></span>
+                    )}
+                  </>
                 ))
               : children}
           </>
         )}
-      </div>
+      </ul>
     </div>
   );
-};
-
-export default Dropdown;
+}

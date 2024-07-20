@@ -1,3 +1,4 @@
+import { ORDER_TYPE_ENUM } from "@/constants/orderConstants";
 import { ArticleApiData } from "@/types/articleTypes";
 import axios, { AxiosError } from "axios";
 
@@ -8,7 +9,7 @@ const instance = axios.create({
 export const getArticle = async ({
   page = 1,
   pageSize = 10,
-  orderBy = "recent",
+  orderBy = ORDER_TYPE_ENUM.recent,
   keyword = "",
 }: ArticleApiData = {}) => {
   try {

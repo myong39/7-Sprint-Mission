@@ -9,9 +9,9 @@ export default function MenuTab() {
   return (
     <>
       <Link
-        href="/community"
+        href="/boards"
         className={
-          pathname === "/community"
+          pathname === "/boards"
             ? styles["menu-tab-active"]
             : styles["menu-tab"]
         }

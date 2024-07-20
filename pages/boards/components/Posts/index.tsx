@@ -29,7 +29,7 @@ export default function Posts() {
       try {
         const { list } = await getPosts({
           page: 1,
-          pageSize: 40,
+          pageSize: 20,
           orderBy: orderBy,
         });
         setPosts(list);

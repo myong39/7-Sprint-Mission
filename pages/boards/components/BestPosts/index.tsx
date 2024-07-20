@@ -16,7 +16,10 @@ export default function BestPosts() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [pageSize, setPageSize] = useState(3);
-
+  const BREAKPOINTS = {
+    DESKTOP: 1200,
+    TABLET: 768
+  }
   useEffect(() => {
     const fetchBestPost = async () => {
       try {
@@ -36,11 +39,11 @@ export default function BestPosts() {
   }, [pageSize]);
   useEffect(() => {
     const handleResize = debounce(() => {
-      if (window.innerWidth >= 1200) {
+      if (window.innerWidth >= BREAKPOINTS.DESKTOP) {
         setPageSize(3);
-      } else if (window.innerWidth >= 768 && window.innerWidth <= 1199) {
+      } else if (window.innerWidth >= BREAKPOINTS.TABLET && window.innerWidth < BREAKPOINTS.DESKTOP) {
         setPageSize(2);
-      } else if (window.innerWidth <= 767) {
+      } else if (window.innerWidth < BREAKPOINTS.TABLET) {
         setPageSize(1);
       }
     }, 100);

@@ -12,3 +12,10 @@
   border-radius: 12px;
   padding: 12px 20px;
 }
+
+@media (max-width: 530px) {
+  .Select {
+    padding: 12px 0px;
+    width: 75px;
+  }
+}

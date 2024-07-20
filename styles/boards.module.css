@@ -51,12 +51,23 @@
   margin-top: 24px;
 }
 
+.AllArticleContainer {
+  display: flex;
+  flex-direction: column;
+}
+.AllArticleContainer > * {
+  flex: 1;
+}
+
 @media (max-width: 1076px) {
   .BestArticleContainer {
     justify-content: space-around;
   }
   .BestArticleContainer > :nth-child(3) {
     display: none;
+  }
+  .OutContainer {
+    margin: 0 24px;
   }
 }
 @media (max-width: 530px) {

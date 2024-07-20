@@ -4,6 +4,7 @@ import style from './AllArticle.module.css';
 import { Article } from '@/types/Article';
 import Image from 'next/image';
 import formatDate from '@/lib/formatDate';
+import profile1 from '@/asset/images/profile1.png';
 
 const AllArticle: React.FC<Article> = ({
   id,
@@ -22,14 +23,30 @@ const AllArticle: React.FC<Article> = ({
 
   return (
     <div className={style.article} onClick={handleClick}>
-      <img src={image} alt={title} className={style.articleImage} />
-      {/* <Image src={image} alt={title} className={style.articleImage} /> */}
       <div className={style.articleContent}>
-        <h2>{title}</h2>
+        <div className={style.TitleAndImg}>
+          <h2>{title}</h2>
+          {image ? (
+            <div className={style.ImgContainer}>
+              <Image
+                src={image}
+                alt={'유저가 올린 이미지'}
+                className={style.articleImage}
+                width={48}
+                height={44.57}
+              />
+            </div>
+          ) : null}
+        </div>
         <div className={style.articleFooter}>
+          <Image
+            src={profile1}
+            alt={'유저 기본이미지'}
+            className={style.BasicUserProfile}
+          />
           <span>{writer.nickname}</span>
           <span>{date}</span>
-          <span>{likeCount}</span>
+          <span className={style.LikeCount}>❤️ {likeCount}</span>
         </div>
       </div>
     </div>

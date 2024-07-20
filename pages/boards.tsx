@@ -6,6 +6,7 @@ import { ArticleResponse } from '@/lib/axios';
 import BestArticle from '@/components/Article/BestArticle';
 import Button from '@/components/Button/Button';
 import AllArticle from '@/components/Article/AllArticle';
+import { useRouter } from 'next/router';
 
 const Boards = () => {
   const [bestArticle, setBestArticle] = useState<ArticleResponse['list']>([]); // 베스트 게시글
@@ -31,8 +32,9 @@ const Boards = () => {
     fetchAllArticle();
   }, [page, pageSize, orderBy, keyword]);
 
+  const router = useRouter();
   const handleButtonClick = () => {
-    console.log('hi');
+    router.push(`/addboard`);
   };
 
   const handleDropdownChange = (selectedOption: string) => {

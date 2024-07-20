@@ -88,7 +88,10 @@
     color: $cool-gray-400;
   }
 }
-
+.img-register-container {
+  display: flex;
+  flex-direction: row;
+}
 .img-register-box {
   position: relative;
   width: 282px;
@@ -98,11 +101,10 @@
 }
 
 .img-register {
-  display: flex;
+  display: none;
   object-fit: cover;
   width: 100%;
   height: 100%;
-  opacity: 0;
 }
 
 .img-register-button {
@@ -125,4 +127,26 @@
 
   text-align: left;
   color: $cool-gray-400;
+}
+.preview-image-box {
+  position: relative;
+}
+.preview-image {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  margin-left: 24px;
+  border-radius: 12px;
+}
+.delete-preview-image {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #3962ff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

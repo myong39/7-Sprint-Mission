@@ -30,7 +30,7 @@ const AllArticle: React.FC<Article> = ({
             <div className={style.ImgContainer}>
               <Image
                 src={image}
-                alt={'유저가 올린 이미지'}
+                alt={'Img'}
                 className={style.articleImage}
                 width={48}
                 height={44.57}

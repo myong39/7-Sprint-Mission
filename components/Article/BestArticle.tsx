@@ -4,11 +4,16 @@ import style from './BestArticle.module.css';
 import formatDate from '@/lib/formatDate';
 import Image from 'next/image';
 import bestMark from '@/public/images/FreeBoard/bestMark.png';
+import { useRouter } from 'next/router';
 
 const BestArticle: React.FC<Article> = ({ ...article }) => {
-  const { title, image, likeCount, createdAt, writer } = article;
+  const { title, image, likeCount, createdAt, writer, id } = article;
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/boards/${id}`);
+  };
   return (
-    <div className={style.OutContainer}>
+    <div className={style.OutContainer} onClick={handleClick}>
       <div className={style.BestArticle}>
         <Image src={bestMark} alt="Best Mark" className={style.BestMark} />
         <div className={style.TitleAndImage}>

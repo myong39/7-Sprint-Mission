@@ -48,9 +48,9 @@ const Boards = () => {
   };
 
   return (
-    <div>
+    <div className={style.OutContainer}>
       <div className={style.BoardsConatiner}>
-        <h1>베스트 게시글</h1>
+        <h1 className={style.BestTitle}>베스트 게시글</h1>
         <div className={style.BestArticleContainer}>
           {bestArticle.map((article) => (
             <BestArticle key={article.id} {...article} />
@@ -63,7 +63,7 @@ const Boards = () => {
         <div className={style.ArticleNavBar}>
           <input
             type="text"
-            placeholder="검색할 상품을 입력해주세요"
+            placeholder="🔍 검색할 상품을 입력해주세요"
             onChange={handleKeywordChange}
           />
           <Dropdown

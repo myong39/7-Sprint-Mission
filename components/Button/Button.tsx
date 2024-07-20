@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './Button.module.css';
 
 interface ButtonProps {
   onClick: () => void;
@@ -9,7 +10,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ onClick, text, disabled }) => {
   return (
     <div>
-      <button onClick={onClick} disabled={disabled}>
+      <button className={style.Button} onClick={onClick} disabled={disabled}>
         {text}
       </button>
     </div>

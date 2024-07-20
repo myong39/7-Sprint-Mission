@@ -24,6 +24,7 @@ const Header = () => {
           onClick={handleClickGoHome}
           className={stlye.LogoImg}
         />
+        <div className={stlye.HideLogo}>판다마켓</div>
         <ul className={stlye.HeaderMenu}>
           <li
             onClick={handleClick}

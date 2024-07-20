@@ -1,16 +1,66 @@
+.OutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .BestArticleContainer {
   display: flex;
   gap: 24px;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+.BestArticleContainer > * {
+  flex: 1;
 }
 
 .ArticleAndPostLine {
+  margin-top: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.ArticleAndPostLine > h1 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
 }
 
 .ArticleNavBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+}
+.ArticleNavBar > input {
+  flex: 1;
+  background-color: #f3f4f6;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  padding: 9px 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #9ca3af;
+}
+
+.BestTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  margin-top: 24px;
+}
+
+@media (max-width: 1076px) {
+  .BestArticleContainer {
+    justify-content: space-around;
+  }
+  .BestArticleContainer > :nth-child(3) {
+    display: none;
+  }
+}
+@media (max-width: 530px) {
+  .BestArticleContainer > :nth-child(2) {
+    display: none;
+  }
 }

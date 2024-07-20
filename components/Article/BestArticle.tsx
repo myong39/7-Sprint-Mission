@@ -13,9 +13,17 @@ const BestArticle: React.FC<Article> = ({ ...article }) => {
         <Image src={bestMark} alt="Best Mark" className={style.BestMark} />
         <div className={style.TitleAndImage}>
           <h2 className={style.Title}>{title}</h2>
-          <div className={style.ImageContainer}>
-            {image && <Image fill src={image} alt="게시글 이미지 미리보기" />}
-          </div>
+          {image && (
+            <div className={style.ImageContainer}>
+              <Image
+                src={image}
+                width={48}
+                height={44.57}
+                alt="게시글 이미지 미리보기"
+                className={style.BestImg}
+              />
+            </div>
+          )}
         </div>
         <div className={style.CardBottom}>
           <div className={style.NameAndLikeCount}>

@@ -1,6 +1,9 @@
 .OutContainer {
-  height: 167px;
-  background-color: yellow;
+  height: 169px;
+  background-color: #f9fafb;
+  max-width: 384px;
+  max-height: 198px;
+  border-radius: 8px;
 }
 .BestArticle {
   position: relative;
@@ -17,6 +20,9 @@
   display: flex;
   margin-top: 40px;
 }
+.TitleAndImage > * {
+  flex: 1 1;
+}
 
 .CardBottom {
   display: flex;
@@ -25,12 +31,19 @@
 
 .NameAndLikeCount {
   display: flex;
+  gap: 8px;
 }
 
 .ImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  width: 48px;
-  height: 44.57px;
+  max-width: 72px;
+  height: 72px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
 }
 
 .BestMark {

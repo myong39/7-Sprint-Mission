@@ -11,17 +11,33 @@ const Header = () => {
     router.push(`/boards/`);
   };
 
+  const handleClickGoHome = () => {
+    router.push(`/`);
+  };
+
   return (
     <div className={stlye.Container}>
-      <div className={stlye.PandaLogo}>
-        <Image fill src={pandaLogo} alt="판다 로고" />
+      <div className={stlye.LogoAndMenu}>
+        <Image
+          src={pandaLogo}
+          alt="판다 로고"
+          onClick={handleClickGoHome}
+          className={stlye.LogoImg}
+        />
+        <ul className={stlye.HeaderMenu}>
+          <li
+            onClick={handleClick}
+            className={
+              router.pathname === '/boards' ? stlye.ActiveMenuItem : ''
+            }
+          >
+            자유게시판
+          </li>
+          <li>중고마켓</li>
+        </ul>
       </div>
-      <ul className={stlye.HeaderMenu}>
-        <li onClick={handleClick}>자유 게시판</li>
-        <li>중고 마켓</li>
-      </ul>
       <div className={stlye.Profile}>
-        <Image fill src={profile} alt="유저 프로필" />
+        <Image src={profile} alt="유저 프로필" className={stlye.UserImg} />
       </div>
     </div>
   );

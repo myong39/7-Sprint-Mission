@@ -39,5 +39,21 @@ main {
   .best-post-list {
     @include Flex(row, null, null);
     gap: 24px;
+
+    & > a {
+      flex: 1;
+    }
+
+    @include tablet {
+      a:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @include mobile {
+      a:nth-child(2) {
+        display: none;
+      }
+    }
   }
 }

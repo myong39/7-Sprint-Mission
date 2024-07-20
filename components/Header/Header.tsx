@@ -3,15 +3,21 @@ import Image from 'next/image';
 import pandaLogo from '@/public/images/Header/pandaLogo.png';
 import profile from '@/public/images/Header/profile.png';
 import stlye from './Header.module.css';
+import { useRouter } from 'next/router';
 
 const Header = () => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/boards/`);
+  };
+
   return (
     <div className={stlye.Container}>
       <div className={stlye.PandaLogo}>
         <Image fill src={pandaLogo} alt="판다 로고" />
       </div>
       <ul className={stlye.HeaderMenu}>
-        <li>자유 게시판</li>
+        <li onClick={handleClick}>자유 게시판</li>
         <li>중고 마켓</li>
       </ul>
       <div className={stlye.Profile}>

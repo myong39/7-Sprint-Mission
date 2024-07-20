@@ -1,0 +1,21 @@
+.articleContainer {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.articleImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.articleFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}

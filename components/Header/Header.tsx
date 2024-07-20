@@ -28,7 +28,7 @@ const Header = () => {
           <li
             onClick={handleClick}
             className={
-              router.pathname === '/boards' ? stlye.ActiveMenuItem : ''
+              router.pathname.startsWith('/boards') ? stlye.ActiveMenuItem : ''
             }
           >
             자유게시판

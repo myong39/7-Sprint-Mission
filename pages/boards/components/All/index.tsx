@@ -3,14 +3,15 @@ import Dropdown from "./Dropdown";
 import styles from "./styles.module.scss";
 import searchIcon from "@/assets/icons/ic_search.svg";
 import AllPost from "./AllPost";
-import { useEffect, useState } from "react";
-import { getArticles, Article } from "@/pages/api/articles";
+import { useEffect, useMemo, useState } from "react";
+import { getArticles, Article } from "@/services/articles";
+import Link from "next/link";
 
 function All() {
   const options = ["최신순", "좋아요순"];
-  const [articles, setArticles] = useState<Article[]>([]);
   const [orderBy, setOrderBy] = useState<"recent" | "like">("recent");
-  const [search, setSearch] = useState("");
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   useEffect(() => {
     async function fetchArticles() {
@@ -25,6 +26,14 @@ function All() {
     fetchArticles();
   }, [orderBy]);
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(event.target.value);
+  };
+
+  const filteredArticles = useMemo(() => {
+    return articles.filter((article) => article.title.includes(searchKeyword));
+  }, [articles, searchKeyword]);
+
   const handleSortChange = (option: string) => {
     if (option === "최신순") {
       setOrderBy("recent");
@@ -33,19 +42,13 @@ function All() {
     }
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
-
-  const filteredArticles = articles.filter((article) =>
-    article.title.includes(search)
-  );
-
   return (
     <div className={styles["container"]}>
       <div className={styles["all-post-top-header"]}>
         <label className={styles["title"]}>게시글</label>
-        <button className={styles["button"]}>글쓰기</button>
+        <Link href={`/addboard`}>
+          <button className={styles["button"]}>글쓰기</button>
+        </Link>
       </div>
       <div className={styles["all-post-bottom-header"]}>
         <div className={styles["search-container"]}>
@@ -60,7 +63,7 @@ function All() {
             type="search"
             className={styles["search"]}
             placeholder="검색할 키워드를 입력해주세요"
-            value={search}
+            value={searchKeyword}
             onChange={handleSearchChange}
           />
         </div>

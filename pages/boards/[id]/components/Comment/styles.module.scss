@@ -2,6 +2,7 @@
 
 .container {
   margin-top: 24px;
+  background-color: $color-bg-comment;
 
   .title-container {
     @include Flex(row, space-between, center);

@@ -26,6 +26,7 @@
   padding: 9px;
   background-color: $color-white;
   @include Flex(row, center, center);
+  display: none;
 }
 
 .mobile-dropdown-header {
@@ -58,4 +59,14 @@
   @include Size(56px, 26px);
   cursor: pointer;
   line-height: 26px;
+}
+
+@media screen and (max-width: $width-max-mobile) {
+  .dropdown {
+    display: none;
+  }
+
+  .mobile-dropdown {
+    display: block;
+  }
 }

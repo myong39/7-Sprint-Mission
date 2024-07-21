@@ -2,23 +2,19 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import heartIcon from "@/assets/icons/ic_heart.svg";
 import profileImage from "@/assets/icons/ic_profile.svg";
-import { Article } from "@/pages/api/articles";
-import { useRouter } from "next/router";
+import { Article } from "@/services/articles";
+import Link from "next/link";
+
 interface AllPostProps {
   article: Article;
 }
 
 function AllPost({ article }: AllPostProps) {
   const hasImage = !!article.image;
-  const router = useRouter();
-
-  const handlePostClick = () => {
-    router.push(`/boards/${article.id}`);
-  };
 
   return (
-    <div className={styles["container"]} onClick={handlePostClick}>
-      <div className={styles["post-top-info"]}>
+    <div className={styles["container"]}>
+      <Link className={styles["post-top-info"]} href={`/boards/${article.id}`}>
         <p className={styles["title"]}>{article.title}</p>
         {hasImage && (
           <div className={styles["image-wrapper"]}>
@@ -30,8 +26,7 @@ function AllPost({ article }: AllPostProps) {
             />
           </div>
         )}
-        {!hasImage && <div className={styles["none-image-wrapper"]}></div>}
-      </div>
+      </Link>
       <div className={styles["post-bottom-info"]}>
         <div className={styles["user-wrapper"]}>
           <Image src={profileImage} alt="프로필" width={24} height={24} />

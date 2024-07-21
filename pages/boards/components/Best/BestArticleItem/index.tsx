@@ -1,22 +1,16 @@
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import heartIcon from "@/assets/icons/ic_heart.svg";
-import { Article } from "@/pages/api/articles";
-import bestBadge from "@/assets/images/img_badge.png";
-import { useRouter } from "next/router";
-interface BestPostProps {
+import { Article } from "@/services/articles";
+import bestBadge from "@/assets/images/img_badge.svg";
+import Link from "next/link";
+interface BestArticleItemProps {
   article: Article;
 }
 
-function BestPost({ article }: BestPostProps) {
-  const router = useRouter();
-
-  const handlePostClick = () => {
-    router.push(`/boards/${article.id}`);
-  };
-
+function BestArticleItem({ article }: BestArticleItemProps) {
   return (
-    <div className={styles["container"]} onClick={handlePostClick}>
+    <div className={styles["container"]}>
       <Image
         className={styles["best-badge"]}
         src={bestBadge}
@@ -25,7 +19,10 @@ function BestPost({ article }: BestPostProps) {
         height={30}
       />
       <div className={styles["wrapper"]}>
-        <div className={styles["best-post-title-container"]}>
+        <Link
+          className={styles["best-post-title-container"]}
+          href={`/boards/${article.id}`}
+        >
           <p className={styles["title"]}>{article.title}</p>
           {article.image && (
             <div className={styles["post-image-container"]}>
@@ -38,7 +35,7 @@ function BestPost({ article }: BestPostProps) {
               />
             </div>
           )}
-        </div>
+        </Link>
         <div className={styles["post-user-container"]}>
           <div className={styles["post-user-like"]}>
             <span className={styles["user-name"]}>
@@ -58,4 +55,4 @@ function BestPost({ article }: BestPostProps) {
   );
 }
 
-export default BestPost;
+export default BestArticleItem;

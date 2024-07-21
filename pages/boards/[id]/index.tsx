@@ -12,13 +12,14 @@ import {
   getArticleById,
   getArticleComments,
   Article,
-} from "@/pages/api/articles";
+  Comment as CommentType,
+} from "@/services/articles";
 
 function BoardsDetail() {
   const [textAreaValue, setTextAreaValue] = useState<string>("");
   const [article, setArticle] = useState<Article | undefined>(undefined);
-  const [comments, setComments] = useState<Article[]>([]);
-  const router = useRouter();
+  const [comments, setComments] = useState<CommentType[]>([]);
+  const router: any = useRouter();
   const { id } = router.query;
 
   const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -32,15 +33,11 @@ function BoardsDetail() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const fetchedArticle = await getArticleById(id);
+        const fetchedArticle = await getArticleById(Number(id));
         setArticle(fetchedArticle);
 
-        const params = {
-          articleId: id,
-          limit: 10,
-        };
-
-        const { list } = await getArticleComments(params);
+        const params = { articleId: Number(id), limit: 10 };
+        const { list } = await getArticleComments(Number(id), 10);
         setComments(list);
       } catch (error) {
         console.error("데이터를 불러오는데 실패했습니다..!", error);
@@ -55,6 +52,7 @@ function BoardsDetail() {
   if (!article) {
     return <div>게시글이 없습니다..!</div>;
   }
+
   return (
     <div className={styles["container"]}>
       <div className={styles["wrapper"]}>

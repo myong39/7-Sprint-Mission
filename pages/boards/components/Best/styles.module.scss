@@ -1,7 +1,6 @@
 @import "@/styles/import.scss";
 
 .container {
-  max-width: 1920px;
   padding-top: 24px;
 }
 
@@ -12,11 +11,28 @@
 .best-post-wrapper {
   @include Flex(row, space-between, center);
   width: 1200px;
+
+  & > * {
+    display: block;
+  }
 }
 
 @media screen and (max-width: $width-max-tablet) {
   .best-post-wrapper {
     width: 100%;
     gap: 16px;
+
+    & > *:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $width-max-mobile) {
+  .best-post-wrapper {
+    & > *:nth-child(2),
+    & > *:nth-child(3) {
+      display: none;
+    }
   }
 }

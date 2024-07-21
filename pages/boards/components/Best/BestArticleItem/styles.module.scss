@@ -18,11 +18,13 @@
 
 .best-post-title-container {
   @include Flex(row, space-between, top);
+  text-decoration: none;
 }
 
 .title {
   @include Font(20px, 600, $color-gray-800);
   @include Size(256px, 48px);
+  line-height: 32px;
 }
 
 .post-image-container {

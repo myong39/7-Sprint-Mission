@@ -1,0 +1,58 @@
+@import '@/styles/common/index.scss';
+
+.comment-list {
+  @include Flex(column, null, null);
+  gap: 24px;
+
+  margin-bottom: 64px;
+}
+
+.comment {
+  @include Flex(column, null, null);
+  gap: 24px;
+
+  padding-bottom: 12px;
+  border-bottom: 1px solid $gray-200;
+  background-color: #fcfcfc;
+}
+
+.profile {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.content {
+  @include font-style(md, regular);
+  color: $gray-800;
+}
+
+.nickname,
+.date {
+  @include font-style(xs, regular);
+}
+
+.nickname {
+  color: #4b5563;
+}
+
+.date {
+  color: #9ca3af;
+}
+
+.writer {
+  @include Flex(row, null, null);
+  gap: 8px;
+}
+
+.empty-comment-list {
+  @include Flex(column, null, center);
+  gap: 16px;
+
+  margin-bottom: 48px;
+
+  p {
+    @include font-style(lg, regular);
+    color: #9ca3af;
+  }
+}

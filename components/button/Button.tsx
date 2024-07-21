@@ -7,7 +7,7 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   handleClick?: any;
 }
 
-function Button({ size, handleClick, ...props }: IButton) {
+function Button({ className, size, handleClick, ...props }: IButton) {
   const sizeClassName = classNames({
     [styles.large]: size === 'large',
     [styles.medium]: size === 'medium',
@@ -17,7 +17,7 @@ function Button({ size, handleClick, ...props }: IButton) {
   return (
     <button
       onClick={handleClick}
-      className={classNames(styles.button, sizeClassName)}
+      className={classNames(className, styles.button, sizeClassName)}
       {...props}
     ></button>
   );

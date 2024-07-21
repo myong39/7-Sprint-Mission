@@ -5,13 +5,13 @@ import axios from '@/lib/axios';
 import { isFormValid } from '@/utils/isFormValid';
 import { formatDate } from '@/utils/formatDate';
 import { getAccessToken, isLoggedIn } from '@/utils/signIn';
+import Nav from '@/components/Nav';
 import Container from '@/components/Container';
 import Comment from '@/components/Comment';
 import styles from '@/styles/board.module.css';
 import kebabIcon from '@/assets/images/icons/kebabIcon.svg';
 import profileIcon from '@/assets/images/icons/profileIcon.svg';
 import likeIcon from '@/assets/images/icons/likeIcon.svg';
-import Nav from '../../components/Nav';
 
 export default function Board() {
   const router = useRouter();

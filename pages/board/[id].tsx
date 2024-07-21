@@ -33,6 +33,7 @@ function BoardDetailPage({
   commentList: IComment[];
 }) {
   const router = useRouter();
+
   return (
     <main>
       <Board article={article} />

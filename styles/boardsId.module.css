@@ -1,8 +1,5 @@
 .articleContainer {
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -18,4 +15,21 @@
   margin-top: 10px;
   font-size: 14px;
   color: #555;
+}
+
+.CoomentItemOutContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 1242px) {
+  .articleContainer {
+    margin: 0 24px;
+  }
+}
+@media (max-width: 530px) {
+  .articleContainer {
+    margin: 0 16px;
+  }
 }

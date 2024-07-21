@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Article, Comment } from '@/types/Article';
 import style from '@/styles/boardsId.module.css';
 import CommentItem from '@/components/Article/CommentItem';
+import Image from 'next/image';
 
 export default function Board() {
   const router = useRouter();
@@ -36,11 +37,16 @@ export default function Board() {
     <div className={style.articleContainer}>
       <h1>{article.title}</h1>
       <p>{article.content}</p>
-      <img
-        src={article.image || ''}
-        alt={article.title}
-        className={style.articleImage}
-      />
+      {article.image ? (
+        <div className={style.ImgContainer}>
+          <Image
+            fill
+            src={article.image}
+            alt={'Img from User'}
+            className={style.articleImage}
+          />
+        </div>
+      ) : null}
       <div className={style.articleFooter}>
         <span>{article.writer.nickname}</span>
         <span>{new Date(article.createdAt).toLocaleDateString()}</span>
@@ -52,7 +58,7 @@ export default function Board() {
         <input type="text" />
         <button>등록</button>
       </div>
-      <div>
+      <div className={style.CoomentItemOutContainer}>
         {comments.map((comment) => (
           <CommentItem key={comment.id} {...comment} />
         ))}

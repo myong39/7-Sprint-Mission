@@ -1,0 +1,45 @@
+.CommentConatainer {
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fcfcfc;
+}
+
+.UserInfo {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.UserImg {
+  width: 32px;
+  height: 32px;
+}
+
+.NicknameAndDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Content {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1f2937;
+}
+
+.UploadedDate {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.UserName {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}

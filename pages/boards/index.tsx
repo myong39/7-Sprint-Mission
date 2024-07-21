@@ -4,13 +4,11 @@ import styles from "@/components/boards/Freeboard.module.scss";
 import { ArticleProps } from "@/types/articleTypes";
 import { getArticle } from "@/lib/articleApi";
 
-const ORDERBY = "recent";
-const PAGESIZE = 10;
 const REVALIDATE = 10;
 
 export async function getStaticProps() {
   try {
-    const bestRes = await getArticle({ orderBy: ORDERBY, pageSize: PAGESIZE });
+    const bestRes = await getArticle();
     const initialArticles = bestRes.list ?? [];
 
     return {
@@ -30,7 +28,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Freeboard({ initialArticles }: ArticleProps) {
+export default function FreeBoard({ initialArticles }: ArticleProps) {
   return (
     <div className={styles.main}>
       <BestArticleList />

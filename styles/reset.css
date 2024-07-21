@@ -133,5 +133,10 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+input,
+textarea {
+  outline: none;
+  border: none;
+}
 
 /*# sourceMappingURL=styles.css.map */

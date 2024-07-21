@@ -1,15 +1,15 @@
 import React, { FormEvent, useState } from "react";
 import InputField from "./InputField";
-
 import Button from "../Button";
-import { AuthFormProps, HandleChange } from "@/types/registerTypes";
+import { RegisterFormProps, HandleChange } from "@/types/registerTypes";
 import { FIELDTYPE, FormValues } from "./registerConfig";
+import styles from "./RegisterForm.module.scss";
 
 export default function RegisterForm({
   titleText = "",
-  buttonText = "",
+  buttonText = "등록",
   fields,
-}: AuthFormProps) {
+}: RegisterFormProps) {
   const [formValues, setFormValues] = useState<FormValues>({
     [FIELDTYPE.TITLE]: "",
     [FIELDTYPE.CONTENT]: "",
@@ -52,28 +52,28 @@ export default function RegisterForm({
   };
 
   return (
-    <>
-      <form
-        method="post"
-        className="form"
-        onSubmit={handleSubmit}
-        onBlur={handleBlur}
-      >
-        <h1>{titleText}</h1>
-        {Object.values(fields).map((field) => (
-          <div key={field.id}>
-            <h2>{field.placeholder || field.name}</h2>
-            <InputField
-              field={field}
-              value={formValues[field.id]}
-              onChange={handleChange}
-            />
-          </div>
-        ))}
-        <Button href="/" disabled={!isValid}>
+    <form
+      method="post"
+      className={styles.form}
+      onSubmit={handleSubmit}
+      onBlur={handleBlur}
+    >
+      <div className={styles["title-wrapper"]}>
+        <h1 className={styles.title}>{titleText}</h1>
+        <Button href="/boards" disabled={!isValid}>
           {buttonText}
         </Button>
-      </form>
-    </>
+      </div>
+      {Object.values(fields).map((field) => (
+        <div className={styles["input-wrapper"]} key={field.id}>
+          <h2 className={styles["input-label"]}>{field.name}</h2>
+          <InputField
+            field={field}
+            value={formValues[field.id]}
+            onChange={handleChange}
+          />
+        </div>
+      ))}
+    </form>
   );
 }

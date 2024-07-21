@@ -28,3 +28,32 @@ export interface ArticleProps {
 export interface ArticleProp {
   article: Article;
 }
+
+// Comment
+export type CommentType = {
+  id: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  writer: {
+    id: number;
+    image: string;
+    nickname: string;
+  };
+};
+
+export interface ArticleCommentApiData {
+  articleId?: string | string[];
+  limit?: number;
+  cursor?: number;
+}
+
+export interface CommentObject {
+  comments: CommentType[];
+  content: string;
+  imgUrl: { src: string; alt?: string };
+}
+
+export interface CommentsSectionProp {
+  comments: CommentObject;
+}

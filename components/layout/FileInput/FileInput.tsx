@@ -5,7 +5,11 @@ import xIcon from "@/public/images/icons/ic_x.svg";
 import { FileInputType } from "../../../types/commonTypes";
 import styles from "./FileInput.module.scss";
 
-export default function FileInput({ value, onChange }: FileInputType) {
+export default function FileInput({
+  value,
+  onChange,
+  className,
+}: FileInputType) {
   const [preview, setPreview] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +35,7 @@ export default function FileInput({ value, onChange }: FileInputType) {
   }, [value]);
 
   return (
-    <section className={styles["file-input-section"]}>
+    <section className={`${styles["file-input-section"]} ${className}`}>
       <div className={styles["file-input-wrapper"]}>
         <input
           ref={inputRef}
@@ -45,23 +49,21 @@ export default function FileInput({ value, onChange }: FileInputType) {
           <span>이미지 등록</span>
         </div>
       </div>
-      <div className={styles["preview-image-wrapper"]}>
-        {value && (
+      {value && (
+        <div className={styles["preview-image-wrapper"]}>
           <img
             className={styles["preview-image"]}
             src={preview}
             alt="이미지 미리보기"
           />
-        )}
-        {value && (
           <button
             className={styles["cancel-button"]}
             onClick={handleClearClick}
           >
             <img src={xIcon.src} alt="이미지 삭제" />
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -9,7 +9,7 @@ export interface FieldValues {
   [key: string]: string | File | null;
 }
 
-export interface AuthFormProps {
+export interface RegisterFormProps {
   fields: { [key: string]: FieldInfo };
   titleText?: string;
   buttonText?: string;

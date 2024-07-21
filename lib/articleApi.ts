@@ -1,5 +1,5 @@
 import { ORDER_TYPE_ENUM } from "@/constants/orderConstants";
-import { ArticleApiData } from "@/types/articleTypes";
+import { ArticleApiData, ArticleCommentApiData } from "@/types/articleTypes";
 import axios, { AxiosError } from "axios";
 
 const instance = axios.create({
@@ -17,6 +17,25 @@ export const getArticle = async ({
       params: { page, pageSize, orderBy, keyword },
     });
 
+    if (response.status !== 200) {
+      throw new Error("데이터를 불러오는데 실패했습니다");
+    }
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`API Error: ${error.message}`);
+  }
+};
+
+export const getArticleComment = async ({
+  articleId = "",
+  limit = 10,
+  cursor = 0,
+}: ArticleCommentApiData) => {
+  try {
+    const response = await instance.get(`/articles/${articleId}/comments`, {
+      params: { limit, cursor },
+    });
     if (response.status !== 200) {
       throw new Error("데이터를 불러오는데 실패했습니다");
     }

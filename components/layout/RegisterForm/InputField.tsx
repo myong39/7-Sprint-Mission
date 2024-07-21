@@ -1,6 +1,7 @@
 import { InputFieldProps } from "@/types/registerTypes";
 import React from "react";
 import FileInput from "../FileInput/FileInput";
+import styles from "./InputField.module.scss";
 
 export default function InputField({
   field,
@@ -15,6 +16,7 @@ export default function InputField({
           value={value as string}
           onChange={onChange}
           placeholder={field.placeholder}
+          className={`${styles.input} ${styles.textarea}`}
         />
       );
 
@@ -24,6 +26,7 @@ export default function InputField({
           name={field.name}
           value={value as File}
           onChange={onChange}
+          className={styles["file"]}
         />
       );
 
@@ -34,6 +37,7 @@ export default function InputField({
           name={field.name}
           onChange={onChange}
           placeholder={field.placeholder}
+          className={styles["input"]}
         />
       );
 

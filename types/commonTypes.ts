@@ -11,4 +11,5 @@ export interface FileInputType {
   name: string;
   value: File | null;
   onChange: (file: File | null) => void;
+  className?: string;
 }

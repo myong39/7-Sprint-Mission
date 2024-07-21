@@ -32,6 +32,13 @@
   font-weight: 600;
   text-align: left;
   color: #fff;
+:disabled{
+  cursor: not-allowed;
+}
+  &.register-button-active {
+    background-color: $brand-blue;
+    cursor: pointer;
+  }
 }
 
 .form-box {

@@ -33,7 +33,7 @@ export default function Home() {
                 <button
                   className={styles.lookAroundBtn}
                   type='button'
-                  onclick="location.href='items.html'"
+                  onClick="location.href='items.html'"
                 >
                   구경하러가기
                 </button>

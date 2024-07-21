@@ -73,3 +73,15 @@ main {
   width: 100%;
   @include Flex(row, center, center);
 }
+
+.kebab {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  img {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

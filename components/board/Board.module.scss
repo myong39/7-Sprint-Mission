@@ -3,7 +3,7 @@
 .board {
   @include Flex(column, null, null);
   gap: 24px;
-
+  position: relative;
   margin-bottom: 32px;
 }
 

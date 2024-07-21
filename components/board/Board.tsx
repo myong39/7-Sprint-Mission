@@ -3,6 +3,7 @@ import styles from '@/components/board/Board.module.scss';
 import formatDate from '@/utils/formatDate';
 import Like from './Like';
 import ProfileImage from '../ProfileImage';
+import Kebab from '../Kebab';
 
 function Board({ article }: TArticle) {
   const { id, title, content, image, writer, likeCount, createdAt, updatedAt } =
@@ -28,6 +29,7 @@ function Board({ article }: TArticle) {
         </div>
       </div>
       <p className={styles['content']}>{content}</p>
+      <Kebab />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import ProfileImage from '../ProfileImage';
 import styles from '@/components/comment/Comment.module.scss';
 import elapsedTime from '@/utils/elapsedTime';
+import Kebab from '../Kebab';
 
 function Comment({ comment }: TComment) {
   const { id, writer, content, updatedAt, createdAt } = comment;
@@ -18,6 +19,7 @@ function Comment({ comment }: TComment) {
           <p className={styles['date']}>{elapsedTime(createdAt)}</p>
         </div>
       </div>
+      <Kebab />
     </div>
   );
 }

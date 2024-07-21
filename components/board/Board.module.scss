@@ -1,0 +1,71 @@
+@import '@/styles/common/index.scss';
+
+.board {
+  @include Flex(column, null, null);
+  gap: 24px;
+
+  margin-bottom: 32px;
+}
+
+.header {
+  @include Flex(column, null, null);
+  gap: 16px;
+  border-bottom: 1px solid $gray-200;
+  padding-bottom: 16px;
+}
+
+.header-content {
+  @include Flex(row, null, center);
+  gap: 32px;
+}
+
+.title {
+  @include font-style(xl, bold);
+}
+
+.nickname {
+  @include font-style(md, medium);
+  color: #4b5563;
+}
+
+.date {
+  @include font-style(md, regular);
+  color: $gray-400;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.information {
+  @include Flex(row, null, center);
+  gap: 16px;
+
+  .name-date {
+    @include Flex(row, null, center);
+    gap: 8px;
+  }
+}
+
+.like {
+  @include Flex(row, null, center);
+  gap: 4px;
+
+  height: 40px;
+  padding: 4px 12px;
+
+  border-radius: 35px;
+  border: 1px solid $gray-200;
+  opacity: 0px;
+
+  span {
+    @include font-style(lg, medium);
+    color: $gray-500;
+  }
+}
+
+.content {
+  @include font-style('2lg', regular);
+  color: #1f2937;
+}

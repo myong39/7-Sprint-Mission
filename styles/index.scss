@@ -57,3 +57,19 @@ main {
     }
   }
 }
+
+.border {
+  width: 1px;
+  height: 34px;
+  background-color: $gray-200;
+}
+
+.back-btn {
+  @include Flex(row, null, center);
+  gap: 8px;
+}
+
+.btn-wrapper {
+  width: 100%;
+  @include Flex(row, center, center);
+}

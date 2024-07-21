@@ -75,7 +75,7 @@ export default function Board() {
       <section className={styles["general-section"]}>
         <div className={styles["top-wrap"]}>
           <h2>게시글</h2>
-          <Link href="../addboard" className={styles["link"]}>
+          <Link href="/addboard" className={styles["link"]}>
             <button type="button">글쓰기</button>
           </Link>
         </div>

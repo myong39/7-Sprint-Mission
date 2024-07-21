@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Article } from "../../types/article";
 import { fetchArticles } from "@/api/articles";
 import searchIcon from "@/assets/images/icons/ic_search.svg";
@@ -17,7 +17,6 @@ const sortOptions = [
 
 export default function AllArticleList() {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
   const [sortType, setSortType] = useState("recent");
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
@@ -45,16 +44,13 @@ export default function AllArticleList() {
     }
   };
 
-  const filterArticlesByTitle = useCallback(() => {
-    const filtered = articles.filter((article) =>
-      article.title.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-    setFilteredArticles(filtered);
-  }, [articles, searchTerm]);
-
-  useEffect(() => {
-    filterArticlesByTitle();
-  }, [filterArticlesByTitle]);
+  const filteredArticles = useMemo(
+    () =>
+      articles.filter((article) =>
+        article.title.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+    [articles, searchTerm],
+  );
 
   const debouncedSearch = useCallback(
     debounce((term: string) => {

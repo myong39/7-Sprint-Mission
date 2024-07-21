@@ -67,7 +67,7 @@ export default function addboard() {
               <label className={styles["label"]}>이미지</label>
               <div className={styles["img-register-container"]}>
                 <div
-                  className={styles["img-register-box"]}
+                  cflassName={styles["img-register-box"]}
                   onClick={handleImageClick}
                 >
                   <input

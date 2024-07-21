@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from '@/styles/FileInput.module.css';
-import addImgIcon from '@/assets/images/addImgIcon.svg';
+import addImgIcon from '@/assets/images/icons/addImgIcon.svg';
 
 export default function FileInput({ name, value, onChange }) {
   const [preview, setPreview] = useState();
@@ -13,9 +13,9 @@ export default function FileInput({ name, value, onChange }) {
   };
 
   const handleClearClick = (e) => {
-    e.stopPropagation(); // 이벤트 전파 방지
-    onChange(name, null); // 파일 선택 값 초기화
-    inputRef.current.value = ''; // 파일 선택 input 값 초기화하여 파일 선택 창이 닫힘
+    e.stopPropagation();
+    onChange(name, null);
+    inputRef.current.value = '';
   };
 
   const handleDivClick = () => {

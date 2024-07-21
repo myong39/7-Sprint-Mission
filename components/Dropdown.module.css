@@ -1,14 +1,13 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 100%;
 }
 
 .dropdownToggle {
+  width: 130px;
   height: 42px;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   justify-content: center;
   padding: 12px 20px;
   background-color: #ffffff;
@@ -20,7 +19,7 @@
 }
 
 .isMobileDropdown {
-  display: flex;
+  display: none;
 }
 
 .isNonMobileDropdown {
@@ -60,21 +59,28 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  background-color: #ffffff;
 }
 
 .dropdownItem:hover {
   background-color: #ddd;
 }
 
-@media screen and (max-width: 1280px) {
-  .dropdownToggle {
-    /* width: 120px; */
-  }
-}
-
 @media screen and (max-width: 743px) {
-  .dropdown {
+  .dropdownToggle {
     width: 42px;
-    height: 42px;
+  }
+
+  .isNonMobileDropdown {
+    display: none;
+  }
+
+  .isMobileDropdown {
+    display: flex;
+  }
+
+  .dropdownMenu {
+    width: 90px;
+    right: 0;
   }
 }

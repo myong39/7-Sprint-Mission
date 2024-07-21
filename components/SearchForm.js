@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from '@/components/SearchForm.module.css';
-import searchIcon from '@/assets/images/searchIcon.svg';
+import searchIcon from '@/assets/images/icons/searchIcon.svg';
 
 export default function SearchForm() {
   const router = useRouter();

@@ -19,17 +19,8 @@
   gap: 8.59px;
 }
 
-/* .logoImg {
-  width: 153px;
-  height: 51px;
-} */
-
-.brandLogo {
-  font-family: 'ROKAF Sans';
-  font-size: 25.63px;
-  font-weight: 700;
-  line-height: 34.6px;
-  color: #3692ff;
+.logoMobileImg {
+  display: none;
 }
 
 .menu {
@@ -38,10 +29,9 @@
   height: 69px;
   font-weight: 700;
   font-size: 18px;
-  line-height: 21.48px;
+  line-height: 26px;
   text-align: center;
   display: flex;
-  /* gap: 15px; */
   list-style: none;
   color: #4b5563;
   padding-left: 0;
@@ -50,7 +40,12 @@
 
 .freeBoard,
 .secondhandMarket {
-  width: 109px;
+  width: 108px;
+  padding: 21px 15px;
+}
+
+.secondhandMarket {
+  width: 93px;
 }
 
 @media screen and (max-width: 1280px) {
@@ -68,13 +63,17 @@
     padding: 15px 16px;
   }
 
-  .logoImg {
-    /* display: none; */
-  }
-
   .brandLogo {
     font-size: 20.2px;
     line-height: 27.27px;
+  }
+
+  .logoMobileImg {
+    display: block;
+  }
+
+  .logoImg {
+    display: none;
   }
 
   .menu {
@@ -90,5 +89,10 @@
 
   .secondhandMarket {
     width: 58px;
+  }
+
+  .freeBoard,
+  .secondhandMarket {
+    padding: 25px 0;
   }
 }

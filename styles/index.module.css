@@ -1,0 +1,452 @@
+.landingBannerContainer {
+  width: 100%;
+  height: 540px;
+  background-color: #cfe5ff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.landingBannerContent {
+  max-width: 1110px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  font-size: 40px;
+  font-weight: 700;
+  color: #374151;
+  line-height: 56px;
+}
+
+.landingBannerTxtWrapper {
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.bottomBannerTxt {
+  position: relative;
+  top: 120px;
+  color: #374151;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemsLink {
+  text-decoration: none;
+}
+
+.lookAroundBtn {
+  width: 357px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 327px;
+  left: 358px;
+  padding: 16px 124px;
+  border-radius: 40px;
+  background-color: #3692ff;
+  border-style: none;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mainContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: start;
+  align-items: center;
+  max-width: 1240px;
+  gap: 64px;
+  margin: 0 auto;
+  margin-bottom: 138px;
+}
+
+.rightAlign {
+  justify-self: end;
+  text-align: right;
+}
+
+.gridItem {
+  padding: 138px 0;
+}
+
+.textItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textItemWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionLabel {
+  margin: 0;
+  color: #3692ff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.sectionTitle {
+  color: #374151;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  word-spacing: 0.02em; /* 2% */
+  margin: 0;
+}
+
+.sectionContent {
+  margin: 0;
+  color: #374151;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  word-spacing: 0.08em; /* 8% */
+}
+
+.bottomBannerContainer {
+  width: 100%;
+  height: 540px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #cfe5ff;
+}
+
+.bottomBannerContent {
+  display: flex;
+  gap: 69px;
+  max-width: 1110px;
+  bottom: 0;
+  position: absolute;
+}
+
+.footerContainer {
+  width: 100%;
+  height: 160px;
+  padding: 32px 200px;
+  background-color: #111827;
+  color: #ffffff;
+}
+
+.footerWrapper {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.corpInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  font-size: 16px;
+  line-height: 19.09px;
+}
+
+.copyright {
+  color: #9ca3af;
+  margin: 0;
+}
+
+.info {
+  display: flex;
+  gap: 30px;
+}
+
+.privacy,
+.faq {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.snsIcons {
+  font-size: 0;
+  display: flex;
+  gap: 12px;
+}
+
+@media screen and (max-width: 1280px) {
+  /* 새로 작성 */
+  .landingBannerContainer {
+    height: 771px;
+    overflow: hidden;
+  }
+
+  .landingBannerContent {
+    top: 84px;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 211px;
+  }
+
+  .landingBannerTxtWrapper {
+    padding: 0;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .landingBannerImg {
+    width: 744px;
+  }
+
+  .bottomBannerImg {
+    width: 744px;
+  }
+
+  .mainContainer {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: normal;
+    margin: 24px 24px 56px 24px;
+    gap: 24px;
+  }
+
+  .gridItem {
+    padding: 0;
+  }
+
+  .sectionImg2 {
+    order: 1; /* 이미지가 먼저 나오도록 순서 지정 */
+  }
+
+  .rightAlign {
+    order: 2; /* 텍스트가 나중에 나오도록 순서 지정 */
+  }
+
+  .sectionImg3 {
+    order: 3; /* section3 이미지 순서 지정 */
+  }
+
+  .section3Text {
+    order: 4; /* section3 텍스트 순서 지정 */
+  }
+
+  .textItem {
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .bottomBannerContainer {
+    height: 927px;
+  }
+
+  .bottomBannerContent {
+    top: 201px;
+    gap: 217px;
+    flex-direction: column; /* 새로 작성 */
+  }
+  .bottomBannerTxt {
+    width: 295px;
+    text-align: center;
+  }
+
+  .bottomBannerTxt {
+    top: 0;
+  }
+
+  .footerContainer {
+    padding: 32px 24px 108px 24px;
+  }
+
+  .footerWrapper {
+    line-height: 19.09px;
+  }
+
+  .lineChange {
+    display: inline-block;
+    content: ' ';
+    padding: 0 2px;
+  }
+
+  .mainWrapper {
+    margin: 0;
+  }
+
+  .introduce {
+    height: 1050px;
+  }
+
+  .sectionImg1,
+  .sectionImg2,
+  .sectionImg3 {
+    width: 100%;
+    height: auto;
+  }
+
+  .sectionImg2 {
+    order: 1;
+  }
+
+  .sectionLabel {
+    font-size: 18px;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .section3 .sectionTitle {
+    width: 120%;
+  }
+
+  .mainLineChange {
+    display: inline-block;
+    content: normal;
+    padding: 0 2px;
+  }
+
+  .sectionContent {
+    font-size: 18px;
+    line-height: 21.6px;
+  }
+
+  .corpInfo {
+    display: flex;
+    gap: 24px;
+  }
+
+  .info {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  /* 새로 작성 */
+  .landingBannerImg {
+    width: 448px;
+  }
+
+  .bottomBannerContainer {
+    height: 540px;
+    overflow: hidden;
+  }
+
+  .bottomBannerImg {
+    width: 375px;
+    height: 198px;
+  }
+
+  .bottomBannerContent {
+    top: 121px;
+    gap: 131px;
+  }
+
+  .landingBannerContent {
+    top: 48px;
+    gap: 132px;
+  }
+
+  .landingBannerContent,
+  .bottomBannerTxt {
+    font-size: 32px;
+    line-height: 44.8px;
+  }
+
+  .landingBannerTxtWrapper {
+    gap: 18px;
+  }
+
+  .lineChange {
+    display: block;
+  }
+
+  .mainContainer {
+    margin: 52px 15.5px 83px 15.5px;
+  }
+
+  .textItem {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .textItemWrapper {
+    gap: 16px;
+  }
+
+  /* 기존 작성 */
+  .landingBannerContainer {
+    height: 540px;
+    overflow: hidden;
+  }
+
+  .bannerTxt {
+    font-size: 32px;
+    line-height: 44.8px;
+  }
+  .lookAroundBtn {
+    width: 240px;
+    height: 48px;
+    padding: 12px 71px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .mainWrapper {
+    position: absolute;
+    top: -240px;
+  }
+
+  .introduce {
+    height: 700px;
+  }
+
+  .sectionLabel {
+    font-size: 16px;
+    line-height: 22.4px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+    line-height: 33.6px;
+  }
+
+  .sectionContent {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .footerContainer {
+    padding: 32px;
+    /* top: 3650px; */
+  }
+
+  .footerWrapper {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .corpInfo {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 60px;
+  }
+
+  .snsIcons {
+    display: flex;
+    gap: 12px;
+  }
+}

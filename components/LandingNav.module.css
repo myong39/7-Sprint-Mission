@@ -1,0 +1,42 @@
+.NavContainer {
+  height: 70px;
+  padding: 9px 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.logoMobileImg {
+  display: none;
+}
+
+.loginBtn {
+  width: 128px;
+  height: 48px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1280px) {
+  .NavContainer {
+    padding: 9.5px 24px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .NavContainer {
+    padding: 9.5px 16px;
+  }
+
+  .logoImg {
+    display: none;
+  }
+
+  .logoMobileImg {
+    display: block;
+  }
+}

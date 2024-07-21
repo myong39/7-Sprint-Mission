@@ -6,14 +6,12 @@
 
 @media screen and (max-width: 1280px) {
   .container {
-    /* max-width: 696px; */
     padding: 24px 24px 0 24px;
   }
 }
 
 @media screen and (max-width: 743px) {
   .container {
-    /* max-width: 343px; */
     padding: 16px 16px 0 16px;
   }
 

@@ -1,47 +1,29 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import classNames from 'classnames';
 import axios from '@/lib/axios';
 import { formatDate } from '@/utils/formatDate';
 import styles from '@/components/BestPost.module.css';
-import bestPostImg from '@/assets/images/bestPostImg.png';
-import likeIcon from '@/assets/images/likeIcon.svg';
+import bestPostImg from '@/assets/images/bestPostImg.svg';
+import likeIcon from '@/assets/images/icons/likeIcon.svg';
 
 export default function BestPost() {
   const [list, setList] = useState([]);
-  const [pageSize, setPageSize] = useState(3);
 
   async function getList() {
-    try {
-      let newPageSize = 3;
-
-      if (window.innerWidth <= 1280) {
-        newPageSize = 2;
-      }
-      if (window.innerWidth <= 743) {
-        newPageSize = 1;
-      }
-      setPageSize(newPageSize);
-
-      const res = await axios.get('articles', {
-        params: {
-          page: 1,
-          pageSize: newPageSize,
-          orderBy: 'like',
-        },
-      });
-      setList(res.data.list);
-    } catch (error) {
-      console.error('Failed to fetch list:', error);
-    }
+    const res = await axios.get('articles', {
+      params: {
+        page: 1,
+        pageSize: 3,
+        orderBy: 'like',
+      },
+    });
+    setList(res.data.list);
   }
 
   useEffect(() => {
     getList();
-    window.addEventListener('resize', getList);
-    return () => {
-      window.removeEventListener('resize', getList);
-    };
   }, []);
 
   return (
@@ -62,9 +44,10 @@ export default function BestPost() {
                   {post.title}
                 </Link>
                 <div
-                  className={`${styles.postImgContainer} ${
-                    post.image ? styles.imgPresent : styles.imgAbsent
-                  }`}
+                  className={classNames(styles.postImgContainer, {
+                    [styles.imgPresent]: post.image,
+                    [styles.imgAbsent]: !post.image,
+                  })}
                 >
                   {post.image && (
                     <Image

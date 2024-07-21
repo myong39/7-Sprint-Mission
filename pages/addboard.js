@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import styles from '@/styles/addboard.module.css';
 import FileInput from '@/components/FileInput';
 import Container from '@/components/Container';
 import { isFormValid } from '@/utils/isFormValid';
 
 export default function addboard() {
-  const [isMobile, setIsMobile] = useState(false);
   const [values, setValues] = useState({
     itemTitle: '',
     itemContent: '',
@@ -22,31 +22,16 @@ export default function addboard() {
     }));
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1280);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <Container page={true}>
       <form className={styles.pageContainer}>
         <div className={styles.titleContainer}>
-          <span className={isMobile ? styles.titleMobile : styles.titleDesktop}>
-            {isMobile ? '상품 등록하기' : '게시글 쓰기'}
-          </span>
+          <span className={styles.titleDesktop}>상품 등록하기</span>
           <button
             type='submit'
-            className={`${styles.registrationBtn} ${
-              isFormValid(values, requiredFields) ? styles.active : ''
-            }`}
+            className={classNames(styles.registrationBtn, {
+              [styles.active]: isFormValid(values, requiredFields),
+            })}
             disabled={!isFormValid(values, requiredFields)}
           >
             등록
@@ -62,7 +47,7 @@ export default function addboard() {
               placeholder='제목을 입력해주세요'
               autoComplete='off'
               onChange={(e) => handleChange('itemTitle', e.target.value)}
-            ></input>
+            />
           </div>
           <div className={styles.content}>
             <label htmlFor='itemContent'>*내용</label>

@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from '@/lib/axios';
 import { formatDate } from '@/utils/formatDate';
 import ActiveBtn from '@/components/ActiveBtn';
 import styles from '@/components/Comment.module.css';
-import kebabIcon from '@/assets/images/kebabIcon.svg';
-import profileImg from '@/assets/images/profileImg.svg';
+import kebabIcon from '@/assets/images/icons/kebabIcon.svg';
+import profileIcon from '@/assets/images/icons/profileIcon.svg';
 import commentEmptyImg from '@/assets/images/commentEmptyImg.png';
-import backIcon from '@/assets/images/backIcon.svg';
+import backIcon from '@/assets/images/icons/backIcon.svg';
 
-export default function Comment() {
-  const [lists, setLists] = useState([]);
-
-  const router = useRouter();
-  const { id: articleId } = router.query; // articleId 가져오기
+export default function Comment({ articleId }) {
+  const [commentList, setCommentList] = useState([]);
 
   useEffect(() => {
     if (articleId) {
@@ -30,69 +26,68 @@ export default function Comment() {
           limit: limit,
         },
       });
-      console.log('API response:', res.data);
-      console.log('API response2:', res.data.list);
-      setLists(res.data.list || []);
+      setCommentList(res.data.list);
     } catch (error) {
       console.error('Failed to fetch list:', error);
-      console.error(
-        'Error details:',
-        error.response ? error.response.data : error.message
-      );
     }
   };
 
   return (
-    <div className={styles.container}>
-      {lists.length > 0 ? (
-        <div className={styles.commentContainer}>
-          {lists.map((list) => (
-            <div key={list.id} className={styles.commentWrapper}>
-              <div className={styles.comment}>
-                <div className={styles.commentTitle}>
-                  <span className={styles.commentContent}>{list.content}</span>
-                  <Image
-                    src={kebabIcon}
-                    width={24}
-                    height={24}
-                    alt='kebob icon'
-                  />
-                </div>
-                <div className={styles.commentWriter}>
-                  <Image
-                    src={list.writer.image || profileImg}
-                    width={32}
-                    height={32}
-                    alt='comment writer profile image'
-                  />
-                  <div className={styles.writingInfo}>
-                    <span className={styles.nickname}>
-                      {list.writer.nickname}
+    <>
+      <div className={styles.container}>
+        {commentList.length > 0 ? (
+          <div className={styles.commentContainer}>
+            {commentList.map((comment) => (
+              <div key={comment.id} className={styles.commentWrapper}>
+                <div className={styles.comment}>
+                  <div className={styles.commentTitle}>
+                    <span className={styles.commentContent}>
+                      {comment.content}
                     </span>
-                    <span className={styles.createdAt}>
-                      {formatDate(list.createdAt)}
-                    </span>
+                    <Image
+                      src={kebabIcon}
+                      width={24}
+                      height={24}
+                      alt='kebob icon'
+                    />
+                  </div>
+                  <div className={styles.commentWriter}>
+                    <Image
+                      src={comment.writer.image || profileIcon}
+                      width={32}
+                      height={32}
+                      alt='comment writer profile icon'
+                    />
+                    <div className={styles.writingInfo}>
+                      <span className={styles.nickname}>
+                        {comment.writer.nickname}
+                      </span>
+                      <span className={styles.createdAt}>
+                        {formatDate(comment.createdAt)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className={styles.emptyCommentContainer}>
-          <Image
-            src={commentEmptyImg}
-            width={140}
-            height={140}
-            alt='Image indicating that there are no comments.'
-          />
-          <span className={styles.emptyCommentMessage}>
-            아직 댓글이 없어요,
-            <br />
-            지금 댓글을 달아보세요!
-          </span>
-        </div>
-      )}
+            ))}
+          </div>
+        ) : (
+          <div className={styles.emptyCommentContainer}>
+            <Image
+              src={commentEmptyImg}
+              width={140}
+              height={140}
+              alt='Image indicating that there are no comments.'
+            />
+            <span className={styles.emptyCommentMessage}>
+              아직 댓글이 없어요,
+              <p></p>
+              <p></p>
+              지금 댓글을 달아보세요!
+            </span>
+          </div>
+        )}
+      </div>
       <div className={styles.backBtnContainer}>
         <Link className={styles.backBtnLink} href='/boards'>
           <ActiveBtn className={styles.backBtn}>
@@ -101,6 +96,6 @@ export default function Comment() {
           </ActiveBtn>
         </Link>
       </div>
-    </div>
+    </>
   );
 }

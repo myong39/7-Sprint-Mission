@@ -6,13 +6,14 @@ import GoBackToListButton from "@/components/layout/Comment.tsx/GoBackToListButt
 import { useEffect, useState } from "react";
 import { ArticleCommentApiData, CommentObject } from "@/types/articleTypes";
 import { useRouter } from "next/router";
-import { commentInfo } from "@/components/board/BoardDetailConfig";
+import { commentInfo, fields } from "@/components/board/BoardDetailConfig";
 
 export default function FreeBoardDetail() {
   const content = "";
   const router = useRouter();
   const { id } = router.query;
   const [comments, setComments] = useState<CommentObject>(commentInfo);
+  const formFields = fields;
 
   const fetchData = async ({ articleId }: ArticleCommentApiData) => {
     try {
@@ -33,7 +34,7 @@ export default function FreeBoardDetail() {
 
   return (
     <div className={styles.main}>
-      <RegisterForm fields={{}} />
+      <RegisterForm fields={formFields} bottomButon={true} />
       <CommentsSection comments={comments} />
       <GoBackToListButton href="/boards" />
     </div>

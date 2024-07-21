@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import InputField from "./InputField";
 import Button from "../Button";
 import { RegisterFormProps, HandleChange } from "@/types/registerTypes";
@@ -9,12 +9,19 @@ export default function RegisterForm({
   titleText = "",
   buttonText = "등록",
   fields,
+  bottomButon = false,
 }: RegisterFormProps) {
-  const [formValues, setFormValues] = useState<FormValues>({
-    [FIELDTYPE.TITLE]: "",
-    [FIELDTYPE.CONTENT]: "",
-    [FIELDTYPE.IMAGE]: null,
-  });
+  const initializeFormValues = () => {
+    const initialValues: FormValues = {};
+    Object.values(fields).forEach((field) => {
+      initialValues[field.id] = field.type === "file" ? null : "";
+    });
+    return initialValues;
+  };
+
+  const [formValues, setFormValues] = useState<FormValues>(
+    initializeFormValues()
+  );
   const [isValid, setIsValid] = useState(false);
 
   const handleChange: HandleChange = (e) => {
@@ -51,18 +58,28 @@ export default function RegisterForm({
     e.preventDefault();
   };
 
+  useEffect(() => {
+    setFormValues(initializeFormValues());
+  }, [fields]);
+
+  const formClassName = `${styles.form} ${
+    bottomButon ? styles["bottom-button"] : ""
+  }`;
+
   return (
     <form
       method="post"
-      className={styles.form}
+      className={formClassName}
       onSubmit={handleSubmit}
       onBlur={handleBlur}
     >
       <div className={styles["title-wrapper"]}>
         <h1 className={styles.title}>{titleText}</h1>
-        <Button href="/boards" disabled={!isValid}>
-          {buttonText}
-        </Button>
+        {!bottomButon && (
+          <Button href="/boards" disabled={!isValid}>
+            {buttonText}
+          </Button>
+        )}
       </div>
       {Object.values(fields).map((field) => (
         <div className={styles["input-wrapper"]} key={field.id}>
@@ -74,6 +91,13 @@ export default function RegisterForm({
           />
         </div>
       ))}
+      {bottomButon && (
+        <div className={styles["bottom-button"]}>
+          <Button href="/boards" disabled={!isValid}>
+            {buttonText}
+          </Button>
+        </div>
+      )}
     </form>
   );
 }

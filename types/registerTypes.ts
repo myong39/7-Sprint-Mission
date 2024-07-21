@@ -13,6 +13,7 @@ export interface RegisterFormProps {
   fields: { [key: string]: FieldInfo };
   titleText?: string;
   buttonText?: string;
+  bottomButon?: boolean;
 }
 
 export interface InputFieldProps {

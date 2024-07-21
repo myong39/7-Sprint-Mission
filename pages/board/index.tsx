@@ -66,14 +66,16 @@ export default function Board() {
         <h2>베스트 게시글</h2>
         <div className={styles["bestpost-container"]}>
           {bestArticles.map((article) => (
-            <BestPost article={article} key={article.id} />
+            <Link href={`/${article.id}`}>
+              <BestPost article={article} key={article.id} />
+            </Link>
           ))}
         </div>
       </section>
       <section className={styles["general-section"]}>
         <div className={styles["top-wrap"]}>
           <h2>게시글</h2>
-          <Link href="/addboard" className={styles["link"]}>
+          <Link href="../addboard" className={styles["link"]}>
             <button type="button">글쓰기</button>
           </Link>
         </div>
@@ -83,7 +85,9 @@ export default function Board() {
         </div>
         <div className={styles["bottom-wrap"]}>
           {generalArticles.map((article) => (
-            <GeneralPost article={article} key={article.id} />
+            <Link href={`/${article.id}`}>
+              <GeneralPost article={article} key={article.id} />
+            </Link>
           ))}
         </div>
       </section>

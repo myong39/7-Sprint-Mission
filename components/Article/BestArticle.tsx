@@ -12,12 +12,18 @@ const BestArticle: React.FC<Article> = ({ ...article }) => {
   const handleClick = () => {
     router.push(`/boards/${id}`);
   };
+  const truncateTitle = (title: string) => {
+    if (title.length > 29) {
+      return title.substring(0, 25) + '...';
+    }
+    return title;
+  };
   return (
     <div className={style.OutContainer} onClick={handleClick}>
       <div className={style.BestArticle}>
         <Image src={bestMark} alt="Best Mark" className={style.BestMark} />
         <div className={style.TitleAndImage}>
-          <h2 className={style.Title}>{title}</h2>
+          <h2 className={style.Title}>{truncateTitle(title)}</h2>
           {image && (
             <div className={style.ImageContainer}>
               <Image

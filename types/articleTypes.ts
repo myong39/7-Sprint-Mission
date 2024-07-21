@@ -15,10 +15,12 @@ export interface Article {
 }
 
 export interface ArticleApiData {
+  articleId?: string | string[];
   page?: number;
   pageSize?: number;
   orderBy?: ORDER_TYPE_ENUM.RECENT | ORDER_TYPE_ENUM.LIKE;
   keyword?: string | string[] | undefined;
+  detail?: boolean;
 }
 
 export interface ArticleProps {
@@ -56,4 +58,5 @@ export interface CommentObject {
 
 export interface CommentsSectionProp {
   comments: CommentObject;
+  className?: string;
 }

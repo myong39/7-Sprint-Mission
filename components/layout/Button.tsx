@@ -7,6 +7,14 @@ export default function Button({
   children,
   disabled = false,
 }: ButtonProps) {
+  if (!href) {
+    return (
+      <button className={styles.button} disabled={disabled}>
+        {children}
+      </button>
+    );
+  }
+
   return (
     <Link href={href}>
       <button className={styles.button} disabled={disabled}>

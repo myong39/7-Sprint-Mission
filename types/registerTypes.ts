@@ -14,6 +14,7 @@ export interface RegisterFormProps {
   titleText?: string;
   buttonText?: string;
   bottomButon?: boolean;
+  href?: string;
 }
 
 export interface InputFieldProps {

@@ -6,7 +6,11 @@ export default function AddBoard() {
 
   return (
     <div>
-      <RegisterForm fields={formFields} titleText={"게시글 쓰기"} />
+      <RegisterForm
+        fields={formFields}
+        titleText={"게시글 쓰기"}
+        href={"/boards"}
+      />
     </div>
   );
 }

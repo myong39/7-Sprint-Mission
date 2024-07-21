@@ -10,6 +10,7 @@ export default function RegisterForm({
   buttonText = "등록",
   fields,
   bottomButon = false,
+  href = "",
 }: RegisterFormProps) {
   const initializeFormValues = () => {
     const initialValues: FormValues = {};
@@ -76,7 +77,7 @@ export default function RegisterForm({
       <div className={styles["title-wrapper"]}>
         <h1 className={styles.title}>{titleText}</h1>
         {!bottomButon && (
-          <Button href="/boards" disabled={!isValid}>
+          <Button href={href} disabled={!isValid}>
             {buttonText}
           </Button>
         )}
@@ -93,7 +94,7 @@ export default function RegisterForm({
       ))}
       {bottomButon && (
         <div className={styles["bottom-button"]}>
-          <Button href="/boards" disabled={!isValid}>
+          <Button href="" disabled={!isValid}>
             {buttonText}
           </Button>
         </div>

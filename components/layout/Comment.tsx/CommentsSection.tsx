@@ -9,11 +9,12 @@ export default function CommentsSection({
     imgUrl: { src, alt },
     content,
   },
+  className,
 }: CommentsSectionProp) {
   const isCommentEmpty = !comments.length;
 
   return (
-    <div className={styles["comments-section"]}>
+    <section className={`${styles["comments-section"]} ${className}`}>
       {isCommentEmpty && (
         <div className={styles["empty-comment"]}>
           <img src={src} alt={alt} />
@@ -23,6 +24,6 @@ export default function CommentsSection({
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
-    </div>
+    </section>
   );
 }

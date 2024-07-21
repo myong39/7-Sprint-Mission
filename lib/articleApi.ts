@@ -7,14 +7,18 @@ const instance = axios.create({
 });
 
 export const getArticle = async ({
+  articleId = "",
   page = 1,
   pageSize = 10,
   orderBy = ORDER_TYPE_ENUM.RECENT,
   keyword = "",
+  detail = false,
 }: ArticleApiData = {}) => {
   try {
-    const response = await instance.get(`/articles`, {
-      params: { page, pageSize, orderBy, keyword },
+    const params = detail ? undefined : { page, pageSize, orderBy, keyword };
+
+    const response = await instance.get(`/articles/${articleId}`, {
+      params,
     });
 
     if (response.status !== 200) {

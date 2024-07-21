@@ -37,6 +37,7 @@ export default function Comment({
           </h4>
         </div>
       </div>
+      <div className={styles["horizontal-divider"]}></div>
     </div>
   );
 }

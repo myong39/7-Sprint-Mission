@@ -32,7 +32,7 @@ export default function BestArticleList() {
   };
 
   useEffect(() => {
-    fetchData({ orderBy: ORDER_TYPE_ENUM.like, pageSize: pageSize });
+    fetchData({ orderBy: ORDER_TYPE_ENUM.LIKE, pageSize: pageSize });
   }, [pageSize]);
 
   return (

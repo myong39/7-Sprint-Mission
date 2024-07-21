@@ -22,7 +22,7 @@ export default function AllArticleList({
   initialArticles: Article[];
 }) {
   const [articles, setArticles] = useState(initialArticles);
-  const [orderBy, setOrderBy] = useState(ORDER_TYPE_ENUM.recent);
+  const [orderBy, setOrderBy] = useState(ORDER_TYPE_ENUM.RECENT);
   const items = orderTypeKeysKR;
 
   const router = useRouter();
@@ -66,7 +66,7 @@ export default function AllArticleList({
     <section className={styles["all-article"]}>
       <div className={styles["all-title-wrapper"]}>
         <h1 className={styles.title}>게시글</h1>
-        <Button href="">글쓰기</Button>
+        <Button href="/addboard">글쓰기</Button>
       </div>
       <div className={styles["search-wrapper"]}>
         <SearchInput onSortBySearch={handleSortBySearch} />

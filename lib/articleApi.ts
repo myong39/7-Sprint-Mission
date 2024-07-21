@@ -9,7 +9,7 @@ const instance = axios.create({
 export const getArticle = async ({
   page = 1,
   pageSize = 10,
-  orderBy = ORDER_TYPE_ENUM.recent,
+  orderBy = ORDER_TYPE_ENUM.RECENT,
   keyword = "",
 }: ArticleApiData = {}) => {
   try {

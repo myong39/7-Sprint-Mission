@@ -28,7 +28,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Freeboard({ initialArticles }: ArticleProps) {
+export default function FreeBoard({ initialArticles }: ArticleProps) {
   return (
     <div className={styles.main}>
       <BestArticleList />

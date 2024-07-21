@@ -17,7 +17,7 @@ export interface Article {
 export interface ArticleApiData {
   page?: number;
   pageSize?: number;
-  orderBy?: ORDER_TYPE_ENUM.recent | ORDER_TYPE_ENUM.like;
+  orderBy?: ORDER_TYPE_ENUM.RECENT | ORDER_TYPE_ENUM.LIKE;
   keyword?: string | string[] | undefined;
 }
 

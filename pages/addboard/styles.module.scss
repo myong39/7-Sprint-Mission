@@ -13,7 +13,6 @@
 }
 
 .form-title {
-  font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
   line-height: 23.87px;
@@ -27,14 +26,13 @@
   border-radius: 8px;
   padding: 12px 23px;
   background-color: $cool-gray-400;
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 600;
   text-align: left;
   color: #fff;
-:disabled{
-  cursor: not-allowed;
-}
+  :disabled {
+    cursor: not-allowed;
+  }
   &.register-button-active {
     background-color: $brand-blue;
     cursor: pointer;
@@ -48,7 +46,6 @@
 }
 
 .label {
-  font-family: Pretendard;
   font-size: 18px;
   font-weight: 700;
   text-align: left;
@@ -63,15 +60,14 @@
   border-radius: 12px;
   padding: 16px 24px;
   background-color: $cool-gray-100;
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: $cool-gray-800;
-  ::placeholder {
-    text-align: left;
-    color: $cool-gray-400;
-  }
+}
+.title-input-box::placeholder {
+  text-align: left;
+  color: $cool-gray-400;
 }
 
 .title,
@@ -89,15 +85,14 @@
   padding: 16px 24px;
   background-color: $cool-gray-100;
   border: none;
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
   color: $cool-gray-800;
-  ::placeholder {
-    color: $cool-gray-400;
-  }
+}
+.contents-input-box::placeholder {
+  color: $cool-gray-400;
 }
 
 .img-register-container {
@@ -137,7 +132,6 @@
 }
 
 .register-button-text {
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
   text-align: left;

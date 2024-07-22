@@ -48,6 +48,11 @@
   text-decoration: none;
 }
 
+.nav-container li > .active-link {
+  color: #3692ff;
+  text-decoration: none;
+}
+
 .login-btn {
   padding: 12px 23px;
   border: none;

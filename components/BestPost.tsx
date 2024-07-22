@@ -5,6 +5,8 @@ import heart_ic from "@/public/ic_heart.svg";
 import { PostProps } from "@/lib/type";
 
 export default function BestPost({ article, ...rest }: PostProps) {
+  const { title, image, writer, updatedAt, likeCount } = article;
+
   return (
     <div className={styles.container} {...rest}>
       <Image
@@ -15,10 +17,10 @@ export default function BestPost({ article, ...rest }: PostProps) {
         className={styles["badge-img"]}
       />
       <div className={styles["description-wrap"]}>
-        <div className={styles.title}>{article.title}</div>
-        {article.image && (
+        <div className={styles.title}>{title}</div>
+        {image && (
           <Image
-            src={article.image}
+            src={image}
             alt="게시글이미지"
             width="72"
             height="72"
@@ -28,7 +30,7 @@ export default function BestPost({ article, ...rest }: PostProps) {
       </div>
       <div className={styles["bottom-wrap"]}>
         <div className={styles["nickname-wrap"]}>
-          <div className={styles.nickname}>{article.writer.nickname}</div>
+          <div className={styles.nickname}>{writer.nickname}</div>
           <div className={styles["favorite-wrap"]}>
             <button
               type="button"
@@ -43,13 +45,11 @@ export default function BestPost({ article, ...rest }: PostProps) {
                 className={styles["favorite-img"]}
               />
             </button>
-            <span className={styles["favorite-count"]}>
-              {article.likeCount}
-            </span>
+            <span className={styles["favorite-count"]}>{likeCount}</span>
           </div>
         </div>
         <div className={styles.date}>
-          {article.updatedAt.replace(/-/g, ".").split("T")[0]}
+          {updatedAt.replace(/-/g, ".").split("T")[0]}
         </div>
       </div>
     </div>

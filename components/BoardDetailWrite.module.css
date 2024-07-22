@@ -1,0 +1,53 @@
+.container {
+  margin-top: 24px;
+}
+
+.container > label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.container > textarea {
+  margin-top: 16px;
+  padding: 16px 24px;
+  width: 100%;
+  height: 104px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f2937;
+  background-color: #f3f4f6;
+  outline: none;
+  resize: none;
+}
+
+.container > textarea::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.container .write-btn-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container .write-btn-wrap > button {
+  margin-top: 16px;
+  padding: 12px 23px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #9ca3af;
+}
+
+.container .write-btn-wrap > button:disabled {
+  background-color: #3692ff;
+  cursor: pointer;
+}

@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.container .comment-wrap {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.comment-wrap .top-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-wrap .more-btn {
+  cursor: pointer;
+}
+
+.comment-wrap .comment {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.comment-wrap .profile-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.comment-wrap .profile-img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  object-fit: cover;
+}
+
+.comment-wrap .profile-name {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.comment-wrap .profile-time {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.write-img-wrap {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.write-img-wrap > .write-img {
+  display: block;
+  margin: 0 auto;
+  width: 140px;
+  height: 140px;
+}
+
+.write-img-wrap > div {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
+}

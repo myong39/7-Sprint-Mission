@@ -69,7 +69,11 @@ export default function PostDetails() {
           </button>
         </div>
       </div>
-      <Comment />
+      <div className={styles["comments-wrapper"]}>
+        <Comment />
+        <Comment />
+        <Comment />
+      </div>
     </div>
   );
 }

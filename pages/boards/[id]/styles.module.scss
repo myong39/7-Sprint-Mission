@@ -108,6 +108,7 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;
+  margin-bottom: 40px;
 }
 .register-button {
   width: 74px;
@@ -126,4 +127,10 @@
     background-color: $brand-blue;
     cursor: pointer;
   }
+}
+
+.comments-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
 }

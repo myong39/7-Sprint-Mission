@@ -1,9 +1,23 @@
 import React from "react";
 import styles from "./PostCard.module.scss";
 import Image from "next/image";
+import heartIcon from "public/ic_heart.svg";
+import Link from "next/link";
 
-const PostCard = ({ item }) => {
+interface PostItem {
+  id: number;
+  content: string;
+  image?: string;
+  likeCount: number;
+  title: string;
+  createdAt: string;
+  writer: {
+    nickname: string;
+  };
+}
+const PostCard = ({ item }: { item: PostItem }) => {
   const {
+    id,
     content,
     image,
     likeCount,
@@ -11,7 +25,7 @@ const PostCard = ({ item }) => {
     writer: { nickname },
   } = item;
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, "0");
@@ -20,7 +34,7 @@ const PostCard = ({ item }) => {
   };
 
   return (
-    <div className={styles["post-card-container"]}>
+    <Link href={`/boards/${id}`} className={styles["post-card-container"]}>
       <div className={styles["best-post-card-content"]}>
         <p>{content}</p>
         {image ? (
@@ -30,12 +44,11 @@ const PostCard = ({ item }) => {
       <div className={styles["best-post-card-info"]}>
         <span className={styles["best-post-card-info-name"]}>{nickname}</span>
         <span className={styles["best-post-card-info-date"]}>
-          {" "}
           {formatDate(createdAt)}
         </span>
         <span className={styles["best-post-card-info-likes"]}>
           <Image
-            src="/ic_heart.svg"
+            src={heartIcon}
             alt="좋아요수를 나타내는 하트모양아이콘"
             width={16}
             height={16}
@@ -45,7 +58,7 @@ const PostCard = ({ item }) => {
           </span>
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

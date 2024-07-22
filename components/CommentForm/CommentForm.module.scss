@@ -1,0 +1,42 @@
+.comment-form-container {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  label {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--gray900);
+  }
+  textarea {
+    height: 104px;
+    padding: 16px 24px;
+    background-color: var(--gray100);
+    border: none;
+    border-radius: 12px;
+    resize: none;
+    &::placeholder {
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--gray400);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    width: 74px;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--blue);
+    color: var(--gray100);
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: auto;
+    &:disabled {
+      background-color: var(--gray400);
+      cursor: not-allowed;
+    }
+  }
+}

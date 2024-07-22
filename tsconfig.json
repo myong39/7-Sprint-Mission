@@ -21,9 +21,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/index.jsx",
-    "pages/_document.jsx",
-    "pages/_app.jsx"
+    "pages/index.tsx",
+    "pages/_document.tsx",
+    "pages/_app.tsx",
+    "components/DropDown/DropDown.jsx"
   ],
   "exclude": ["node_modules"]
 }

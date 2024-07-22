@@ -4,10 +4,17 @@ import AllArticleItem from "./AllArticleItem";
 import { Article, ArticleApiData } from "@/types/articleTypes";
 import SearchInput from "@/components/layout/SearchInput";
 import Button from "@/components/layout/Button";
-import Dropdown from "@/components/layout/Dropdown";
 import Link from "next/link";
 import { getArticle } from "@/lib/articleApi";
 import { useRouter } from "next/router";
+import SortDropdown from "../layout/Dropdown/SortDropdown";
+import {
+  defaultOrderType,
+  ORDER_TYPE_ENUM,
+  orderTypeKeysKR,
+  orderTypeKR,
+  orderTypeUS,
+} from "@/constants/orderConstants";
 
 export default function AllArticleList({
   initialArticles,
@@ -15,13 +22,14 @@ export default function AllArticleList({
   initialArticles: Article[];
 }) {
   const [articles, setArticles] = useState(initialArticles);
-  const [orderBy, setOrderBy] = useState<ArticleApiData["orderBy"]>("recent");
+  const [orderBy, setOrderBy] = useState(ORDER_TYPE_ENUM.RECENT);
+  const items = orderTypeKeysKR;
 
   const router = useRouter();
   const keyword = router.query.q;
 
   const handleOrderChange = (option: string) => {
-    if (option === "recent" || option === "like") setOrderBy(option);
+    setOrderBy(orderTypeUS[option as keyof typeof orderTypeUS]);
   };
 
   const fetchData = async ({ orderBy, pageSize, keyword }: ArticleApiData) => {
@@ -58,11 +66,15 @@ export default function AllArticleList({
     <section className={styles["all-article"]}>
       <div className={styles["all-title-wrapper"]}>
         <h1 className={styles.title}>게시글</h1>
-        <Button>글쓰기</Button>
+        <Button href="/addboard">글쓰기</Button>
       </div>
       <div className={styles["search-wrapper"]}>
         <SearchInput onSortBySearch={handleSortBySearch} />
-        <Dropdown onOrderChange={handleOrderChange} />
+        <SortDropdown
+          onOrderChange={handleOrderChange}
+          items={items}
+          defaultOrderType={orderTypeKR[defaultOrderType]}
+        />
       </div>
       {articles.length
         ? articles.map((article) => (

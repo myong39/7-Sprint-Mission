@@ -5,8 +5,8 @@
   width: 100%;
   padding: 10px 0px;
   border-bottom: 1px solid gray;
-  padding-left: 24px; /* 기본값 설정 */
-  padding-right: 24px; /* 기본값 설정 */
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .LogoAndMenu {

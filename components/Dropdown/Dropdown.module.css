@@ -1,0 +1,21 @@
+.DropdownContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.Select {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 20px;
+}
+
+@media (max-width: 530px) {
+  .Select {
+    padding: 12px 0px;
+    width: 75px;
+  }
+}

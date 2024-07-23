@@ -1,0 +1,68 @@
+.OutContainer {
+  height: 169px;
+  background-color: #f9fafb;
+  max-width: 384px;
+  max-height: 198px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.BestArticle {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 8px;
+  width: 90%;
+  height: 153px;
+  margin: 0px auto;
+}
+
+.TitleAndImage {
+  display: flex;
+  margin-top: 40px;
+}
+.TitleAndImage > * {
+  flex: 1 1;
+}
+
+.CardBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.NameAndLikeCount {
+  display: flex;
+  gap: 8px;
+}
+
+.ImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 72px;
+  height: 72px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.BestMark {
+  position: absolute;
+  top: 0px; /* 원하는 위치로 조정 */
+  left: 10px; /* 원하는 위치로 조정 */
+  width: 102px; /* 이미지 크기 조정 */
+  height: 30px; /* 이미지 크기 조정 */
+}
+
+.Title {
+  margin: 0;
+}
+
+.Name,
+.LikeCount,
+.Date {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+}

@@ -1,0 +1,104 @@
+.article {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 136px;
+  max-height: 138px;
+  background-color: #fcfcfc;
+}
+
+.ImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+}
+
+.articleImage {
+  width: 48px;
+  height: 44.57px;
+  object-fit: cover;
+}
+
+.articleContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.articleContent {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.TitleAndImg h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.articleContent p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.articleFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+  gap: 8px;
+}
+
+.articleFooter > :nth-child(2) {
+  color: #4b5563;
+}
+
+.articleFooter span {
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.articleFooter > :last-child {
+  margin-left: auto;
+}
+
+.ImageContainer {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  width: 72px;
+  height: 72px;
+}
+
+.BasicUserProfile {
+  width: 24px;
+  height: 24px;
+}
+
+.TitleAndImg {
+  display: flex;
+  justify-content: space-between;
+}
+
+.TitleAndImg {
+  flex: 1 1;
+}
+
+@media (max-width: 530px) {
+  .TitleAndImg h2 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}

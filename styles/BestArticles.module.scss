@@ -1,0 +1,83 @@
+.bestArticleLayer {
+    margin: 0 auto;
+    margin-bottom: 40px;
+
+    .bestArtitlceTitle {
+        margin-bottom: 24px;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 23.87px;
+        color: var(--cool-Gray900);
+    }
+    .bestArticleList {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+            
+        .bestArticle {
+            display: flex;
+            width: 384px;
+            flex-direction: column;
+            background-color: var(--cool-Gray50);
+            border-radius: 8px;
+            padding: 0px 24px 8px 24px;
+            .bestIcon {
+                margin-bottom: 16px;
+            }
+            .articleData {
+                .articleDescription {
+                  display: flex;
+                  gap: 8px;
+                  justify-content: space-between;
+                  margin-bottom: 18px;
+                  .articleTitle {
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 32px;
+                    color: #1f2937;
+                    margin-right: 8px;
+                  }
+                  .articleImg {
+                    width: 72px;
+                    height: 72px;
+                    border-radius: 6px;
+                    background-color: white;
+                    border: solid 1px var(--cool-Gray200);
+                    position: relative;
+                  }
+                  .blankImage {
+                    width: 72px;
+                    height: 72px;
+                    background-color: black;
+                  }
+                }
+                .articleInfo {
+                  display: flex;
+                  justify-content: space-between;
+              
+                  .userIcon {
+                    margin-right: 8px;
+                  }
+              
+                  p {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    color: #4b5563;
+                  }
+                  div {
+                    display: flex;
+                    align-items: center;
+                    p {
+                      margin-right: 8px;
+                    }
+                    img {
+                      margin-right: 4px;
+                    }
+                  }
+                }
+              }
+              
+        }
+    }
+}

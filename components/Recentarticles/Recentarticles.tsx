@@ -1,9 +1,9 @@
-import style from "@/styles/BestArticles.module.scss";
-import Image from "next/image";
-import BestImage from "@/assets/images/logo/img_badge.svg";
-import BlackImg from "@/assets/images/home/blankimg.jpg";
+import style from "./Recentarticles.module.scss"
 import favoriteIcon from "@/assets/images/logo/favoriteIcon.svg";
+import BlackImg from "@/assets/images/home/blankimg.jpg";
 import DateFomet from "@/utils/DateFormet";
+import Image from "next/image";
+import MaskIcon from "@/assets/images/home/maskicon.png"
 
 interface ArticlesProps {
   id: number;
@@ -19,7 +19,7 @@ interface ArticlesProps {
   };
 }
 
-function Article({ item }: {item : ArticlesProps} ) {
+function Article({ item }: {item : ArticlesProps }) {
   return (
     <div className={style.articleData}>
       <div className={style.articleDescription}>
@@ -39,32 +39,30 @@ function Article({ item }: {item : ArticlesProps} ) {
         )}
       </div>
       <div className={style.articleInfo}>
-        <div>
+        <div>         
+          <Image className={style.userIcon} src={MaskIcon} alt="유저아이콘" width={24} height={24}/>
           <p>{item.writer.nickname}</p>
+          <p>{DateFomet(item.updatedAt)}</p>
+        </div>
+        <div>
           <Image src={favoriteIcon} alt="하트아이콘" width={16} height={16} />
           <p>{item.likeCount}</p>
         </div>
-        <p>{DateFomet(item.updatedAt)}</p>
       </div>
     </div>
   );
 }
 
-
-function BestArticles({ datalist }: { datalist: ArticlesProps[] }) {
-  return (
-    <div className={style.bestArticleLayer}>
-      <p className={style.bestArtitlceTitle}>베스트 게시글</p>
-      <div className={style.bestArticleList}>
+function Recentarticles({ datalist } : {datalist: ArticlesProps[]}) {
+    return (
+      <div className={style.recentArticlesLayer}>
         {datalist.map((item) => (
-          <div className={style.bestArticle}>
-            <Image className={style.bestIcon} src={BestImage} alt="베스트 아이콘" width={102} height={30} />
+          <div className={style.dataLayer}>
             <Article item={item} key={item.id} />
           </div>
         ))}
       </div>
-    </div>
-  );
+    )
 }
 
-export default BestArticles;
+export default Recentarticles;

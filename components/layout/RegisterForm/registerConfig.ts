@@ -1,4 +1,4 @@
-import { FieldInfo } from "../../../types/registerTypes";
+import { FieldInfo } from "@/types/registerTypes";
 
 export enum FIELDTYPE {
   TITLE = "*제목",
@@ -6,7 +6,7 @@ export enum FIELDTYPE {
   IMAGE = "이미지",
 }
 
-export const fields: { [id: string]: FieldInfo } = {
+export const fields: Record<FIELDTYPE, FieldInfo> = {
   [FIELDTYPE.TITLE]: {
     id: FIELDTYPE.TITLE,
     name: FIELDTYPE.TITLE,
@@ -25,8 +25,3 @@ export const fields: { [id: string]: FieldInfo } = {
     type: "file",
   },
 };
-
-export type FormValues = {
-  [key in string]: string | File | null;
-};
-// key in FIELDTYPE으로 하고 싶었으나 map으로 돌리면 타입 불일치가 생겨서 string으로 함

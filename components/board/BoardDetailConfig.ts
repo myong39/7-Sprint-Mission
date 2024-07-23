@@ -15,7 +15,7 @@ export enum FIELDTYPE {
   TITLE = "댓글달기",
 }
 
-export const fields: { [id: string]: FieldInfo } = {
+export const fields: Record<FIELDTYPE, FieldInfo> = {
   [FIELDTYPE.TITLE]: {
     id: FIELDTYPE.TITLE,
     name: FIELDTYPE.TITLE,

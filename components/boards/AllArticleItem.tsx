@@ -7,7 +7,7 @@ import noImg from "@/public/images/icons/no_img.svg";
 export default function AllArticleItem({
   article: { createdAt, image, likeCount, title, writer },
 }: ArticleProp) {
-  const titleImage = image ? image : noImg.src;
+  const titleImage = image || noImg.src;
 
   return (
     <div className={styles["all-card"]}>

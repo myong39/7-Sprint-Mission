@@ -2,7 +2,7 @@ import React, { ChangeEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import logoImg from "@/public/images/icons/ic_plus.svg";
 import xIcon from "@/public/images/icons/ic_x.svg";
-import { FileInputType } from "../../../types/commonTypes";
+import { FileInputType } from "@/types/commonTypes";
 import styles from "./FileInput.module.scss";
 
 export default function FileInput({

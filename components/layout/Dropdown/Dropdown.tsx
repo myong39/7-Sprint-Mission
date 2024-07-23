@@ -58,7 +58,7 @@ export default function Dropdown({
       <ul className={`${styles.menu} ${menuClassName}`}>
         {isOpen && (
           <>
-            {items
+            {items.length !== 0
               ? items.map((item, index) => (
                   <>
                     <li

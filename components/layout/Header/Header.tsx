@@ -37,11 +37,7 @@ const Header: React.FC = () => {
               </div>
             </div>
           </div>
-          {!isLogin && (
-            <Link href="/login">
-              <Button href="">로그인</Button>
-            </Link>
-          )}
+          {!isLogin && <Button href="/login">로그인</Button>}
           {isLogin && <img src={userImage.src} alt="유저 로그인 프로필"></img>}
         </header>
       )}

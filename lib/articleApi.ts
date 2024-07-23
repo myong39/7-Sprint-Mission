@@ -1,6 +1,6 @@
-import { ORDER_TYPE_ENUM } from "@/constants/orderConstants";
+import { defaultOrderType, ORDER_TYPE_ENUM } from "@/constants/orderConstants";
 import { ArticleApiData, ArticleCommentApiData } from "@/types/articleTypes";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://panda-market-api.vercel.app/",
@@ -10,7 +10,7 @@ export const getArticle = async ({
   articleId = "",
   page = 1,
   pageSize = 10,
-  orderBy = ORDER_TYPE_ENUM.RECENT,
+  orderBy = defaultOrderType,
   keyword = "",
   detail = false,
 }: ArticleApiData = {}) => {

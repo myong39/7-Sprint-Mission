@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import SortDropdown from "../layout/Dropdown/SortDropdown";
 import {
   defaultOrderType,
-  ORDER_TYPE_ENUM,
   orderTypeKeysKR,
   orderTypeKR,
   orderTypeUS,
@@ -22,7 +21,7 @@ export default function AllArticleList({
   initialArticles: Article[];
 }) {
   const [articles, setArticles] = useState(initialArticles);
-  const [orderBy, setOrderBy] = useState(ORDER_TYPE_ENUM.RECENT);
+  const [orderBy, setOrderBy] = useState(defaultOrderType);
   const items = orderTypeKeysKR;
 
   const router = useRouter();

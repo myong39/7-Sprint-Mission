@@ -1,8 +1,12 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import InputField from "./InputField";
 import Button from "../Button";
-import { RegisterFormProps, HandleChange } from "@/types/registerTypes";
-import { FIELDTYPE, FormValues } from "./registerConfig";
+import {
+  RegisterFormProps,
+  HandleChange,
+  FormValues,
+} from "@/types/registerTypes";
+import { FIELDTYPE } from "./registerConfig";
 import styles from "./RegisterForm.module.scss";
 
 export default function RegisterForm({
@@ -37,7 +41,7 @@ export default function RegisterForm({
       if (name in formValues) {
         setFormValues((prevValues) => ({
           ...prevValues,
-          [name]: value,
+          [name]: value.trim(),
         }));
       }
     }

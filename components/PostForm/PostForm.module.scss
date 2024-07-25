@@ -1,0 +1,112 @@
+.post-form-container {
+  margin-top: 94px;
+  margin-bottom: 130px;
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  .post-form-title-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    h1 {
+      font-weight: 700;
+      font-size: 20px;
+    }
+    button {
+      width: 74px;
+      height: 42px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--blue);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--gray100);
+      &:disabled {
+        background-color: var(--gray400);
+        cursor: not-allowed;
+      }
+    }
+  }
+  .post-form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    label {
+      font-weight: 700;
+      font-size: 18px;
+    }
+    input[type="text"] {
+      height: 56px;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 24px;
+      background-color: var(--gray100);
+      &::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--gray400);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    textarea {
+      height: 282px;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 24px;
+      background-color: var(--gray100);
+      &::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--gray400);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    input[type="file"] {
+      display: none;
+    }
+    .post-form-file-input-box {
+      display: flex;
+      gap: 24px;
+      .post-form-file-input-add-image-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 282px;
+        height: 282px;
+        color: var(--gray400);
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 12px;
+        background-color: var(--gray100);
+        cursor: pointer;
+      }
+      .post-form-file-input-preview-image-wrapper {
+        position: relative;
+        .post-form-file-preview-image {
+          width: 282px;
+          height: 282px;
+          border-radius: 12px;
+          border: 1px solid var(--gray50);
+          object-fit: cover;
+        }
+        .post-form-file-preview-image-delete-button {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

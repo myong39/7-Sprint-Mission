@@ -1,8 +1,21 @@
 import React from "react";
 import styles from "./BestPostCard.module.scss";
 import Image from "next/image";
+import medalIcon from "public/ic_medal.svg";
+import heartIcon from "public/ic_heart.svg";
 
-const BestPostCard = ({ item }) => {
+interface PostItem {
+  content: string;
+  image?: string;
+  likeCount: number;
+  title: string;
+  createdAt: string;
+  writer: {
+    nickname: string;
+  };
+}
+
+const BestPostCard = ({ item }: { item: PostItem }) => {
   const {
     content,
     image,
@@ -11,7 +24,7 @@ const BestPostCard = ({ item }) => {
     writer: { nickname },
   } = item;
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, "0");
@@ -23,7 +36,7 @@ const BestPostCard = ({ item }) => {
     <div className={styles["best-post-card-container"]}>
       <div className={styles["best-post-card-badge"]}>
         <Image
-          src="/ic_medal.svg"
+          src={medalIcon}
           alt="베스트상품에 붙는 메달모양 뱃지"
           width={16}
           height={16}
@@ -45,7 +58,7 @@ const BestPostCard = ({ item }) => {
         <span className={styles["best-post-card-info-name"]}>{nickname}</span>
         <span className={styles["best-post-card-info-likes"]}>
           <Image
-            src="/ic_heart.svg"
+            src={heartIcon}
             alt="좋아요수를 나타내는 하트모양아이콘"
             width={16}
             height={16}

@@ -11,7 +11,7 @@ const PostSection = () => {
   const [orderBy, setOrderBy] = useState("recent");
   const [keyWord, setKeyWord] = useState("");
 
-  const handleChangeInput = (e) => {
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyWord(e.target.value);
   };
 

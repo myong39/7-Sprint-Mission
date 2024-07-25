@@ -1,10 +1,16 @@
 @import '@/styles/common/index.scss';
 
+* {
+  font-family: 'Pretendard', Pretendard, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+}
+
 main {
   width: 1200px;
   margin: 0 auto;
   margin-top: 70px;
   padding-top: 24px;
+  padding-bottom: 130px;
 
   @include tablet {
     width: 100%;
@@ -21,8 +27,7 @@ main {
 }
 
 .section-title {
-  @include font-style(20, 700);
-  line-height: 23.87px;
+  @include font-style(xl, bold);
   text-align: left;
   color: $gray-900;
 }
@@ -34,5 +39,49 @@ main {
   .best-post-list {
     @include Flex(row, null, null);
     gap: 24px;
+
+    & > a {
+      flex: 1;
+    }
+
+    @include tablet {
+      a:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @include mobile {
+      a:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}
+
+.border {
+  width: 1px;
+  height: 34px;
+  background-color: $gray-200;
+}
+
+.back-btn {
+  @include Flex(row, null, center);
+  gap: 8px;
+}
+
+.btn-wrapper {
+  width: 100%;
+  @include Flex(row, center, center);
+}
+
+.kebab {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  img {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

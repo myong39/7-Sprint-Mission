@@ -7,7 +7,7 @@ interface IPost {
   id: number;
   title: string;
   content: string;
-  image: string;
+  image: string | null;
   writer: IWriter;
   likeCount: number;
   createdAt: string;
@@ -23,3 +23,9 @@ type TArticleList = {
 };
 
 type TOrder = 'recent' | 'like';
+
+interface PostArticleType {
+  title: string;
+  content: string;
+  image?: string;
+}

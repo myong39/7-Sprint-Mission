@@ -11,8 +11,8 @@
   gap: 4px;
 
   p {
-    @include font-style(16, 600);
-    line-height: 24px;
+    @include font-style(lg, semibold);
+
     color: $white-color;
   }
 }

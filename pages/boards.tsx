@@ -9,8 +9,20 @@ import Dropdown from '@/components/Dropdown';
 import styles from '@/styles/BoardsPage.module.scss';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import axios from '@/lib/axios';
 
-function BoardPage() {
+export async function getStaticProps() {
+  const res = await axios.get(`/articles?page=1&pageSize=3&orderBy=like`);
+  const articles = res.data.list;
+
+  return {
+    props: {
+      articles,
+    },
+  };
+}
+
+function BoardPage({ articles }: { articles: IPost[] }) {
   const [order, setOrder] = useState<TOrder>('recent');
   const router = useRouter();
   const { q } = router.query;
@@ -18,11 +30,19 @@ function BoardPage() {
   return (
     <>
       <main className='board-main'>
-        <BestPostList />
+        <BestPostList articles={articles} />
         <div className={styles.post}>
           <div className={styles.title}>
             <SectionTitle>게시글</SectionTitle>
-            <Button size='small'>글쓰기</Button>
+            <Button
+              type='button'
+              size='small'
+              onClick={() => {
+                router.push('/addboard');
+              }}
+            >
+              글쓰기
+            </Button>
           </div>
           <div className={styles.search}>
             <SearchForm initialValue={(q as string) || ''} />

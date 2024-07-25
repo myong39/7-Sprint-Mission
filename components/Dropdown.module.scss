@@ -13,7 +13,7 @@
     @include Flex(row, null, center);
     gap: 24px;
 
-    @include font-style(16, 400);
+    @include font-style('lg', regular);
     color: $gray-800;
     white-space: nowrap;
 
@@ -29,12 +29,12 @@
   background-color: $white-color;
 
   position: absolute;
-  top: 54px;
+  top: 30px; // 54px (다시 수정할수도 있어서 메모)
   right: 0;
 }
 
 .list {
-  @include font-style(16, 400);
+  @include font-style('lg', regular);
   width: 130px;
   height: 42px;
 

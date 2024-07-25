@@ -1,0 +1,26 @@
+@import '@/styles/common/index.scss';
+
+.main {
+  form {
+    @include Flex(column, null, null);
+    gap: 32px;
+  }
+}
+
+.main-header {
+  @include Flex(row, space-between, center);
+}
+
+.content {
+  @include Flex(column, null, null);
+  gap: 24px;
+}
+
+.input-wrapper {
+  @include Flex(column, null, null);
+  gap: 16px;
+
+  label {
+    @include font-style('2lg', bold);
+  }
+}

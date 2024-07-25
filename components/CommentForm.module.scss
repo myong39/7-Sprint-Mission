@@ -1,0 +1,25 @@
+@import '@/styles/common/index.scss';
+
+.comment-form {
+  @include Flex(column, null, null);
+  gap: 16px;
+
+  margin-bottom: 40px;
+
+  .comment-wrapper {
+    @include Flex(column, null, null);
+    gap: 9px;
+  }
+  .btn-wrapper {
+    @include Flex(row, flex-end, null);
+  }
+
+  label {
+    @include font-style(lg, semibold);
+    color: $gray-900;
+  }
+
+  textarea {
+    height: 104px;
+  }
+}

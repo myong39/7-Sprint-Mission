@@ -1,0 +1,44 @@
+@import "@/styles/import.scss";
+
+.comment-card {
+  background-color: $cool-gray-50;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $cool-gray-200;
+}
+
+.card-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items:start;
+}
+
+.comment-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 24px;
+  text-align: left;
+  color: $cool-gray-900;
+}
+
+.comment-information-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.nickname {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  color: $cool-gray-600;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  color: $cool-gray-400;
+}

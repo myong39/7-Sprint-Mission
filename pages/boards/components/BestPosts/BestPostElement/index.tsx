@@ -50,7 +50,7 @@ export default function BestPostElement({ post }: BestPostElementProps) {
             </div>
           </div>
           <p className={styles["date"]}>
-            {new Date(post.updatedAt).toLocaleDateString()}
+            {new Date(post.updatedAt).toLocaleDateString("ko-KR")}
           </p>
         </div>
       </div>

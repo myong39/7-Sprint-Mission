@@ -46,13 +46,13 @@ const DropDown: React.FC<DropDownProps> = ({ options, setOption }) => {
 
       {isDrop && (
         <div className={styles.dropDownBox}>
-          {Object.keys(options).map((key) => (
+          {Object.entries(options).map(([key, value]) => (
             <div
               key={key}
               className={styles.dropDownItem}
               onClick={() => handleOptionClick(key)}
             >
-              {key}
+              {value}
             </div>
           ))}
         </div>

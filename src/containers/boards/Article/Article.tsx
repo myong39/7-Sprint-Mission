@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './Article.module.scss'
 import formatDate from '@/src/utils/formaDate'
 import { Article } from '@/src/interfaces/Article.interface'
@@ -11,25 +12,27 @@ export default function Article({ article }: { article: Article }) {
 
   return (
     <div className={styles.article}>
-      <div className={styles.contentSection}>
-        <div className={styles.title}>{article.title}</div>
-        <div
-          className={styles.image}
-          style={{
-            border: articleImage === '' ? 'none' : '1px solid var(--gray-200)',
-          }}
-        >
-          {articleImage && (
-            <Image
-              src={articleImage}
-              alt="게시글 이미지"
-              width={50}
-              height={50}
-            />
-          )}
+      <Link href={`/boards/${article.id}`}>
+        <div className={styles.contentSection}>
+          <div className={styles.title}>{article.title}</div>
+          <div
+            className={styles.image}
+            style={{
+              border:
+                articleImage === '' ? 'none' : '1px solid var(--gray-200)',
+            }}
+          >
+            {articleImage && (
+              <Image
+                src={articleImage}
+                alt="게시글 이미지"
+                width={50}
+                height={50}
+              />
+            )}
+          </div>
         </div>
-      </div>
-
+      </Link>
       <div className={styles.subContentSection}>
         <div className={styles.writerSection}>
           <div className={styles.nickname}>

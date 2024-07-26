@@ -36,3 +36,17 @@
   margin-bottom: 12px;
   @include font-style(18px, 700, 26px, var(--gray800));
 }
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .form {
+    width: 100%;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .form {
+    width: 100%;
+  }
+}

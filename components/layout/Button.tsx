@@ -1,6 +1,6 @@
 import styles from "./Button.module.scss";
 import Link from "next/link";
-import { ButtonProps } from "@/types/commonTypes";
+import { ButtonProps } from "@/types/CommonTypes";
 
 export default function Button({
   href = "",

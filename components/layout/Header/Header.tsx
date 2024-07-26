@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import NavLink from "../../NavLink";
 import Button from "../Button";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
             </div>
           </div>
           {!isLogin && <Button href="/login">로그인</Button>}
-          {isLogin && <img src={userImage.src} alt="유저 로그인 프로필"></img>}
+          {isLogin && <Image src={userImage} alt="유저 로그인 프로필" />}
         </header>
       )}
     </>

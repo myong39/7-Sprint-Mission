@@ -8,7 +8,7 @@ import {
   ArticleApiData,
   ArticleCommentApiData,
   CommentObject,
-} from "@/types/articleTypes";
+} from "@/types/ArticleTypes";
 import { useRouter } from "next/router";
 import { commentInfo, fields } from "@/components/board/BoardDetailConfig";
 import BoardDetailArticle from "@/components/board/BoardDetailArticle";

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import styles from "./Dropdown.module.scss";
 import useClickOutside from "@/hooks/useClickOutside";
-import { DropdownProps } from "@/types/uiTypes";
+import { DropdownProps } from "@/types/UiTypes";
 
 export default function Dropdown({
   trigger = <></>,

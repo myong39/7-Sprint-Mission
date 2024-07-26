@@ -1,4 +1,4 @@
-import { FieldInfo } from "@/types/registerTypes";
+import { FieldInfo } from "@/types/RegisterTypes";
 
 export enum FIELDTYPE {
   TITLE = "*제목",

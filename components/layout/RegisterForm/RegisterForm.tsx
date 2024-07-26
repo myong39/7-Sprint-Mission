@@ -5,7 +5,7 @@ import {
   RegisterFormProps,
   HandleChange,
   FormValues,
-} from "@/types/registerTypes";
+} from "@/types/RegisterTypes";
 import { FIELDTYPE } from "./registerConfig";
 import styles from "./RegisterForm.module.scss";
 

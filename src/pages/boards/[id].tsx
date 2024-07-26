@@ -6,7 +6,6 @@ export default function ArticlePage() {
   return (
     <>
       <ArticleDetail />
-
       <AddComment />
       <Comment />
     </>

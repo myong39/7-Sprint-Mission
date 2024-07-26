@@ -52,7 +52,7 @@ const DropDown: React.FC<DropDownProps> = ({ options, setOption }) => {
               className={styles.dropDownItem}
               onClick={() => handleOptionClick(key)}
             >
-              {value}
+              {key}
             </div>
           ))}
         </div>

@@ -14,3 +14,25 @@
     background-color: var(--dark-blue);
   }
 }
+
+.active {
+  background-color: var(--gray-400);
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: var(--gray-400);
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.disabled {
+  background-color: var(--gray-400);
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: var(--gray-400);
+  }
+}

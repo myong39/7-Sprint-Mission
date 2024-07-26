@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import axios from 'axios'
+import axios from '@/src/lib/axios'
 import Spinner from '@/src/components/Spinner/Spinner'
 import styles from './AddComment.module.scss'
+import classNames from 'classnames'
 
 export default function AddComment() {
   const router = useRouter()
@@ -45,9 +46,10 @@ export default function AddComment() {
           <Spinner />
         ) : (
           <button
-            className={styles.submitButton}
+            className={classNames(styles.submitButton, {
+              [styles.disabledButton]: isButtonDisabled,
+            })}
             type="submit"
-            disabled={isButtonDisabled}
           >
             등록
           </button>

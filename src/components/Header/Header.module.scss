@@ -32,6 +32,35 @@
   }
 }
 
+.headerRight {
+  display: flex;
+  gap: 10px;
+
+  .userControl {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+
+    .user {
+      display: inline;
+      cursor: default;
+      span {
+        @include font-style(16px, 800, var(--gray-800));
+      }
+    }
+
+    .signOut {
+      @include font-style(14px, 400, var(--gray-500));
+      cursor: pointer;
+
+      &:hover {
+        color: var(--gray-800);
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .headerLeft {
     gap: 16px;

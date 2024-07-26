@@ -22,8 +22,8 @@ export default function ArticleList() {
     return baseUrl
   }, [orderBy, searchTitle])
 
-  const fetechArticles = useFetechData<ArticleListResponse>(url)
-  const { data: ArticleList, isLoading } = fetechArticles
+  const { data: ArticleList, isLoading } =
+    useFetechData<ArticleListResponse>(url)
   const orderOptions = {
     최신순: 'recent',
     인기순: 'like',

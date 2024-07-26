@@ -9,6 +9,7 @@ import seemoreIcon from '@/public/svgs/seemore.svg'
 import defaultProfileIcon from '@/public/svgs/default-profile.svg'
 import commentIcon from '@/public/svgs/comment.svg'
 import backIcon from '@/public/svgs/back-page.svg'
+import { Fragment } from 'react'
 
 export default function Comment() {
   const router = useRouter()
@@ -27,7 +28,7 @@ export default function Comment() {
 
   if (comments === undefined) {
     return (
-      <>
+      <Fragment key={commentIcon.id}>
         <Image
           src={commentIcon}
           alt="빈 댓글 아이콘"
@@ -42,7 +43,7 @@ export default function Comment() {
           목록으로 돌아가기
           <Image src={backIcon} alt="뒤로 가기 아이콘" width={24} height={24} />
         </button>
-      </>
+      </Fragment>
     )
   }
 

@@ -14,7 +14,7 @@
 }
 
 .searchBar {
-  width: 1054px;
+  width: 100%;
   height: 42px;
   padding: 9px 20px;
   padding-left: 44px;
@@ -27,16 +27,4 @@
 
 .searchBar::placeholder {
   color: #9ca3af;
-}
-
-@media screen and (max-width: 1280px) {
-  .searchBar {
-    width: 560px;
-  }
-}
-
-@media screen and (max-width: 743px) {
-  .searchBar {
-    width: 100%;
-  }
 }

@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 24px;
   gap: 24px;
 }
 
@@ -13,7 +12,6 @@
 }
 
 .postWrapper {
-  height: 169px;
   display: flex;
   flex-direction: row;
   gap: 24px;
@@ -21,30 +19,27 @@
 
 .postContentWrapper {
   width: 100%;
-  height: 169px;
   padding: 0 24px 16px 24px;
   background-color: #f9fafb;
   border-radius: 8px;
 }
 
 .postContent {
-  width: 336px;
-  height: 153px;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
 }
 
 .postInfo {
-  padding: 16px 0 18px 0;
+  margin: 16px 0 18px 0;
   display: flex;
   justify-content: space-between;
+  min-height: 72px;
 }
 
 .postTitle {
   font-size: 20px;
   font-weight: 600;
-  line-height: 23.87px;
+  line-height: 32px;
   text-align: left;
   text-decoration: none;
   color: #1f2937;
@@ -79,12 +74,10 @@
 .postDetails {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
-  position: absolute;
+  position: relative;
   font-size: 14px;
   font-weight: 400;
-  line-height: 16.71px;
-  bottom: 16px;
+  line-height: 24px;
 }
 
 .postMeta {
@@ -99,6 +92,7 @@
 
 .likeCount {
   display: flex;
+  align-items: center;
   gap: 4px;
   color: #6b7280;
 }
@@ -107,19 +101,43 @@
   color: #9ca3af;
 }
 
+.postContentWrapper {
+  flex: 1 0 30%; /* 기본적으로 한 줄에 최대 3개의 게시글 */
+}
+
 @media screen and (max-width: 1280px) {
+  .postInfo {
+    gap: 40px;
+    margin: 16px 0 40px 0;
+  }
+
   .postWrapper {
-    /* justify-content: space-between; */
     gap: 16px;
   }
+
   .postContentWrapper {
-    width: 340px;
-    height: 167px;
+    flex: 2 0 50%; /* 한 줄에 2 개의 게시글 */
   }
-  .postContent {
-    width: 292px;
+  .postContentWrapper:nth-child(n + 3) {
+    display: none; /* 2번째 게시글을 제외한 나머지 게시글 숨김 */
+  }
+
+  .postTitle {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
   }
 }
 
 @media screen and (max-width: 743px) {
+  .bestPostContainer {
+    gap: 16px;
+  }
+
+  .postContentWrapper {
+    flex: 1 0 100%; /* 한 줄에 한 개의 게시글 */
+  }
+  .postContentWrapper:nth-child(n + 2) {
+    display: none; /* 첫 번째 게시글을 제외한 나머지 게시글 숨김 */
+  }
 }

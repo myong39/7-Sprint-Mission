@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/components/Nav.module.css';
-import profileImg from '@/assets/images/profileImg.svg';
+import pandaMarketLogo from '@/assets/images/pandaMarketLogo.svg';
+import pandaMarketLogoMobile from '@/assets/images/pandaMarketLogoMobile.svg';
+import profileIcon from '@/assets/images/icons/profileIcon.svg';
 
 function getLinkStyle(currentPath, href) {
   const isActive =
@@ -19,43 +20,26 @@ function getLinkStyle(currentPath, href) {
 export default function Nav() {
   const router = useRouter();
   const currentPath = router.pathname;
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 743);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <div className={styles.navContainer}>
       <div className={styles.navWrapper}>
         <Link className={styles.logoContainer} href='/'>
-          {isMobile ? (
-            <Image
-              className={styles.logoImg}
-              src='/image/pandaMarketLogoMobile.png'
-              width={81}
-              height={40}
-              alt='PandaMarket logo in mobile'
-            />
-          ) : (
-            <Image
-              className={styles.logoImg}
-              src='/image/pandaMarketLogo.png'
-              width={153}
-              height={51}
-              alt='PandaMarket logo in desktop and tablet'
-              priority
-            />
-          )}
+          <Image
+            className={styles.logoMobileImg}
+            src={pandaMarketLogoMobile}
+            width={81}
+            height={40}
+            alt='PandaMarket logo in mobile'
+          />
+          <Image
+            className={styles.logoImg}
+            src={pandaMarketLogo}
+            width={153}
+            height={51}
+            alt='PandaMarket logo in desktop and tablet'
+            priority
+          />
         </Link>
         <ul className={styles.menu}>
           <li className={styles.freeBoard}>
@@ -70,7 +54,7 @@ export default function Nav() {
           </li>
         </ul>
       </div>
-      <Image src={profileImg} width={40} height={40} alt='my profile image' />
+      <Image src={profileIcon} width={40} height={40} alt='my profile image' />
     </div>
   );
 }

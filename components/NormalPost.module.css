@@ -1,6 +1,5 @@
 .normalPostContainer {
   position: relative;
-  /* width: 1200px; */
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -28,6 +27,12 @@
   border-radius: 8px;
   font-size: 16px;
   line-height: 19.09px;
+}
+
+.searchBarAndPostList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .searchSortGroup {
@@ -92,11 +97,6 @@
   border: 1px solid #e5e7eb;
 }
 
-.postImg {
-  width: 48px;
-  height: 44.57px;
-}
-
 .postMeta {
   display: flex;
   flex-direction: row;
@@ -108,7 +108,7 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  line-height: 16.71px;
+  line-height: 24px;
 }
 
 .nickname {
@@ -135,4 +135,33 @@
   font-size: 16px;
   line-height: 24px;
   color: #6b7280;
+}
+
+@media screen and (max-width: 1280px) {
+  .normalPostContainer {
+    top: 24px;
+    gap: 48px;
+  }
+
+  .searchBarAndPostList {
+    gap: 40px;
+  }
+
+  .searchSortGroup {
+    gap: 6px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .normalPostContainer {
+    gap: 16px;
+  }
+
+  .searchBarAndPostList {
+    gap: 16px;
+  }
+
+  .searchSortGroup {
+    gap: 13px;
+  }
 }

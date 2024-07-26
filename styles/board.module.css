@@ -1,12 +1,14 @@
 .boardContainer {
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .articleContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   padding-top: 8px;
 }
 
@@ -14,8 +16,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 80px;
-  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  line-height: 32px;
 }
 
 .articleTitle {
@@ -35,24 +39,29 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: 32px;
 }
 
 .createInfo {
   display: flex;
   align-items: center;
+  gap: 16px;
+}
+
+.writingInfo {
+  display: flex;
   gap: 8px;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .nickname {
-  font-size: 14px;
-  line-height: 16.71px;
+  font-weight: 500;
   color: #4b5563;
 }
 
 .createdAt {
-  font-size: 12px;
-  line-height: 14.32px;
+  font-weight: 400;
   color: #9ca3af;
 }
 
@@ -60,19 +69,35 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding-left: 16px;
+  padding-left: 32px;
   border-left: 1px solid #e5e7eb;
 }
 
+.likeArticleWrapper {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 35px;
+}
+
 .likeCount {
-  font-size: 14px;
-  line-height: 16.71px;
+  font-size: 16px;
+  font-weight: 500;
   color: #6b7280;
+  line-height: 26px;
+}
+
+.dividingLine {
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .articleContent {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 26px;
   color: #1f2937;
 }
 
@@ -81,18 +106,19 @@
   flex-direction: column;
   gap: 16px;
   position: relative;
-  margin-top: 64px;
-  margin-bottom: 82px;
+  margin-top: 32px;
+  margin-bottom: 98px;
 }
 
 .commentTitle {
   font-size: 16px;
   font-weight: 600;
-  line-height: 19.09px;
+  line-height: 26px;
+  color: #111827;
 }
 
 .commentInput {
-  /* width: 1200px; */
+  width: 100%;
   height: 104px;
   display: flex;
   align-items: flex-start;
@@ -114,7 +140,6 @@
 }
 
 .registrationBtn {
-  width: 74px;
   height: 42px;
   padding: 12px 23px;
   gap: 10px;
@@ -123,10 +148,8 @@
   right: 0;
   border: none;
   border-radius: 8px;
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 600;
-  line-height: 19.09px;
   color: #ffffff;
   background-color: #9ca3af;
 }
@@ -134,4 +157,46 @@
 .registrationBtn.active {
   background-color: #3692ff;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1280px) {
+  .articleContainer {
+    gap: 16px;
+  }
+  .commentContainer {
+    margin-top: 40px;
+    margin-bottom: 90px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .articleInfo {
+    gap: 16px;
+  }
+
+  .writingInfo {
+    gap: 2px;
+  }
+
+  .likeArticleContainer {
+    padding-left: 16px;
+  }
+
+  .likeArticleWrapper {
+    height: 32px;
+  }
+
+  .likeIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .likeCount {
+    line-height: normal;
+  }
+
+  .commentContainer {
+    margin-top: 32px;
+    margin-bottom: 82px;
+  }
 }

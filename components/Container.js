@@ -1,8 +1,5 @@
 import styles from '@/components/Container.module.css';
 
-export default function Container({ className = '', page = false, children }) {
-  const classNames = `${styles.container} ${
-    page ? styles.page : ''
-  } ${className}`;
-  return <div className={classNames}>{children}</div>;
+export default function Container({ className = '', children }) {
+  return <div className={`${styles.container} ${className}`}>{children}</div>;
 }

@@ -1,0 +1,57 @@
+.snsLogin {
+  width: 100%;
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 auto;
+  padding: 16px 23px;
+  position: relative;
+  background-color: #e6f2ff;
+  border-radius: 8px;
+}
+
+.snsLoginTitle {
+  width: 101px;
+  height: 24px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.snsIcons {
+  width: 100px;
+  height: 42px;
+  display: flex;
+  gap: 16px;
+}
+
+.bottomTxt {
+  display: flex; /* 옆에 배치 */
+  align-items: center;
+  justify-content: center; /* 가로 중앙 정렬 */
+  gap: 4px;
+  flex-direction: row;
+}
+
+.memberQuestion,
+.login {
+  height: 18px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17.9px;
+  gap: 4px;
+}
+
+.memberQuestion {
+  width: 115px;
+  color: #1f2937;
+}
+
+.login {
+  width: 39px;
+  color: #3182f6;
+}

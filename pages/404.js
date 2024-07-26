@@ -1,7 +1,9 @@
 import styles from '@/styles/404.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import ActiveBtn from '../components/ActiveBtn';
+import ActiveBtn from '@/components/ActiveBtn';
+
+NotFound.hideNav = true;
 
 export default function NotFound() {
   return (

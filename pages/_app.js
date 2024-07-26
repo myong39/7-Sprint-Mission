@@ -1,20 +1,14 @@
-import Nav from '@/components/Nav';
-import Container from '@/components/Container';
-import '../styles/global.css';
+import Head from 'next/head';
+import '@/styles/global.css';
 
 export default function App({ Component, pageProps }) {
-  const is404Page = Component.name === 'NotFound';
-
-  if (is404Page) {
-    return <Component {...pageProps} />;
-  }
-
   return (
     <>
-      <Nav />
-      <Container>
-        <Component {...pageProps} />
-      </Container>
+      <Head>
+        <title>판다마켓</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <Component {...pageProps} />
     </>
   );
 }

@@ -3,10 +3,11 @@ import "./Auth.css";
 import logo from "../images/logo2X.png";
 import google from "../images/google-logo.png";
 import kakao from "../images/kakao-logo.png";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import useFormValidation from "./useFormValidation";
 
 const Login = () => {
+  const navigate=useNavigate();
   const { errors, validateEmail, validatePassword } = useFormValidation();
   const [formValues, setFormValues] = useState({ email: "", password: "" });
   const [isButtonActive, setIsButtonActive] = useState(false);
@@ -32,22 +33,19 @@ const Login = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    validateEmail(formValues.email);
-    validatePassword(formValues.password);
-
-    if (!errors.email && !errors.password) {
-      window.location.href = "/items";
+    const isFormValid = Object.values(errors).every((error) => !error);
+    if (isFormValid) {
+      navigate("/items");
     }
   };
   
   useEffect(() => {
-    const allFieldsValid =
-      formValues.email &&
-      formValues.password &&
-      !errors.email &&
-      !errors.password;
+    const allFieldsValid = !!(
+      Object.values(formValues).every((value) => !!value) &&
+      Object.values(errors).every((error) => !error)
+    );
 
-    setIsButtonActive(!!allFieldsValid);
+    setIsButtonActive(allFieldsValid);
   }, [formValues, errors]);
 
   const togglePassword = () => {

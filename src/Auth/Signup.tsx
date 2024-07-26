@@ -5,6 +5,7 @@ import google from "../images/google-logo.png";
 import kakao from "../images/kakao-logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import useFormValidation from "./useFormValidation";
+import { postSignup } from "../api";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -23,13 +24,22 @@ const Signup = () => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const formData = formValues;
+    // const isFormValid = Object.values(errors).every((error) => !error);
+    // if (isFormValid) {
+    //   navigate("/items");
+    // }
+    // console.log("FormData:", formData);
 
-    const isFormValid = Object.values(errors).every((error) => !error);
-    if (isFormValid) {
-      navigate("/items");
+    try {
+      const result = await postSignup(formData);
+      const accessToken = result.accessToken;
+      console.log(result);
+      console.log(accessToken);
+    } catch (error: any) {
+      console.error("회원 생성에 실패했습니다:", error.message);
     }
   };
 

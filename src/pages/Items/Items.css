@@ -9,7 +9,6 @@
 
 /* BestProductList.jsx */
 .best-product h2 {
-  margin-top: 24px;
   font-size: 20px;
   font-weight: 700;
   color: #111827;
@@ -112,7 +111,9 @@
 }
 
 .all-product .top-container .product-registration-btn {
-  padding: 12px 23px;
+  padding: 0;
+  line-height: 0;
+  width: 133px;
   height: 42px;
   border: none;
   border-radius: 8px;
@@ -124,7 +125,8 @@
 }
 
 .all-product .top-container .order-select {
-  padding: 12px 20px;
+  padding: 0 20px;
+  line-height: 0;
   width: 130px;
   height: 42px;
   border: 1px solid #e5e7eb;
@@ -238,6 +240,7 @@
   .container {
     max-width: 1200px;
     margin: 70px auto 0;
+    padding-top: 24px;
   }
 
   /* BestProductItem.jsx */
@@ -263,7 +266,7 @@
   /* Items.jsx */
   .container {
     margin-top: 70px;
-    padding: 0 24px;
+    padding: 24px 24px 0;
   }
 
   /* BestProductList.jsx */
@@ -301,14 +304,10 @@
   /* Items.jsx */
   .container {
     margin-top: 70px;
-    padding: 0 16px;
+    padding: 17px 16px 0;
   }
 
   /* BestProductList.jsx */
-  .best-product h2 {
-    margin-top: 17px;
-  }
-
   .best-product .item-list li {
     flex-basis: 100%;
   }

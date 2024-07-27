@@ -37,7 +37,7 @@ const Home = () => {
             <div>
               <div className="subtitle">Hot item</div>
               <h2 className="title">
-                인기 상품을
+                인기 상품을<span>&nbsp;</span>
                 <br />
                 확인해 보세요
               </h2>
@@ -53,7 +53,7 @@ const Home = () => {
             <div>
               <div className="subtitle">Search</div>
               <h2 className="title">
-                구매를 원하는
+                구매를 원하는<span>&nbsp;</span>
                 <br />
                 상품을 검색하세요
               </h2>
@@ -69,7 +69,7 @@ const Home = () => {
             <div>
               <div className="subtitle">Register</div>
               <h2 className="title">
-                판매를 원하는
+                판매를 원하는<span>&nbsp;</span>
                 <br />
                 상품을 등록하세요
               </h2>

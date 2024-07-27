@@ -11,13 +11,14 @@
 }
 
 .form-submit h2 {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 0;
+  line-height: 32px;
 }
 
 .form-submit button {
-  padding: 12px 20px;
+  padding: 0;
+  line-height: 0;
   width: 88px;
   height: 42px;
   border: none;
@@ -36,7 +37,7 @@
 
 /* TitleInput.jsx */
 .form-container .first-label {
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 /* PriceInput.jsx, DescriptionInput.jsx */
@@ -45,6 +46,7 @@
   margin-top: 24px;
   font-size: 18px;
   font-weight: 700;
+  line-height: 26px;
 }
 
 .form-container input,
@@ -57,6 +59,7 @@
   border-radius: 12px;
   font-size: 16px;
   font-weight: 400;
+  line-height: 26px;
   background-color: #f3f4f6;
   outline: none;
 }
@@ -183,6 +186,7 @@
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   /* AddItem.jsx */
   .form-container {
+    margin: 70px auto 0;
     padding: 16px 24px 139px;
   }
 
@@ -211,17 +215,15 @@
 @media screen and (min-width: 375px) and (max-width: 767px) {
   /* AddItem.jsx */
   .form-container {
+    margin: 70px auto 0;
     padding: 16px 16px 183px;
   }
 
-  .form-submit h2 {
-    font-size: 20px;
-  }
-
   .form-container label {
-    margin-top: 16px;
-    font-size: 14px;
+    margin-top: 24px;
+    font-size: 18px;
     font-weight: 700;
+    line-height: 26px;
   }
 
   /* ImageInput.jsx */

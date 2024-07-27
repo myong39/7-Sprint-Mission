@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo/logo.svg";
 import google from "../../../assets/images/social/google-logo.png";
 import kakao from "../../../assets/images/social/kakao-logo.png";
@@ -13,8 +12,6 @@ const SignupPage: React.FC = () => {
   const [isNicknameValid, setIsNicknameValid] = useState(false);
   const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(false);
 
-  const navigate = useNavigate();
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (
@@ -23,7 +20,7 @@ const SignupPage: React.FC = () => {
       isNicknameValid &&
       isPasswordConfirmValid
     ) {
-      navigate("/signup");
+      alert("회원가입 성공");
     }
   };
 

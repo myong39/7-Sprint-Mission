@@ -2,12 +2,7 @@ main {
   position: relative;
   z-index: 0;
   margin-top: 70px;
-}
-
-h2 {
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 56px;
+  color: #374151;
 }
 
 .section1,
@@ -29,13 +24,10 @@ h2 {
 }
 
 .section1 > .container .btn_large {
-  padding: 16px 124px;
   border: none;
   border-radius: 40px;
   background-color: var(--main-color);
   color: #fff;
-  font-size: 20px;
-  font-weight: 600;
   cursor: pointer;
 }
 
@@ -130,6 +122,26 @@ footer .f-container > .sns button:last-child {
     left: 36.51vw;
   }
 
+  .section1 > .container > h2 {
+    width: 350px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+  }
+
+  .section1 > .container .btn_large-link {
+    display: block;
+    width: 357px;
+  }
+
+  .section1 > .container .btn_large {
+    width: 357px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+
   .section1 > .container,
   .section3 > .container {
     display: flex;
@@ -164,6 +176,12 @@ footer .f-container > .sns button:last-child {
     left: 36.51vw;
   }
 
+  .section3 .container > h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+  }
+
   footer {
     padding: 32px 200px;
   }
@@ -183,18 +201,8 @@ footer .f-container > .sns button:last-child {
     width: 100%;
   }
 
-  .section1 h2,
-  .section3 h2 {
-    width: 100%;
-    text-align: center;
-  }
-
   .section1 {
     height: 771px;
-  }
-
-  .section1 h2 br {
-    display: none;
   }
 
   .section1 > .bg-img {
@@ -207,9 +215,26 @@ footer .f-container > .sns button:last-child {
     padding-top: 84px;
   }
 
-  .section1 > .container .btn_large {
+  .section1 > .container > h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+  }
+
+  .section1 > .container .btn_large-link {
     display: block;
     margin: 24px auto 0;
+    width: 357px;
+  }
+
+  .section1 > .container .btn_large {
+    width: 357px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
   }
 
   .section2 .container {
@@ -260,6 +285,14 @@ footer .f-container > .sns button:last-child {
     padding-top: 200px;
   }
 
+  .section3 .container > h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+  }
+
   footer {
     padding: 32px 104px;
   }
@@ -275,15 +308,14 @@ footer .f-container > .sns button:last-child {
     width: 100%;
   }
 
-  .section1 h2,
-  .section3 h2 {
-    margin-bottom: 18px;
-    width: 100%;
+  .section1 .container > h2 {
+    margin: 0 auto 18px;
+    width: 280px;
     text-align: center;
     font-size: 32px;
+    font-weight: 700;
     line-height: 44.8px;
   }
-
   .section1 > .bg-img {
     width: 626.12px;
     height: 281px;
@@ -296,11 +328,17 @@ footer .f-container > .sns button:last-child {
     padding-top: 48px;
   }
 
-  .section1 > .container .btn_large {
+  .section1 > .container .btn_large-link {
     display: block;
     margin: 0 auto;
-    padding: 16px 20px;
-    font-size: 16px;
+    width: 240px;
+    height: 48px;
+  }
+
+  .section1 > .container .btn_large {
+    width: 240px;
+    height: 48px;
+    font-size: 18px;
     font-weight: 600;
   }
 
@@ -356,6 +394,15 @@ footer .f-container > .sns button:last-child {
 
   .section3 .container {
     padding-top: 120px;
+  }
+
+  .section3 .container > h2 {
+    margin-bottom: 18px;
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 44.8px;
   }
 
   footer {

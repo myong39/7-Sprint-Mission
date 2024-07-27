@@ -23,12 +23,8 @@ const Home = () => {
             height="447"
           />
           <div className="container">
-            <h2>
-              일상의 모든 물건을
-              <br />
-              거래해 보세요
-            </h2>
-            <Link to="/items">
+            <h2>일상의 모든 물건을 거래해 보세요</h2>
+            <Link to="/items" className="btn_large-link">
               <button type="button" className="btn_large">
                 구경하러 가기
               </button>

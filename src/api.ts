@@ -63,3 +63,25 @@ export async function postSignup(formData: any) {
     throw new Error(`회원 생성에 실패했습니다: ${error.message}`);
   }
 }
+
+export async function postSignIn(formData: any) {
+  try {
+    const response = await fetch(
+      "https://panda-market-api.vercel.app/auth/signIn",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("로그인에 실패했습니다");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error: any) {
+    throw new Error(`로그인에 실패했습니다: ${error.message}`);
+  }
+}

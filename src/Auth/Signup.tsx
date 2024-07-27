@@ -14,7 +14,7 @@ const Signup = () => {
     email: "",
     nickname: "",
     password: "",
-    passwordConfirm: "",
+    passwordConfirmation: "",
   });
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -26,18 +26,13 @@ const Signup = () => {
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const formData = formValues;
-    // const isFormValid = Object.values(errors).every((error) => !error);
-    // if (isFormValid) {
-    //   navigate("/items");
-    // }
-    // console.log("FormData:", formData);
+    const { email, nickname, password, passwordConfirmation } = formValues;
+    console.log(email, nickname, password, passwordConfirmation);
 
     try {
-      const result = await postSignup(formData);
-      const accessToken = result.accessToken;
+      const result = await postSignup(formValues);
       console.log(result);
-      console.log(accessToken);
+      navigate("/login", { state: { email, password } });
     } catch (error: any) {
       console.error("회원 생성에 실패했습니다:", error.message);
     }
@@ -59,6 +54,13 @@ const Signup = () => {
   const togglePasswordConfirm = () => {
     setPasswordConfirmVisible(!passwordConfirmVisible);
   };
+  
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="login-container">
@@ -142,12 +144,12 @@ const Signup = () => {
               <input
                 type={passwordConfirmVisible ? "text" : "password"}
                 className={`password-confirm-input ${
-                  errors.passwordConfirm ? "input-error" : ""
+                  errors.passwordConfirmation ? "input-error" : ""
                 }`}
-                id="passwordconfirm"
-                name="passwordConfirm"
+                id="passwordConfirmation"
+                name="passwordConfirmation"
                 placeholder="비밀번호를 다시 한 번 입력해주세요"
-                value={formValues.passwordConfirm}
+                value={formValues.passwordConfirmation}
                 onChange={handleInput}
                 onBlur={(e) =>
                   handleBlur(e.target.name, e.target.value, formValues.password)
@@ -161,8 +163,8 @@ const Signup = () => {
                 onClick={togglePasswordConfirm}
               />
             </div>
-            <span className={errors.passwordConfirm ? "error-message-on" : ""}>
-              {errors.passwordConfirm}
+            <span className={errors.passwordConfirmation ? "error-message-on" : ""}>
+              {errors.passwordConfirmation}
             </span>
           </div>
 

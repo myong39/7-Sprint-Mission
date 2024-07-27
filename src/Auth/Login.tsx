@@ -3,13 +3,19 @@ import "./Auth.css";
 import logo from "../images/logo2X.png";
 import google from "../images/google-logo.png";
 import kakao from "../images/kakao-logo.png";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFormValidation from "./useFormValidation";
+import { postSignIn } from "../api";
 
 const Login = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { email: initalEmail, password: initalPassword } = location.state || {};
   const { errors, validateEmail, validatePassword } = useFormValidation();
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
+  const [formValues, setFormValues] = useState({
+    email: initalEmail || "",
+    password: initalPassword || "",
+  });
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -31,14 +37,24 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const isFormValid = Object.values(errors).every((error) => !error);
     if (isFormValid) {
-      navigate("/items");
-    }
+        try{
+          const result=await postSignIn(formValues);
+          const {accessToken}=result;
+          if(accessToken){
+            localStorage.setItem("accessToken", accessToken); 
+          console.log("Access Token:", accessToken); 
+          navigate("/"); 
+          }
+        }catch(error:any){
+          console.error("로그인에 실패했습니다: ", error.message);
+        }
+      }
   };
-  
+
   useEffect(() => {
     const allFieldsValid = !!(
       Object.values(formValues).every((value) => !!value) &&
@@ -52,6 +68,13 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/");
+    }
+  }, [navigate]);
+  
   return (
     <div className="login-container">
       <div className="login-logo">

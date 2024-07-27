@@ -75,7 +75,7 @@ const Login = () => {
   };
 
   const handleEmailBlur = (e: FocusEvent<HTMLInputElement>) => {
-    let emailValue = e.target.value;
+    const emailValue = e.target.value;
 
     if (e.target.value === "") {
       setEmail((prevEmail) => ({

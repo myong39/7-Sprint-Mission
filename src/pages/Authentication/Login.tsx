@@ -126,7 +126,7 @@ const Login = () => {
     }
   };
 
-  const eyesButtonClick = () => {
+  const handleEyeButtonClick = () => {
     setPassword((prevPassword) => ({
       ...prevPassword,
       type: prevPassword.type === "password" ? "text" : "password",
@@ -178,7 +178,7 @@ const Login = () => {
             <button
               className="btn_visibility"
               type="button"
-              onClick={eyesButtonClick}
+              onClick={handleEyeButtonClick}
             >
               <img
                 className="eyes-img"

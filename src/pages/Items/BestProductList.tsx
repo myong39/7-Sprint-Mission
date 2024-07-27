@@ -37,14 +37,14 @@ const BestProductList = ({ pageSize }: Props) => {
     <section className="best-product">
       <h2>베스트 상품</h2>
       <ul className="item-list">
-        {product.map((item) => (
-          <li key={item.id}>
-            <Link to={`./${item.id}`} className="item-link">
+        {product.map(({ id, images, name, price, favoriteCount }) => (
+          <li key={id}>
+            <Link to={`./${id}`} className="item-link">
               <BestProductItem
-                imgUrl={item.images[0]}
-                name={item.name}
-                price={item.price}
-                favoriteCount={item.favoriteCount}
+                imgUrl={images[0]}
+                name={name}
+                price={price}
+                favoriteCount={favoriteCount}
               />
             </Link>
           </li>

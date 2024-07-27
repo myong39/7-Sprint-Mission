@@ -40,8 +40,8 @@ const TagInput = ({ isValueCheck }: Props) => {
         onKeyUp={handleKeyUp}
         onChange={handleInputChange}
       />
-      {[...tagArr].map((tag, index) => (
-        <div key={index} className="tag-box">
+      {[...tagArr].map((tag) => (
+        <div key={tag} className="tag-box">
           <div className="tag-flex">
             <span>{tag}</span>
             <button type="button" onClick={() => handleDeleteClick(tag)}>

@@ -4,6 +4,7 @@ import AllProductItem from "./AllProductItem";
 import Pagination from "./Pagination";
 import { getProductItem } from "./api";
 import searchIcon from "../../assets/search_icon.svg";
+import { Product } from "../../types/product";
 
 interface Props {
   pageSize: number;
@@ -11,24 +12,7 @@ interface Props {
   TopContainer: string;
 }
 
-interface Product {
-  createdAt: string;
-  description: string;
-  favoriteCount: number;
-  id: number;
-  images: string[];
-  name: string;
-  ownerId: number;
-  price: number;
-  tags: string[];
-  updatedAt: string;
-}
-
-const AllProductList = ({
-  pageSize,
-  title,
-  TopContainer,
-}: Props) => {
+const AllProductList = ({ pageSize, title, TopContainer }: Props) => {
   // api 상태 관리
   const [product, setProduct] = useState<Product[]>([
     {

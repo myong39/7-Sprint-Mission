@@ -2,22 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BestProductItem from "./BestProductItem";
 import { getProductItem } from "./api";
+import { Product } from "../../types/product";
 
 interface Props {
   pageSize: number;
-}
-
-interface Product {
-  createdAt: string;
-  description: string;
-  favoriteCount: number;
-  id: number;
-  images: string[];
-  name: string;
-  ownerId: number;
-  price: number;
-  tags: string[];
-  updatedAt: string;
 }
 
 const BestProductList = ({ pageSize }: Props) => {

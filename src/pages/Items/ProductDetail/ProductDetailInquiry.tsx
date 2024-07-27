@@ -1,14 +1,8 @@
-import { ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 
-interface Props {
-  inquiryValue: string;
-  setInquiryValue: (value: string) => void;
-}
+const ProductDetailInquiry = () => {
+  const [inquiryValue, setInquiryValue] = useState<string>("");
 
-const ProductDetailInquiry = ({
-  inquiryValue,
-  setInquiryValue,
-}: Props) => {
   const handleChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInquiryValue(e.target.value);
   };

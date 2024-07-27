@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-interface ProductDetailInquiryProps {
+interface Props {
   inquiryValue: string;
   setInquiryValue: (value: string) => void;
 }
@@ -8,7 +8,7 @@ interface ProductDetailInquiryProps {
 const ProductDetailInquiry = ({
   inquiryValue,
   setInquiryValue,
-}: ProductDetailInquiryProps) => {
+}: Props) => {
   const handleChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInquiryValue(e.target.value);
   };

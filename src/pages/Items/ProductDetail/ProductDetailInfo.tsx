@@ -2,11 +2,11 @@ import moreIcon from "../../../assets/ic_kebab.svg";
 import heartIcon from "../../../assets/ic_heart_detail.svg";
 import { DetailItem } from "./ProductDetail";
 
-interface ProductDetailInfoProps {
+interface Props {
   detailItem: DetailItem;
 }
 
-const ProductDetailInfo = ({ detailItem }: ProductDetailInfoProps) => {
+const ProductDetailInfo = ({ detailItem }: Props) => {
   return (
     <section className="product-info-section">
       <img

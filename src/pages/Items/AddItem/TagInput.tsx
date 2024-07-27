@@ -3,11 +3,11 @@ import deleteIcon from "../../../assets/ic_X.svg";
 import deleteHoverIcon from "../../../assets/ic_X_hover.svg";
 import { IsValid } from "./AddItem";
 
-interface TagInputProps {
+interface Props {
   isValueCheck: (currentValue: string | string[], name: keyof IsValid) => void;
 }
 
-const TagInput = ({ isValueCheck }: TagInputProps) => {
+const TagInput = ({ isValueCheck }: Props) => {
   const [tagArr, setTagArr] = useState<Set<string>>(new Set());
   const [inputValue, setInputValue] = useState("");
 

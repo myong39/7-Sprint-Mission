@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from "react";
 import { IsValid } from "./AddItem";
 
-interface DescriptionInputProps {
+interface Props {
   isValueCheck: (currentValue: string, name: keyof IsValid) => void;
 }
 
-const DescriptionInput = ({ isValueCheck }: DescriptionInputProps) => {
+const DescriptionInput = ({ isValueCheck }: Props) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {

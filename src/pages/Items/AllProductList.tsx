@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import { getProductItem } from "./api";
 import searchIcon from "../../assets/search_icon.svg";
 
-interface AllProductListProps {
+interface Props {
   pageSize: number;
   title: string;
   TopContainer: string;
@@ -28,7 +28,7 @@ const AllProductList = ({
   pageSize,
   title,
   TopContainer,
-}: AllProductListProps) => {
+}: Props) => {
   // api 상태 관리
   const [product, setProduct] = useState<Product[]>([
     {

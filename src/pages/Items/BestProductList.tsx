@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import BestProductItem from "./BestProductItem";
 import { getProductItem } from "./api";
 
-interface BestProductListProps {
+interface Props {
   pageSize: number;
 }
 
@@ -20,7 +20,7 @@ interface Product {
   updatedAt: string;
 }
 
-const BestProductList = ({ pageSize }: BestProductListProps) => {
+const BestProductList = ({ pageSize }: Props) => {
   const [product, setProduct] = useState<Product[]>([
     {
       createdAt: "",

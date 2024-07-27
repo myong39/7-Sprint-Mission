@@ -1,7 +1,7 @@
 import inquiryImg from "../../../assets/Img_inquiry_empty.svg";
 import { Comment } from "./ProductDetail";
 
-interface ProductDetailCommentsProps {
+interface Props {
   comments: Comment[];
 }
 
@@ -29,7 +29,7 @@ function timeAgo(dateString: string): string {
   return "방금 전";
 }
 
-const ProductDetailComments = ({ comments }: ProductDetailCommentsProps) => {
+const ProductDetailComments = ({ comments }: Props) => {
   return (
     <section className="product-comment-section">
       {comments.length > 0 ? (

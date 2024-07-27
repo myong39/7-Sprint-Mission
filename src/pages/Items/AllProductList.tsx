@@ -158,14 +158,14 @@ const AllProductList = ({ pageSize, title, TopContainer }: Props) => {
         </div>
       )}
       <ul className="item-list">
-        {product.map((item) => (
-          <li key={item.id}>
-            <Link to={`./${item.id}`} className="item-link">
+        {product.map(({ id, images, name, price, favoriteCount }) => (
+          <li key={id}>
+            <Link to={`./${id}`} className="item-link">
               <AllProductItem
-                imgUrl={item.images[0]}
-                name={item.name}
-                price={item.price}
-                favoriteCount={item.favoriteCount}
+                imgUrl={images[0]}
+                name={name}
+                price={price}
+                favoriteCount={favoriteCount}
               />
             </Link>
           </li>

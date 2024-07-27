@@ -5,8 +5,14 @@
   text-align: center;
 }
 
+.notFound-container > h2 {
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
 .notFound-container > div {
   margin-bottom: 16px;
+  line-height: 24px;
 }
 
 .notFound-container button {

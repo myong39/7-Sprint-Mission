@@ -8,6 +8,7 @@ import Items from "./pages/Items/Items.tsx";
 import AddItem from "./pages/Items/AddItem/AddItem.tsx";
 import Community from "./pages/Community/Community.tsx";
 import ProductDetail from "./pages/Items/ProductDetail/ProductDetail.tsx";
+import NotFound from "./pages/NotFound/NotFound.tsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/items" element={<Items />} />
         <Route path="/items/:id" element={<ProductDetail />} />
         <Route path="/additem" element={<AddItem />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

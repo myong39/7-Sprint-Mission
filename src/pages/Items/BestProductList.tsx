@@ -26,8 +26,8 @@ const BestProductList = ({ pageSize }: Props) => {
 
   useEffect(() => {
     const getBestProduct = async () => {
-      const data = await getProductItem(1, pageSize, "favorite");
-      setProduct(data.list);
+      const { list } = await getProductItem(1, pageSize, "favorite");
+      setProduct(list);
     };
 
     getBestProduct();

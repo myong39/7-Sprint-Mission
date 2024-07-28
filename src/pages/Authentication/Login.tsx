@@ -1,5 +1,13 @@
-import { ChangeEvent, FocusEvent, useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import {
+  ChangeEvent,
+  FocusEvent,
+  MouseEvent,
+  useRef,
+  useState,
+  useEffect,
+} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "./api";
 import "./Authentication.css";
 import logo from "../../assets/logo.svg";
 import visibility_off from "../../assets/btn_visibility_off_24px.svg";
@@ -25,6 +33,7 @@ function emailCheck(email_address: string) {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<InputState>({
     value: "",
     Message: "",
@@ -138,6 +147,24 @@ const Login = () => {
     }
   };
 
+  const handleLogin = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    try {
+      await login(email.value, password.value);
+      navigate("/");
+    } catch (error) {
+      console.error("로그인에 실패했습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
+
   useEffect(() => {
     setDisabled(!(email.isValid === false && password.isValid === false));
   }, [email.isValid, password.isValid]);
@@ -192,7 +219,12 @@ const Login = () => {
             <span className="focusout">{password.Message}</span>
           )}
           <Link to="/items" className="btn_large-link">
-            <button className="btn_large" type="submit" disabled={disabled}>
+            <button
+              className="btn_large"
+              type="submit"
+              onClick={handleLogin}
+              disabled={disabled}
+            >
               로그인
             </button>
           </Link>

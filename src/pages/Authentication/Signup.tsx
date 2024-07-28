@@ -1,12 +1,13 @@
 import {
   ChangeEvent,
   FocusEvent,
+  MouseEvent,
   useRef,
   useState,
   useEffect,
-  MouseEvent,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "./api";
 import "./Authentication.css";
 import logo from "../../assets/logo.svg";
 import visibility_off from "../../assets/btn_visibility_off_24px.svg";
@@ -32,6 +33,7 @@ function emailCheck(email_address: string) {
 }
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<InputState>({
     value: "",
     Message: "",
@@ -48,7 +50,7 @@ const Signup = () => {
     Message: "",
     isValid: true,
   });
-  const [passwordCheck, setPasswordCheck] = useState<InputState>({
+  const [passwordConfirmation, setPasswordConfirmation] = useState<InputState>({
     value: "",
     type: "password",
     Message: "",
@@ -111,20 +113,23 @@ const Signup = () => {
       }
     }
 
-    if (e.target.value === passwordCheck.value && e.target.value.length >= 8) {
+    if (
+      e.target.value === passwordConfirmation.value &&
+      e.target.value.length >= 8
+    ) {
       setPassword((prevPassword) => ({
         ...prevPassword,
         Message: "",
         isValid: false,
       }));
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
         Message: "",
         isValid: false,
       }));
       e.target.classList.remove("focusout");
       passwordCheckRef.current?.classList.remove("focusout");
-    } else if (e.target.value !== passwordCheck.value) {
+    } else if (e.target.value !== passwordConfirmation.value) {
       setPassword((prevPassword) => ({
         ...prevPassword,
         isValid: true,
@@ -133,15 +138,15 @@ const Signup = () => {
   };
 
   const handlePasswordCheckChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPasswordCheck((prevPasswordCheck) => ({
-      ...prevPasswordCheck,
+    setPasswordConfirmation((prevPasswordConfirmation) => ({
+      ...prevPasswordConfirmation,
       value: e.target.value,
     }));
 
     if (e.target.value.length > 0) {
-      if (passwordCheck.Message === "비밀번호를 입력해주세요") {
-        setPasswordCheck((prevPasswordCheck) => ({
-          ...prevPasswordCheck,
+      if (passwordConfirmation.Message === "비밀번호를 입력해주세요") {
+        setPasswordConfirmation((prevPasswordConfirmation) => ({
+          ...prevPasswordConfirmation,
           Message: "",
         }));
         e.target.classList.remove("focusout");
@@ -154,15 +159,15 @@ const Signup = () => {
         Message: "",
         isValid: false,
       }));
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
         Message: "",
         isValid: false,
       }));
       e.target.classList.remove("focusout");
     } else if (e.target.value !== password.value) {
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
         Message: "비밀번호가 일치하지 않습니다",
         isValid: true,
       }));
@@ -230,7 +235,7 @@ const Signup = () => {
         isValid: true,
       }));
       e.target.classList.add("focusout");
-    } else if (e.target.value !== passwordCheck.value) {
+    } else if (e.target.value !== passwordConfirmation.value) {
       setPassword((prevPassword) => ({
         ...prevPassword,
         Message: "",
@@ -249,22 +254,22 @@ const Signup = () => {
 
   const handlePasswordCheckBlur = (e: FocusEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
         Message: "비밀번호를 입력해주세요",
         isValid: true,
       }));
       e.target.classList.add("focusout");
     } else if (e.target.value !== password.value) {
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
         Message: "비밀번호가 일치하지 않습니다",
         isValid: true,
       }));
       e.target.classList.add("focusout");
     } else {
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
         Message: "",
         isValid: false,
       }));
@@ -272,7 +277,7 @@ const Signup = () => {
     }
   };
 
-  const eyesButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleEyesButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.name === "password") {
       setPassword((prevPassword) => ({
         ...prevPassword,
@@ -285,31 +290,67 @@ const Signup = () => {
       }
     }
     if (e.currentTarget.name === "password-check") {
-      setPasswordCheck((prevPasswordCheck) => ({
-        ...prevPasswordCheck,
-        type: prevPasswordCheck.type === "password" ? "text" : "password",
+      setPasswordConfirmation((prevPasswordConfirmation) => ({
+        ...prevPasswordConfirmation,
+        type:
+          prevPasswordConfirmation.type === "password" ? "text" : "password",
       }));
 
       if (checkEyesImgRef.current) {
         checkEyesImgRef.current.src =
-          passwordCheck.type === "password" ? visibility_off : visibility_on;
+          passwordConfirmation.type === "password"
+            ? visibility_off
+            : visibility_on;
       }
     }
   };
+
+  const handleSignup = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (
+      email.isValid ||
+      nickname.isValid ||
+      password.isValid ||
+      passwordConfirmation.isValid
+    ) {
+      return;
+    }
+
+    try {
+      await signup(
+        email.value,
+        nickname.value,
+        password.value,
+        passwordConfirmation.value
+      );
+
+      navigate("/login");
+    } catch (error) {
+      console.error("회원가입에 실패했습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     setDisabled(
       !(
         email.isValid === false &&
         password.isValid === false &&
-        passwordCheck.isValid === false &&
+        passwordConfirmation.isValid === false &&
         nickname.isValid === false
       )
     );
   }, [
     email.isValid,
     password.isValid,
-    passwordCheck.isValid,
+    passwordConfirmation.isValid,
     nickname.isValid,
   ]);
 
@@ -362,7 +403,7 @@ const Signup = () => {
               className="btn_visibility"
               name="password"
               type="button"
-              onClick={eyesButtonClick}
+              onClick={handleEyesButtonClick}
             >
               <img
                 className="eyes-img"
@@ -378,7 +419,7 @@ const Signup = () => {
           <label htmlFor="password-check">비밀번호 확인</label>
           <div className="input-container">
             <input
-              type={passwordCheck.type}
+              type={passwordConfirmation.type}
               id="password-check"
               name="password-check"
               placeholder="비밀번호를 다시 한 번 입력해주세요"
@@ -390,7 +431,7 @@ const Signup = () => {
               className="btn_visibility"
               name="password-check"
               type="button"
-              onClick={eyesButtonClick}
+              onClick={handleEyesButtonClick}
             >
               <img
                 className="eyes-img"
@@ -400,11 +441,16 @@ const Signup = () => {
               />
             </button>
           </div>
-          {passwordCheck.Message !== "" && (
-            <span className="focusout">{passwordCheck.Message}</span>
+          {passwordConfirmation.Message !== "" && (
+            <span className="focusout">{passwordConfirmation.Message}</span>
           )}
           <Link to="/login" className="btn_large-link">
-            <button className="btn_large" type="submit" disabled={disabled}>
+            <button
+              className="btn_large"
+              type="submit"
+              onClick={handleSignup}
+              disabled={disabled}
+            >
               회원가입
             </button>
           </Link>

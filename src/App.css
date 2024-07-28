@@ -54,6 +54,10 @@ header {
   text-decoration: none;
 }
 
+.nav-container li > .active {
+  color: var(--main-color);
+}
+
 .login-btn {
   padding: 12px 23px;
   border: none;

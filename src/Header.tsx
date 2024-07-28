@@ -4,10 +4,6 @@ import mypage_ic from "./assets/ic_mypage.svg";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const activeStyle = {
-    color: "#3692ff",
-  };
-
   const location = useLocation();
 
   const accessToken = localStorage.getItem("accessToken");
@@ -38,8 +34,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/community"
-                className="link"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                className={({ isActive }) => `link ${isActive ? "active" : ""}`}
               >
                 자유게시판
               </NavLink>
@@ -47,11 +42,10 @@ const Header = () => {
             <li>
               <NavLink
                 to="/items"
-                className="link"
-                style={({ isActive }) =>
-                  isActive || location.pathname === "/additem"
-                    ? activeStyle
-                    : undefined
+                className={({ isActive }) =>
+                  `link ${
+                    isActive || location.pathname === "/additem" ? "active" : ""
+                  }`
                 }
               >
                 중고마켓

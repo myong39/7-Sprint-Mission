@@ -1,6 +1,8 @@
 import React from "react";
-import kakaotalkLoge from "../../../assets/images/social/kakaotalk-logo.svg";
-import googleLoge from "../../../assets/images/social/google-logo.svg";
+import kakaotalkLoge from "@/public/images/social/kakaotalk-logo.svg";
+import googleLoge from "@/public/images/social/google-logo.svg";
+import Image from "next/image";
+import styles from "./Auth.module.scss";
 
 interface Image {
   src: string;
@@ -40,7 +42,7 @@ const Links: { [id: string]: Link } = {
 
 const EasyLogin: React.FC = () => {
   return (
-    <section className="easy-login">
+    <section className={styles["easy-login"]}>
       <h3>간편 로그인하기</h3>
       <div>
         {Object.entries(Links).map(
@@ -54,7 +56,7 @@ const EasyLogin: React.FC = () => {
             },
           ]) => (
             <a key={key} href={href} target={target} rel={rel}>
-              <img src={src} alt={alt} width={width} />
+              <Image src={src} alt={alt} width={width} />
             </a>
           )
         )}

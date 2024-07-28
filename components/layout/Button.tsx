@@ -6,10 +6,11 @@ export default function Button({
   href = "",
   children,
   disabled = false,
+  className = "",
 }: ButtonProps) {
   if (!href) {
     return (
-      <button className={styles.button} disabled={disabled}>
+      <button className={`${styles.button} ${className}`} disabled={disabled}>
         {children}
       </button>
     );

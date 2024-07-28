@@ -1,53 +1,56 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import InputField from "./InputField";
-import { AuthFormProps } from "../../../types/AuthTypes";
+import { AuthFormProps } from "@/types/AuthTypes";
 import { getFieldsByMode } from "./AuthConfig";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
+import styles from "./Auth.module.scss";
+import Button from "../Button";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
-  const { pathname } = useLocation();
-  const inputFields = getFieldsByMode(mode);
-  const buttonText = mode === "login" ? "로그인" : "회원가입";
-  const [isValid, SetIsValid] = useState(false);
-  const navigate = useNavigate();
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, errors },
+    reset,
+  } = useForm({
+    mode: "onChange",
+    defaultValues: getFieldsByMode(mode).reduce(
+      (acc, field) => ({ ...acc, [field.id]: "" }),
+      {}
+    ),
+    criteriaMode: "all",
+  });
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const router = useRouter();
 
-    if (isValid) {
-      navigate("/");
-    }
-  };
-
-  const handleBlur = (e: FormEvent) => {
-    const result = inputFields.every((field) => {
-      return field.isValid;
-    });
-
-    SetIsValid(result);
+  const onSubmit: SubmitHandler<any> = () => {
+    router.push("/");
   };
 
   useEffect(() => {
-    SetIsValid(false);
-  }, [pathname]);
+    reset();
+  }, [mode, reset]);
 
   return (
-    <>
-      <form
-        method="post"
-        id={mode}
-        className="form"
-        onSubmit={handleSubmit}
-        onBlur={handleBlur}
-      >
-        {inputFields.map((field) => (
-          <InputField key={field.id} field={field} />
-        ))}
-        <button className="button pill-button acc-button" disabled={!isValid}>
-          {buttonText}
-        </button>
-      </form>
-    </>
+    <form
+      method="post"
+      id={mode}
+      className={styles["form"]}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      {getFieldsByMode(mode).map((field) => (
+        <InputField
+          key={field.id}
+          field={field}
+          control={control}
+          error={(errors as Record<string, any>)[field.id]?.message}
+        />
+      ))}
+      <Button className={styles["acc-button"]} disabled={!isValid}>
+        {mode === "login" ? "로그인" : "회원가입"}
+      </Button>
+    </form>
   );
 };
 

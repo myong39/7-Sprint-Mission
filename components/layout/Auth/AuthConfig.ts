@@ -1,5 +1,5 @@
 import { FocusEvent } from "react";
-import { FieldInfo } from "@/types/AuthTypes";
+import { FieldInfo, PageConfigType } from "@/types/AuthTypes";
 
 enum FieldType {
   Email = "email",
@@ -19,8 +19,6 @@ export const fields: { [id: string]: FieldInfo } = {
     required: true,
     emptyErrorMessage: "이메일을 입력해주세요.",
     invalidErrorMessage: "잘못된 이메일 형식입니다.",
-    isValid: false,
-    isEmpty: false,
     value: "",
     validationFunction: checkEmail,
   },
@@ -32,11 +30,9 @@ export const fields: { [id: string]: FieldInfo } = {
     autoComplete: FieldType.Nickname,
     type: "text",
     emptyErrorMessage: "닉네임을 입력해주세요.",
-    invalidErrorMessage: "",
-    isValid: false,
-    isEmpty: false,
+    invalidErrorMessage: "닉네임을 입력해주세요.",
     value: "",
-    validationFunction: () => true,
+    validationFunction: checkNotEmpty,
   },
   [FieldType.Password]: {
     id: FieldType.Password,
@@ -48,8 +44,6 @@ export const fields: { [id: string]: FieldInfo } = {
     required: true,
     emptyErrorMessage: "비밀번호를 입력해주세요.",
     invalidErrorMessage: "비밀번호를 8자 이상 입력해주세요.",
-    isValid: false,
-    isEmpty: false,
     value: "",
     validationFunction: checkPasswordLength,
   },
@@ -63,31 +57,20 @@ export const fields: { [id: string]: FieldInfo } = {
     required: true,
     emptyErrorMessage: "비밀번호 확인을 입력해주세요.",
     invalidErrorMessage: "비밀번호가 일치하지 않습니다.",
-    isValid: false,
-    isEmpty: false,
     value: "",
     validationFunction: checkPasswordMatch,
   },
 };
 
-// 공백 검사
-export function checkEmpty(input: FocusEvent<HTMLInputElement>) {
-  return input?.target.value.trim() === "";
+export function checkNotEmpty(value: string): boolean {
+  return value.trim() !== "";
 }
 
-// 이메일 철자 검사
-export function checkEmail(
-  input: string | FocusEvent<HTMLInputElement>
-): boolean {
-  if (typeof input === "string") {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(input);
-  }
-
-  return false;
+export function checkEmail(input: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(input);
 }
 
-// 비밀번호 길이 검사
 export function checkPasswordLength(
   input: string | FocusEvent<HTMLInputElement>
 ): boolean {
@@ -97,7 +80,6 @@ export function checkPasswordLength(
   return false;
 }
 
-// 비밀번호 일치 검사
 export function checkPasswordMatch() {
   const inputPassword = document.querySelector("#password") as HTMLInputElement;
   const inputPasswordConfirmation = document.querySelector(
@@ -113,7 +95,6 @@ interface SetValidationErrorStyleProps {
   isChecked: boolean;
 }
 
-// 유효성 검사 에러시 스타일 적용
 export const setValidationErrorStyle = ({
   input,
   errorMessage,
@@ -128,7 +109,6 @@ export const setValidationErrorStyle = ({
   }
 };
 
-// 유효성 검사 에러시 적용할 메시지
 export function getErrorMessage(
   isEmpty: boolean,
   isValid: boolean,
@@ -138,16 +118,34 @@ export function getErrorMessage(
   return isEmpty ? emptyErrorMessage : isValid ? "" : invalidErrorMessage;
 }
 
-// page mode에 따라 baseFields 적용하여 반환
 export const getFieldsByMode = (mode: "login" | "signup") => {
-  const baseFields = [fields["email"], fields["password"]];
+  const baseFields = [fields[FieldType.Email], fields[FieldType.Password]];
 
   const additionalFieldsByMode: {
-    [key: string]: (typeof fields)[keyof FieldInfo][];
+    [key in "signup" | "login"]?: FieldInfo[];
   } = {
-    signup: [fields["nickname"], fields["confirmPassword"]],
-    // 추가로 모드가 늘어날 경우
+    signup: [
+      fields[FieldType.Email],
+      fields[FieldType.Nickname],
+      fields[FieldType.Password],
+      fields[FieldType.ConfirmPassword],
+    ],
   };
 
-  return [...baseFields, ...(additionalFieldsByMode[mode] || [])];
+  return additionalFieldsByMode[mode] || baseFields;
+};
+
+export const pageConfig: { [key: string]: PageConfigType } = {
+  login: {
+    mode: "login",
+    buttonText: "회원가입",
+    infoMessage: "판다마켓이 처음이신가요? ",
+    goToPage: "signup",
+  },
+  signup: {
+    mode: "signup",
+    buttonText: "로그인",
+    infoMessage: "이미 회원이신가요? ",
+    goToPage: "login",
+  },
 };

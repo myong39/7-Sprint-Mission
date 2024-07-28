@@ -11,9 +11,8 @@ import Image from "next/image";
 
 const Header: React.FC = () => {
   const router = useRouter();
-  const isLogin = true;
-  const isLoginOrSignupPage =
-    router.pathname === "/login" || router.pathname === "/signup";
+  const isLogin = false;
+  const isLoginOrSignupPage = router.pathname === "/auth/[mode]";
 
   useEffect(() => {}, [router]);
 
@@ -38,7 +37,7 @@ const Header: React.FC = () => {
               </div>
             </div>
           </div>
-          {!isLogin && <Button href="/login">로그인</Button>}
+          {!isLogin && <Button href="auth/login">로그인</Button>}
           {isLogin && <Image src={userImage} alt="유저 로그인 프로필" />}
         </header>
       )}

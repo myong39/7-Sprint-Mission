@@ -6,6 +6,7 @@ import LogoText from "../../assets/images/logo/logo-text.svg";
 import LoggedInImage from "../../assets/images/ui/ic_profile.svg";
 import { Button } from "../Button/Button";
 import useResize from "../../hooks/useResize";
+import api from "../../api/auth";
 
 function NavBar() {
   const location = useLocation();
@@ -16,10 +17,7 @@ function NavBar() {
   const isMobile = windowWidth <= 768;
 
   useEffect(() => {
-    const checkLoginStatus = () => {
-      setIsLoggedIn(localStorage.getItem("accessToken") !== null);
-    };
-    checkLoginStatus();
+    setIsLoggedIn(api.isLoggedIn());
   }, []);
 
   const handleButtonClick = (url: string) => () => {

@@ -2,6 +2,7 @@ import React from "react";
 import backImg from "@/public/images/icons/ic_back.svg";
 import Link from "next/link";
 import styles from "./Commtent.module.scss";
+import Image from "next/image";
 
 export default function GoBackToListButton({ href = "" }: { href?: string }) {
   return (

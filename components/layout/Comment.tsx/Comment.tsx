@@ -1,9 +1,10 @@
 import React from "react";
 import kebabImg from "@/public/images/icons/ic_kebab.svg";
 import { getFormatTime, getElapsedTime } from "@/utils/Utils";
-import { CommentType } from "@/types/articleTypes";
+import { CommentType } from "@/types/ArticleTypes";
 import styles from "./Commtent.module.scss";
 import defaultProfileImg from "@/public/images/icons/ic_user.svg";
+import Image from "next/image";
 
 export default function Comment({
   comment: {
@@ -22,11 +23,7 @@ export default function Comment({
     <div className={styles.comment}>
       <div className={styles["comment-content-Wrapper"]}>
         <p>{content}</p>
-        <img
-          className={styles["kebab-image"]}
-          src={kebabImg.src}
-          alt="더보기"
-        />
+        <Image className={styles["kebab-image"]} src={kebabImg} alt="더보기" />
       </div>
       <div className={styles["writer-wrapper"]}>
         <img src={profileImg} alt={`${nickname}의 프로필 사진`} />

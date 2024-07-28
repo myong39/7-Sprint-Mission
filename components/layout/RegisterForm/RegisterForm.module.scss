@@ -1,9 +1,4 @@
-@mixin font-style($size, $weight, $lineHeight, $color) {
-  font-size: $size;
-  font-weight: $weight;
-  color: $color;
-  line-height: $lineHeight;
-}
+@import "mixins";
 
 .form {
   width: 1200px;
@@ -40,4 +35,18 @@
 .input-label {
   margin-bottom: 12px;
   @include font-style(18px, 700, 26px, var(--gray800));
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .form {
+    width: 100%;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .form {
+    width: 100%;
+  }
 }

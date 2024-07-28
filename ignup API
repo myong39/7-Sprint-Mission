@@ -1,0 +1,179 @@
+[33mcommit ce61bac3cae9a2292397494f7cc2d1125d4477fd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mNext-서미영-sprint11[m[33m)[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 28 21:21:27 2024 +0900
+
+    feat:feat: integrate signup API
+
+[33mcommit c29749a66a36e99d8d5ef7150a2377d71a16968e[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 28 20:02:32 2024 +0900
+
+    feat: add component for authentication validation
+
+[33mcommit cca4e0158e5356b311cc277ffd8b3730a2ff70f1[m[33m ([m[1;31morigin/Next-서미영-sprint11[m[33m)[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Fri Jul 26 23:58:54 2024 +0900
+
+    sprint misson11 init
+
+[33mcommit 6c69d423e50b00e204973a2cb38791ebb5eb79e6[m[33m ([m[1;31morigin/Next-서미영-sprint10[m[33m, [m[1;32mNext-서미영-sprint10[m[33m)[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Tue Jul 23 16:08:19 2024 +0900
+
+    refactor: review feedback incorporated
+
+[33mcommit ceda62f40630b4240906c1da5e79c2ac2be2dbab[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 22 04:00:28 2024 +0900
+
+    style: update CSS for comment section
+
+[33mcommit deb85c18eb5ca8560d1239a8266f5eb23d56a8b5[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 22 03:36:08 2024 +0900
+
+    feat: add BoardDetailArticle
+
+[33mcommit 57f2e9f9f61554da6adc6e82f3cf8cac93fdd522[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 22 01:27:54 2024 +0900
+
+    feat: add input validation to BoardDetail
+
+[33mcommit 032989227a049e3aa59096eb4369d3fec52e9610[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 22 00:41:53 2024 +0900
+
+    feat: add comment
+
+[33mcommit 1c0118dbabee7c037dca51cfb45704df03ed7217[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 21 17:12:02 2024 +0900
+
+    feat: add registerForm
+
+[33mcommit cb6f3344ad3263e7a01e91f87ed9733a7ec5e07d[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sat Jul 20 15:42:36 2024 +0900
+
+    feat: Update dropdown CSS
+
+[33mcommit d9871c424ff4e8106e0da695c5a8954c898be475[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sat Jul 20 00:34:07 2024 +0900
+
+    fix: add type assertion for orderTypeUS indexing
+
+[33mcommit 453b1d6256f4f97e56aae692121d88a70cc3ce54[m[33m ([m[1;32mNext-서미영-sprint9[m[33m)[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Fri Jul 19 22:40:33 2024 +0900
+
+    feat: generalize Dropdown component
+
+[33mcommit 8e28af15eb913f82596f77961ebbacd5a355fe80[m[33m ([m[1;31morigin/Next-서미영-sprint9[m[33m)[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Tue Jul 16 22:18:20 2024 +0900
+
+    refactor: review feedback incorporated
+
+[33mcommit 8bbe27160dc9840f1e26bf26cce18e96cf059ca9[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Tue Jul 16 15:48:50 2024 +0900
+
+    fix: update search functionality
+
+[33mcommit cdc006d711e15b74787a1a34b10a71d33cb632fa[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 15 00:33:18 2024 +0900
+
+    changed configuration settings
+
+[33mcommit 83f4978f2b2101562d6c7474dcee940f50c587cd[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 15 00:25:32 2024 +0900
+
+    renamed file articleTypes.ts
+
+[33mcommit 5a387327c6eb5a0ed9ec1d3fff5ac0df61193a5a[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Mon Jul 15 00:00:40 2024 +0900
+
+    feat: responsive design completed
+
+[33mcommit 030a9d8632c49f046291183a74db18914c206cc3[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 14 23:04:06 2024 +0900
+
+    feat: search feature completed
+
+[33mcommit 4609c1cf5798aff992d5d837281b6db1848cf9a9[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 14 21:46:58 2024 +0900
+
+    feat: complete dropdown menu
+
+[33mcommit 18bde00e39280f9cdb005098c3a3c5b043a3fb8a[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 14 16:54:39 2024 +0900
+
+    feat: add static data generation for Boards page
+
+[33mcommit 6654805802bb73e283f3feac30271c2cc1b657f8[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sun Jul 14 00:24:17 2024 +0900
+
+    feat: modified CSS styling
+
+[33mcommit 0938861116dc40565623b7bb4a408d1c12ad24d5[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Sat Jul 13 18:44:04 2024 +0900
+
+    feat: add board page and create APIs for fetching articles
+
+[33mcommit 578b3b8ed5a79200d0cfbf32c3f3409478622b64[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Fri Jul 12 19:46:13 2024 +0900
+
+    Add Header
+
+[33mcommit a71f2544a9ae691e07f5834dd51b20f4db4df683[m
+Author: 서미영 <seomiyoung3998@gmail.com>
+Date:   Fri Jul 12 13:19:37 2024 +0900
+
+    Next sprint mission9 Init
+
+[33mcommit 8d163dd7d66bd121fdc5a1e4251aa42a4ff61e27[m[33m ([m[1;32mNext-서미영[m[33m)[m
+Author: hanseulhee <3021062@gmail.com>
+Date:   Tue Oct 10 14:50:26 2023 +0900
+
+    env: workflows 폴더로 이동
+
+[33mcommit 14baca2fe9e83c7e0907da29687edc936d0a7f8a[m
+Author: hanseulhee <3021062@gmail.com>
+Date:   Tue Oct 10 14:47:30 2023 +0900
+
+    fix: 머지 후 브랜치 삭제 github action 수정
+
+[33mcommit 671d4d5585c8c276a6bfa7e18194c439ce7dcd7f[m
+Author: hanseulhee <3021062@gmail.com>
+Date:   Tue Oct 10 14:15:18 2023 +0900
+
+    reset
+
+[33mcommit 1472169dbfd30c401e67ec30b5fd165944311899[m
+Author: withyj <withyj@codeit.kr>
+Date:   Thu Nov 23 16:35:19 2023 +0900
+
+    Initial commit from Create Next App
+
+[33mcommit 87e3f150ba694477e46849585314f36f6985f4fe[m
+Author: withyj <withyj@codeit.kr>
+Date:   Sun Sep 3 21:57:33 2023 +0900
+
+    chore: 머지 후 브랜치 삭제 github action 추가
+
+[33mcommit fc5dffe1b33dfa2d439c6926dd860644651cb460[m
+Author: withyj <withyj@codeit.kr>
+Date:   Sun Sep 3 21:56:24 2023 +0900
+
+    chore: PR 템플릿 추가

@@ -1,13 +1,14 @@
-import { ArticleProp } from "@/types/articleTypes";
+import { ArticleProp } from "@/types/ArticleTypes";
 import styles from "./Freeboard.module.scss";
 import favoriteImg from "@/public/images/icons/ic_heart.svg";
 import { getFormatTime } from "@/utils/Utils";
 import noImg from "@/public/images/icons/no_img.svg";
+import Image from "next/image";
 
 export default function AllArticleItem({
   article: { createdAt, image, likeCount, title, writer },
 }: ArticleProp) {
-  const titleImage = image ? image : noImg.src;
+  const titleImage = image || noImg.src;
 
   return (
     <div className={styles["all-card"]}>
@@ -26,9 +27,9 @@ export default function AllArticleItem({
             </span>
           </div>
           <div className={styles["favorite-wrapper"]}>
-            <img
+            <Image
               className={styles["favorite"]}
-              src={favoriteImg.src}
+              src={favoriteImg}
               alt="즐겨찾기"
             />
             <span className={styles["favorite-count"]}>{likeCount}</span>

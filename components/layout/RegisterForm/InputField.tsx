@@ -1,4 +1,4 @@
-import { InputFieldProps } from "@/types/registerTypes";
+import { InputFieldProps } from "@/types/RegisterTypes";
 import React from "react";
 import FileInput from "../FileInput/FileInput";
 import styles from "./InputField.module.scss";

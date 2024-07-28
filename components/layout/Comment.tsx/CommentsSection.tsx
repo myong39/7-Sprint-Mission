@@ -1,7 +1,8 @@
 import React from "react";
 import Comment from "./Comment";
-import { CommentsSectionProp } from "@/types/articleTypes";
+import { CommentsSectionProp } from "@/types/ArticleTypes";
 import styles from "./Commtent.module.scss";
+import Image from "next/image";
 
 export default function CommentsSection({
   comments: {
@@ -17,7 +18,7 @@ export default function CommentsSection({
     <section className={`${styles["comments-section"]} ${className}`}>
       {isCommentEmpty && (
         <div className={styles["empty-comment"]}>
-          <img src={src} alt={alt} />
+          <Image src={src} alt={alt} priority />
           <h3 style={{ whiteSpace: "pre-line" }}>{content}</h3>
         </div>
       )}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Freeboard.module.scss";
 import BestArticleItem from "./BestArticleItem";
 import { getArticle } from "@/lib/articleApi";
-import { Article, ArticleApiData } from "@/types/articleTypes";
+import { Article, ArticleApiData } from "@/types/ArticleTypes";
 import Link from "next/link";
 import useDeviceType from "@/hooks/useDeviceType";
 import { DeviceTypePageSize } from "@/constants/deviceSizesConstants";

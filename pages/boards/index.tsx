@@ -1,7 +1,7 @@
 import BestArticleList from "@/components/boards/BestArticleList";
 import AllArticleList from "@/components/boards/AllArticleList";
 import styles from "@/components/boards/Freeboard.module.scss";
-import { ArticleProps } from "@/types/articleTypes";
+import { ArticleProps } from "@/types/ArticleTypes";
 import { getArticle } from "@/lib/articleApi";
 
 const REVALIDATE = 10;

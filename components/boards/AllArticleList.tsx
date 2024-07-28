@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Freeboard.module.scss";
 import AllArticleItem from "./AllArticleItem";
-import { Article, ArticleApiData } from "@/types/articleTypes";
+import { Article, ArticleApiData } from "@/types/ArticleTypes";
 import SearchInput from "@/components/layout/SearchInput";
 import Button from "@/components/layout/Button";
 import Link from "next/link";
@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import SortDropdown from "../layout/Dropdown/SortDropdown";
 import {
   defaultOrderType,
-  ORDER_TYPE_ENUM,
   orderTypeKeysKR,
   orderTypeKR,
   orderTypeUS,
@@ -22,7 +21,7 @@ export default function AllArticleList({
   initialArticles: Article[];
 }) {
   const [articles, setArticles] = useState(initialArticles);
-  const [orderBy, setOrderBy] = useState(ORDER_TYPE_ENUM.RECENT);
+  const [orderBy, setOrderBy] = useState(defaultOrderType);
   const items = orderTypeKeysKR;
 
   const router = useRouter();

@@ -4,7 +4,7 @@ import styles from "./SortDropdown.module.scss";
 import smallDropdownImg from "@/public/images/icons/ic_sort.svg";
 import useDeviceType from "@/hooks/useDeviceType";
 import Dropdown from "./Dropdown";
-import { SortDropdownProps } from "@/types/uiTypes";
+import { SortDropdownProps } from "@/types/UiTypes";
 
 export default function SortDropdown({
   onOrderChange,

@@ -5,9 +5,7 @@ export interface FieldInfo {
   placeholder?: string;
 }
 
-export interface FieldValues {
-  [key: string]: string | File | null;
-}
+export type FormValues = Record<string, string | File | null>;
 
 export interface RegisterFormProps {
   fields: { [key: string]: FieldInfo };

@@ -1,9 +1,4 @@
-@mixin font-style($size, $weight, $lineHeight, $color) {
-  font-size: $size;
-  font-weight: $weight;
-  color: $color;
-  line-height: $lineHeight;
-}
+@import "mixins";
 
 .kebab-image {
   cursor: pointer;

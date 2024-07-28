@@ -53,7 +53,7 @@ export interface ArticleCommentApiData {
 export interface CommentObject {
   comments: CommentType[];
   content: string;
-  imgUrl: { src: string; alt?: string };
+  imgUrl: { src: string; alt: string };
 }
 
 export interface CommentsSectionProp {

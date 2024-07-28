@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import userImage from "@/public/images/icons/ic_user.svg";
 import logoImg from "@/public/images/icons/panda-market-logo.svg";
@@ -7,14 +7,17 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import NavLink from "../../NavLink";
 import Button from "../Button";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   const router = useRouter();
-  const isLogin = true;
-  const isLoginOrSignupPage =
-    router.pathname === "/login" || router.pathname === "/signup";
+  const isLoginOrSignupPage = router.pathname === "/auth/[mode]";
+  const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {}, [router]);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setIsLogin(!!token);
+  }, [router]);
 
   return (
     <>
@@ -37,12 +40,8 @@ const Header: React.FC = () => {
               </div>
             </div>
           </div>
-          {!isLogin && (
-            <Link href="/login">
-              <Button href="">로그인</Button>
-            </Link>
-          )}
-          {isLogin && <img src={userImage.src} alt="유저 로그인 프로필"></img>}
+          {!isLogin && <Button href="auth/login">로그인</Button>}
+          {isLogin && <Image src={userImage} alt="유저 로그인 프로필" />}
         </header>
       )}
     </>

@@ -1,6 +1,7 @@
 import searchImg from "@/public/images/icons/ic_search.svg";
 import styles from "./SearchInput.module.scss";
 import { KeyboardEvent } from "react";
+import Image from "next/image";
 
 export default function SearchInput({
   onSortBySearch,
@@ -21,7 +22,7 @@ export default function SearchInput({
         placeholder="검색할 상품을 입력해주세요"
         onKeyDown={handleKeyDown}
       />
-      <img className={styles.search} src={searchImg.src} alt="검색 돋보기" />
+      <Image className={styles.search} src={searchImg} alt="검색 돋보기" />
     </div>
   );
 }

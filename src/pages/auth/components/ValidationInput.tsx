@@ -14,6 +14,7 @@ interface ValidationInputProps {
   name: string;
   placeholder: string;
   onValid: (isValid: boolean) => void;
+  onChange?: (value: string) => void;
 }
 
 const ValidationInput: React.FC<ValidationInputProps> = ({
@@ -22,6 +23,7 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
   name,
   placeholder,
   onValid,
+  onChange,
 }) => {
   const [value, setValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
@@ -67,6 +69,9 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    if (onChange) {
+      onChange(e.target.value);
+    }
     if (isInitial) {
       setIsInitial(false);
     }

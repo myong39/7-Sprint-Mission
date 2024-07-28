@@ -2,21 +2,41 @@ import logo from "../../../assets/images/logo/logo.svg";
 import google from "../../../assets/images/social/google-logo.png";
 import kakao from "../../../assets/images/social/kakao-logo.png";
 import ValidationInput from "../components/ValidationInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button/Button";
 import "../auth.css";
+import api from "../../../api/auth";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (isEmailValid && isPasswordValid) {
-      navigate("/login");
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/");
     }
+  }, [navigate]);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (isEmailValid && isPasswordValid)
+      try {
+        const response = await api.login(email, password);
+        if (response.status === 200 && response.data.accessToken) {
+          localStorage.setItem("accessToken", response.data.accessToken);
+          navigate("/");
+        } else {
+          alert("로그인 실패");
+        }
+      } catch (error) {
+        console.error("로그인 오류:", error);
+        alert("로그인 오류");
+      }
   };
 
   return (
@@ -34,6 +54,7 @@ const LoginPage = () => {
           name='이메일'
           placeholder='이메일을 입력해주세요'
           onValid={setIsEmailValid}
+          onChange={(value) => setEmail(value)}
         />
 
         <ValidationInput
@@ -42,6 +63,7 @@ const LoginPage = () => {
           name='비밀번호'
           placeholder='비밀번호를 입력해주세요'
           onValid={setIsPasswordValid}
+          onChange={(value) => setPassword(value)}
         />
 
         <div className='auth-button'>

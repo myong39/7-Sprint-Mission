@@ -1,4 +1,4 @@
-export const BASE_URL = "https://panda-market-api.vercel.app";
+export const BASE_URL = "https://panda-market-api.vercel.app/";
 
 export async function getItems({
   page = 1,
@@ -9,7 +9,7 @@ export async function getItems({
   pageSize?: number;
   orderBy: string;
 }) {
-  const query = `/products?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}`;
+  const query = `products?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}`;
   try {
     const response = await fetch(`${BASE_URL}${query}`);
     const data = await response.json();
@@ -33,7 +33,9 @@ export async function getItemDetail(productId: string) {
 
 export async function getComments(productId: string, limit = 10) {
   try {
-    const response = await fetch(`${BASE_URL}/products/${productId}/comments?limit=${limit}`);
+    const response = await fetch(
+      `${BASE_URL}/products/${productId}/comments?limit=${limit}`,
+    );
     const data = await response.json();
     return data.list || [];
   } catch (error) {

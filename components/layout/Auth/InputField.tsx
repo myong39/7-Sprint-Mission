@@ -11,50 +11,61 @@ interface InputFieldProps {
   error?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ field, control, error }) => {
-  const [inputType, setInputType] = useState(field.type);
+const InputField: React.FC<InputFieldProps> = ({
+  field: {
+    type,
+    id,
+    label,
+    name,
+    required,
+    emptyErrorMessage,
+    placeholder,
+    autoComplete,
+    invalidErrorMessage,
+    validationFunction,
+  },
+  control,
+  error,
+}) => {
+  const [inputType, setInputType] = useState(type);
 
   const handlePasswordVisible = (updatedVisible: boolean) => {
-    if (
-      field.id === "password" ||
-      field.id === FIELDTYPE.PASSWORDCONFIRMATION
-    ) {
+    if (id === "password" || id === FIELDTYPE.PASSWORDCONFIRMATION) {
       setInputType(updatedVisible ? "text" : "password");
     }
   };
 
   return (
-    <div className={styles["input-area"]} key={field.id}>
-      <label htmlFor={field.id}>{field.label}</label>
+    <div className={styles["input-area"]} key={id}>
+      <label htmlFor={id}>{label}</label>
       <div
         className={
           styles[
-            field.name === FIELDTYPE.PASSWORD ||
-            field.name === FIELDTYPE.PASSWORDCONFIRMATION
+            name === FIELDTYPE.PASSWORD ||
+            name === FIELDTYPE.PASSWORDCONFIRMATION
               ? "password-input"
               : ""
           ]
         }
       >
         <Controller
-          name={field.id}
+          name={id}
           control={control}
           defaultValue=""
           rules={{
-            required: field.required ? field.emptyErrorMessage : false,
-            validate: field.validationFunction
-              ? (value) =>
-                  field.validationFunction(value) || field.invalidErrorMessage
+            required: required ? emptyErrorMessage : false,
+            validate: validationFunction
+              ? (value) => validationFunction(value) || invalidErrorMessage
               : undefined,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <input
-              id={field.id}
-              name={field.name}
+              id={id}
+              name={name}
               type={inputType}
-              placeholder={field.placeholder}
-              autoComplete={field.autoComplete}
-              required={field.required}
+              placeholder={placeholder}
+              autoComplete={autoComplete}
+              required={required}
               onBlur={onBlur}
               onChange={onChange}
               value={value}
@@ -62,8 +73,8 @@ const InputField: React.FC<InputFieldProps> = ({ field, control, error }) => {
             />
           )}
         />
-        {(field.name === FIELDTYPE.PASSWORD ||
-          field.name === FIELDTYPE.PASSWORDCONFIRMATION) && (
+        {(name === FIELDTYPE.PASSWORD ||
+          name === FIELDTYPE.PASSWORDCONFIRMATION) && (
           <TogglePassword onPasswordVisible={handlePasswordVisible} />
         )}
       </div>

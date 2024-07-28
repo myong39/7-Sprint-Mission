@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Home.css";
+import SocialBtn from "./SocialBtn";
 import instagram_ic from "../../assets/ic_instagram.png";
 import facebook_ic from "../../assets/ic_facebook.png";
 import twitter_ic from "../../assets/ic_twitter.png";
@@ -106,50 +107,26 @@ const Home = () => {
             <a href="#">FAQ</a>
           </div>
           <div className="sns">
-            <button
-              type="button"
-              onClick={() => window.open("https://www.facebook.com/")}
-            >
-              <img
-                src={facebook_ic}
-                alt="페이스북 아이콘"
-                width="20"
-                height="20"
-              />
-            </button>
-            <button
-              type="button"
-              onClick={() => window.open("https://twitter.com/")}
-            >
-              <img
-                src={twitter_ic}
-                alt="트위터 아이콘"
-                width="20"
-                height="20"
-              />
-            </button>
-            <button
-              type="button"
-              onClick={() => window.open("https://www.youtube.com/")}
-            >
-              <img
-                src={youtube_ic}
-                alt="유튜브 아이콘"
-                width="20"
-                height="20"
-              />
-            </button>
-            <button
-              type="button"
-              onClick={() => window.open("https://www.instagram.com/")}
-            >
-              <img
-                src={instagram_ic}
-                alt="인스타그램 아이콘"
-                width="20"
-                height="20"
-              />
-            </button>
+            <SocialBtn
+              url="https://www.facebook.com/"
+              imgSrc={facebook_ic}
+              altText="페이스북 아이콘"
+            />
+            <SocialBtn
+              url="https://twitter.com/"
+              imgSrc={twitter_ic}
+              altText="트위터 아이콘"
+            />
+            <SocialBtn
+              url="https://www.youtube.com/"
+              imgSrc={youtube_ic}
+              altText="유튜브 아이콘"
+            />
+            <SocialBtn
+              url="https://www.instagram.com/"
+              imgSrc={instagram_ic}
+              altText="인스타그램 아이콘"
+            />
           </div>
         </div>
         <div className="mobile-addr">©codeit - 2024</div>

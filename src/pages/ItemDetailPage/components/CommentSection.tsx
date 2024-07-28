@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../ItemDetailPage.module.css";
 import { Comment } from "../../../types/types";
-import { BASE_URL } from "../../../api/itemApi";
+import { BASE_URL } from "../../../api/item";
 import { Button } from "../../../components/Button/Button";
 
 interface CommentSectionProps {

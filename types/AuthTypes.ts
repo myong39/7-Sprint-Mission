@@ -32,7 +32,7 @@ export interface PageConfigType {
 
 export interface SignUpData {
   email: string;
-  nickname: string;
+  nickname?: string;
   password: string;
-  passwordConfirmation: string;
+  passwordConfirmation?: string;
 }

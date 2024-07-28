@@ -22,3 +22,23 @@ export const signUp = async (data: SignUpData) => {
     throw error;
   }
 };
+
+export const signIn = async ({ email, password }: SignUpData) => {
+  try {
+    const response = await instance.post("/auth/signIn", {
+      email,
+      password,
+    });
+
+    const { user, accessToken, refreshToken } = response.data;
+
+    // console.log("사용자:", user);
+    // console.log("액세스 토큰:", accessToken);
+    // console.log("리프레시 토큰:", refreshToken);
+
+    return { user, accessToken, refreshToken };
+  } catch (error) {
+    console.error("로그인 오류:", error);
+    throw error;
+  }
+};

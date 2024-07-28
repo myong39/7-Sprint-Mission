@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import styles from "./Auth.module.scss";
 import Button from "../Button";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { signUp } from "@/lib/authApi";
+import { signIn, signUp } from "@/lib/authApi";
 
 const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
   const {
@@ -27,6 +27,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     if (mode === "signup") await signUp(data);
+    else if (mode === "login") {
+      await signIn(data);
+    }
 
     router.push("/");
   };

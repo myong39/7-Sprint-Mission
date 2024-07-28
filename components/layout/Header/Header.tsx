@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import userImage from "@/public/images/icons/ic_user.svg";
 import logoImg from "@/public/images/icons/panda-market-logo.svg";
@@ -11,10 +11,13 @@ import Image from "next/image";
 
 const Header: React.FC = () => {
   const router = useRouter();
-  const isLogin = false;
   const isLoginOrSignupPage = router.pathname === "/auth/[mode]";
+  const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {}, [router]);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setIsLogin(!!token);
+  }, [router]);
 
   return (
     <>

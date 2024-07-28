@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm, Controller, Control, FieldValues } from "react-hook-form";
+import { Controller, Control, FieldValues } from "react-hook-form";
 import styles from "./Auth.module.scss";
 import { FieldInfo } from "@/types/AuthTypes";
 import TogglePassword from "./TogglePassword";

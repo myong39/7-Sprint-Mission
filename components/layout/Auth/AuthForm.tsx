@@ -26,12 +26,30 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<any> = async (data) => {
-    if (mode === "signup") await signUp(data);
-    else if (mode === "login") {
-      await signIn(data);
-    }
+    if (mode === "signup") {
+      try {
+        await signUp(data);
+        alert(
+          "회원가입이 성공적으로 완료되었습니다. 로그인 페이지로 이동합니다."
+        );
+        router.push("/auth/login");
+      } catch (error) {
+        console.error("회원가입 오류:", error);
+      }
+    } else if (mode === "login") {
+      try {
+        const result = await signIn(data);
 
-    router.push("/");
+        if (result.accessToken && result.refreshToken) {
+          localStorage.setItem("accessToken", result.accessToken);
+          localStorage.setItem("refreshToken", result.refreshToken);
+        }
+
+        router.push("/");
+      } catch (error) {
+        console.error("로그인 오류:", error);
+      }
+    }
   };
 
   useEffect(() => {

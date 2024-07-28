@@ -6,6 +6,7 @@ import { AuthFormProps } from "@/types/AuthTypes";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "@/components/layout/Auth/Auth.module.scss";
+import { useEffect } from "react";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -15,6 +16,13 @@ export default function AuthPage() {
     queryMode === "login" || queryMode === "signup" ? queryMode : "login";
 
   const { buttonText, infoMessage, goToPage } = pageConfig[mode];
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      router.push("/");
+    }
+  }, [router]);
 
   return (
     <div className={styles["signup-and-login-page-main"]}>

@@ -3,6 +3,7 @@ import styles from "../ItemDetailPage.module.css";
 import { Comment } from "../../../types/types";
 import { BASE_URL } from "../../../api/item";
 import { Button } from "../../../components/Button/Button";
+import NoComment from "../../../assets/images/ui/empty-comments.svg";
 
 interface CommentSectionProps {
   comments: Comment[];
@@ -88,7 +89,10 @@ const CommentSection: React.FC<CommentSectionProps> = ({
           </div>
         ))
       ) : (
-        <p>아직 문의가 없습니다.</p>
+        <div className={styles["no-comment"]}>
+          <img src={NoComment} alt='noComment' />
+          <p>아직 문의가 없어요</p>
+        </div>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { defaultOrderType, ORDER_TYPE_ENUM } from "@/constants/orderConstants";
+import { defaultOrderType } from "@/constants/orderConstants";
 import { ArticleApiData, ArticleCommentApiData } from "@/types/ArticleTypes";
 import axios from "axios";
 

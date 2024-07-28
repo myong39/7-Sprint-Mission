@@ -29,3 +29,10 @@ export interface PageConfigType {
   infoMessage: string;
   goToPage: string;
 }
+
+export interface SignUpData {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}

@@ -1,55 +1,55 @@
 import { FocusEvent } from "react";
 import { FieldInfo, PageConfigType } from "@/types/AuthTypes";
 
-enum FieldType {
-  Email = "email",
-  Nickname = "nickname",
-  Password = "password",
-  ConfirmPassword = "confirmPassword",
+export enum FIELDTYPE {
+  EMAIL = "email",
+  NICKNAME = "nickname",
+  PASSWORD = "password",
+  PASSWORDCONFIRMATION = "passwordConfirmation",
 }
 
 export const fields: { [id: string]: FieldInfo } = {
-  [FieldType.Email]: {
-    id: FieldType.Email,
-    name: FieldType.Email,
+  [FIELDTYPE.EMAIL]: {
+    id: FIELDTYPE.EMAIL,
+    name: FIELDTYPE.EMAIL,
     label: "이메일",
     placeholder: "이메일을 입력해주세요",
-    autoComplete: FieldType.Email,
-    type: FieldType.Email,
+    autoComplete: FIELDTYPE.EMAIL,
+    type: FIELDTYPE.EMAIL,
     required: true,
     emptyErrorMessage: "이메일을 입력해주세요.",
     invalidErrorMessage: "잘못된 이메일 형식입니다.",
     value: "",
     validationFunction: checkEmail,
   },
-  [FieldType.Nickname]: {
-    id: FieldType.Nickname,
-    name: FieldType.Nickname,
+  [FIELDTYPE.NICKNAME]: {
+    id: FIELDTYPE.NICKNAME,
+    name: FIELDTYPE.NICKNAME,
     label: "닉네임",
     placeholder: "닉네임을 입력해주세요",
-    autoComplete: FieldType.Nickname,
+    autoComplete: FIELDTYPE.NICKNAME,
     type: "text",
     emptyErrorMessage: "닉네임을 입력해주세요.",
     invalidErrorMessage: "닉네임을 입력해주세요.",
     value: "",
     validationFunction: checkNotEmpty,
   },
-  [FieldType.Password]: {
-    id: FieldType.Password,
-    name: FieldType.Password,
+  [FIELDTYPE.PASSWORD]: {
+    id: FIELDTYPE.PASSWORD,
+    name: FIELDTYPE.PASSWORD,
     label: "비밀번호",
     placeholder: "비밀번호를 입력해주세요",
     autoComplete: "new-password",
-    type: FieldType.Password,
+    type: FIELDTYPE.PASSWORD,
     required: true,
     emptyErrorMessage: "비밀번호를 입력해주세요.",
     invalidErrorMessage: "비밀번호를 8자 이상 입력해주세요.",
     value: "",
     validationFunction: checkPasswordLength,
   },
-  [FieldType.ConfirmPassword]: {
-    id: FieldType.ConfirmPassword,
-    name: FieldType.ConfirmPassword,
+  [FIELDTYPE.PASSWORDCONFIRMATION]: {
+    id: FIELDTYPE.PASSWORDCONFIRMATION,
+    name: FIELDTYPE.PASSWORDCONFIRMATION,
     label: "비밀번호 확인",
     placeholder: "비밀번호를 다시 입력해주세요",
     autoComplete: "new-password",
@@ -83,31 +83,11 @@ export function checkPasswordLength(
 export function checkPasswordMatch() {
   const inputPassword = document.querySelector("#password") as HTMLInputElement;
   const inputPasswordConfirmation = document.querySelector(
-    "#confirmPassword"
+    "#passwordConfirmation"
   ) as HTMLInputElement;
 
   return inputPassword?.value === inputPasswordConfirmation?.value;
 }
-
-interface SetValidationErrorStyleProps {
-  input: HTMLInputElement;
-  errorMessage: Element | null;
-  isChecked: boolean;
-}
-
-export const setValidationErrorStyle = ({
-  input,
-  errorMessage,
-  isChecked,
-}: SetValidationErrorStyleProps) => {
-  if (isChecked) {
-    input?.classList.add("error-border");
-    errorMessage?.classList.add("visible-maker");
-  } else {
-    input?.classList.remove("error-border");
-    errorMessage?.classList.remove("visible-maker");
-  }
-};
 
 export function getErrorMessage(
   isEmpty: boolean,
@@ -119,21 +99,21 @@ export function getErrorMessage(
 }
 
 export const getFieldsByMode = (mode: "login" | "signup") => {
-  const baseFields = [fields[FieldType.Email], fields[FieldType.Password]];
+  const baseFields = [fields[FIELDTYPE.EMAIL], fields[FIELDTYPE.PASSWORD]];
 
   const additionalFieldsByMode: {
     [key in "signup" | "login"]?: FieldInfo[];
   } = {
     signup: [
-      fields[FieldType.Email],
-      fields[FieldType.Nickname],
-      fields[FieldType.Password],
-      fields[FieldType.ConfirmPassword],
+      fields[FIELDTYPE.EMAIL],
+      fields[FIELDTYPE.NICKNAME],
+      fields[FIELDTYPE.PASSWORD],
+      fields[FIELDTYPE.PASSWORDCONFIRMATION],
     ],
   };
 
   return additionalFieldsByMode[mode] || baseFields;
-};
+}; // 이 부분 타입 Record 이용해서 나중에 정리 예정
 
 export const pageConfig: { [key: string]: PageConfigType } = {
   login: {

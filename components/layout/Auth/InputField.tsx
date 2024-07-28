@@ -3,6 +3,7 @@ import { useForm, Controller, Control, FieldValues } from "react-hook-form";
 import styles from "./Auth.module.scss";
 import { FieldInfo } from "@/types/AuthTypes";
 import TogglePassword from "./TogglePassword";
+import { FIELDTYPE } from "./AuthConfig";
 
 interface InputFieldProps {
   field: FieldInfo;
@@ -14,7 +15,10 @@ const InputField: React.FC<InputFieldProps> = ({ field, control, error }) => {
   const [inputType, setInputType] = useState(field.type);
 
   const handlePasswordVisible = (updatedVisible: boolean) => {
-    if (field.id === "password" || field.id === "confirmPassword") {
+    if (
+      field.id === "password" ||
+      field.id === FIELDTYPE.PASSWORDCONFIRMATION
+    ) {
       setInputType(updatedVisible ? "text" : "password");
     }
   };
@@ -25,7 +29,8 @@ const InputField: React.FC<InputFieldProps> = ({ field, control, error }) => {
       <div
         className={
           styles[
-            field.name === "password" || field.name === "confirmPassword"
+            field.name === FIELDTYPE.PASSWORD ||
+            field.name === FIELDTYPE.PASSWORDCONFIRMATION
               ? "password-input"
               : ""
           ]
@@ -57,7 +62,8 @@ const InputField: React.FC<InputFieldProps> = ({ field, control, error }) => {
             />
           )}
         />
-        {(field.name === "password" || field.name === "confirmPassword") && (
+        {(field.name === FIELDTYPE.PASSWORD ||
+          field.name === FIELDTYPE.PASSWORDCONFIRMATION) && (
           <TogglePassword onPasswordVisible={handlePasswordVisible} />
         )}
       </div>

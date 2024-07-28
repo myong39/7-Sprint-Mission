@@ -47,6 +47,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
 
         router.push("/");
       } catch (error) {
+        alert(
+          "로그인에 실패했습니다. 정확한 아이디와 비밀번호를 입력해주세요."
+        );
         console.error("로그인 오류:", error);
       }
     }

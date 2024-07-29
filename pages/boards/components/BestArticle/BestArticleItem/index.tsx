@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import styles from "@/pages/boards/components/BestArticle/BestArticleItem/styles.module.scss";
 import heartIcon from "@/assets/icons/ic_heart.svg";
 import { Article } from "@/services/articles";
 import bestBadge from "@/assets/images/img_badge.svg";
@@ -26,7 +26,7 @@ function BestArticleItem({ article }: BestArticleItemProps) {
           <p className={styles["title"]}>{article.title}</p>
           {article.image && (
             <div className={styles["post-image-container"]}>
-              <Image
+              <img
                 className={styles["post-image"]}
                 src={article.image}
                 alt={article.title}

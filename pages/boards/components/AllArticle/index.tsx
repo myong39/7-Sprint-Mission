@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Dropdown from "./Dropdown";
-import styles from "./styles.module.scss";
+import styles from "@/pages/boards/components/AllArticle/styles.module.scss";
 import searchIcon from "@/assets/icons/ic_search.svg";
-import AllPost from "./AllPost";
+import AllPost from "./AllArticleItem";
 import { useEffect, useMemo, useState } from "react";
-import { getArticles, Article } from "@/services/articles";
+import { getArticles, Article, ApiResponse } from "@/services/articles";
 import Link from "next/link";
 
 function All() {
@@ -14,17 +14,19 @@ function All() {
   const [searchKeyword, setSearchKeyword] = useState("");
 
   useEffect(() => {
-    async function fetchArticles() {
+    const fetchArticles = async () => {
       try {
-        const { list } = await getArticles({ orderBy });
-        setArticles(list);
+        const params = { orderBy, keyword: searchKeyword };
+        const response = await getArticles(params);
+        const { data }: { data: ApiResponse<Article> } = response;
+        setArticles(data.list);
       } catch (error) {
         console.error("데이터를 불러오는데 실패했습니다..!", error);
       }
-    }
+    };
 
     fetchArticles();
-  }, [orderBy]);
+  }, [orderBy, searchKeyword]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(event.target.value);

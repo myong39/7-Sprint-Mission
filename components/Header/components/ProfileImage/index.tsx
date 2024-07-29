@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import loginIcon from "@/assets/icons/ic_profile.svg";
-import styles from "./styles.module.scss";
+import styles from "@/components/Header/components/ProfileImage/styles.module.scss";
 
 function ProfileImage() {
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./styles.module.scss";
+import styles from "@/components/Header/components/List/styles.module.scss";
 
 function HeaderList() {
   return (

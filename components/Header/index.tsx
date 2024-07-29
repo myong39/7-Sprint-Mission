@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "@/components/Header/styles.module.scss";
 import ProfileImage from "./components/ProfileImage";
 import HeaderList from "./components/List";
 import Logo from "./components/Logo";

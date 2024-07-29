@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./styles.module.scss";
+import styles from "@/pages/boards/components/AllArticle/Dropdown/styles.module.scss";
 import Image from "next/image";
 import arrowIcon from "@/assets/icons/ic_arrow_down.svg";
 import sortIcon from "@/assets/icons/ic_sort.svg";

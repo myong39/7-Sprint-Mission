@@ -1,24 +1,25 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import styles from "@/pages/addboard/styles.module.scss";
 import plusIcon from "@/assets/icons/ic_plus.svg";
 import cancelIcon from "@/assets/icons/ic_cancel.svg";
 import classNames from "classnames";
 
+
 function AddBoard() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [titleInputValue, setTitleInputValue] = useState("");
-  const [contentTextAreaValue, setContentTextAreaValue] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  const activeButton = titleInputValue && contentTextAreaValue;
+  const activeButton = title && content;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitleInputValue(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContentTextAreaValue(e.target.value);
+    setContent(e.target.value);
   };
 
   const handleFileInputClick = () => {
@@ -66,7 +67,7 @@ function AddBoard() {
           className={styles["title-input"]}
           type="text"
           id="title"
-          value={titleInputValue}
+          value={title}
           onChange={handleInputChange}
           placeholder="제목을 입력해주세요"
         />
@@ -75,7 +76,7 @@ function AddBoard() {
         <label className={styles["content"]}>*내용</label>
         <textarea
           className={styles["content-textarea"]}
-          value={contentTextAreaValue}
+          value={content}
           onChange={handleTextAreaChange}
           placeholder="내용을 입력해주세요"
         />

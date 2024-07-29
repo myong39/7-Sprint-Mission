@@ -1,0 +1,236 @@
+@import "@/styles/import.scss";
+
+.container {
+  margin: 0 auto;
+}
+
+.banner {
+  @include Size(100%, 540px);
+  @include Flex(row, center, end);
+  background-color: $color-bg-landing-banner;
+
+  .banner-wrapper {
+    @include Size(100%, 340px);
+    @include Flex(row, center, center);
+
+    .banner-element {
+      @include Flex(column, center, center);
+      margin-bottom: 40px;
+
+      .banner-title {
+        @include Font(40px, 700, $color-gray-700);
+        @include Size(295px, 112px);
+      }
+
+      .banner-button {
+        @include Size(100%, 56px);
+        @include Font(20px, 600, $color-gray-50);
+        background-color: $color-blue;
+        border-radius: 40px;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+.feature-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 138px 0;
+
+  .feature-card {
+    @include Size(955px, 444px);
+    @include Flex(row, "", center);
+    background-color: $color-bg-comment;
+
+    .feature-element {
+      @include Flex(column, center, left);
+      gap: 12px;
+      margin-left: 64px;
+
+      .feature-label {
+        @include Font(18px, 700, $color-blue);
+        line-height: 26px;
+      }
+
+      .feature-title {
+        @include Font(40px, 700, $color-gray-700);
+        line-height: 56px;
+      }
+
+      .feature-description {
+        @include Font(24px, 500, $color-gray-700);
+        line-height: 32px;
+        width: 274px;
+      }
+    }
+  }
+
+  .feature-image {
+    border-radius: 12px;
+  }
+}
+
+.feature-reverse-wrapper {
+  max-width: 1200px;
+  @include Flex(row, right, "");
+  margin: 0 auto;
+  padding: 138px 0;
+
+  .feature-card {
+    @include Size(955px, 444px);
+    @include Flex(row-reverse, "", center);
+    background-color: $color-bg-comment;
+
+    .feature-element {
+      @include Flex(column, center, left);
+      gap: 12px;
+      margin-right: 64px;
+      text-align: right;
+
+      .feature-label {
+        @include Font(18px, 700, $color-blue);
+        line-height: 26px;
+      }
+
+      .feature-title {
+        @include Font(40px, 700, $color-gray-700);
+        line-height: 56px;
+      }
+
+      .feature-description {
+        @include Font(24px, 500, $color-gray-700);
+        line-height: 32px;
+      }
+    }
+  }
+
+  .feature-image {
+    border-radius: 12px;
+  }
+}
+
+.bottom-banner {
+  @include Size(auto, 540px);
+  @include Flex(row, center, end);
+  background-color: $color-bg-landing-banner;
+
+  .bottom-banner-title-wrapper {
+    margin-bottom: 172px;
+
+    .bottom-banner-title {
+      @include Font(40px, 700, $color-gray-700);
+      line-height: 56px;
+    }
+  }
+}
+
+.footer-container {
+  @include Size(auto, 190px);
+  @include Flex(column, top, center);
+  background-color: $color-gray-900;
+
+  .footer-wrapper {
+    @include Size(1120px, auto);
+    @include Flex(row, space-between, center);
+    margin-top: 32px;
+
+    .footer-copyright-wrapper {
+      @include Font(16px, 400, $color-gray-400);
+      text-decoration: none;
+    }
+
+    .footer-faq-wrapper {
+      @include Font(16px, 400, $color-gray-200);
+      @include Flex(row, space-between, center);
+      column-gap: 30px;
+      text-decoration: none;
+    }
+
+    .footer-social {
+      @include Flex(row, space-between, center);
+      column-gap: 12px;
+
+      .social-image {
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $width-max-tablet) {
+  .banner {
+    @include Size(auto, 770px);
+
+    .banner-wrapper {
+      @include Flex(column, end, center);
+
+      .banner-element {
+        margin-bottom: 210px;
+
+        .banner-title {
+          @include Size(auto, 56px);
+          margin-bottom: 24px;
+        }
+
+        .banner-button {
+          @include Size(357px, 56px);
+        }
+      }
+    }
+  }
+
+  .feature-container {
+
+    .feature-wrapper {
+      @include Flex(column, center, center);
+
+      .feature-card {
+        @include Flex(column, center, center);
+        background-color: transparent;
+
+        .feature-image {
+          @include Size(auto, auto);
+        }
+
+        .feature-element {
+          margin-left: 0;
+
+          .feature-description {
+            width: auto;
+          }
+        }
+      }
+    }
+
+    .feature-reverse-wrapper {
+      @include Flex(column, center, center);
+
+      .feature-card {
+        @include Flex(column, center, center);
+        background-color: transparent;
+
+        .feature-image {
+          @include Size(auto, auto);
+        }
+
+        .feature-element {
+        }
+      }
+    }
+  }
+
+  .bottom-banner {
+    @include Size(auto, 930px);
+    @include Flex(column, end, center);
+    text-align: center;
+  }
+
+  .footer-container {
+    padding: 0 24px;
+
+    .footer-wrapper {
+      @include Size(696px, auto);
+    }
+  }
+}

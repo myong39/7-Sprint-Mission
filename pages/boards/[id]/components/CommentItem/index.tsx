@@ -1,14 +1,14 @@
 import Image from "next/image";
 import kebabIcon from "@/assets/icons/ic_kebab.svg";
 import profileImage from "@/assets/icons/ic_profile.svg";
-import styles from "./styles.module.scss";
-import { Comment as CommentType } from "@/services/articles";
+import styles from "@/pages/boards/[id]/components/CommentItem/styles.module.scss";
+import { Comment } from "@/services/articles";
 
 interface CommentProps {
-  comment: CommentType;
+  comment: Comment;
 }
 
-function Comment({ comment }: CommentProps) {
+function CommentItem({ comment }: CommentProps) {
   return (
     <div className={styles["container"]}>
       <div className={styles["title-container"]}>
@@ -33,4 +33,4 @@ function Comment({ comment }: CommentProps) {
   );
 }
 
-export default Comment;
+export default CommentItem;

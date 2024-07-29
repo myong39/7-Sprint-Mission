@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import BestPost from "./BestArticleItem";
-import styles from "./styles.module.scss";
-import { getArticles, Article } from "@/services/articles";
-import debounce from "lodash-es/debounce";
+import styles from "@/pages/boards/components/BestArticle/styles.module.scss";
+import { getArticles, Article, ApiResponse } from "@/services/articles";
 
-function Best() {
+function BestArticle() {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    async function fetchArticles() {
+    const fetchArticles = async () => {
       try {
         const params = {
           page: 1,
@@ -16,12 +15,13 @@ function Best() {
           orderBy: "like",
           keyword: "",
         };
-        const { list } = await getArticles(params);
-        setArticles(list);
+        const response = await getArticles(params);
+        const { data }: { data: ApiResponse<Article> } = response;
+        setArticles(data.list);
       } catch (error) {
         console.error("데이터를 불러오는데 실패했습니다..!", error);
       }
-    }
+    };
 
     fetchArticles();
   }, []);
@@ -38,4 +38,4 @@ function Best() {
   );
 }
 
-export default Best;
+export default BestArticle;

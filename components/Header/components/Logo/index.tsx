@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "@/components/Header/components/Logo/styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/icons/logo/logo.svg";

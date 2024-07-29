@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import styles from "@/pages/boards/components/AllArticle/AllArticleItem/styles.module.scss";
 import heartIcon from "@/assets/icons/ic_heart.svg";
 import profileImage from "@/assets/icons/ic_profile.svg";
 import { Article } from "@/services/articles";
@@ -18,7 +18,7 @@ function AllPost({ article }: AllPostProps) {
         <p className={styles["title"]}>{article.title}</p>
         {hasImage && (
           <div className={styles["image-wrapper"]}>
-            <Image
+            <img
               src={article.image}
               alt={article.title}
               width={46}

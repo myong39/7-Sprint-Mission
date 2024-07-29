@@ -24,7 +24,7 @@ export interface Article {
   updatedAt: string;
 }
 
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
   totalCount: number;
   list: T[];
 }
@@ -34,25 +34,22 @@ export const getArticles = (params: {
   pageSize?: number;
   orderBy?: string;
   keyword?: string;
-}): Promise<ApiResponse<Article>> => {
+}) => {
   return axiosInstance
-    .get("/articles", { params })
-    .then((response) => response.data);
+    .get<ApiResponse<Article>>("/articles", { params })
 };
 
-export const getArticleById = (articleId: number): Promise<Article> => {
+export const getArticleById = (articleId: number) => {
   return axiosInstance
-    .get(`/articles/${articleId}`)
-    .then((response) => response.data);
+    .get<Article>(`/articles/${articleId}`)
 };
 
 export const getArticleComments = (
   articleId: number,
   limit: number = 10
-): Promise<ApiResponse<Comment>> => {
+) => {
   return axiosInstance
-    .get(`/articles/${articleId}/comments`, {
+    .get<ApiResponse<Comment>>(`/articles/${articleId}/comments`, {
       params: { limit },
     })
-    .then((response) => response.data);
 };

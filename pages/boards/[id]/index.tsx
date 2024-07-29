@@ -2,25 +2,26 @@ import Image from "next/image";
 import kebabIcon from "@/assets/icons/ic_kebab.svg";
 import profileImage from "@/assets/icons/ic_profile.svg";
 import likeIcon from "@/assets/icons/ic_heart.svg";
-import Comment from "./components/Comment";
+import CommentItem from "./components/CommentItem";
 import backIcon from "@/assets/icons/ic_back.svg";
-import NotComment from "./components/NotComment";
-import styles from "./styles.module.scss";
+import NoComment from "./components/NoComment";
+import styles from "@/pages/boards/[id]/styles.module.scss";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import {
   getArticleById,
   getArticleComments,
   Article,
-  Comment as CommentType,
+  Comment,
 } from "@/services/articles";
 
 function BoardsDetail() {
   const [textAreaValue, setTextAreaValue] = useState<string>("");
   const [article, setArticle] = useState<Article | undefined>(undefined);
-  const [comments, setComments] = useState<CommentType[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const router: any = useRouter();
   const { id } = router.query;
+  const articleId = Array.isArray(id) ? id[0] : id;
 
   const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaValue(event.target.value);
@@ -32,22 +33,23 @@ function BoardsDetail() {
 
   useEffect(() => {
     const fetchArticle = async () => {
-      try {
-        const fetchedArticle = await getArticleById(Number(id));
-        setArticle(fetchedArticle);
+      if (!articleId) return;
 
-        const params = { articleId: Number(id), limit: 10 };
-        const { list } = await getArticleComments(Number(id), 10);
-        setComments(list);
+      try {
+        const [articleResponse, commentsResponse] = await Promise.all([
+          getArticleById(articleId),
+          getArticleComments(articleId, 10),
+        ]);
+
+        setArticle(articleResponse.data);
+        setComments(commentsResponse.data.list);
       } catch (error) {
         console.error("데이터를 불러오는데 실패했습니다..!", error);
       }
     };
 
-    if (id) {
-      fetchArticle();
-    }
-  }, [id]);
+    fetchArticle();
+  }, [articleId]);
 
   if (!article) {
     return <div>게시글이 없습니다..!</div>;
@@ -108,10 +110,10 @@ function BoardsDetail() {
       </div>
 
       {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
+        <CommentItem key={comment.id} comment={comment} />
       ))}
 
-      {comments.length === 0 && <NotComment />}
+      {comments.length === 0 && <NoComment />}
 
       <div className={styles["back-button-container"]}>
         <button

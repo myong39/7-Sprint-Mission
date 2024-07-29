@@ -82,7 +82,7 @@
       @include Font(16px, 600, $color-white);
       border-radius: 8px;
       padding: 12px 23px;
-      background-color: $color-blue-button;
+      background-color: $color-blue;
 
       &:disabled {
         background-color: $color-gray-200;
@@ -101,7 +101,7 @@
     @include Font(18px, 600, $color-white);
     padding: 12px 71px;
     border-radius: 40px;
-    background-color: $color-blue-button;
+    background-color: $color-blue;
     column-gap: 10px;
   }
 }

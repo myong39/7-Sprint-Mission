@@ -1,8 +1,8 @@
-import All from "./components/All";
-import Best from "./components/Best";
-import styles from "./styles.module.scss";
+import All from "./components/AllArticle";
+import Best from "./components/BestArticle";
+import styles from "@/pages/boards/styles.module.scss";
 
-function BestArticles() {
+function Boards() {
   return (
     <div className={styles["container"]}>
       <Best />
@@ -11,4 +11,4 @@ function BestArticles() {
   );
 }
 
-export default BestArticles;
+export default Boards;

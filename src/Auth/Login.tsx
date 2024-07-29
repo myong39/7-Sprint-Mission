@@ -3,16 +3,23 @@ import "./Auth.css";
 import logo from "../images/logo2X.png";
 import google from "../images/google-logo.png";
 import kakao from "../images/kakao-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFormValidation from "./useFormValidation";
+import { postSignIn } from "../api";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { email: initalEmail, password: initalPassword } = location.state || {};
   const { errors, validateEmail, validatePassword } = useFormValidation();
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
+  const [formValues, setFormValues] = useState({
+    email: initalEmail || "",
+    password: initalPassword || "",
+  });
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
@@ -30,30 +37,44 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    validateEmail(formValues.email);
-    validatePassword(formValues.password);
-
-    if (!errors.email && !errors.password) {
-      window.location.href = "/items";
-    }
+    const isFormValid = Object.values(errors).every((error) => !error);
+    if (isFormValid) {
+        try{
+          const result=await postSignIn(formValues);
+          const {accessToken}=result;
+          if(accessToken){
+            localStorage.setItem("accessToken", accessToken); 
+          console.log("Access Token:", accessToken); 
+          navigate("/"); 
+          }
+        }catch(error:any){
+          console.error("로그인에 실패했습니다: ", error.message);
+        }
+      }
   };
-  
-  useEffect(() => {
-    const allFieldsValid =
-      formValues.email &&
-      formValues.password &&
-      !errors.email &&
-      !errors.password;
 
-    setIsButtonActive(!!allFieldsValid);
+  useEffect(() => {
+    const allFieldsValid = !!(
+      Object.values(formValues).every((value) => !!value) &&
+      Object.values(errors).every((error) => !error)
+    );
+
+    setIsButtonActive(allFieldsValid);
   }, [formValues, errors]);
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/");
+    }
+  }, [navigate]);
+  
   return (
     <div className="login-container">
       <div className="login-logo">
@@ -79,7 +100,7 @@ const Login = () => {
               name="email"
               placeholder="이메일을 입력해주세요"
               value={formValues.email}
-              onChange={handleInputChange}
+              onChange={handleInput}
               onBlur={(e) => handleBlur(e.target.name, e.target.value)}
             />
             <span className="error-message-on">{errors.email}</span>
@@ -95,7 +116,7 @@ const Login = () => {
                 id="passwordInput"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
-                onChange={handleInputChange}
+                onChange={handleInput}
                 onBlur={(e) => handleBlur(e.target.name, e.target.value)}
               />
               <button

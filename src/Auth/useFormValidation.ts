@@ -5,7 +5,7 @@ const useValidationForm= () => {
     email: "",
     nickname: "",
     password: "",
-    passwordConfirm: "",
+    passwordConfirmation: "",
   });
 
   const validateEmail = (email: string) => {
@@ -40,12 +40,12 @@ const useValidationForm= () => {
 
   const validatePasswordConfirm = (
     password: string,
-    passwordConfirm: string
+    passwordConfirmation: string
   ) => {
     let passwordConfirmError = "";
-    if (!passwordConfirm) {
+    if (!passwordConfirmation) {
       passwordConfirmError = "비밀번호 확인을 입력해주세요.";
-    } else if (password !== passwordConfirm) {
+    } else if (password !== passwordConfirmation) {
       passwordConfirmError = "비밀번호가 일치하지 않습니다.";
     }
     setErrors((prevErrors) => ({
@@ -53,12 +53,31 @@ const useValidationForm= () => {
       passwordConfirm: passwordConfirmError,
     }));
   };
+  const handleBlur = (name: string, value: string, password:string) => {
+    switch (name) {
+      case "email":
+        validateEmail(value);
+        break;
+      case "nickname":
+        validateNickname(value);
+        break;
+      case "password":
+        validatePassword(value);
+        break;
+      case "passwordConfirm":
+        validatePasswordConfirm(password, value);
+        break;
+      default:
+        break;
+    }
+  };
   return {
     errors,
     validateEmail,
     validateNickname,
     validatePassword,
     validatePasswordConfirm,
+    handleBlur,
   };
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import "../reset.css";
 import logo from "../images/logo.png";
@@ -9,9 +9,18 @@ import facebook from "../images/facebook.png";
 import twitter from "../images/twitter.png";
 import instagram from "../images/instagram.png";
 import youtube from "../images/youtube.png";
+import user from "../images/user.svg";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
+    setIsLoggedIn(!!accessToken);
+  }, []);
+
   return (
     <div className="homepage-container">
       <header>
@@ -19,9 +28,15 @@ const HomePage = () => {
           <img className="logo" src={logo} alt="로고" width="153" height="51" />
           <h1 className="logo-title">판다마켓</h1>
         </Link>
-        <Link to="/login" className="login_button">
-          로그인
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/">
+            <img src={user} width="40" height="40" alt="프로필" />
+          </Link>
+        ) : (
+          <Link to="/login" className="login_button">
+            로그인
+          </Link>
+        )}
       </header>
       <div className="banner">
         <div className="homepage-wrapper">

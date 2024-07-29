@@ -3,89 +3,64 @@ import "./Auth.css";
 import logo from "../images/logo2X.png";
 import google from "../images/google-logo.png";
 import kakao from "../images/kakao-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useFormValidation from "./useFormValidation";
+import { postSignup } from "../api";
 
 const Signup = () => {
-  const {
-    errors,
-    validateEmail,
-    validateNickname,
-    validatePassword,
-    validatePasswordConfirm,
-  } = useFormValidation();
+  const navigate = useNavigate();
+  const { errors, handleBlur } = useFormValidation();
   const [formValues, setFormValues] = useState({
     email: "",
     nickname: "",
     password: "",
-    passwordConfirm: "",
+    passwordConfirmation: "",
   });
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordConfirmVisible, setPasswordConfirmVisible] = useState(false);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
-  const handleBlur = (name: string, value: string) => {
-    switch (name) {
-      case "email":
-        validateEmail(value);
-        break;
-      case "nickname":
-        validateNickname(value);
-        break;
-      case "password":
-        validatePassword(value);
-        break;
-      case "passwordConfirm":
-        validatePasswordConfirm(formValues.password, value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    validateEmail(formValues.email);
-    validateNickname(formValues.nickname);
-    validatePassword(formValues.password);
-    validatePasswordConfirm(formValues.password, formValues.passwordConfirm);
+    const { email, nickname, password, passwordConfirmation } = formValues;
+    console.log(email, nickname, password, passwordConfirmation);
 
-    if (
-      !errors.email &&
-      !errors.nickname &&
-      !errors.password &&
-      !errors.passwordConfirm
-    ) {
-      window.location.href = "/items";
+    try {
+      const result = await postSignup(formValues);
+      console.log(result);
+      navigate("/login", { state: { email, password } });
+    } catch (error: any) {
+      console.error("회원 생성에 실패했습니다:", error.message);
     }
   };
 
   useEffect(() => {
-    const allFieldsValid =
-      formValues.email &&
-      formValues.nickname &&
-      formValues.password &&
-      formValues.passwordConfirm &&
-      !errors.email &&
-      !errors.nickname &&
-      !errors.password &&
-      !errors.passwordConfirm;
+    const allFieldsValid = !!(
+      Object.values(formValues).every((value) => !!value) &&
+      Object.values(errors).every((error) => !error)
+    );
 
-    setIsButtonActive(!!allFieldsValid);
+    setIsButtonActive(allFieldsValid);
   }, [formValues, errors]);
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
   };
-  
+
   const togglePasswordConfirm = () => {
     setPasswordConfirmVisible(!passwordConfirmVisible);
   };
+  
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="login-container">
@@ -112,8 +87,10 @@ const Signup = () => {
               name="email"
               placeholder="이메일을 입력해주세요"
               value={formValues.email}
-              onChange={handleInputChange}
-              onBlur={(e) => handleBlur(e.target.name, e.target.value)}
+              onChange={handleInput}
+              onBlur={(e) =>
+                handleBlur(e.target.name, e.target.value, formValues.password)
+              }
             />
             <span className="error-message-on">{errors.email}</span>
           </div>
@@ -128,8 +105,10 @@ const Signup = () => {
               name="nickname"
               placeholder="닉네임을 입력해주세요"
               value={formValues.nickname}
-              onChange={handleInputChange}
-              onBlur={(e) => handleBlur(e.target.name, e.target.value)}
+              onChange={handleInput}
+              onBlur={(e) =>
+                handleBlur(e.target.name, e.target.value, formValues.password)
+              }
             />
             <span className="error-message-on">{errors.nickname}</span>
           </div>
@@ -144,8 +123,10 @@ const Signup = () => {
                 id="passwordInput"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
-                onChange={handleInputChange}
-                onBlur={(e) => handleBlur(e.target.name, e.target.value)}
+                onChange={handleInput}
+                onBlur={(e) =>
+                  handleBlur(e.target.name, e.target.value, formValues.password)
+                }
               />
               <button
                 type="button"
@@ -158,30 +139,32 @@ const Signup = () => {
             <span className="error-message-on">{errors.password}</span>
           </div>
           <div>
-          <div className="input-system">
-            <label htmlFor="passwordconfirm">비밀번호 확인</label>
-            <input
-              type={passwordConfirmVisible ? "text" : "password"}
-              className={`password-confirm-input ${
-                errors.passwordConfirm ? "input-error" : ""
-              }`}
-              id="passwordconfirm"
-              name="passwordConfirm"
-              placeholder="비밀번호를 다시 한 번 입력해주세요"
-              value={formValues.passwordConfirm}
-              onChange={handleInputChange}
-              onBlur={(e) => handleBlur(e.target.name, e.target.value)}
-            />
-            <button
-              type="button"
-              className={`password-confirm-button ${
-                passwordConfirmVisible ? "visible" : ""
-              }`}
-              onClick={togglePasswordConfirm}
-            />
+            <div className="input-system">
+              <label htmlFor="passwordconfirm">비밀번호 확인</label>
+              <input
+                type={passwordConfirmVisible ? "text" : "password"}
+                className={`password-confirm-input ${
+                  errors.passwordConfirmation ? "input-error" : ""
+                }`}
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                placeholder="비밀번호를 다시 한 번 입력해주세요"
+                value={formValues.passwordConfirmation}
+                onChange={handleInput}
+                onBlur={(e) =>
+                  handleBlur(e.target.name, e.target.value, formValues.password)
+                }
+              />
+              <button
+                type="button"
+                className={`password-confirm-button ${
+                  passwordConfirmVisible ? "visible" : ""
+                }`}
+                onClick={togglePasswordConfirm}
+              />
             </div>
-            <span className={errors.passwordConfirm ? "error-message-on" : ""}>
-              {errors.passwordConfirm}
+            <span className={errors.passwordConfirmation ? "error-message-on" : ""}>
+              {errors.passwordConfirmation}
             </span>
           </div>
 

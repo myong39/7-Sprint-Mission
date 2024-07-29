@@ -1,0 +1,28 @@
+.notFound-container {
+  margin: 70px auto 0;
+  padding-top: 24px;
+  width: 500px;
+  text-align: center;
+}
+
+.notFound-container > h2 {
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.notFound-container > div {
+  margin-bottom: 16px;
+  line-height: 24px;
+}
+
+.notFound-container button {
+  padding: 0;
+  line-height: 0;
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}

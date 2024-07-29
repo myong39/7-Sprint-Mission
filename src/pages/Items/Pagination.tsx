@@ -2,7 +2,7 @@ import { useState } from "react";
 import arrowLeft from "../../assets/arrow_left.svg";
 import arrowRight from "../../assets/arrow_right.svg";
 
-interface PaginationProps {
+interface Props {
   currentPage: number;
   totalItems: number;
   itemsPerPage: number;
@@ -14,7 +14,7 @@ const Pagination = ({
   totalItems,
   itemsPerPage,
   onPageChange,
-}: PaginationProps) => {
+}: Props) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const [pageGroup, setPageGroup] = useState(0);
 

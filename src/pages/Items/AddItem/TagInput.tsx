@@ -3,11 +3,11 @@ import deleteIcon from "../../../assets/ic_X.svg";
 import deleteHoverIcon from "../../../assets/ic_X_hover.svg";
 import { IsValid } from "./AddItem";
 
-interface TagInputProps {
+interface Props {
   isValueCheck: (currentValue: string | string[], name: keyof IsValid) => void;
 }
 
-const TagInput = ({ isValueCheck }: TagInputProps) => {
+const TagInput = ({ isValueCheck }: Props) => {
   const [tagArr, setTagArr] = useState<Set<string>>(new Set());
   const [inputValue, setInputValue] = useState("");
 
@@ -40,8 +40,8 @@ const TagInput = ({ isValueCheck }: TagInputProps) => {
         onKeyUp={handleKeyUp}
         onChange={handleInputChange}
       />
-      {[...tagArr].map((tag, index) => (
-        <div key={index} className="tag-box">
+      {[...tagArr].map((tag) => (
+        <div key={tag} className="tag-box">
           <div className="tag-flex">
             <span>{tag}</span>
             <button type="button" onClick={() => handleDeleteClick(tag)}>

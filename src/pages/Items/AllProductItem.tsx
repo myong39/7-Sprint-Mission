@@ -1,6 +1,6 @@
 import heartIcon from "../../assets/ic_heart_items.svg";
 
-interface AllPorductItemProps {
+interface Props {
   imgUrl: string;
   name: string;
   price: number;
@@ -12,7 +12,7 @@ const AllProductItem = ({
   name,
   price,
   favoriteCount,
-}: AllPorductItemProps) => {
+}: Props) => {
   return (
     <>
       <img src={imgUrl} alt="아이템이미지" className="item-img" />

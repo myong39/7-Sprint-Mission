@@ -57,7 +57,6 @@ const ProductDetail = () => {
     list: [],
     nextCursor: null,
   });
-  const [inquiryValue, setInquiryValue] = useState<string>("");
 
   useEffect(() => {
     const getProductDetail = async () => {
@@ -73,10 +72,7 @@ const ProductDetail = () => {
   return (
     <div className="product-container">
       <ProductDetailInfo detailItem={detailItem} />
-      <ProductDetailInquiry
-        inquiryValue={inquiryValue}
-        setInquiryValue={setInquiryValue}
-      />
+      <ProductDetailInquiry />
       <ProductDetailComments comments={comments.list} />
       <Link
         to="/items"

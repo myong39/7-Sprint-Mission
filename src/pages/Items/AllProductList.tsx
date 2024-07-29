@@ -4,31 +4,15 @@ import AllProductItem from "./AllProductItem";
 import Pagination from "./Pagination";
 import { getProductItem } from "./api";
 import searchIcon from "../../assets/search_icon.svg";
+import { Product } from "../../types/product";
 
-interface AllProductListProps {
+interface Props {
   pageSize: number;
   title: string;
   TopContainer: string;
 }
 
-interface Product {
-  createdAt: string;
-  description: string;
-  favoriteCount: number;
-  id: number;
-  images: string[];
-  name: string;
-  ownerId: number;
-  price: number;
-  tags: string[];
-  updatedAt: string;
-}
-
-const AllProductList = ({
-  pageSize,
-  title,
-  TopContainer,
-}: AllProductListProps) => {
+const AllProductList = ({ pageSize, title, TopContainer }: Props) => {
   // api 상태 관리
   const [product, setProduct] = useState<Product[]>([
     {
@@ -174,14 +158,14 @@ const AllProductList = ({
         </div>
       )}
       <ul className="item-list">
-        {product.map((item) => (
-          <li key={item.id}>
-            <Link to={`./${item.id}`} className="item-link">
+        {product.map(({ id, images, name, price, favoriteCount }) => (
+          <li key={id}>
+            <Link to={`./${id}`} className="item-link">
               <AllProductItem
-                imgUrl={item.images[0]}
-                name={item.name}
-                price={item.price}
-                favoriteCount={item.favoriteCount}
+                imgUrl={images[0]}
+                name={name}
+                price={price}
+                favoriteCount={favoriteCount}
               />
             </Link>
           </li>

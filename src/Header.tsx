@@ -1,13 +1,12 @@
 import logo from "./assets/logo.svg";
 import logoMobile from "./assets/logo_mobile.svg";
+import mypage_ic from "./assets/ic_mypage.svg";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const activeStyle = {
-    color: "#3692ff",
-  };
-
   const location = useLocation();
+
+  const accessToken = localStorage.getItem("accessToken");
 
   return (
     <header>
@@ -35,8 +34,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/community"
-                className="link"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                className={({ isActive }) => `link ${isActive ? "active" : ""}`}
               >
                 자유게시판
               </NavLink>
@@ -44,11 +42,10 @@ const Header = () => {
             <li>
               <NavLink
                 to="/items"
-                className="link"
-                style={({ isActive }) =>
-                  isActive || location.pathname === "/additem"
-                    ? activeStyle
-                    : undefined
+                className={({ isActive }) =>
+                  `link ${
+                    isActive || location.pathname === "/additem" ? "active" : ""
+                  }`
                 }
               >
                 중고마켓
@@ -58,11 +55,22 @@ const Header = () => {
         </nav>
       </div>
       <div>
-        <Link to="/login">
-          <button type="button" className="login-btn">
-            로그인
-          </button>
-        </Link>
+        {!accessToken ? (
+          <Link to="/login">
+            <button type="button" className="login-btn">
+              로그인
+            </button>
+          </Link>
+        ) : (
+          <Link to="/mypage">
+            <img
+              src={mypage_ic}
+              alt="마이페이지아이콘"
+              width="40"
+              height="40"
+            />
+          </Link>
+        )}
       </div>
     </header>
   );

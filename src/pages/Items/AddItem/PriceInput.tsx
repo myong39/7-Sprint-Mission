@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from "react";
 import { IsValid } from "./AddItem";
 
-interface PriceInputProps {
+interface Props {
   isValueCheck: (currentValue: string, name: keyof IsValid) => void;
 }
 
-const PriceInput = ({ isValueCheck }: PriceInputProps) => {
+const PriceInput = ({ isValueCheck }: Props) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

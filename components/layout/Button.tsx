@@ -1,15 +1,16 @@
 import styles from "./Button.module.scss";
 import Link from "next/link";
-import { ButtonProps } from "@/types/commonTypes";
+import { ButtonProps } from "@/types/CommonTypes";
 
 export default function Button({
   href = "",
   children,
   disabled = false,
+  className = "",
 }: ButtonProps) {
   if (!href) {
     return (
-      <button className={styles.button} disabled={disabled}>
+      <button className={`${styles.button} ${className}`} disabled={disabled}>
         {children}
       </button>
     );

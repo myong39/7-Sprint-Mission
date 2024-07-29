@@ -2,8 +2,9 @@ import React, { ChangeEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import logoImg from "@/public/images/icons/ic_plus.svg";
 import xIcon from "@/public/images/icons/ic_x.svg";
-import { FileInputType } from "../../../types/commonTypes";
+import { FileInputType } from "@/types/CommonTypes";
 import styles from "./FileInput.module.scss";
+import Image from "next/image";
 
 export default function FileInput({
   value,
@@ -45,22 +46,24 @@ export default function FileInput({
           onChange={handleChange}
         />
         <div className={styles["add-image-wrapper"]}>
-          <img className={styles["add-img"]} src={logoImg.src} alt="추가하기" />
+          <Image className={styles["add-img"]} src={logoImg} alt="추가하기" />
           <span>이미지 등록</span>
         </div>
       </div>
       {value && (
         <div className={styles["preview-image-wrapper"]}>
-          <img
+          <Image
             className={styles["preview-image"]}
             src={preview}
             alt="이미지 미리보기"
+            width={162}
+            height={162}
           />
           <button
             className={styles["cancel-button"]}
             onClick={handleClearClick}
           >
-            <img src={xIcon.src} alt="이미지 삭제" />
+            <Image src={xIcon} alt="이미지 삭제" />
           </button>
         </div>
       )}

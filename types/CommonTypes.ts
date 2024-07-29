@@ -5,6 +5,7 @@ export interface ButtonProps {
   href?: Url;
   children: ReactNode;
   disabled?: boolean;
+  className?: string;
 }
 
 export interface FileInputType {

@@ -134,3 +134,17 @@
 .gitmoji {
   font-size: 24px;
 }
+
+.no-comment {
+  margin-left: auto;
+  margin-bottom: 48px;
+  font-size: 16px;
+  color: #9ca3af;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.no-comment img {
+  max-width: 196px;
+  margin-bottom: 44px;
+}

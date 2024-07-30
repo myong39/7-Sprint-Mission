@@ -3,22 +3,21 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import Logo from "../../assets/images/logo/logo.svg";
 import LogoText from "../../assets/images/logo/logo-text.svg";
+import LoggedInImage from "../../assets/images/ui/ic_profile.svg";
 import { Button } from "../Button/Button";
+import useResize from "../../hooks/useResize";
+import api from "../../api/auth";
 
 function NavBar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const windowWidth = useResize();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isMobile = windowWidth <= 768;
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    setIsLoggedIn(api.isLoggedIn());
   }, []);
 
   const handleButtonClick = (url: string) => () => {
@@ -54,12 +53,21 @@ function NavBar() {
           </ul>
         )}
         <div className={styles.buttonLogin}>
-          <Button
-            text='로그인'
-            color='default'
-            size='small'
-            onClick={handleButtonClick("/login")}
-          />
+          {isLoggedIn ? (
+            <img
+              src={LoggedInImage}
+              alt='Panda'
+              className={styles.loggedInImage}
+              onClick={handleButtonClick("/profile")}
+            />
+          ) : (
+            <Button
+              text='로그인'
+              color='default'
+              size='small'
+              onClick={handleButtonClick("/login")}
+            />
+          )}
         </div>
       </div>
     </nav>

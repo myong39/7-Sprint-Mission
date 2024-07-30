@@ -14,6 +14,7 @@ interface ValidationInputProps {
   name: string;
   placeholder: string;
   onValid: (isValid: boolean) => void;
+  onChange?: (value: string) => void;
 }
 
 const ValidationInput: React.FC<ValidationInputProps> = ({
@@ -22,6 +23,7 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
   name,
   placeholder,
   onValid,
+  onChange,
 }) => {
   const [value, setValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
@@ -38,8 +40,7 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
     setIsVisible(!isVisible);
   };
 
-  const handleBlur = () => {
-    setIsInitial(false);
+  const validate = (value: string) => {
     let valid = true;
     let error = "";
 
@@ -51,7 +52,6 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
       case "password":
         valid = validatePassword(value);
         error = valid ? "" : "비밀번호는 8자 이상이어야 합니다";
-        if (valid) setPassword(value);
         break;
       case "text":
         valid = validateNickname(value);
@@ -69,8 +69,25 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    if (onChange) {
+      onChange(e.target.value);
+    }
+    if (isInitial) {
+      setIsInitial(false);
+    }
+    validate(e.target.value);
     if (type === "password") {
       setPassword(e.target.value);
+    } else if (type === "passwordConfirm") {
+      const passwordInput = document.getElementById(
+        "password",
+      ) as HTMLInputElement;
+      if (passwordInput) {
+        const passwordValue = passwordInput.value;
+        const valid = validatePasswordConfirm(passwordValue, e.target.value);
+        setIsValid(valid);
+        setErrorMessage(valid ? "" : "비밀번호가 일치하지 않습니다");
+      }
     }
   };
 
@@ -93,7 +110,6 @@ const ValidationInput: React.FC<ValidationInputProps> = ({
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
-          onBlur={handleBlur}
           className={isValid || isInitial ? "" : "error"}
         />
         {(type === "password" || type === "passwordConfirm") && (

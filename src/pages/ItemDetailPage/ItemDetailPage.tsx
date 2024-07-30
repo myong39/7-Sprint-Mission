@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { getItemDetail, getComments } from "../../api/itemApi";
+import { getItemDetail, getComments } from "../../api/item";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./ItemDetailPage.module.css";
 import ItemDetail from "./components/ItemDetail";

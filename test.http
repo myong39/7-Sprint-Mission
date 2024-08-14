@@ -1,0 +1,22 @@
+POST https://panda-market-api.vercel.app/user/me
+Content-Type: application/json
+
+{
+    'email': 'code@naver.com',
+    'nickname': 'code',
+    'password':'12341234',
+}
+
+###
+
+POST https://panda-market-api.vercel.app/auth/signUp
+Content-Type: application/json
+
+{
+    "email": "hello@naver.com",
+    "nickname":"hello",
+    "password":"12341234",
+    "passwordConfirmation":"12341234"
+}
+
+###

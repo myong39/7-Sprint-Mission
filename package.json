@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",

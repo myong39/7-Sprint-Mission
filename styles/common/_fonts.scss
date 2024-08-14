@@ -64,6 +64,8 @@ $WEIGHTS: (
   $tablet-size: null,
   $mobile-size: null
 ) {
+  -webkit-font-smoothing: antialiased;
+
   // 데스크탑에서 폰트 사이즈 및 폰트 웨이트 적용
   @if map-has-key($TEXT_STYLES, $desktop-size) {
     $style: map-get($TEXT_STYLES, $desktop-size);

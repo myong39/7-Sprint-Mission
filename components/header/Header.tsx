@@ -3,6 +3,9 @@ import Logo from '../Logo';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Button from '@/components/button/Button';
+import UserProfile from '@/assets/ic_profile.svg';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/contexts/AuthProvider';
 
 const headerMenuData = [
   { id: 'menu01', name: '자유게시판', path: '/boards' },
@@ -10,13 +13,22 @@ const headerMenuData = [
 ];
 
 function Header() {
+  const [isLogin, setIsLogin] = useState(false);
+
   const router = useRouter();
   const isPath = router.pathname;
+  const { logout } = useAuth(false);
+
+  useEffect(() => {
+    setIsLogin(!!localStorage.getItem('accessToken'));
+  }, []);
 
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <Logo />
+        <div className={styles.logo}>
+          <Logo />
+        </div>
         <ul>
           {headerMenuData.map((menu) => {
             return (
@@ -33,7 +45,13 @@ function Header() {
         </ul>
       </div>
       <div className={styles.right}>
-        <Button size='small'>로그인</Button>
+        {isLogin ? (
+          <UserProfile />
+        ) : (
+          <Button size='small' onClick={() => router.push('/login')}>
+            로그인
+          </Button>
+        )}
       </div>
     </header>
   );

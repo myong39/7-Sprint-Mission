@@ -1,0 +1,63 @@
+@use '@/styles/common/index.scss' as *;
+
+@mixin InputTextStyle {
+  @include font-style('lg', regular);
+  color: $gray-800;
+}
+
+@mixin BorderRadius {
+  border: none;
+  border-radius: 12px;
+}
+
+@mixin InputStyle {
+  width: 100%;
+  background-color: $gray-100;
+  position: relative;
+
+  @include InputTextStyle;
+
+  padding: 16px 24px;
+  @include BorderRadius;
+
+  &::placeholder {
+    color: $gray-400;
+  }
+
+  &:focus {
+    outline: 2px solid $main--color;
+  }
+}
+
+.login-form {
+  width: 100%;
+  @include Flex(column, null, null);
+  gap: 24px;
+
+  div {
+    @include Flex(column, null, null);
+
+    label {
+      @include font-style('2lg', bold);
+      color: #1f2937;
+    }
+
+    input {
+      @include InputStyle();
+      margin: 16px 0 8px;
+
+      &.error-input {
+        outline: 1px solid $error-color;
+      }
+
+      &.valid-input {
+        outline: 1px solid $main--color;
+      }
+    }
+  }
+}
+
+.error-message {
+  color: $error-color;
+  @include font-style(lg, semibold);
+}

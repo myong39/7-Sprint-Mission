@@ -1,8 +1,19 @@
+import Button from '@/components/button/Button';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Header from '../components/header/Header';
 // import { Inter } from 'next/font/google';
 
 export default function Home() {
+  const router = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    setIsLogin(!!token);
+  }, []);
+
   return (
     <>
       <Head>
@@ -13,6 +24,17 @@ export default function Home() {
       </Head>
       <main>
         <h2>index html</h2>
+        <Button
+          size='medium'
+          onClick={() => {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            router.reload();
+          }}
+          disabled={!isLogin}
+        >
+          임시 로그아웃
+        </Button>
       </main>
     </>
   );

@@ -1,0 +1,61 @@
+@import '@/src/styles/_mixin';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  label {
+    @include font-style(18px, 700, var(--gray-800));
+  }
+
+  input {
+    background-color: var(--gray-100);
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px 24px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--gray-400);
+      font-size: 16px;
+    }
+  }
+
+  .errorMessage {
+    @include font-style(15px, 600, var(--error));
+    line-height: 18px;
+    padding-left: 10px;
+    cursor: default;
+  }
+}
+
+.goSignUp {
+  @include font-style(15px, 500, var(--gray-800));
+  cursor: default;
+
+  span {
+    text-decoration: underline;
+    color: var(--blue);
+  }
+}

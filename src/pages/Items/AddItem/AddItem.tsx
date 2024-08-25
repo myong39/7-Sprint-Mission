@@ -1,4 +1,5 @@
 import { useState, useEffect, MouseEvent, KeyboardEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AddItem.css";
 import ImageInput from "./ImageInput";
 import TagInput from "./TagInput";
@@ -17,6 +18,8 @@ export interface IsValid {
 }
 
 const AddItem = () => {
+  const navigate = useNavigate();
+
   const [disabled, setDisabled] = useState(false);
   const [isValid, setIsValid] = useState<IsValid>({
     name: false,
@@ -84,6 +87,8 @@ const AddItem = () => {
     };
 
     uploadPostMutation.mutate(newInputValues);
+
+    navigate("/items");
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {

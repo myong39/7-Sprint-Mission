@@ -76,6 +76,10 @@ const AddItem = () => {
 
   const uploadPostMutation = useMutation({
     mutationFn: (newPost: postProduct) => postAddItem(newPost),
+    onSuccess: (data) => {
+      const id = data.id;
+      navigate(`/items/${id}`);
+    },
   });
 
   const handleSubmit = (e: MouseEvent<HTMLFormElement>) => {
@@ -87,8 +91,6 @@ const AddItem = () => {
     };
 
     uploadPostMutation.mutate(newInputValues);
-
-    navigate("/items");
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {

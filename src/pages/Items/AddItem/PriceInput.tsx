@@ -13,11 +13,11 @@ const PriceInput = ({ isValueCheck }: Props) => {
 
     inputValue = inputValue.replace(/[^0-9]/g, "");
 
-    const formattedValue = inputValue
-      ? Number(inputValue).toLocaleString()
-      : "";
+    // const formattedValue = inputValue
+    //   ? Number(inputValue).toLocaleString()
+    //   : "";
 
-    setInputValue(formattedValue);
+    setInputValue(inputValue);
   };
 
   const handleInputBlur = () => {
@@ -30,7 +30,7 @@ const PriceInput = ({ isValueCheck }: Props) => {
       <input
         type="text"
         placeholder="판매 가격을 입력해주세요"
-        value={inputValue}
+        value={Number(inputValue).toLocaleString()}
         onChange={handleInputChange}
         onBlur={handleInputBlur}
       />

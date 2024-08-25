@@ -13,16 +13,16 @@ const TitleInput = ({ isValueCheck }: Props) => {
   };
 
   const handleInputBlur = () => {
-    isValueCheck(inputValue, "title");
+    isValueCheck(inputValue, "name");
   };
 
   return (
     <>
-      <label htmlFor="item-title">상품명</label>
+      <label htmlFor="item-name">상품명</label>
       <input
         type="text"
-        id="item-title"
-        name="item-title"
+        id="item-name"
+        name="item-name"
         placeholder="상품명을 입력해주세요"
         value={inputValue}
         onChange={handleInputChange}

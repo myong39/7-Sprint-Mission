@@ -10,3 +10,11 @@ export interface Product {
   tags: string[];
   updatedAt: string;
 }
+
+export interface postProduct {
+  images: string[];
+  tags: string[];
+  price: number;
+  description: string;
+  name: string;
+}

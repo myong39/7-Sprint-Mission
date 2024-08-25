@@ -19,7 +19,7 @@ const TagInput = ({ isValueCheck }: Props) => {
     if (e.key === "Enter" && inputValue.trim()) {
       setTagArr((prev) => new Set([...prev, inputValue.trim()]));
       setInputValue("");
-      isValueCheck(inputValue, "tag");
+      isValueCheck([...tagArr, inputValue], "tags");
     }
   };
 
@@ -27,7 +27,7 @@ const TagInput = ({ isValueCheck }: Props) => {
     const deleteTag = [...tagArr].filter((tag) => tagName !== tag);
 
     setTagArr(new Set([...deleteTag]));
-    isValueCheck(deleteTag, "tag");
+    isValueCheck(deleteTag, "tags");
   };
 
   return (

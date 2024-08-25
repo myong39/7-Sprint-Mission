@@ -1,25 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent, KeyboardEvent } from "react";
 import "./AddItem.css";
 import ImageInput from "./ImageInput";
 import TagInput from "./TagInput";
 import PriceInput from "./PriceInput";
 import TitleInput from "./TitleInput";
 import DescriptionInput from "./DescriptionInput";
+import { postAddItem, postUploadImage } from "../api";
+import { useMutation } from "@tanstack/react-query";
+import { postProduct } from "../../../types/product";
 
 export interface IsValid {
-  title: boolean;
+  name: boolean;
   description: boolean;
   price: boolean;
-  tag: boolean;
+  tags: boolean;
 }
 
 const AddItem = () => {
   const [disabled, setDisabled] = useState(false);
   const [isValid, setIsValid] = useState<IsValid>({
-    title: false,
+    name: false,
     description: false,
     price: false,
-    tag: false,
+    tags: false,
+  });
+  const [inputValues, setInputValues] = useState<postProduct>({
+    images: [],
+    name: "",
+    description: "",
+    price: 0,
+    tags: [],
   });
 
   const isValueCheck = (
@@ -33,6 +43,10 @@ const AddItem = () => {
           [name]: true,
         };
       });
+      setInputValues((prev) => ({
+        ...prev,
+        [name]: currentValue,
+      }));
     } else if (currentValue.length < 1) {
       setIsValid((prev) => {
         return {
@@ -40,6 +54,41 @@ const AddItem = () => {
           [name]: false,
         };
       });
+      setInputValues((prev) => ({
+        ...prev,
+        [name]: currentValue,
+      }));
+    }
+  };
+
+  const imgFileUpload = async (imgFile: FormData) => {
+    const result = await postUploadImage(imgFile);
+    if (result) {
+      setInputValues((prev) => ({
+        ...prev,
+        images: result.url,
+      }));
+    }
+  };
+
+  const uploadPostMutation = useMutation({
+    mutationFn: (newPost: postProduct) => postAddItem(newPost),
+  });
+
+  const handleSubmit = (e: MouseEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const newInputValues = {
+      ...inputValues,
+      price: Number(inputValues.price),
+    };
+
+    uploadPostMutation.mutate(newInputValues);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
     }
   };
 
@@ -49,19 +98,24 @@ const AddItem = () => {
     setDisabled(allTrue);
   }, [isValid]);
 
+  console.log("데이터?", inputValues);
+
   return (
-    <form className="form-container">
+    <form
+      className="form-container"
+      onSubmit={handleSubmit}
+      onKeyDown={handleKeyDown}
+    >
       <div className="form-submit">
         <h2>상품 등록하기</h2>
         <button
           type="submit"
-          disabled={!disabled}
-          onClick={(e) => e.preventDefault()}
+          disabled={uploadPostMutation.isPending || !disabled}
         >
           등록
         </button>
       </div>
-      <ImageInput />
+      <ImageInput imgFileUpload={imgFileUpload} />
       <TitleInput isValueCheck={isValueCheck} />
       <DescriptionInput isValueCheck={isValueCheck} />
       <PriceInput isValueCheck={isValueCheck} />

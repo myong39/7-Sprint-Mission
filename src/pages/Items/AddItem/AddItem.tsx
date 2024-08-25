@@ -98,8 +98,6 @@ const AddItem = () => {
     setDisabled(allTrue);
   }, [isValid]);
 
-  console.log("데이터?", inputValues);
-
   return (
     <form
       className="form-container"

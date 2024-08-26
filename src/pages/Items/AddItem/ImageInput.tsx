@@ -3,14 +3,25 @@ import plusIcon from "../../../assets/ic_plus.svg";
 import deleteIcon from "../../../assets/ic_X.svg";
 import deleteHoverIcon from "../../../assets/ic_X_hover.svg";
 
-const ImageInput = () => {
+interface Props {
+  imgFileUpload: (imgFile: FormData) => void;
+}
+
+const ImageInput = ({ imgFileUpload }: Props) => {
   const [imgFile, setImgFile] = useState<File | null>(null);
   const [imgPreview, setImgPreview] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (e.target.files) {
       setImgFile(e.target.files[0]);
+    }
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+      imgFileUpload(formData);
     }
   };
 

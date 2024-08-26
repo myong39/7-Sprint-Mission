@@ -340,12 +340,10 @@ const Signup = () => {
 
   useEffect(() => {
     setDisabled(
-      !(
-        email.isValid === false &&
-        password.isValid === false &&
-        passwordConfirmation.isValid === false &&
-        nickname.isValid === false
-      )
+      email.isValid ||
+        password.isValid ||
+        passwordConfirmation.isValid ||
+        nickname.isValid
     );
   }, [
     email.isValid,

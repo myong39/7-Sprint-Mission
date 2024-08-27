@@ -16,10 +16,12 @@
     .banner-element {
       @include Flex(column, center, center);
       margin-bottom: 40px;
+      row-gap: 32px;
 
       .banner-title {
         @include Font(40px, 700, $color-gray-700);
-        @include Size(295px, 112px);
+        @include Size(295px, auto);
+        line-height: 56px;
       }
 
       .banner-button {
@@ -27,7 +29,6 @@
         @include Font(20px, 600, $color-gray-50);
         background-color: $color-blue;
         border-radius: 40px;
-        gap: 10px;
       }
     }
   }

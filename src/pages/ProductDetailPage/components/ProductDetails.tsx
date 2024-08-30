@@ -1,6 +1,5 @@
-import React from "react";
 import ProductInformation from "./ProductInformation";
-import { ProductDetailType } from "../../../types/types";
+import { ProductDetailType } from "@/types/ProductTypes";
 
 const ProductDetails = ({
   productDetails,

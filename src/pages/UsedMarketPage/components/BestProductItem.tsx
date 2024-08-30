@@ -1,10 +1,12 @@
-import React from "react";
-import favoriteImg from "../../../assets/images/icons/ic_heart.svg";
-import { getCommasToNumber } from "../../../utils/Utils";
-import { Item } from "../../../types/types";
+import favoriteImg from "@/assets/images/icons/ic_heart.svg";
+import { Item } from "@/types/ProductTypes";
 
-function BestProductItem({ item }: { item: Item }) {
-  const bestPrice = getCommasToNumber(item.price);
+interface BestProductItemProps {
+  item: Item;
+}
+
+const BestProductItem: React.FC<BestProductItemProps> = ({ item }) => {
+  const bestPrice = item.price.toLocaleString();
 
   return (
     <li className="list" key={item.id}>
@@ -19,6 +21,6 @@ function BestProductItem({ item }: { item: Item }) {
       </div>
     </li>
   );
-}
+};
 
 export default BestProductItem;

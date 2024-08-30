@@ -1,18 +1,16 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { getProductDetails } from "../../api/api";
+import { getProductDetails } from "@/lib/api";
 import { useEffect, useState } from "react";
 import ProductDetails from "./components/ProductDetails";
 import CommentsSection from "./components/CommentsSection";
-import GoBackToListButton from "./components/GoBackToListButton";
+import GoBackToListButton from "@/components/Layout/Comment.tsx/GoBackToListButton";
 import "./ProductDetailPage.scss";
-import { CommentType, ProductDetailType } from "../../types/types";
+import { CommentType, ProductDetailType } from "@/types/ProductTypes";
 
-function ProductDetailPage() {
+const ProductDetailPage = () => {
   // 해당 페이지의 productId를 받아옴
   const { productId } = useParams();
 
-  console.log(productId);
   // 상품 상세 내용을 서버에서 받아올 객체
   const [productDetail, setProductDetail] = useState<ProductDetailType>({
     id: 0,
@@ -57,9 +55,9 @@ function ProductDetailPage() {
     <section className="productDetailsMain">
       <ProductDetails productDetails={productDetail} />
       <CommentsSection productComments={productComments} />
-      <GoBackToListButton />
+      <GoBackToListButton href="/items" />
     </section>
   );
-}
+};
 
 export default ProductDetailPage;

@@ -1,10 +1,5 @@
-// 숫자를 쉼표로 구분하여 반환
-export function getCommasToNumber(number: number) {
-  return number.toLocaleString();
-}
-
 // 숫자만 입력 및 숫자 쉼표로 구분하여 반환
-export function getFormatNumber(number: string) {
+export function formatNumberWithComma(number: string) {
   return number.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -73,8 +68,8 @@ export function getElapsedTime(updatedAtString: string) {
   const months = Math.floor(days / 30);
   const years = Math.floor(days / 365);
 
-  if (seconds < 60) {
-    return `${seconds}초 전`;
+  if (minutes < 1) {
+    return "방금 전";
   } else if (minutes < 60) {
     return `${minutes}분 전`;
   } else if (hours < 24) {
@@ -89,15 +84,22 @@ export function getElapsedTime(updatedAtString: string) {
 }
 
 // 2024.4.23 10:7 PM 형식으로 포맷
-export function getFormatTime(updatedAtString: string) {
+export function getFormatTime(updatedAtString: string, isHour: boolean = true) {
   const updatedAt = new Date(updatedAtString);
-  const formattedHour =
-    updatedAt.getHours() > 12
-      ? updatedAt.getHours() - 12
-      : updatedAt.getHours();
-  const amPm = updatedAt.getHours() >= 12 ? "PM" : "AM";
 
-  return `${updatedAt.getFullYear()}.${
+  let formattedDateTime = `${updatedAt.getFullYear()}. ${
     updatedAt.getMonth() + 1
-  }.${updatedAt.getDate()} ${formattedHour}:${updatedAt.getMinutes()} ${amPm}`;
+  }. ${updatedAt.getDate()}`;
+
+  if (isHour) {
+    const formattedHour =
+      updatedAt.getHours() > 12
+        ? updatedAt.getHours() - 12
+        : updatedAt.getHours();
+    const amPm = updatedAt.getHours() >= 12 ? "PM" : "AM";
+
+    formattedDateTime += ` ${formattedHour}:${updatedAt.getMinutes()} ${amPm}`;
+  }
+
+  return formattedDateTime.trim();
 }

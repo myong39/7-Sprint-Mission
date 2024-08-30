@@ -23,7 +23,7 @@ export interface ProductSearchType {
 
 export interface ItemTagType {
   value: string;
-  onCancle: (tagValue: string) => void;
+  onCancel: (tagValue: string) => void;
 }
 
 export interface FileInputType {

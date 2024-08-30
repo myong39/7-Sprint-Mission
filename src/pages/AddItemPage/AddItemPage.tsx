@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useEffect,
   KeyboardEvent,
@@ -7,11 +7,11 @@ import React, {
   FocusEvent,
 } from "react";
 import ItemTag from "./ItemTag";
-import { getFormatNumber } from "../../utils/Utils";
+import { formatNumberWithComma } from "@/utils/Utils";
 import FileInput from "./FileInput";
 import "./AddItemPage.css";
 
-function AddItemPage() {
+const AddItemPage = () => {
   // form 데이터 객체
   const [itemIntroduction, setFormData] = useState({
     itemTitle: { value: "", isValid: false },
@@ -82,7 +82,7 @@ function AddItemPage() {
     const inputPrice = e.target.value;
 
     // 판매 가격 숫자만 입력 및 세자릿수마다 콤마 추가
-    const formattedPrice = getFormatNumber(inputPrice);
+    const formattedPrice = formatNumberWithComma(inputPrice);
 
     setFormData((prevData) => ({
       ...prevData,
@@ -144,12 +144,12 @@ function AddItemPage() {
         />
         <div className="tag-wrapper">
           {itemIntroduction.itemTag.value.map((value, index) => (
-            <ItemTag key={index} value={value} onCancle={handleTagCancel} />
+            <ItemTag key={index} value={value} onCancel={handleTagCancel} />
           ))}
         </div>
       </form>
     </section>
   );
-}
+};
 
 export default AddItemPage;

@@ -1,16 +1,14 @@
-import React from "react";
-import { getCommasToNumber } from "../../../utils/Utils";
 import ProductTags from "./ProductTags";
-import favoriteImg from "../../../assets/images/icons/ic_heart.svg";
-import kebabImg from "../../../assets/images/icons/ic_kebab.svg";
-import { ProductDetailType } from "../../../types/types";
+import favoriteImg from "@/assets/images/icons/ic_heart.svg";
+import kebabImg from "@/assets/images/icons/ic_kebab.svg";
+import { ProductDetailType } from "@/types/ProductTypes";
 
 const ProductInformation = ({
   productDetails: { tags, name, price, description, favoriteCount },
 }: {
   productDetails: ProductDetailType;
 }) => {
-  const productPrice = getCommasToNumber(price);
+  const productPrice = price.toLocaleString();
 
   return (
     <div className="productInfo">

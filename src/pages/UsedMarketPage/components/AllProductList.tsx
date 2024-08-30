@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import getItems from "../../../api/api";
+import { useState, useEffect } from "react";
+import getItems from "@/lib/api";
 import AllProductItem from "./AllProductItem";
 import ProductSearch from "./ProductSearch";
 import Pagination from "./Pagination";
-import { getCustomRound } from "../../../utils/Utils";
-import useDeviceType from "../../../hooks/useDeviceType";
+import { getCustomRound } from "@/utils/Utils";
+import useDeviceType from "@/hooks/useDeviceType";
 import { Link } from "react-router-dom";
-import { Item, FetchDataType } from "../../../types/types";
+import { Item, FetchDataType } from "@/types/ProductTypes";
 
 const PAGE_INIT = 1;
 const ITEM_INIT = 10;
 const TABLET_ITEM_NUM = 6;
 const MOBILE_ITEM_NUM = 4;
 
-function AllProductList() {
+const AllProductList = () => {
   // 아이템 리스트
   const [items, setItems] = useState<Item[]>([]);
   // 전체 아이템의 수
@@ -84,6 +84,6 @@ function AllProductList() {
       </div>
     </section>
   );
-}
+};
 
 export default AllProductList;

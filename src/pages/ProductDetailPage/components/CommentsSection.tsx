@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FormEvent } from "react";
 import Comment from "./Comment";
-import emptyImg from "../../../assets/images/icons/Img_inquiry_empty.svg";
+import emptyImg from "@/assets/images/icons/Img_inquiry_empty.svg";
 import { useState } from "react";
-import { CommentType } from "../../../types/types";
+import { CommentType } from "@/types/ProductTypes";
 
 const CommentsSection = ({
   productComments,

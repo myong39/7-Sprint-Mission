@@ -1,16 +1,16 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "../UsedMarketPage.css";
 import { Link } from "react-router-dom";
-import searchImg from "../../../assets/images/icons/ic_search.svg";
-import useDeviceType from "../../../hooks/useDeviceType";
-import dropdownImg from "../../../assets/images/icons/ic_sort.svg";
+import searchImg from "@/assets/images/icons/ic_search.svg";
+import useDeviceType from "@/hooks/useDeviceType";
+import dropdownImg from "@/assets/images/icons/ic_sort.svg";
 import { useSearchParams } from "react-router-dom";
-import { ProductSearchType } from "../../../types/types";
+import { ProductSearchType } from "@/types/ProductTypes";
 
 const FAVORITE_ORDER = "favorite";
 const RECENT_ORDER = "recent";
 
-function ProductSearch({ onOptionChange }: ProductSearchType) {
+const ProductSearch: React.FC<ProductSearchType> = ({ onOptionChange }) => {
   const [selectedOption, setSelectedOption] = useState("최신순");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -79,6 +79,6 @@ function ProductSearch({ onOptionChange }: ProductSearchType) {
       </div>
     </div>
   );
-}
+};
 
 export default ProductSearch;

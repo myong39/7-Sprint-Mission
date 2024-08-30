@@ -1,7 +1,6 @@
-import React from "react";
-import kebabImg from "../../../assets/images/icons/ic_kebab.svg";
-import { getFormatTime, getElapsedTime } from "../../../utils/Utils";
-import { CommentType } from "../../../types/types";
+import kebabImg from "@/assets/images/icons/ic_kebab.svg";
+import { getFormatTime, getElapsedTime } from "@/utils/Utils";
+import { CommentType } from "@/types/ProductTypes";
 
 const Comment = ({ comment }: { comment: CommentType }) => {
   // 경과 시간

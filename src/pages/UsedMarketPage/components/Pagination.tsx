@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import arrowLeftImg from "../../../assets/images/icons/arrow_left.svg";
-import arrowRightImg from "../../../assets/images/icons/arrow_right.svg";
-import { getPageNumberArray } from "../../../utils/Utils";
-import { PaginationType } from "../../../types/types";
+import arrowLeftImg from "@/assets/images/icons/arrow_left.svg";
+import arrowRightImg from "@/assets/images/icons/arrow_right.svg";
+import { getPageNumberArray } from "@/utils/Utils";
+import { PaginationType } from "@/types/ProductTypes";
 
-function Pagination({ onPageChange, pageNumber, currentPage }: PaginationType) {
+const Pagination: React.FC<PaginationType> = ({
+  onPageChange,
+  pageNumber,
+  currentPage,
+}) => {
   // 페이지 개수만큼 배열에
   const pageNumberArray = getPageNumberArray(pageNumber);
   // 활성화 된 페이지
@@ -67,6 +71,6 @@ function Pagination({ onPageChange, pageNumber, currentPage }: PaginationType) {
       </button>
     </>
   );
-}
+};
 
 export default Pagination;

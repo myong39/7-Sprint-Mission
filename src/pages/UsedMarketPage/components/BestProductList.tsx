@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import getItems from "../../../api/api";
+import { useEffect, useState } from "react";
+import getItems from "@/lib/api";
 import BestProductItem from "./BestProductItem";
-import useDeviceType from "../../../hooks/useDeviceType";
+import useDeviceType from "@/hooks/useDeviceType";
 import { Link } from "react-router-dom";
-import { Item } from "../../../types/types";
+import { Item } from "@/types/ProductTypes";
 
 const ITEM_INIT = 4;
 const TABLET_ITEM_NUM = 2;
 const MOBILE_ITEM_NUM = 1;
 
-function BestProductList() {
+const BestProductList = () => {
   // 아이템 리스트
   const [items, setItems] = useState<Item[]>([]);
   // 반응형 타입
@@ -49,6 +49,6 @@ function BestProductList() {
       </ul>
     </section>
   );
-}
+};
 
 export default BestProductList;

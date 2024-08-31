@@ -25,3 +25,8 @@ export interface SortDropdownProps {
   items: typeof orderTypeKeysKR;
   defaultOrderType: string;
 }
+
+export interface MenuDropdownProps {
+  onOrderChange: (newOption: string) => void;
+  items: string[];
+}

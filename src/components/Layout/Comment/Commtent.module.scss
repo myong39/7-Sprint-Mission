@@ -2,8 +2,6 @@
 
 .kebab-image {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
 }
 
 .go-back-button {
@@ -37,11 +35,6 @@
     @include font-style(16px, 400, 22.4px, var(--gray800));
   }
 
-  img {
-    width: 40px;
-    height: 40px;
-  }
-
   .comment {
     margin-bottom: 24px;
 
@@ -50,12 +43,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
-
-      img {
-        width: 24px;
-        height: 24px;
-      }
     }
+
     .writer-wrapper {
       display: flex;
       align-items: center;

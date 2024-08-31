@@ -1,7 +1,8 @@
 import ProductTags from "./ProductTags";
 import favoriteImg from "@/assets/images/icons/ic_heart.svg";
-import kebabImg from "@/assets/images/icons/ic_kebab.svg";
+import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
 import { ProductDetailType } from "@/types/ProductTypes";
+import { useState } from "react";
 
 const ProductInformation = ({
   productDetails: { tags, name, price, description, favoriteCount },
@@ -10,12 +11,22 @@ const ProductInformation = ({
 }) => {
   const productPrice = price.toLocaleString();
 
+  const [orderBy, setOrderBy] = useState("");
+  const handleOrderChange = (option: string) => {
+    setOrderBy(option);
+  };
+
   return (
     <div className="productInfo">
       <div className="detailsWrapper">
         <div className="titleWrapper">
           <h1>{name}</h1>
-          <img className="kebabImage" src={kebabImg} alt="더보기" />
+          <div className="kebabImage">
+            <MenuDropdown
+              onOrderChange={handleOrderChange}
+              items={["수정하기", "삭제하기"]}
+            />
+          </div>
         </div>
         <h2>{productPrice}원</h2>
         <div className="dividerLine"></div>

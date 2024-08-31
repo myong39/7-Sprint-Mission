@@ -2,15 +2,18 @@ import { useParams } from "react-router-dom";
 import { getProductDetails } from "@/lib/api";
 import { useEffect, useState } from "react";
 import ProductDetails from "./components/ProductDetails";
-import CommentsSection from "./components/CommentsSection";
+import CommentsSection from "@/components/Layout/Comment/CommentsSection";
 import GoBackToListButton from "@/components/Layout/Comment/GoBackToListButton";
 import "./ProductDetailPage.scss";
 import { CommentType, ProductDetailType } from "@/types/ProductTypes";
+import { CommentObject } from "@/types/ArticleTypes";
+import { commentInfo, fields } from "./components/ProductDetailConfig";
+import RegisterForm from "@/components/Layout/RegisterForm/RegisterForm";
 
 const ProductDetailPage = () => {
   // 해당 페이지의 productId를 받아옴
   const { productId } = useParams();
-
+  const formFields = fields;
   // 상품 상세 내용을 서버에서 받아올 객체
   const [productDetail, setProductDetail] = useState<ProductDetailType>({
     id: 0,
@@ -27,7 +30,10 @@ const ProductDetailPage = () => {
   });
 
   // 코멘트 리스트를 서버에서 받아올 배열
-  const [productComments, setProductComments] = useState<CommentType[]>([]);
+  const [productComments, setProductComments] =
+    useState<CommentObject>(commentInfo);
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchData = async () => {
     try {
@@ -41,9 +47,15 @@ const ProductDetailPage = () => {
       });
 
       setProductDetail(productDetailResult);
-      setProductComments(productCommentResult.list);
+      setProductComments({
+        ...productComments,
+        comments: productCommentResult.list,
+      });
+      console.log(productCommentResult.list);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -54,7 +66,8 @@ const ProductDetailPage = () => {
   return (
     <section className="productDetailsMain">
       <ProductDetails productDetails={productDetail} />
-      <CommentsSection productComments={productComments} />
+      <RegisterForm fields={formFields} bottomButton={true} />
+      <CommentsSection comments={productComments} isLoading={isLoading} />
       <GoBackToListButton href="/items" />
     </section>
   );

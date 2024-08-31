@@ -32,6 +32,8 @@ const FreeBoardDetail = () => {
     },
   });
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const fetchDataArticle = async ({ articleId }: ArticleApiData) => {
     try {
       const result = await getArticle({
@@ -48,13 +50,15 @@ const FreeBoardDetail = () => {
   const fetchDataComment = async ({ articleId }: ArticleCommentApiData) => {
     try {
       const result = await getArticleComment({ articleId });
-
+      console.log(result.list);
       setComments({
         ...comments,
         comments: result.list,
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,7 +73,11 @@ const FreeBoardDetail = () => {
     <div className={styles["freeboard-detail-main"]}>
       <BoardDetailArticle article={article} />
       <RegisterForm fields={formFields} bottomButton={true} />
-      <CommentsSection comments={comments} className={styles["comment"]} />
+      <CommentsSection
+        comments={comments}
+        className={styles["comment"]}
+        isLoading={isLoading}
+      />
       <GoBackToListButton href="/boards" />
     </div>
   );

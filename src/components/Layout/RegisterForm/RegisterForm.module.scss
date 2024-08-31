@@ -19,6 +19,11 @@
       justify-content: flex-end;
     }
   }
+
+  .input-label {
+    margin-bottom: 12px;
+    @include font-style(18px, 700, 26px, var(--gray800));
+  }
 }
 
 .title-wrapper {
@@ -30,11 +35,6 @@
 
 .title {
   @include font-style(20px, 700, 32px, var(--gray800));
-}
-
-.input-label {
-  margin-bottom: 12px;
-  @include font-style(18px, 700, 26px, var(--gray800));
 }
 
 /* Tablet Styles */

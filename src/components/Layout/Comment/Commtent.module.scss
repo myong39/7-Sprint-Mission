@@ -25,7 +25,14 @@
   }
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .comments-section {
+  margin-top: 40px;
   p {
     @include font-style(16px, 400, 22.4px, var(--gray800));
   }
@@ -57,6 +64,7 @@
       img {
         width: 40px;
         height: 40px;
+        border-radius: 50%;
       }
 
       .nickname-wrapper {

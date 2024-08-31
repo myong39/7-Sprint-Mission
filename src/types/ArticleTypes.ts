@@ -59,4 +59,5 @@ export interface CommentObject {
 export interface CommentsSectionProp {
   comments: CommentObject;
   className?: string;
+  isLoading?: boolean;
 }

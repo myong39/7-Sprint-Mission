@@ -90,10 +90,6 @@
   @include font-style(18px, 400, 26px, var(--gray800));
 }
 
-.comment {
-  margin-top: 40px;
-}
-
 /* Tablet Styles */
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .freeboard-detail-main {

@@ -3,7 +3,7 @@ import { getProductDetails } from "@/lib/api";
 import { useEffect, useState } from "react";
 import ProductDetails from "./components/ProductDetails";
 import CommentsSection from "./components/CommentsSection";
-import GoBackToListButton from "@/components/Layout/Comment.tsx/GoBackToListButton";
+import GoBackToListButton from "@/components/Layout/Comment/GoBackToListButton";
 import "./ProductDetailPage.scss";
 import { CommentType, ProductDetailType } from "@/types/ProductTypes";
 

@@ -7,9 +7,9 @@
 }
 
 .go-back-button {
-  margin: 40px auto 40px;
+  margin: 40px auto 0;
   background-color: var(--activate-button-blue);
-  padding: 12px 71px 12px 71px;
+  padding: 12px 71px;
   border-radius: 40px;
   @include font-style(18px, 600, 24px, white);
   font-family: inherit;

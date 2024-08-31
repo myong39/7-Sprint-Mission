@@ -1,13 +1,32 @@
+import React, { useState, useEffect } from "react";
 import { ArticleProp } from "@/types/ArticleTypes";
 import styles from "./Freeboard.module.scss";
 import favoriteImg from "@/assets/images/icons/ic_heart.svg";
-import { getFormatTime } from "@/utils/Utils";
+import { checkImageExists, getFormatTime } from "@/utils/Utils";
 import noImg from "@/assets/images/icons/no_img.svg";
+import LoadingSpinner from "@/components/Layout/LoadingSpinner";
 
 const AllArticleItem: React.FC<ArticleProp> = ({
   article: { createdAt, image, likeCount, title, writer },
 }) => {
-  const titleImage = image || noImg;
+  const [titleImage, setTitleImage] = useState<string>(noImg);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      if (image) {
+        setIsLoading(true);
+        const isValidImage = await checkImageExists(image);
+        setTitleImage(isValidImage ? image : noImg);
+        setIsLoading(false);
+      } else {
+        setTitleImage(noImg);
+        setIsLoading(false);
+      }
+    };
+
+    loadImage();
+  }, [image]);
 
   return (
     <div className={styles["all-card"]}>
@@ -15,7 +34,11 @@ const AllArticleItem: React.FC<ArticleProp> = ({
         <div className={styles["title-wrapper"]}>
           <h2 className={styles["card-title"]}>{title}</h2>
           <div className={styles["item-box"]}>
-            <img className={styles.item} src={titleImage} alt="대표 이미지" />
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <img className={styles.item} src={titleImage} alt="대표 이미지" />
+            )}
           </div>
         </div>
         <div className={styles["writer-wrapper"]}>

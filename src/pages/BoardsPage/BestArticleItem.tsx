@@ -1,14 +1,34 @@
+import { useState, useEffect } from "react";
+import { ArticleProp } from "@/types/ArticleTypes";
 import styles from "./Freeboard.module.scss";
 import badgeImg from "@/assets/images/icons/img_badge.svg";
 import favoriteImg from "@/assets/images/icons/ic_heart.svg";
-import { ArticleProp } from "@/types/ArticleTypes";
-import { getFormatTime } from "@/utils/Utils";
+import { checkImageExists, getFormatTime } from "@/utils/Utils";
 import noImg from "@/assets/images/icons/no_img.svg";
+import LoadingSpinner from "@/components/Layout/LoadingSpinner";
 
-const BestArticleItem: React.FC<ArticleProp> = ({
+const AllArticleItem: React.FC<ArticleProp> = ({
   article: { createdAt, image, likeCount, title, writer },
 }) => {
-  const titleImage = image ? image : noImg;
+  const [titleImage, setTitleImage] = useState<string>(noImg);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      setIsLoading(true);
+
+      if (image) {
+        const isValidImage = await checkImageExists(image);
+        setTitleImage(isValidImage ? image : noImg);
+      } else {
+        setTitleImage(noImg);
+      }
+
+      setIsLoading(false);
+    };
+
+    loadImage();
+  }, [image]);
 
   return (
     <div className={styles["best-card"]}>
@@ -17,7 +37,11 @@ const BestArticleItem: React.FC<ArticleProp> = ({
         <div className={styles["title-wrapper"]}>
           <h2 className={styles["card-title"]}>{title}</h2>
           <div className={styles["item-box"]}>
-            <img className={styles.item} src={titleImage} alt="대표 이미지" />
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <img className={styles.item} src={titleImage} alt="대표 이미지" />
+            )}
           </div>
         </div>
         <div className={styles["writer-wrapper"]}>
@@ -41,4 +65,4 @@ const BestArticleItem: React.FC<ArticleProp> = ({
   );
 };
 
-export default BestArticleItem;
+export default AllArticleItem;

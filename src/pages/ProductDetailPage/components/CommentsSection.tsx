@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import Comment from "./Comment";
 import emptyImg from "@/assets/images/icons/Img_inquiry_empty.svg";
 import { useState } from "react";

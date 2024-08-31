@@ -55,28 +55,26 @@ const Dropdown: React.FC<DropdownProps> = ({
       >
         {renderTrigger()}
       </div>
-      <ul className={`${styles.menu} ${menuClassName}`}>
-        {isOpen && (
-          <>
-            {items.length !== 0
-              ? items.map((item, index) => (
-                  <>
-                    <li
-                      className={`${styles["menu-item"]} ${itemClassName}`}
-                      key={index}
-                      onClick={() => handleItemClick(item)}
-                    >
-                      {item}
-                    </li>
-                    {index < items.length - 1 && (
-                      <span className={styles.divider}></span>
-                    )}
-                  </>
-                ))
-              : children}
-          </>
-        )}
-      </ul>
+      {isOpen && (
+        <ul className={`${styles.menu} ${menuClassName}`}>
+          {items.length !== 0
+            ? items.map((item, index) => (
+                <div key={item}>
+                  <li
+                    className={`${styles["menu-item"]} ${itemClassName}`}
+                    key={index}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item}
+                  </li>
+                  {index < items.length - 1 && (
+                    <span className={styles.divider}></span>
+                  )}
+                </div>
+              ))
+            : children}
+        </ul>
+      )}
     </div>
   );
 };

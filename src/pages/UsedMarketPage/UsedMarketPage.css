@@ -87,6 +87,7 @@ h1 {
 .item-image.all-item {
   width: 221px;
   height: 221px;
+  object-fit: cover;
 }
 
 .list-area.all-area {

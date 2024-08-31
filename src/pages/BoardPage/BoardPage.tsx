@@ -1,8 +1,8 @@
 import { getArticle, getArticleComment } from "@/lib/articleApi";
 import styles from "./BoardDetailArticle.module.scss";
-import CommentsSection from "@/components/Layout/Comment.tsx/CommentsSection";
+import CommentsSection from "@/components/Layout/Comment/CommentsSection";
 import RegisterForm from "@/components/Layout/RegisterForm/RegisterForm";
-import GoBackToListButton from "@/components/Layout/Comment.tsx/GoBackToListButton";
+import GoBackToListButton from "@/components/Layout/Comment/GoBackToListButton";
 import { useEffect, useState } from "react";
 import {
   ArticleApiData,

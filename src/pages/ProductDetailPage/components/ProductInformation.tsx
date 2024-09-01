@@ -4,8 +4,8 @@ import favoriteImg from "@/assets/images/icons/ic_heart.svg";
 import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
 import { ProductDetailType } from "@/types/ProductTypes";
 import { MENU_OPTION } from "@/types/UiTypes";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useDeleteProduct from "@/hooks/useDeleteProduct";
 
 const ProductInformation = ({
   productDetails: { id, tags, name, price, description, favoriteCount },
@@ -15,6 +15,11 @@ const ProductInformation = ({
   const productPrice = price.toLocaleString();
   const { confirm, ConfirmPopupComponent } = useConfirm();
   const navigate = useNavigate();
+
+  const { mutate: deleteProduct } = useDeleteProduct({
+    onSuccessRedirectTo: "/items",
+    productUrl: "products",
+  });
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {
@@ -26,7 +31,7 @@ const ProductInformation = ({
         "취소"
       );
       if (result) {
-        alert("삭제되었습니다.");
+        deleteProduct(id);
       }
     }
   };

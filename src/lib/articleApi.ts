@@ -2,7 +2,7 @@ import { defaultOrderType } from "@/constants/orderConstants";
 import {
   ArticleApiData,
   ArticleCommentApiData,
-  PostData,
+  ArticlePostData,
 } from "@/types/ArticleTypes";
 import { getTokenFromLocalStorage, instance, setAuthHeader } from "./api";
 
@@ -50,7 +50,7 @@ export const getArticleComment = async ({
   }
 };
 
-export const createPost = async (postData: PostData) => {
+export const createPost = async (postData: ArticlePostData) => {
   try {
     const token = getTokenFromLocalStorage();
 
@@ -60,7 +60,10 @@ export const createPost = async (postData: PostData) => {
       console.warn("유효한 로그인이 아닙니다.");
     }
 
-    const response = await instance.post<PostData>("/articles", postData);
+    const response = await instance.post<ArticlePostData>(
+      "/articles",
+      postData
+    );
     return response.data;
   } catch (error) {
     console.error("게시글을 생성하는데 실패했습니다:", error);

@@ -8,6 +8,9 @@ import {
 } from "@/types/RegisterTypes";
 import { FIELDTYPE } from "./registerConfig";
 import styles from "./RegisterForm.module.scss";
+import { ArticlePostData } from "@/types/ArticleTypes";
+import useAddProduct from "@/hooks/useAddProduct";
+import { useLocation } from "react-router-dom";
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
   titleText = "",
@@ -16,6 +19,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   bottomButton = false,
   href = "",
 }) => {
+  const location = useLocation();
   const initializeFormValues = () => {
     const initialValues: FormValues = {};
     Object.values(fields).forEach((field) => {
@@ -23,6 +27,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     });
     return initialValues;
   };
+
+  const addProduct = useAddProduct({
+    onSuccessRedirectUrl: "/boards",
+    productUrl: "articles",
+  });
 
   const [formValues, setFormValues] = useState<FormValues>(
     initializeFormValues()
@@ -61,6 +70,19 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    if (location.pathname === "/addboard") {
+      const ArticleData: ArticlePostData = {
+        image: null,
+        content: formValues[FIELDTYPE.CONTENT] as string,
+        title: formValues[FIELDTYPE.TITLE] as string,
+      };
+
+      addProduct.mutate({
+        productData: ArticleData,
+        file: formValues[FIELDTYPE.IMAGE] as File | null,
+      });
+    }
   };
 
   useEffect(() => {
@@ -81,7 +103,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <div className={styles["title-wrapper"]}>
         <h1 className={styles.title}>{titleText}</h1>
         {!bottomButton && (
-          <Button href={href} disabled={!isValid}>
+          <Button href={""} disabled={!isValid}>
             {buttonText}
           </Button>
         )}

@@ -1,5 +1,9 @@
-import { ProductData } from "@/types/ArticleTypes";
 import { getTokenFromLocalStorage, instance, setAuthHeader } from "./api";
+import {
+  CreateProductParams,
+  DeleteProductParams,
+  ProductData,
+} from "@/types/ProductTypes";
 
 export async function getProducts({
   orderBy = "favorite",
@@ -34,7 +38,10 @@ export async function getProductDetails({
   }
 }
 
-export const createProduct = async (pruductData: ProductData) => {
+export const createProduct = async ({
+  productData,
+  productUrl,
+}: CreateProductParams) => {
   try {
     const token = getTokenFromLocalStorage();
 
@@ -44,7 +51,7 @@ export const createProduct = async (pruductData: ProductData) => {
       console.warn("유효한 로그인이 아닙니다.");
     }
 
-    const response = await instance.post<ProductData>("/products", pruductData);
+    const response = await instance.post(`${productUrl}`, productData);
     return response.data;
   } catch (error) {
     console.error("게시글을 생성하는데 실패했습니다:", error);
@@ -65,13 +72,35 @@ export const updateProduct = async (
       console.warn("유효한 로그인이 아닙니다.");
     }
 
-    const response = await instance.patch<ProductData>(
+    const response = await instance.patch(
       `/products/${productId}`,
       productData
     );
     return response.data;
   } catch (error) {
     console.error("게시글을 업데이트하는데 실패했습니다:", error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async ({
+  productUrl,
+  productId,
+}: DeleteProductParams) => {
+  try {
+    const token = getTokenFromLocalStorage();
+
+    if (token) {
+      setAuthHeader(token);
+    } else {
+      console.warn("유효한 로그인이 아닙니다.");
+    }
+
+    const response = await instance.delete(`/${productUrl}/${productId}`);
+
+    return response.data;
+  } catch (error) {
+    console.error("삭제 작업 중 오류가 발생했습니다:", error);
     throw error;
   }
 };

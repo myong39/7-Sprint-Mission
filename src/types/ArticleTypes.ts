@@ -62,16 +62,8 @@ export interface CommentsSectionProp {
   isLoading?: boolean;
 }
 
-export interface PostData {
+export interface ArticlePostData {
   image: File | null;
   content: string;
   title: string;
-}
-
-export interface ProductData {
-  images: string[];
-  tags: string[];
-  price: number;
-  description: string;
-  name: string;
 }

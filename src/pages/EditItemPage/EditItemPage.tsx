@@ -14,10 +14,11 @@ import {
   useQuery,
   UseMutationResult,
 } from "@tanstack/react-query";
-import { ProductData } from "@/types/ArticleTypes";
+
 import { getProductDetails, updateProduct } from "@/lib/productApi";
 import { uploadImage } from "@/lib/api";
 import { useNavigate, useParams } from "react-router-dom";
+import { ProductData } from "@/types/ProductTypes";
 
 const EditItemPage = () => {
   const { id } = useParams();
@@ -152,8 +153,6 @@ const EditItemPage = () => {
       const imageUrl = fileValue
         ? await uploadImage(fileValue)
         : initialImageUrl;
-      console.log("이미지");
-      console.log(imageUrl);
 
       const updatedPost: ProductData = {
         images: [imageUrl || ""],
@@ -162,8 +161,7 @@ const EditItemPage = () => {
         description: itemIntroduction.itemDescription.value,
         name: itemIntroduction.itemTitle.value,
       };
-      console.log("데이터");
-      console.log(updatedPost);
+
       uploadPostMutation.mutate(updatedPost);
     } catch (error) {
       console.error("게시물 업데이트 중 오류가 발생 : ", error);

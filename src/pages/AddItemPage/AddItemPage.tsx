@@ -1,19 +1,10 @@
-import {
-  useState,
-  useEffect,
-  KeyboardEvent,
-  ChangeEvent,
-  FocusEvent,
-} from "react";
+import { useState, KeyboardEvent, ChangeEvent, FocusEvent } from "react";
 import ItemTag from "./ItemTag";
 import { formatNumberWithComma } from "@/utils/Utils";
 import FileInput from "./FileInput";
 import "./AddItemPage.css";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { ProductData } from "@/types/ArticleTypes";
-import { createProduct } from "@/lib/productApi";
-import { uploadImage } from "@/lib/api";
-import { useNavigate } from "react-router-dom";
+import useAddProduct from "@/hooks/useAddProduct";
+import { ProductData } from "@/types/ProductTypes";
 
 const AddItemPage = () => {
   // form 데이터 객체
@@ -31,7 +22,10 @@ const AddItemPage = () => {
     (input) => input.isValid
   );
 
-  const navigate = useNavigate();
+  const addProduct = useAddProduct({
+    onSuccessRedirectUrl: "/items",
+    productUrl: "products",
+  });
 
   // tag 배열 정보과 유효성 업데이트
   const updateTagAndValidity = (newTagArray: string[]) => {
@@ -106,50 +100,22 @@ const AddItemPage = () => {
     setFileValue(() => file);
   };
 
-  useEffect(() => {}, [itemIntroduction]);
-
-  const uploadPostMutation: UseMutationResult<ProductData, Error, ProductData> =
-    useMutation({
-      mutationFn: (newPost: ProductData) => createProduct(newPost),
-
-      onSuccess: (data: ProductData) => {
-        console.log("게시글 생성 성공:", data);
-      },
-
-      onError: (error: Error) => {
-        console.error("게시글 생성 실패:", error);
-      },
-    });
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!fileValue) {
-      console.warn("파일이 선택되지 않았습니다.");
-      return;
-    }
+    const newProduct: ProductData = {
+      images: [],
+      tags: itemIntroduction.itemTag.value,
+      price: itemIntroduction.itemPrice.rawValue,
+      description: itemIntroduction.itemDescription.value,
+      name: itemIntroduction.itemTitle.value,
+    };
 
-    try {
-      const imageUrl = await uploadImage(fileValue);
-
-      const newPost: ProductData = {
-        images: [imageUrl],
-        tags: itemIntroduction.itemTag.value,
-        price: itemIntroduction.itemPrice.rawValue,
-        description: itemIntroduction.itemDescription.value,
-        name: itemIntroduction.itemTitle.value,
-      };
-
-      uploadPostMutation.mutate(newPost, {
-        onSuccess: () => {
-          navigate("/items");
-        },
-        onError: (error) => {
-          console.error("게시물 업로드 중 오류 발생:", error);
-        },
+    if (fileValue) {
+      addProduct.mutate({
+        productData: newProduct,
+        file: fileValue,
       });
-    } catch (error) {
-      console.error("게시물 업로드 중 오류 발생:", error);
     }
   };
 

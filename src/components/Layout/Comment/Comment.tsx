@@ -1,25 +1,34 @@
-import kebabImg from "@/assets/images/icons/ic_kebab.svg";
 import { getFormatTime, getElapsedTime } from "@/utils/Utils";
 import { CommentType } from "@/types/ArticleTypes";
 import styles from "./Commtent.module.scss";
 import defaultProfileImg from "@/assets/images/icons/ic_user.svg";
 import MenuDropdown from "../Dropdown/MenuDropdown";
-import { useState } from "react";
 import { useConfirm } from "../ConfirmPopup";
 import { MENU_OPTION } from "@/types/UiTypes";
+import { useLocation } from "react-router-dom";
+import useDeleteProduct from "@/hooks/useDeleteProduct";
 
 const Comment: React.FC<{ comment: CommentType }> = ({
   comment: {
+    id,
     content,
     writer: { image, nickname },
     createdAt,
   },
 }) => {
+  const location = useLocation();
   const elapsedTime = getElapsedTime(createdAt);
   const formattedTime = getFormatTime(createdAt);
   const profileImg = image ? image : defaultProfileImg;
 
   const { confirm, ConfirmPopupComponent } = useConfirm();
+
+  const { mutate: deleteComment } = useDeleteProduct({
+    onSuccessRedirectTo: location.pathname.startsWith("/items")
+      ? "/items"
+      : "/boards",
+    productUrl: "comments",
+  });
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {
@@ -30,7 +39,7 @@ const Comment: React.FC<{ comment: CommentType }> = ({
         "취소"
       );
       if (result) {
-        alert("삭제되었습니다.");
+        deleteComment(id);
       }
     }
   };
@@ -55,7 +64,7 @@ const Comment: React.FC<{ comment: CommentType }> = ({
           </h4>
         </div>
       </div>
-      <div className={styles["horizontal-divider"]}></div>{" "}
+      <div className={styles["horizontal-divider"]}></div>
       {ConfirmPopupComponent}
     </div>
   );

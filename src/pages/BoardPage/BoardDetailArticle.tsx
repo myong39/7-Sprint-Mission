@@ -6,6 +6,7 @@ import { getFormatTime } from "@/utils/Utils";
 import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
 import { MENU_OPTION } from "@/types/UiTypes";
 import { useConfirm } from "@/components/Layout/ConfirmPopup";
+import useDeleteProduct from "@/hooks/useDeleteProduct";
 
 interface BoardDetailArticleProps {
   article: Article;
@@ -13,6 +14,7 @@ interface BoardDetailArticleProps {
 
 const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
   article: {
+    id,
     title,
     content,
     writer: { nickname },
@@ -21,6 +23,10 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
   },
 }) => {
   const { confirm, ConfirmPopupComponent } = useConfirm();
+  const { mutate: deleteProduct } = useDeleteProduct({
+    onSuccessRedirectTo: "/boards",
+    productUrl: "articles",
+  });
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {
@@ -31,7 +37,7 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
         "취소"
       );
       if (result) {
-        alert("삭제되었습니다.");
+        deleteProduct(id);
       }
     }
   };

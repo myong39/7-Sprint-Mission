@@ -1,3 +1,5 @@
+import { ArticlePostData } from "./ArticleTypes";
+
 export interface Item {
   id: number;
   price: number;
@@ -58,3 +60,22 @@ export type CommentType = {
     nickname: string;
   };
 };
+
+export interface CreateProductParams {
+  productData: ProductData | ArticlePostData;
+  productUrl: string;
+}
+
+export interface DeleteProductParams {
+  productUrl: string;
+  productId: number;
+  relatedArticleId?: string;
+}
+
+export interface ProductData {
+  images: string[];
+  tags: string[];
+  price: number;
+  description: string;
+  name: string;
+}

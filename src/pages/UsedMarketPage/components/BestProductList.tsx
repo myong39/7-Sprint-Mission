@@ -3,7 +3,7 @@ import BestProductItem from "./BestProductItem";
 import useDeviceType from "@/hooks/useDeviceType";
 import { Link } from "react-router-dom";
 import { Item } from "@/types/ProductTypes";
-import { getItems } from "@/lib/productApi";
+import { getProducts } from "@/lib/productApi";
 
 const ITEM_INIT = 4;
 const TABLET_ITEM_NUM = 2;
@@ -23,7 +23,7 @@ const BestProductList = () => {
 
   const fetchData = async (itemsPerPage: number) => {
     try {
-      const result = await getItems({
+      const result = await getProducts({
         orderBy: "favorite",
         pageSize: itemsPerPage,
       });

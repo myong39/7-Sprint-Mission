@@ -11,6 +11,7 @@ import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage";
 import PrivacyPage from "./components/Layout/Footer/PrivacyPage";
 import FaqPage from "./components/Layout/Footer/FaqPage";
 import SignupAndLoginPage from "./pages/SignupAndLoginPage/SignupAndLoginPage";
+import EditItemPage from "./pages/EditItemPage/EditItemPage";
 
 function Main() {
   return (
@@ -28,6 +29,9 @@ function Main() {
           </Route>
           <Route path="addBoard" element={<AddBoardPage />} />
           <Route path="additem" element={<AddItemPage />} />
+          <Route path="edititem">
+            <Route path=":id" element={<EditItemPage />} />
+          </Route>
           <Route path="login" element={<SignupAndLoginPage />} />
           <Route path="signup" element={<SignupAndLoginPage />} />
           <Route path="privacy" element={<PrivacyPage />} />

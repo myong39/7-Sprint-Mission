@@ -6,7 +6,7 @@ import { getCustomRound } from "@/utils/Utils";
 import useDeviceType from "@/hooks/useDeviceType";
 import { Link } from "react-router-dom";
 import { Item, FetchDataType } from "@/types/ProductTypes";
-import { getItems } from "@/lib/productApi";
+import { getProducts } from "@/lib/productApi";
 
 const PAGE_INIT = 1;
 const ITEM_INIT = 10;
@@ -40,7 +40,7 @@ const AllProductList = () => {
     itemsPerPage,
   }: FetchDataType) => {
     try {
-      const result = await getItems({
+      const result = await getProducts({
         orderBy,
         pageSize: itemsPerPage,
         page: currentPage,

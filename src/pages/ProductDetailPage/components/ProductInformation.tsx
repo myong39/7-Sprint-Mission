@@ -5,17 +5,20 @@ import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
 import { ProductDetailType } from "@/types/ProductTypes";
 import { MENU_OPTION } from "@/types/UiTypes";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductInformation = ({
-  productDetails: { tags, name, price, description, favoriteCount },
+  productDetails: { id, tags, name, price, description, favoriteCount },
 }: {
   productDetails: ProductDetailType;
 }) => {
   const productPrice = price.toLocaleString();
   const { confirm, ConfirmPopupComponent } = useConfirm();
+  const navigate = useNavigate();
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {
+      navigate(`/edititem/${id}`);
     } else if (option === MENU_OPTION.DELETE) {
       const result = await confirm(
         "정말로 이 항목을 삭제하시겠습니까?",

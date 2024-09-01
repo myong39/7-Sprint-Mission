@@ -88,6 +88,7 @@ h1 {
   width: 221px;
   height: 221px;
   object-fit: cover;
+  border-radius: 16px;
 }
 
 .list-area.all-area {

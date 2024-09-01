@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import styles from "./Freeboard.module.scss";
 import BestArticleItem from "./BestArticleItem";
 import { getArticle } from "@/lib/articleApi";
-import { Article, ArticleApiData } from "@/types/ArticleTypes";
+import { Article } from "@/types/ArticleTypes";
 import useDeviceType from "@/hooks/useDeviceType";
 import { DeviceTypePageSize } from "@/constants/deviceSizesConstants";
 import { ORDER_TYPE_ENUM } from "@/constants/orderConstants";
@@ -12,7 +12,6 @@ const { MOBILE_PAGE_SIZE, TABLET_PAGE_SIZE, DESKTOP_PAGE_SIZE } =
   DeviceTypePageSize;
 
 const BestArticleList = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
   const { isMobile, isTablet } = useDeviceType();
 
   const pageSize = isTablet
@@ -21,25 +20,28 @@ const BestArticleList = () => {
     ? MOBILE_PAGE_SIZE
     : DESKTOP_PAGE_SIZE;
 
-  const fetchData = async ({ orderBy, pageSize }: ArticleApiData) => {
-    try {
-      const result = await getArticle({ orderBy, pageSize });
+  const {
+    data: articles = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["bestArticles", pageSize],
+    queryFn: () =>
+      getArticle({
+        orderBy: ORDER_TYPE_ENUM.LIKE,
+        pageSize,
+      }).then((result) => result.list),
+  });
 
-      setArticles(() => result.list);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData({ orderBy: ORDER_TYPE_ENUM.LIKE, pageSize: pageSize });
-  }, [pageSize]);
+  if (isLoading) return <></>;
+  if (isError) return <></>;
 
   return (
     <section className={styles["best-article"]}>
       <h1 className={styles.title}>베스트 게시글</h1>
       <div className={styles["card-container"]}>
-        {articles.map((article) => (
+        {articles.map((article: Article) => (
           <Link to={`/board/${article.id}`} key={article.id}>
             <BestArticleItem article={article} />
           </Link>

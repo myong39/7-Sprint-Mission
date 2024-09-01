@@ -54,6 +54,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const addComment = useAddProduct({
     onSuccessRedirectUrl: "",
     productUrl,
+    queryKey: "comments",
   });
 
   const [formValues, setFormValues] = useState<FormValues>(

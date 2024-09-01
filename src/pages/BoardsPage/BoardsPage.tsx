@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import BestArticleList from "./BestArticleList";
 import AllArticleList from "./AllArticleList";
 import styles from "./Freeboard.module.scss";
@@ -6,33 +6,28 @@ import { Article } from "@/types/ArticleTypes";
 import { getArticle } from "@/lib/articleApi";
 
 const BoardsPage = () => {
-  const [initialArticles, setInitialArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const {
+    data: articles,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["articles"],
+    queryFn: getArticle as () => Promise<{ list: Article[] }>,
+  });
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const bestRes = await getArticle();
-        setInitialArticles(bestRes.list ?? []);
-      } catch (error) {
-        console.error(error);
-        setInitialArticles([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (isLoading) {
+    return <></>;
+  }
 
-    fetchArticles();
-  }, []);
-
-  if (loading) {
-    return null;
+  if (isError) {
+    return <></>;
   }
 
   return (
     <div className={styles.main}>
       <BestArticleList />
-      <AllArticleList initialArticles={initialArticles} />
+      <AllArticleList initialArticles={articles?.list ?? []} />
     </div>
   );
 };

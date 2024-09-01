@@ -7,8 +7,6 @@ import { useConfirm } from "../ConfirmPopup";
 import { MENU_OPTION } from "@/types/UiTypes";
 import { useLocation } from "react-router-dom";
 import useDeleteProduct from "@/hooks/useDeleteProduct";
-import useAddProduct from "@/hooks/useAddProduct";
-import { useEffect, useState } from "react";
 
 const Comment: React.FC<{ comment: CommentType; urlId: number | null }> = ({
   comment: {
@@ -27,20 +25,10 @@ const Comment: React.FC<{ comment: CommentType; urlId: number | null }> = ({
   const { confirm, ConfirmPopupComponent } = useConfirm();
 
   const { mutate: deleteComment } = useDeleteProduct({
-    onSuccessRedirectUrl: location.pathname.startsWith("/items")
-      ? "/items"
-      : "/boards",
+    onSuccessRedirectUrl: "",
     productUrl: "comments",
+    queryKey: "comments",
   });
-
-  console.log(urlId);
-
-  // const { mutate: addComment } = useAddProduct({
-  //   onSuccessRedirectUrl: location.pathname.startsWith("/items")
-  //     ? "/items"
-  //     : "/boards",
-  //   productUrl: `articles/${articleId}/comments`,
-  // });
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {

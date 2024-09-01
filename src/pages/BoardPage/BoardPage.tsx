@@ -3,80 +3,53 @@ import styles from "./BoardDetailArticle.module.scss";
 import CommentsSection from "@/components/Layout/Comment/CommentsSection";
 import RegisterForm from "@/components/Layout/RegisterForm/RegisterForm";
 import GoBackToListButton from "@/components/Layout/Comment/GoBackToListButton";
-import { useEffect, useState } from "react";
-import {
-  ArticleApiData,
-  ArticleCommentApiData,
-  CommentObject,
-} from "@/types/ArticleTypes";
+import { CommentObject } from "@/types/ArticleTypes";
 import { commentInfo, fields } from "./BoardDetailConfig";
 import BoardDetailArticle from "./BoardDetailArticle";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const FreeBoardDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [comments, setComments] = useState<CommentObject>(commentInfo);
   const formFields = fields;
-  const [article, setArticle] = useState({
-    id: 0,
-    title: "",
-    content: "",
-    image: null,
-    createdAt: "",
-    updatedAt: "",
-    isLiked: false,
-    likeCount: 0,
-    writer: {
-      id: 0,
-      nickname: "",
-    },
+
+  const {
+    data: article,
+    isLoading: isArticleLoading,
+    isError: isArticleError,
+    error: articleError,
+  } = useQuery({
+    queryKey: ["article", id],
+    queryFn: () => getArticle({ articleId: id, detail: true }),
+    enabled: !!id,
   });
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const {
+    data: commentsData,
+    isLoading: isCommentsLoading,
+    isError: isCommentsError,
+    error: commentsError,
+  } = useQuery({
+    queryKey: ["comments", id],
+    queryFn: () => getArticleComment({ articleId: id }),
+    enabled: !!id,
+    select: (result) => ({
+      ...commentInfo,
+      comments: result.list,
+    }),
+  });
 
-  const fetchDataArticle = async ({ articleId }: ArticleApiData) => {
-    try {
-      const result = await getArticle({
-        articleId,
-        detail: true,
-      });
-
-      setArticle(() => result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchDataComment = async ({ articleId }: ArticleCommentApiData) => {
-    try {
-      const result = await getArticleComment({ articleId });
-
-      setComments({
-        ...comments,
-        comments: result.list,
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      fetchDataArticle({ articleId: id });
-      fetchDataComment({ articleId: id });
-    }
-  }, [id]);
+  if (isArticleLoading || isCommentsLoading) return <></>;
+  if (isArticleError || isCommentsError) return <></>;
 
   return (
     <div className={styles["freeboard-detail-main"]}>
       <BoardDetailArticle article={article} />
       <RegisterForm fields={formFields} bottomButton={true} />
       <CommentsSection
-        comments={comments}
+        comments={commentsData as CommentObject}
         className={styles["comment"]}
-        isLoading={isLoading}
+        isLoading={isCommentsLoading}
       />
       <GoBackToListButton href="/boards" />
     </div>

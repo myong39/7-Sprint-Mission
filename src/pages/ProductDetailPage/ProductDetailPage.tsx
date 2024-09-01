@@ -9,64 +9,55 @@ import { CommentObject } from "@/types/ArticleTypes";
 import { commentInfo, fields } from "./components/ProductDetailConfig";
 import RegisterForm from "@/components/Layout/RegisterForm/RegisterForm";
 import { getProductDetails } from "@/lib/productApi";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductDetailPage = () => {
-  // 해당 페이지의 productId를 받아옴
-  const { productId } = useParams();
+  const { productId } = useParams<string>();
   const formFields = fields;
-  // 상품 상세 내용을 서버에서 받아올 객체
-  const [productDetail, setProductDetail] = useState<ProductDetailType>({
-    id: 0,
-    name: "",
-    description: "",
-    price: 0,
-    tags: [],
-    images: [],
-    ownerId: 0,
-    favoriteCount: 0,
-    createdAt: "",
-    updatedAt: "",
-    isFavorite: false,
+
+  const {
+    data: productDetail,
+    isLoading: isProductLoading,
+    isError: isProductError,
+    error: productError,
+  } = useQuery({
+    queryKey: ["productDetails", productId],
+    queryFn: () => getProductDetails({ productId: Number(productId) }),
+    enabled: !!productId,
   });
 
-  // 코멘트 리스트를 서버에서 받아올 배열
-  const [productComments, setProductComments] =
-    useState<CommentObject>(commentInfo);
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const fetchData = async () => {
-    try {
-      const productDetailResult = await getProductDetails({
-        productId: Number(productId),
-      });
-
-      const productCommentResult = await getProductDetails({
+  const {
+    data: commentsData,
+    isLoading: isCommentsLoading,
+    isError: isCommentsError,
+    error: commentsError,
+  } = useQuery({
+    queryKey: ["comments", productId],
+    queryFn: () =>
+      getProductDetails({
         productId: Number(productId),
         comments: true,
-      });
+      }),
+    select: (result) => ({
+      ...commentInfo,
+      comments: result.list ?? [],
+    }),
+    enabled: !!productId,
+  });
 
-      setProductDetail(productDetailResult);
-      setProductComments({
-        ...productComments,
-        comments: productCommentResult.list,
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  if (isProductLoading || isCommentsLoading) return <p>Loading...</p>;
+  if (isProductError || isCommentsError) {
+    return <p>Error: {productError?.message || commentsError?.message}</p>;
+  }
 
-  useEffect(() => {
-    fetchData();
-  }, [productId]);
+  console.log(commentsData);
+  const comments: CommentObject = commentsData || commentInfo;
 
   return (
     <section className="productDetailsMain">
-      <ProductDetails productDetails={productDetail} />
+      <ProductDetails productDetails={productDetail || {}} />
       <RegisterForm fields={formFields} bottomButton={true} />
-      <CommentsSection comments={productComments} isLoading={isLoading} />
+      <CommentsSection comments={comments} isLoading={isCommentsLoading} />
       <GoBackToListButton href="/items" />
     </section>
   );

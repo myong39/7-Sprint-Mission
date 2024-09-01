@@ -1,9 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import {
-  CommentPostData,
-  ProductPostData,
-  UnifiedPostData,
-} from "@/types/ProductTypes";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ProductPostData, UnifiedPostData } from "@/types/ProductTypes";
 import { uploadImage } from "@/lib/api";
 import { createProduct } from "@/lib/productApi";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +8,7 @@ import { ArticlePostData } from "@/types/ArticleTypes";
 interface UseAddProductOptions {
   onSuccessRedirectUrl: string;
   productUrl: string;
+  queryKey?: string;
 }
 
 function isProductData(data: UnifiedPostData): data is ProductPostData {
@@ -25,7 +22,9 @@ function isArticlePostData(data: UnifiedPostData): data is ArticlePostData {
 const useAddProduct = ({
   onSuccessRedirectUrl,
   productUrl,
+  queryKey,
 }: UseAddProductOptions) => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   return useMutation({
@@ -52,7 +51,12 @@ const useAddProduct = ({
       });
     },
     onSuccess: () => {
-      console.log(onSuccessRedirectUrl);
+      if (queryKey) {
+        console.log("쿼리키 있따고");
+        queryClient.invalidateQueries({ queryKey: [queryKey] });
+      } else {
+        queryClient.invalidateQueries();
+      }
       navigate(onSuccessRedirectUrl);
       alert("항목이 성공적으로 등록되었습니다.");
     },

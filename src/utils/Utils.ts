@@ -120,3 +120,28 @@ export function checkImageExists(url: string): Promise<boolean> {
     img.src = url;
   });
 }
+
+export const calculatePageRange = (
+  currentPage: number,
+  pageNumber: number,
+  rangeSize: number
+) => {
+  let startPage = Math.max(
+    1,
+    Math.floor((currentPage - 1) / rangeSize) * rangeSize + 1
+  );
+  let endPage = startPage + rangeSize - 1;
+
+  if (endPage > pageNumber) {
+    endPage = pageNumber;
+  }
+
+  if (endPage < pageNumber && endPage - startPage + 1 < rangeSize) {
+    startPage = Math.max(1, endPage - rangeSize + 1);
+  }
+
+  return Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i
+  );
+};

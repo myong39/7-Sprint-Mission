@@ -15,6 +15,7 @@ export interface FetchDataType {
 export interface PaginationType extends FetchDataType {
   onPageChange: (option: number) => void;
   pageNumber: number;
+  rangeSize?: number;
 }
 
 export interface ProductSearchType {

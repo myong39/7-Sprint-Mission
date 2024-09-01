@@ -23,7 +23,7 @@ const ProductInformation = ({
         "취소"
       );
       if (result) {
-        alert("상품이 삭제되었습니다.");
+        alert("삭제되었습니다.");
       }
     }
   };

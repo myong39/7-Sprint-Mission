@@ -1,7 +1,6 @@
 import { Article } from "@/types/ArticleTypes";
 import styles from "./BoardDetailArticle.module.scss";
 import defalutProfleImg from "@/assets/images/icons/ic_user.svg";
-import kebabImg from "@/assets/images/icons/ic_kebab.svg";
 import favoriteImg from "@/assets/images/icons/ic_heart.svg";
 import { getFormatTime } from "@/utils/Utils";
 import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
@@ -32,7 +31,7 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
         "취소"
       );
       if (result) {
-        alert("상품이 삭제되었습니다.");
+        alert("삭제되었습니다.");
       }
     }
   };

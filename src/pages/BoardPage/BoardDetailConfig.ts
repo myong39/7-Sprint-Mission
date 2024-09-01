@@ -11,14 +11,14 @@ export const commentInfo: CommentObject = {
   },
 };
 
-export enum FIELDTYPE {
+export enum ARTICLE_FIELDTYPE {
   TITLE = "댓글달기",
 }
 
-export const fields: Record<FIELDTYPE, FieldInfo> = {
-  [FIELDTYPE.TITLE]: {
-    id: FIELDTYPE.TITLE,
-    name: FIELDTYPE.TITLE,
+export const fields: Record<ARTICLE_FIELDTYPE, FieldInfo> = {
+  [ARTICLE_FIELDTYPE.TITLE]: {
+    id: ARTICLE_FIELDTYPE.TITLE,
+    name: ARTICLE_FIELDTYPE.TITLE,
     type: "input",
     placeholder: "댓글을 입력해주세요",
   },

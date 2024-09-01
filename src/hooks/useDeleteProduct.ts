@@ -3,12 +3,12 @@ import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { deleteProduct } from "@/lib/productApi";
 
 interface UseDeleteProductOptions {
-  onSuccessRedirectTo: string;
+  onSuccessRedirectUrl: string;
   productUrl: string;
 }
 
 const useDeleteProduct = ({
-  onSuccessRedirectTo: onSuccessRedirectUrl,
+  onSuccessRedirectUrl: onSuccessRedirectUrl,
   productUrl,
 }: UseDeleteProductOptions) => {
   const navigate = useNavigate();

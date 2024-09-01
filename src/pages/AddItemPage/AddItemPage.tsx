@@ -4,7 +4,7 @@ import { formatNumberWithComma } from "@/utils/Utils";
 import FileInput from "./FileInput";
 import "./AddItemPage.css";
 import useAddProduct from "@/hooks/useAddProduct";
-import { ProductData } from "@/types/ProductTypes";
+import { ProductPostData } from "@/types/ProductTypes";
 
 const AddItemPage = () => {
   // form 데이터 객체
@@ -103,7 +103,7 @@ const AddItemPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newProduct: ProductData = {
+    const newProduct: ProductPostData = {
       images: [],
       tags: itemIntroduction.itemTag.value,
       price: itemIntroduction.itemPrice.rawValue,

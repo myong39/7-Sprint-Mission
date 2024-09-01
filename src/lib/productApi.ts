@@ -2,7 +2,7 @@ import { getTokenFromLocalStorage, instance, setAuthHeader } from "./api";
 import {
   CreateProductParams,
   DeleteProductParams,
-  ProductData,
+  ProductPostData,
 } from "@/types/ProductTypes";
 
 export async function getProducts({
@@ -59,9 +59,35 @@ export const createProduct = async ({
   }
 };
 
+export const createProductOptionalData = async ({
+  productData,
+  productUrl,
+}: CreateProductParams) => {
+  if (!productData) {
+    console.warn("No productData provided");
+    // 빈 데이터로 요청 보내기 (서버가 허용할 경우)
+  }
+
+  try {
+    const token = getTokenFromLocalStorage();
+
+    if (token) {
+      setAuthHeader(token);
+    } else {
+      console.warn("유효한 로그인이 아닙니다.");
+    }
+
+    const response = await instance.post(`${productUrl}`, productData || {});
+    return response.data;
+  } catch (error) {
+    console.error("게시글을 생성하는데 실패했습니다:", error);
+    throw error;
+  }
+};
+
 export const updateProduct = async (
   productId: string,
-  productData: ProductData
+  productData: ProductPostData
 ) => {
   try {
     const token = getTokenFromLocalStorage();

@@ -18,7 +18,7 @@ import {
 import { getProductDetails, updateProduct } from "@/lib/productApi";
 import { uploadImage } from "@/lib/api";
 import { useNavigate, useParams } from "react-router-dom";
-import { ProductData } from "@/types/ProductTypes";
+import { ProductPostData } from "@/types/ProductTypes";
 
 const EditItemPage = () => {
   const { id } = useParams();
@@ -129,17 +129,20 @@ const EditItemPage = () => {
     setFileValue(() => file);
   };
 
-  const uploadPostMutation: UseMutationResult<ProductData, Error, ProductData> =
-    useMutation({
-      mutationFn: (updatedPost: ProductData) =>
-        updateProduct(id as string, updatedPost),
-      onSuccess: () => {
-        navigate("/items");
-      },
-      onError: (error) => {
-        console.error("게시물 업데이트 중 오류가 발생 : ", error);
-      },
-    });
+  const uploadPostMutation: UseMutationResult<
+    ProductPostData,
+    Error,
+    ProductPostData
+  > = useMutation({
+    mutationFn: (updatedPost: ProductPostData) =>
+      updateProduct(id as string, updatedPost),
+    onSuccess: () => {
+      navigate("/items");
+    },
+    onError: (error) => {
+      console.error("게시물 업데이트 중 오류가 발생 : ", error);
+    },
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,7 +157,7 @@ const EditItemPage = () => {
         ? await uploadImage(fileValue)
         : initialImageUrl;
 
-      const updatedPost: ProductData = {
+      const updatedPost: ProductPostData = {
         images: [imageUrl || ""],
         tags: itemIntroduction.itemTag.value,
         price: itemIntroduction.itemPrice.rawValue,

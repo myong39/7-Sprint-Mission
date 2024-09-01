@@ -1,5 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { ProductData } from "@/types/ProductTypes";
+import {
+  CommentPostData,
+  ProductPostData,
+  UnifiedPostData,
+} from "@/types/ProductTypes";
 import { uploadImage } from "@/lib/api";
 import { createProduct } from "@/lib/productApi";
 import { useNavigate } from "react-router-dom";
@@ -10,15 +14,11 @@ interface UseAddProductOptions {
   productUrl: string;
 }
 
-function isProductData(
-  data: ArticlePostData | ProductData
-): data is ProductData {
-  return (data as ProductData).images !== undefined;
+function isProductData(data: UnifiedPostData): data is ProductPostData {
+  return (data as ProductPostData).images !== undefined;
 }
 
-function isArticlePostData(
-  data: ArticlePostData | ProductData
-): data is ArticlePostData {
+function isArticlePostData(data: UnifiedPostData): data is ArticlePostData {
   return (data as ArticlePostData).image !== undefined;
 }
 
@@ -33,15 +33,15 @@ const useAddProduct = ({
       productData,
       file,
     }: {
-      productData: ProductData | ArticlePostData;
+      productData: UnifiedPostData;
       file: File | null;
     }) => {
       if (file) {
         const imageUrl = await uploadImage(file);
 
-        if (isProductData(productData)) {
+        if (productData && isProductData(productData)) {
           productData.images = [imageUrl];
-        } else if (isArticlePostData(productData)) {
+        } else if (productData && isArticlePostData(productData)) {
           productData.image = imageUrl;
         }
       }
@@ -52,6 +52,7 @@ const useAddProduct = ({
       });
     },
     onSuccess: () => {
+      console.log(onSuccessRedirectUrl);
       navigate(onSuccessRedirectUrl);
       alert("항목이 성공적으로 등록되었습니다.");
     },

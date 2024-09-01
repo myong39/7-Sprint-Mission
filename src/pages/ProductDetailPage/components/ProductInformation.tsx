@@ -17,7 +17,7 @@ const ProductInformation = ({
   const navigate = useNavigate();
 
   const { mutate: deleteProduct } = useDeleteProduct({
-    onSuccessRedirectTo: "/items",
+    onSuccessRedirectUrl: "/items",
     productUrl: "products",
   });
 

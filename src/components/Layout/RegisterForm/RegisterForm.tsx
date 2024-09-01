@@ -11,6 +11,9 @@ import styles from "./RegisterForm.module.scss";
 import { ArticlePostData } from "@/types/ArticleTypes";
 import useAddProduct from "@/hooks/useAddProduct";
 import { useLocation } from "react-router-dom";
+import { PRODUCT_FIELDTYPE } from "@/pages/ProductDetailPage/components/ProductDetailConfig";
+import { CommentPostData } from "@/types/ProductTypes";
+import { ARTICLE_FIELDTYPE } from "@/pages/BoardPage/BoardDetailConfig";
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
   titleText = "",
@@ -31,6 +34,26 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const addProduct = useAddProduct({
     onSuccessRedirectUrl: "/boards",
     productUrl: "articles",
+  });
+
+  const [urlId, setUrlId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const match = location.pathname.match(/\/(\d+)$/);
+    if (match) {
+      setUrlId(Number(match[1]));
+    } else {
+      setUrlId(null);
+    }
+  }, [location.pathname]);
+
+  const productUrl = location.pathname.startsWith("/items")
+    ? `/products/${urlId}/comments`
+    : `/articles/${urlId}/comments`;
+
+  const addComment = useAddProduct({
+    onSuccessRedirectUrl: "",
+    productUrl,
   });
 
   const [formValues, setFormValues] = useState<FormValues>(
@@ -82,6 +105,16 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         productData: ArticleData,
         file: formValues[FIELDTYPE.IMAGE] as File | null,
       });
+    } else {
+      const commentData: CommentPostData = {
+        content: formValues[
+          location.pathname.startsWith("/items")
+            ? PRODUCT_FIELDTYPE.TITLE
+            : ARTICLE_FIELDTYPE.TITLE
+        ] as string,
+      };
+
+      addComment.mutate({ productData: commentData, file: null });
     }
   };
 

@@ -62,7 +62,7 @@ export type CommentType = {
 };
 
 export interface CreateProductParams {
-  productData: ProductData | ArticlePostData;
+  productData?: UnifiedPostData;
   productUrl: string;
 }
 
@@ -72,10 +72,20 @@ export interface DeleteProductParams {
   relatedArticleId?: string;
 }
 
-export interface ProductData {
+export interface ProductPostData {
   images: string[];
   tags: string[];
   price: number;
   description: string;
   name: string;
 }
+
+export interface CommentPostData {
+  content: string;
+}
+
+export type UnifiedPostData =
+  | ProductPostData
+  | ArticlePostData
+  | CommentPostData
+  | null;

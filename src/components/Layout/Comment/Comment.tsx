@@ -7,14 +7,17 @@ import { useConfirm } from "../ConfirmPopup";
 import { MENU_OPTION } from "@/types/UiTypes";
 import { useLocation } from "react-router-dom";
 import useDeleteProduct from "@/hooks/useDeleteProduct";
+import useAddProduct from "@/hooks/useAddProduct";
+import { useEffect, useState } from "react";
 
-const Comment: React.FC<{ comment: CommentType }> = ({
+const Comment: React.FC<{ comment: CommentType; urlId: number | null }> = ({
   comment: {
     id,
     content,
     writer: { image, nickname },
     createdAt,
   },
+  urlId,
 }) => {
   const location = useLocation();
   const elapsedTime = getElapsedTime(createdAt);
@@ -24,11 +27,20 @@ const Comment: React.FC<{ comment: CommentType }> = ({
   const { confirm, ConfirmPopupComponent } = useConfirm();
 
   const { mutate: deleteComment } = useDeleteProduct({
-    onSuccessRedirectTo: location.pathname.startsWith("/items")
+    onSuccessRedirectUrl: location.pathname.startsWith("/items")
       ? "/items"
       : "/boards",
     productUrl: "comments",
   });
+
+  console.log(urlId);
+
+  // const { mutate: addComment } = useAddProduct({
+  //   onSuccessRedirectUrl: location.pathname.startsWith("/items")
+  //     ? "/items"
+  //     : "/boards",
+  //   productUrl: `articles/${articleId}/comments`,
+  // });
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {

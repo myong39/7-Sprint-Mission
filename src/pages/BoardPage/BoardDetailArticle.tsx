@@ -24,7 +24,7 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
 }) => {
   const { confirm, ConfirmPopupComponent } = useConfirm();
   const { mutate: deleteProduct } = useDeleteProduct({
-    onSuccessRedirectTo: "/boards",
+    onSuccessRedirectUrl: "/boards",
     productUrl: "articles",
   });
 

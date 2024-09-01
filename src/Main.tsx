@@ -5,6 +5,7 @@ import BoardsPage from "./pages/BoardsPage/BoardsPage";
 import BoardPage from "./pages/BoardPage/BoardPage";
 import UsedMarketPage from "./pages/UsedMarketPage/UsedMarketPage";
 import AddItemPage from "./pages/AddItemPage/AddItemPage";
+import AddBoardPage from "./pages/AddBoardPage/AddBoardPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage";
 import PrivacyPage from "./components/Layout/Footer/PrivacyPage";
@@ -25,7 +26,8 @@ function Main() {
             <Route index element={<UsedMarketPage />} />
             <Route path=":productId" element={<ProductDetailPage />} />
           </Route>
-          <Route path="addboard" element={<AddItemPage />} />
+          <Route path="addBoard" element={<AddBoardPage />} />
+          <Route path="additem" element={<AddItemPage />} />
           <Route path="login" element={<SignupAndLoginPage />} />
           <Route path="signup" element={<SignupAndLoginPage />} />
           <Route path="privacy" element={<PrivacyPage />} />

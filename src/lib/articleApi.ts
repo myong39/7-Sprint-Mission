@@ -1,10 +1,10 @@
 import { defaultOrderType } from "@/constants/orderConstants";
-import { ArticleApiData, ArticleCommentApiData } from "@/types/ArticleTypes";
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: "https://panda-market-api.vercel.app/",
-});
+import {
+  ArticleApiData,
+  ArticleCommentApiData,
+  PostData,
+} from "@/types/ArticleTypes";
+import { getTokenFromLocalStorage, instance, setAuthHeader } from "./api";
 
 export const getArticle = async ({
   articleId = "",
@@ -47,5 +47,23 @@ export const getArticleComment = async ({
     return response.data;
   } catch (error: any) {
     throw new Error(`API Error: ${error.message}`);
+  }
+};
+
+export const createPost = async (postData: PostData) => {
+  try {
+    const token = getTokenFromLocalStorage();
+
+    if (token) {
+      setAuthHeader(token);
+    } else {
+      console.warn("유효한 로그인이 아닙니다.");
+    }
+
+    const response = await instance.post<PostData>("/articles", postData);
+    return response.data;
+  } catch (error) {
+    console.error("게시글을 생성하는데 실패했습니다:", error);
+    throw error;
   }
 };

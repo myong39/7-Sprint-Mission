@@ -50,7 +50,7 @@ const FreeBoardDetail = () => {
   const fetchDataComment = async ({ articleId }: ArticleCommentApiData) => {
     try {
       const result = await getArticleComment({ articleId });
-      console.log(result.list);
+
       setComments({
         ...comments,
         comments: result.list,

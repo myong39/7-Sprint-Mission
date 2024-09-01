@@ -2,7 +2,6 @@ import {
   useState,
   useEffect,
   KeyboardEvent,
-  FormEvent,
   ChangeEvent,
   FocusEvent,
 } from "react";
@@ -10,14 +9,19 @@ import ItemTag from "./ItemTag";
 import { formatNumberWithComma } from "@/utils/Utils";
 import FileInput from "./FileInput";
 import "./AddItemPage.css";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { ProductData } from "@/types/ArticleTypes";
+import { createProduct } from "@/lib/productApi";
+import { uploadImage } from "@/lib/api";
+import { useNavigate } from "react-router-dom";
 
 const AddItemPage = () => {
   // form 데이터 객체
   const [itemIntroduction, setFormData] = useState({
     itemTitle: { value: "", isValid: false },
-    itemIntro: { value: "", isValid: false },
-    itemPrice: { value: "", isValid: false },
+    itemPrice: { value: "", rawValue: 0, isValid: false },
     itemTag: { value: [] as string[], isValid: false },
+    itemDescription: { value: "", isValid: false },
   });
 
   // 파일 정보
@@ -26,6 +30,8 @@ const AddItemPage = () => {
   const isFormValid = Object.values(itemIntroduction).every(
     (input) => input.isValid
   );
+
+  const navigate = useNavigate();
 
   // tag 배열 정보과 유효성 업데이트
   const updateTagAndValidity = (newTagArray: string[]) => {
@@ -49,6 +55,7 @@ const AddItemPage = () => {
 
   const handleTagChange = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       // 앞 뒤 빈칸 제거
       const inputElement = e.target as HTMLInputElement;
       const newValue = inputElement.value.trim();
@@ -81,17 +88,18 @@ const AddItemPage = () => {
   const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputPrice = e.target.value;
 
-    // 판매 가격 숫자만 입력 및 세자릿수마다 콤마 추가
-    const formattedPrice = formatNumberWithComma(inputPrice);
+    // 숫자만 입력 및 세자릿수마다 콤마 추가
+    const rawPrice = parseFloat(inputPrice.replace(/,/g, ""));
+    const formattedPrice = formatNumberWithComma(rawPrice.toString());
 
     setFormData((prevData) => ({
       ...prevData,
-      itemPrice: { value: formattedPrice, isValid: formattedPrice !== "" },
+      itemPrice: {
+        value: formattedPrice,
+        rawValue: rawPrice,
+        isValid: !isNaN(rawPrice),
+      },
     }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
   };
 
   const handleFileChange = (file: File | null) => {
@@ -99,6 +107,51 @@ const AddItemPage = () => {
   };
 
   useEffect(() => {}, [itemIntroduction]);
+
+  const uploadPostMutation: UseMutationResult<ProductData, Error, ProductData> =
+    useMutation({
+      mutationFn: (newPost: ProductData) => createProduct(newPost),
+
+      onSuccess: (data: ProductData) => {
+        console.log("게시글 생성 성공:", data);
+      },
+
+      onError: (error: Error) => {
+        console.error("게시글 생성 실패:", error);
+      },
+    });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!fileValue) {
+      console.warn("파일이 선택되지 않았습니다.");
+      return;
+    }
+
+    try {
+      const imageUrl = await uploadImage(fileValue);
+
+      const newPost: ProductData = {
+        images: [imageUrl],
+        tags: itemIntroduction.itemTag.value,
+        price: itemIntroduction.itemPrice.rawValue,
+        description: itemIntroduction.itemDescription.value,
+        name: itemIntroduction.itemTitle.value,
+      };
+
+      uploadPostMutation.mutate(newPost, {
+        onSuccess: () => {
+          navigate("/items");
+        },
+        onError: (error) => {
+          console.error("게시물 업로드 중 오류 발생:", error);
+        },
+      });
+    } catch (error) {
+      console.error("게시물 업로드 중 오류 발생:", error);
+    }
+  };
 
   return (
     <section className="add-item-page">
@@ -124,7 +177,7 @@ const AddItemPage = () => {
         />
         <h2>상품 소개</h2>
         <textarea
-          id="itemIntro"
+          id="itemDescription"
           placeholder="상품소개를 입력해주세요"
           onBlur={handleChange}
         />
@@ -134,7 +187,6 @@ const AddItemPage = () => {
           value={itemIntroduction.itemPrice.value}
           placeholder="판매가격을 입력해주세요"
           onChange={handlePriceChange}
-          onBlur={handleChange}
         />
         <h2>태그</h2>
         <input

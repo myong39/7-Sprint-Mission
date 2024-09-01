@@ -51,7 +51,6 @@ const ProductDetailPage = () => {
         ...productComments,
         comments: productCommentResult.list,
       });
-      console.log(productCommentResult.list);
     } catch (error) {
       console.log(error);
     } finally {

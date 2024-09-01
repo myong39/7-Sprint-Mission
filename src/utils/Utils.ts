@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 // 숫자만 입력 및 숫자 쉼표로 구분하여 반환
 export function formatNumberWithComma(number: string) {
   return number.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -32,6 +34,12 @@ export function getLinkStyle({
     [linkColorProp]: isActive ? linkColor : "",
   };
 }
+
+export const getActiveLinkStyle = (paths: string[]): CSSProperties => {
+  const location = window.location.pathname;
+  const isActive = paths.some((path) => location.startsWith(path));
+  return getLinkStyle({ isActive });
+};
 
 // 여러 페이지 일 때 지정 페이지면 해당 배열 구하기
 export const getPageRange = (

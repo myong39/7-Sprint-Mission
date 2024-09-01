@@ -1,7 +1,9 @@
+import { useConfirm } from "@/components/Layout/ConfirmPopup";
 import ProductTags from "./ProductTags";
 import favoriteImg from "@/assets/images/icons/ic_heart.svg";
 import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
 import { ProductDetailType } from "@/types/ProductTypes";
+import { MENU_OPTION } from "@/types/UiTypes";
 import { useState } from "react";
 
 const ProductInformation = ({
@@ -10,10 +12,20 @@ const ProductInformation = ({
   productDetails: ProductDetailType;
 }) => {
   const productPrice = price.toLocaleString();
+  const { confirm, ConfirmPopupComponent } = useConfirm();
 
-  const [orderBy, setOrderBy] = useState("");
-  const handleOrderChange = (option: string) => {
-    setOrderBy(option);
+  const handleOrderChange = async (option: string) => {
+    if (option === MENU_OPTION.EDIT) {
+    } else if (option === MENU_OPTION.DELETE) {
+      const result = await confirm(
+        "정말로 이 항목을 삭제하시겠습니까?",
+        "삭제",
+        "취소"
+      );
+      if (result) {
+        alert("상품이 삭제되었습니다.");
+      }
+    }
   };
 
   return (
@@ -24,7 +36,7 @@ const ProductInformation = ({
           <div className="kebabImage">
             <MenuDropdown
               onOrderChange={handleOrderChange}
-              items={["수정하기", "삭제하기"]}
+              items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
             />
           </div>
         </div>
@@ -43,6 +55,7 @@ const ProductInformation = ({
         <img src={favoriteImg} alt="좋아요 수" />
         <h3>{favoriteCount}</h3>
       </button>
+      {ConfirmPopupComponent}
     </div>
   );
 };

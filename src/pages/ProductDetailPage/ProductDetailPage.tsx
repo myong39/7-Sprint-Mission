@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
-import { getProductDetails } from "@/lib/api";
 import { useEffect, useState } from "react";
 import ProductDetails from "./components/ProductDetails";
 import CommentsSection from "@/components/Layout/Comment/CommentsSection";
 import GoBackToListButton from "@/components/Layout/Comment/GoBackToListButton";
 import "./ProductDetailPage.scss";
-import { CommentType, ProductDetailType } from "@/types/ProductTypes";
+import { ProductDetailType } from "@/types/ProductTypes";
 import { CommentObject } from "@/types/ArticleTypes";
 import { commentInfo, fields } from "./components/ProductDetailConfig";
 import RegisterForm from "@/components/Layout/RegisterForm/RegisterForm";
+import { getProductDetails } from "@/lib/productApi";
 
 const ProductDetailPage = () => {
   // 해당 페이지의 productId를 받아옴

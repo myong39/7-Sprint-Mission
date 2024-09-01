@@ -1,7 +1,5 @@
-import { PostData } from "@/types/ArticleTypes";
 import { SignUpData } from "@/types/AuthTypes";
 import axios from "axios";
-import { getTokenFromLocalStorage, setAuthHeader } from "./api";
 
 const instance = axios.create({
   baseURL: "https://panda-market-api.vercel.app/",

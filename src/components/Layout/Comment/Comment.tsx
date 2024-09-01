@@ -5,6 +5,8 @@ import styles from "./Commtent.module.scss";
 import defaultProfileImg from "@/assets/images/icons/ic_user.svg";
 import MenuDropdown from "../Dropdown/MenuDropdown";
 import { useState } from "react";
+import { useConfirm } from "../ConfirmPopup";
+import { MENU_OPTION } from "@/types/UiTypes";
 
 const Comment: React.FC<{ comment: CommentType }> = ({
   comment: {
@@ -17,9 +19,20 @@ const Comment: React.FC<{ comment: CommentType }> = ({
   const formattedTime = getFormatTime(createdAt);
   const profileImg = image ? image : defaultProfileImg;
 
-  const [orderBy, setOrderBy] = useState("");
-  const handleOrderChange = (option: string) => {
-    setOrderBy(option);
+  const { confirm, ConfirmPopupComponent } = useConfirm();
+
+  const handleOrderChange = async (option: string) => {
+    if (option === MENU_OPTION.EDIT) {
+    } else if (option === MENU_OPTION.DELETE) {
+      const result = await confirm(
+        "정말로 이 항목을 삭제하시겠습니까?",
+        "삭제",
+        "취소"
+      );
+      if (result) {
+        alert("상품이 삭제되었습니다.");
+      }
+    }
   };
 
   return (
@@ -29,7 +42,7 @@ const Comment: React.FC<{ comment: CommentType }> = ({
         <div className={styles["kebab-image"]}>
           <MenuDropdown
             onOrderChange={handleOrderChange}
-            items={["수정하기", "삭제하기"]}
+            items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
           />
         </div>
       </div>
@@ -42,7 +55,8 @@ const Comment: React.FC<{ comment: CommentType }> = ({
           </h4>
         </div>
       </div>
-      <div className={styles["horizontal-divider"]}></div>
+      <div className={styles["horizontal-divider"]}></div>{" "}
+      {ConfirmPopupComponent}
     </div>
   );
 };

@@ -30,3 +30,9 @@ export interface MenuDropdownProps {
   onOrderChange: (newOption: string) => void;
   items: string[];
 }
+
+// dropdown Menu type
+export enum MENU_OPTION {
+  EDIT = "수정하기",
+  DELETE = "삭제하기",
+}

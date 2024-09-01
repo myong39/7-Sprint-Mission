@@ -4,6 +4,9 @@ import defalutProfleImg from "@/assets/images/icons/ic_user.svg";
 import kebabImg from "@/assets/images/icons/ic_kebab.svg";
 import favoriteImg from "@/assets/images/icons/ic_heart.svg";
 import { getFormatTime } from "@/utils/Utils";
+import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
+import { MENU_OPTION } from "@/types/UiTypes";
+import { useConfirm } from "@/components/Layout/ConfirmPopup";
 
 interface BoardDetailArticleProps {
   article: Article;
@@ -18,11 +21,32 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
     createdAt,
   },
 }) => {
+  const { confirm, ConfirmPopupComponent } = useConfirm();
+
+  const handleOrderChange = async (option: string) => {
+    if (option === MENU_OPTION.EDIT) {
+    } else if (option === MENU_OPTION.DELETE) {
+      const result = await confirm(
+        "정말로 이 항목을 삭제하시겠습니까?",
+        "삭제",
+        "취소"
+      );
+      if (result) {
+        alert("상품이 삭제되었습니다.");
+      }
+    }
+  };
+
   return (
     <section className={styles["board-detail-article-section"]}>
       <div className={styles["title-wrapper"]}>
         <h1>{title}</h1>
-        <img src={kebabImg} alt="더보기" />
+        <div className="kebabImage">
+          <MenuDropdown
+            onOrderChange={handleOrderChange}
+            items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
+          />
+        </div>
       </div>
       <div className={styles["content-wrapper"]}>
         <div className={styles["user-wrapper"]}>
@@ -38,6 +62,7 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
       </div>
       <span className={styles["horizontal-divider"]}></span>
       <span className={styles.content}>{content}</span>
+      {ConfirmPopupComponent}
     </section>
   );
 };

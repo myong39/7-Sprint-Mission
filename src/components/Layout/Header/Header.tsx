@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Header.scss";
-import { getLinkStyle } from "@/utils/Utils";
+import { getActiveLinkStyle, getLinkStyle } from "@/utils/Utils";
 import userImage from "@/assets/images/icons/ic_user.svg";
 import logoImg from "@/assets/images/icons/panda-market-logo.svg";
 import { useEffect, useState } from "react";
@@ -29,7 +29,10 @@ const Header = () => {
             <div className="menu-area">
               <div className="menu">
                 <h3>
-                  <NavLink to="/boards" style={getLinkStyle}>
+                  <NavLink
+                    to="/boards"
+                    style={() => getActiveLinkStyle(["/boards", "/board"])}
+                  >
                     자유게시판
                   </NavLink>
                 </h3>

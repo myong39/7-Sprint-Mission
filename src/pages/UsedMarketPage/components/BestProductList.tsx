@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import getItems from "@/lib/api";
 import BestProductItem from "./BestProductItem";
 import useDeviceType from "@/hooks/useDeviceType";
 import { Link } from "react-router-dom";
 import { Item } from "@/types/ProductTypes";
+import { getItems } from "@/lib/productApi";
 
 const ITEM_INIT = 4;
 const TABLET_ITEM_NUM = 2;

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import getItems from "@/lib/api";
 import AllProductItem from "./AllProductItem";
 import ProductSearch from "./ProductSearch";
 import Pagination from "./Pagination";
@@ -7,6 +6,7 @@ import { getCustomRound } from "@/utils/Utils";
 import useDeviceType from "@/hooks/useDeviceType";
 import { Link } from "react-router-dom";
 import { Item, FetchDataType } from "@/types/ProductTypes";
+import { getItems } from "@/lib/productApi";
 
 const PAGE_INIT = 1;
 const ITEM_INIT = 10;

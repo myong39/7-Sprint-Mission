@@ -1,0 +1,300 @@
+/*네비*/
+#nav {
+  position: fixed;
+  inset: 0;
+}
+
+.banner {
+  background-color: #cfe5ff;
+  height: 540px;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 100% bottom;
+  background-size: 55%;
+}
+
+#hero {
+  background-image: url("../../assets/images/home/hero-banner-image.png");
+}
+
+#features {
+  padding-bottom: 138px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 1200px;
+  margin: auto;
+}
+
+.wrapper-font {
+  color: var(--gray700);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+}
+
+#bottomBanner {
+  background-image: url("../../assets/images/home/bottom-banner-image.png");
+}
+
+#loginLinkButton {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 11.5px 23px;
+}
+
+.banner .pill-button {
+  margin-top: 32px;
+  padding: 16px 124px;
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.feature {
+  padding: 138px 0;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+
+.feature:nth-child(2) {
+  text-align: right;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-content > h1 {
+  font-size: 2em;
+  line-height: 44.8px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  letter-spacing: 0.2;
+}
+
+.feature-tag {
+  color: var(--blue);
+  font-size: var(--fontsize-18);
+  line-height: 25px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feature-description {
+  font-size: 1.5em;
+  font-weight: 500;
+  line-height: 28.8px;
+  letter-spacing: 0.08em;
+  margin-top: 24px;
+}
+
+/*PC사이즈 기준 반응형*/
+/*- PC: 1200px 이상- Tablet: 768px 이상 ~ 1199px 이하- Mobile: 375px 이상 ~ 767px 이하 * 375px 미만 사이즈의 디자인은 고려X*/
+
+/* PC: 1200px 이상 */
+@media screen and (min-width: 1200px) {
+}
+
+/* Tablet: 768px 이상 ~ 1199px 이하 */
+@media screen and (max-width: 1199px) {
+  /*사이즈, 위치, 여백 등 변경 */
+  header {
+    padding: 0 24px;
+  }
+
+  footer {
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 32px 100px 108px;
+  }
+
+  .feature-content > h1 {
+    font-size: 2em; /*32px;*/
+    line-height: 44.8px;
+  }
+
+  .feature-content > p {
+    font-size: var(--fontsize-18); /*18px;*/
+    line-height: 21.6px;
+  }
+
+  .banner {
+    background-position: 50% bottom;
+    align-items: flex-start;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 0;
+  }
+
+  #hero h1 {
+    margin-top: 84px;
+  }
+
+  #bottomBanner h1 {
+    margin-top: 84px;
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+
+  .feature {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .feature > img {
+    padding: 24px 24px 20px;
+  }
+
+  .feature-content {
+    flex: 0;
+    justify-content: left;
+    align-items: left;
+    padding: 0 24px;
+  }
+
+  /*상품 이미지 사이즈 조정*/
+  .feature > img {
+    width: 100%;
+  }
+
+  /*상품 그룹 두번째 feature의 그림과 글의 위치 변경*/
+  .feature:nth-child(2) > :first-child {
+    order: 2;
+  }
+
+  .feature:nth-child(2) > :nth-child(2) {
+    order: 1;
+  }
+
+  /*상품 그룹 두번째 feature만 오른쪽*/
+  .feature:nth-child(2) {
+    align-items: flex-end;
+  }
+
+  #features {
+    padding-bottom: 40px;
+  }
+
+  .banner {
+    background-size: 120%;
+    height: 90vh;
+  }
+
+  /*줄바꿈 비가시성*/
+  .visibility-br {
+    display: none;
+  }
+
+  /*구경 버튼*/
+  .button.pill-button {
+    margin-top: 24px;
+  }
+}
+
+/* Mobile: 767px 이하 */
+@media screen and (max-width: 767px) {
+  /*사이즈, 위치, 여백 등 변경 */
+  header {
+    padding: 0 16px;
+  }
+
+  footer {
+    gap: 60px;
+    padding: 32px;
+  }
+
+  .feature {
+    margin-bottom: 0px;
+  }
+
+  .feature-content > h2 {
+    font-size: 1em; /*16px;*/
+    line-height: 22.4px;
+    margin-bottom: 8px;
+  }
+
+  .feature-content > h1 {
+    font-size: 1.5em; /*24px;*/
+    line-height: 33.6px;
+  }
+
+  .feature-content > p {
+    font-size: 1em; /*16px;*/
+    line-height: 19.2px;
+    margin-top: 20px;
+  }
+
+  .banner h1 {
+    font-size: 2em; /*32px;*/
+    line-height: 44.8px;
+  }
+
+  .banner a {
+    font-size: 1em; /*16px;*/
+    line-height: 19.09px;
+  }
+
+  .feature-content {
+    padding: 0 16px;
+  }
+
+  #features {
+    padding-bottom: 24px;
+  }
+
+  .feature > img {
+    padding: 51px 16px 20px;
+  }
+
+  .banner {
+    background-size: 130%;
+    height: 60vh;
+    text-align: center;
+  }
+
+  #bottomBanner h1 {
+    margin-top: 121px;
+  }
+
+  /*줄바꿈 가시성*/
+  #hero.banner br {
+    display: inline;
+  }
+
+  /*구경 버튼*/
+  .button.pill-button {
+    font-size: 1em; /*16px;*/
+    line-height: 19.09px;
+    padding: 14px 35px;
+    margin-top: 18px;
+  }
+
+  /*일상 글자 가운데 정렬*/
+  #hero h1 {
+    margin-top: 48px;
+  }
+
+  /*footer메뉴 copyright 맨뒤로 순서 바꾸기*/
+  footer > #copyright {
+    order: 4;
+  }
+}

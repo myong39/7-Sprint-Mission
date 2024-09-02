@@ -1,0 +1,70 @@
+.nav {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+#logo-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 32px;
+}
+
+.menu-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  width: 109px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21.48px;
+    color: #4b5563;
+  }
+}
+
+.menu a:hover {
+  color: var(--blue);
+}
+
+.menu a:focus {
+  color: var(--blue);
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .nav {
+    width: 100%;
+    padding: 0 24px;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .nav {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .menu-area {
+    gap: 8px;
+  }
+
+  .menu {
+    width: auto;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+}

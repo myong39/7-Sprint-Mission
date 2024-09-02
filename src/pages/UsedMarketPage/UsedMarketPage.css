@@ -264,7 +264,7 @@ form {
     gap: 16px;
   }
 
-  .list {
+  .list-area a {
     flex: 0 0 calc(50% - 16px);
   }
 
@@ -301,10 +301,6 @@ form {
 
   .list-area.all-area {
     gap: 8px;
-  }
-
-  .list {
-    flex: 0 0 calc(100%);
   }
 
   .all-area a {

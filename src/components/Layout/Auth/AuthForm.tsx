@@ -5,11 +5,14 @@ import { getFieldsByMode } from "./AuthConfig";
 import styles from "./Auth.module.scss";
 import Button from "../Button";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { signIn, signUp } from "@/lib/authApi";
+import { getUser, signIn, signUp } from "@/lib/authApi";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
+import { useUserStore } from "@/store/apiDataStore";
 
 const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
+  const setUserId = useUserStore((state) => state.setUserId);
+
   const {
     control,
     handleSubmit,
@@ -40,6 +43,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
         if (result.accessToken && result.refreshToken) {
           localStorage.setItem("accessToken", result.accessToken);
           localStorage.setItem("refreshToken", result.refreshToken);
+        }
+
+        try {
+          const userInfo = await getUser();
+          setUserId(userInfo.id);
+        } catch (error) {
+          console.error("유저 정보 얻기 오류 :", error);
         }
 
         navigate("/");

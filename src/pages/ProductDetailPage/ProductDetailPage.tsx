@@ -50,7 +50,6 @@ const ProductDetailPage = () => {
     return <p>Error: {productError?.message || commentsError?.message}</p>;
   }
 
-  console.log(commentsData);
   const comments: CommentObject = commentsData || commentInfo;
 
   return (

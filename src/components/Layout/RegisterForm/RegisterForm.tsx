@@ -9,7 +9,7 @@ import {
 import { FIELDTYPE } from "./registerConfig";
 import styles from "./RegisterForm.module.scss";
 import { ArticlePostData } from "@/types/ArticleTypes";
-import useAddProduct from "@/hooks/useAddProduct";
+import useAddAndEditProduct from "@/hooks/useAddAndEditProduct";
 import { useLocation } from "react-router-dom";
 import { PRODUCT_FIELDTYPE } from "@/pages/ProductDetailPage/components/ProductDetailConfig";
 import { CommentPostData } from "@/types/ProductTypes";
@@ -31,7 +31,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     return initialValues;
   };
 
-  const addProduct = useAddProduct({
+  const addProduct = useAddAndEditProduct({
     onSuccessRedirectUrl: "/boards",
     productUrl: "articles",
   });
@@ -51,7 +51,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     ? `/products/${urlId}/comments`
     : `/articles/${urlId}/comments`;
 
-  const addComment = useAddProduct({
+  const addComment = useAddAndEditProduct({
     onSuccessRedirectUrl: "",
     productUrl,
     queryKey: "comments",

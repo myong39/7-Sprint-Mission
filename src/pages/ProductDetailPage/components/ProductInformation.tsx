@@ -6,9 +6,18 @@ import { ProductDetailType } from "@/types/ProductTypes";
 import { MENU_OPTION } from "@/types/UiTypes";
 import { useNavigate } from "react-router-dom";
 import useDeleteProduct from "@/hooks/useDeleteProduct";
+import { useUserStore } from "@/store/apiDataStore";
 
 const ProductInformation = ({
-  productDetails: { id, tags, name, price, description, favoriteCount },
+  productDetails: {
+    id,
+    tags,
+    name,
+    price,
+    description,
+    favoriteCount,
+    ownerId,
+  },
 }: {
   productDetails: ProductDetailType;
 }) => {
@@ -20,6 +29,10 @@ const ProductInformation = ({
     onSuccessRedirectUrl: "/items",
     productUrl: "products",
   });
+
+  const { userId } = useUserStore();
+
+  const isCurrentUser = userId === ownerId;
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {
@@ -41,12 +54,14 @@ const ProductInformation = ({
       <div className="detailsWrapper">
         <div className="titleWrapper">
           <h1>{name}</h1>
-          <div className="kebabImage">
-            <MenuDropdown
-              onOrderChange={handleOrderChange}
-              items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
-            />
-          </div>
+          {isCurrentUser && (
+            <div className="kebabImage">
+              <MenuDropdown
+                onOrderChange={handleOrderChange}
+                items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
+              />
+            </div>
+          )}
         </div>
         <h2>{productPrice}원</h2>
         <div className="dividerLine"></div>

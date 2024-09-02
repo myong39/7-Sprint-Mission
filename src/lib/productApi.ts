@@ -3,6 +3,7 @@ import {
   CreateProductParams,
   DeleteProductParams,
   ProductPostData,
+  UpdateProductParams,
 } from "@/types/ProductTypes";
 
 export async function getProducts({
@@ -65,7 +66,6 @@ export const createProductOptionalData = async ({
 }: CreateProductParams) => {
   if (!productData) {
     console.warn("No productData provided");
-    // 빈 데이터로 요청 보내기 (서버가 허용할 경우)
   }
 
   try {
@@ -85,10 +85,10 @@ export const createProductOptionalData = async ({
   }
 };
 
-export const updateProduct = async (
-  productId: string,
-  productData: ProductPostData
-) => {
+export const updateProduct = async ({
+  productData,
+  productUrl,
+}: UpdateProductParams) => {
   try {
     const token = getTokenFromLocalStorage();
 
@@ -98,10 +98,7 @@ export const updateProduct = async (
       console.warn("유효한 로그인이 아닙니다.");
     }
 
-    const response = await instance.patch(
-      `/products/${productId}`,
-      productData
-    );
+    const response = await instance.patch(`${productUrl}`, productData || {});
     return response.data;
   } catch (error) {
     console.error("게시글을 업데이트하는데 실패했습니다:", error);

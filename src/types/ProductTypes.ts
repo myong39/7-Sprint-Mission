@@ -89,3 +89,8 @@ export type UnifiedPostData =
   | ArticlePostData
   | CommentPostData
   | null;
+
+export interface UpdateProductParams {
+  productUrl: string;
+  productData: CommentPostData | ProductPostData;
+}

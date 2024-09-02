@@ -7,6 +7,7 @@ import MenuDropdown from "@/components/Layout/Dropdown/MenuDropdown";
 import { MENU_OPTION } from "@/types/UiTypes";
 import { useConfirm } from "@/components/Layout/ConfirmPopup";
 import useDeleteProduct from "@/hooks/useDeleteProduct";
+import { useUserStore } from "@/store/apiDataStore";
 
 interface BoardDetailArticleProps {
   article: Article;
@@ -17,7 +18,7 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
     id,
     title,
     content,
-    writer: { nickname },
+    writer: { nickname, id: writerId },
     likeCount,
     createdAt,
   },
@@ -27,6 +28,10 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
     onSuccessRedirectUrl: "/boards",
     productUrl: "articles",
   });
+
+  const { userId } = useUserStore();
+
+  const isCurrentUser = userId === writerId;
 
   const handleOrderChange = async (option: string) => {
     if (option === MENU_OPTION.EDIT) {
@@ -46,12 +51,14 @@ const BoardDetailArticle: React.FC<BoardDetailArticleProps> = ({
     <section className={styles["board-detail-article-section"]}>
       <div className={styles["title-wrapper"]}>
         <h1>{title}</h1>
-        <div className="kebabImage">
-          <MenuDropdown
-            onOrderChange={handleOrderChange}
-            items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
-          />
-        </div>
+        {isCurrentUser && (
+          <div className="kebabImage">
+            <MenuDropdown
+              onOrderChange={handleOrderChange}
+              items={[MENU_OPTION.EDIT, MENU_OPTION.DELETE]}
+            />
+          </div>
+        )}
       </div>
       <div className={styles["content-wrapper"]}>
         <div className={styles["user-wrapper"]}>

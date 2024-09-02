@@ -1,6 +1,6 @@
 import Comment from "./Comment";
 import { CommentsSectionProp } from "@/types/ArticleTypes";
-import styles from "./Commtent.module.scss";
+import styles from "./Comment.module.scss";
 import LoadingSpinner from "../LoadingSpinner";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";

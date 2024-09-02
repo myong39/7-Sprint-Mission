@@ -3,7 +3,7 @@ import ItemTag from "./ItemTag";
 import { formatNumberWithComma } from "@/utils/Utils";
 import FileInput from "./FileInput";
 import "./AddItemPage.css";
-import useAddProduct from "@/hooks/useAddProduct";
+import useAddAndEditProduct from "@/hooks/useAddAndEditProduct";
 import { ProductPostData } from "@/types/ProductTypes";
 
 const AddItemPage = () => {
@@ -22,7 +22,7 @@ const AddItemPage = () => {
     (input) => input.isValid
   );
 
-  const addProduct = useAddProduct({
+  const addProduct = useAddAndEditProduct({
     onSuccessRedirectUrl: "/items",
     productUrl: "products",
   });

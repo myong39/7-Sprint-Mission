@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ProductPostData, UnifiedPostData } from "@/types/ProductTypes";
 import { uploadImage } from "@/lib/api";
-import { createProduct } from "@/lib/productApi";
+import { createProduct, updateProduct } from "@/lib/productApi";
 import { useNavigate } from "react-router-dom";
 import { ArticlePostData } from "@/types/ArticleTypes";
 
@@ -9,6 +9,8 @@ interface UseAddProductOptions {
   onSuccessRedirectUrl: string;
   productUrl: string;
   queryKey?: string;
+  isPatch?: boolean;
+  productPatchData?: any;
 }
 
 function isProductData(data: UnifiedPostData): data is ProductPostData {
@@ -19,10 +21,12 @@ function isArticlePostData(data: UnifiedPostData): data is ArticlePostData {
   return (data as ArticlePostData).image !== undefined;
 }
 
-const useAddProduct = ({
+const useAddAndEditProduct = ({
   onSuccessRedirectUrl,
   productUrl,
   queryKey,
+  isPatch = false,
+  productPatchData,
 }: UseAddProductOptions) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -45,14 +49,17 @@ const useAddProduct = ({
         }
       }
 
-      return createProduct({
-        productData,
-        productUrl,
-      });
+      if (isPatch) {
+        return updateProduct({ productUrl, productData: productPatchData });
+      } else {
+        return createProduct({
+          productData,
+          productUrl,
+        });
+      }
     },
     onSuccess: () => {
       if (queryKey) {
-        console.log("쿼리키 있따고");
         queryClient.invalidateQueries({ queryKey: [queryKey] });
       } else {
         queryClient.invalidateQueries();
@@ -67,4 +74,4 @@ const useAddProduct = ({
   });
 };
 
-export default useAddProduct;
+export default useAddAndEditProduct;

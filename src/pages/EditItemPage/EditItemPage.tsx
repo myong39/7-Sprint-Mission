@@ -135,7 +135,10 @@ const EditItemPage = () => {
     ProductPostData
   > = useMutation({
     mutationFn: (updatedPost: ProductPostData) =>
-      updateProduct(id as string, updatedPost),
+      updateProduct({
+        productUrl: `/products/${id}`,
+        productData: updatedPost,
+      }),
     onSuccess: () => {
       navigate("/items");
     },
